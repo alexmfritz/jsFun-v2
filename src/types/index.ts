@@ -162,3 +162,68 @@ export interface TestResult {
 // The got field is optional -- when a test fails, it shows the student what their code actually produced versus what was expected. 
 // The description is the human-readable assertion ("should return 42 when given 6 and 7").
 
+export interface ExercisesState {
+  exercises: Exercise[];
+  categories: Record<string, Category>;
+  collections: Collection[];
+  loading: boolean;
+  error: string | null;
+}
+
+export interface ProgressState {
+  studentName: string;
+  completedExercises: Record<string, CompletedExercise>;
+  savedSolutions: Record<string, string>;
+  attempts: Record<string, number>;
+  /** Client-side only: count of unique (non-duplicate) code submissions */
+  uniqueAttempts: Record<string, number>;
+  /** Client-side only: set of hashed code strings that failed tests */
+  failedCodeHashes: Record<string, string[]>;
+  createdAt: string;
+  lastUpdated?: string;
+  loading: boolean;
+  error: string | null;
+}
+
+export type Theme = 'dark' | 'light' | 'high-contrast';
+export type StatusSort = 'default' | 'in-progress-first' | 'not-started-first' | 'completed-first';
+
+export interface Toast {
+  message: string;
+  type: 'error' | 'success' | 'warning' | 'celebration';
+}
+
+export interface UiState {
+  theme: Theme;
+  browseFilter: {
+    search: string;
+    tags: string[];
+    tier: Tier | null;
+    collectionId: string | null;
+    categoryPath: string[];
+  };
+  activeView: 'browse' | 'exercise' | 'dashboard' | 'admin';
+  toast: Toast | null;
+  saveStatus: 'idle' | 'saving' | 'saved';
+  showHelpModal: boolean;
+  statusSort: StatusSort;
+  serverReachable: boolean;
+}
+
+export interface AdminState {
+  isAuthenticated: boolean;
+  error: string | null;
+}
+
+export interface ApiResponse<T = unknown> {
+  success: boolean;
+  data?: T;
+  error?: string;
+}
+
+// Notice that ProgressState extends the server-stored Progress shape with two client-only fields: uniqueAttempts and failedCodeHashes. 
+// These track duplicate code detection within the current session. 
+// They are intentionally not persisted to the server because:
+// 1. They are ephemeral -- restarting the browser resets them
+// 2. They serve a pedagogical purpose (preventing students from spamming the same broken code) rather than a record-keeping purpose
+// 3. Keeping them client-side avoids bloating the progress file with hash data
