@@ -100,3 +100,37 @@ export interface Exercise {
 // 3 (Builder)	Partial implementation with structural hints
 // 4 (Architect)	// Step 1: Parse the input\n// Step 2: Transform\n// Step 3: Return
 // 5 (Mastercraft)	"" (empty string -- blank editor)
+
+export interface Category {
+  label: string;
+  icon?: string;
+  color?: string;
+  children?: Record<string, Category>;
+}
+
+export interface Collection {
+  id: string;
+  name: string;
+  description: string;
+  exerciseIds: number[];
+  isDefault?: boolean;
+  color?: string;
+  /** Hide from student-facing browse UI */
+  hidden?: boolean;
+  /** Source attribution */
+  source?: string;
+  /** SPDX license identifier */
+  license?: string;
+  /** Full attribution text shown in the collection banner */
+  attribution?: string;
+}
+
+export interface ExercisesData {
+  categories: Record<string, Category>;
+  collections: Collection[];
+  exercises: Exercise[];
+}
+
+// ExercisesData is the shape of the /api/exercises response. 
+// It contains everything the frontend needs in a single request -- no pagination, no lazy loading. 
+// With a few hundred exercises totaling a few hundred KB of JSON, there is no performance reason to complicate the data fetching.
