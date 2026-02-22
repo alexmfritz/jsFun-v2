@@ -283,3 +283,38 @@ export const TYPE_META: Record<ExerciseType, { label: string; color: string }> =
 
 // Type badges use industry-standard color associations: yellow for JavaScript, pink for HTML, cyan for CSS.
 
+/** Unique attempts needed to unlock each progressive hint */
+export const HINT_GATES = [3, 6, 9] as const;
+
+/** Unique attempts needed to unlock the solution */
+export const DEFAULT_SOLUTION_GATE = 10;
+
+/**
+ * Resolve progressive hints from an exercise, supporting both
+ * legacy `hint` (single string) and new `hints` (array) formats.
+ */
+export function getHints(exercise: Exercise): string[] {
+  if (exercise.hints && exercise.hints.length > 0) {
+    return exercise.hints.slice(0, 3);
+  }
+  if (exercise.hint) {
+    return [exercise.hint];
+  }
+  return [];
+}
+
+// The hint gating system is the pedagogical heart of the platform. 
+// Students do not get hints for free -- they must demonstrate genuine effort first:
+
+// 3 unique attempts: Hint 1 unlocks (a gentle nudge in the right direction)
+// 6 unique attempts: Hint 2 unlocks (more specific guidance)
+// 9 unique attempts: Hint 3 unlocks (nearly a walkthrough)
+// 10 unique attempts: Full solution unlocks
+// "Unique" is the key word. If a student submits the same broken code 50 times, it still counts as 1 attempt. 
+// The djb2 hash function (defined in the progress slice) detects duplicates. 
+// This prevents students from gaming the system by clicking "Run" repeatedly without changing their code, 
+// while also preventing the frustration of being locked out of help when genuinely stuck.
+
+// The solutionGate field on individual exercises allows teachers to override the default of 10. 
+// A particularly challenging exercise might lower the gate to 5; 
+// a drill-style exercise where students should keep trying might raise it to 15.
