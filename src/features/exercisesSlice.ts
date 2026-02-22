@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { ExercisesState, ExercisesData } from '../types';
 import { setServerReachable } from './uiSlice';
 
-/** Fetch all exercise data from the server */
 export const fetchExercises = createAsyncThunk<ExercisesData>(
   'exercises/fetchAll',
   async (_, { dispatch }) => {
@@ -50,12 +49,3 @@ const exercisesSlice = createSlice({
 });
 
 export default exercisesSlice.reducer;
-
-// This is the simplest slice because exercise data is read-only from the student's perspective. 
-// The thunk fetches everything in one request and populates three arrays. 
-// The setServerReachable dispatch is a cross-slice side effect -- if the API call fails (server is down, network issue), 
-// the UI slice is notified so it can display an offline banner.
-
-// Notice there are no synchronous reducers. 
-// The exercises slice has no user-driven state mutations. 
-// It loads once at startup and that is it.
