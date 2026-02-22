@@ -170,3 +170,47 @@ app.get('/api/progress', (req, res) => {
 // The fallback object after || handles the edge case where readJson returns null even after ensureUserData created the file 
 // (e.g., a race condition or permission issue).
 
+app.post('/api/progress/solution', (req, res) => {
+  ensureUserData();
+  const { exerciseId, code } = req.body;
+  if (!exerciseId || typeof code !== 'string') {
+    return res.status(400).json({ error: 'exerciseId and code required' });
+  }
+
+  const progress = readJson(PROGRESS_FILE) || {};
+  if (!progress.savedSolutions) progress.savedSolutions = {};
+  progress.savedSolutions[String(exerciseId)] = code;
+  progress.lastUpdated = new Date().toISOString();
+  writeJson(PROGRESS_FILE, progress);
+
+  // Also write individual solution file
+  const ext = getSolutionExt(exerciseId);
+  const solutionFile = path.join(
+    SOLUTIONS_DIR,
+    `exercise-${exerciseId}${ext}`
+  );
+  fs.writeFileSync(solutionFile, code, 'utf-8');
+
+  res.json({ success: true });
+});
+
+// Solutions are saved in two places:
+
+// 1. Inside progress.json -- For the frontend to restore the editor state on page load.
+// 2. As individual files in user-data/solutions/ -- For the teacher to review via Gitea's web UI or by browsing the filesystem directly. 
+// A file named exercise-42.js is far easier to review than a JSON blob.
+
+const TYPE_TO_EXT = {
+  js: '.js',
+  html: '.html',
+  css: '.css',
+  'html-css': '.html',
+};
+
+function getSolutionExt(exerciseId) {
+  const data = readJson(EXERCISES_FILE);
+  if (!data) return '.js';
+  const ex = data.exercises.find((e) => e.id === Number(exerciseId));
+  return TYPE_TO_EXT[ex?.type] ?? '.js';
+}
+
