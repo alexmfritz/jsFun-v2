@@ -227,3 +227,59 @@ export interface ApiResponse<T = unknown> {
 // 1. They are ephemeral -- restarting the browser resets them
 // 2. They serve a pedagogical purpose (preventing students from spamming the same broken code) rather than a record-keeping purpose
 // 3. Keeping them client-side avoids bloating the progress file with hash data
+
+export const TIER_META: Record<
+  Tier,
+  { name: string; label: string; color: string; bgColor: string; borderColor: string }
+> = {
+  1: {
+    name: 'Spark',
+    label: 'I',
+    color: '#34d399',
+    bgColor: 'rgba(52, 211, 153, 0.15)',
+    borderColor: 'rgba(52, 211, 153, 0.4)',
+  },
+  2: {
+    name: 'Foundations',
+    label: 'II',
+    color: '#60a5fa',
+    bgColor: 'rgba(96, 165, 250, 0.15)',
+    borderColor: 'rgba(96, 165, 250, 0.4)',
+  },
+  3: {
+    name: 'Builder',
+    label: 'III',
+    color: '#818cf8',
+    bgColor: 'rgba(129, 140, 248, 0.15)',
+    borderColor: 'rgba(129, 140, 248, 0.4)',
+  },
+  4: {
+    name: 'Architect',
+    label: 'IV',
+    color: '#c084fc',
+    bgColor: 'rgba(192, 132, 252, 0.15)',
+    borderColor: 'rgba(192, 132, 252, 0.4)',
+  },
+  5: {
+    name: 'Mastercraft',
+    label: 'V',
+    color: '#f472b6',
+    bgColor: 'rgba(244, 114, 182, 0.15)',
+    borderColor: 'rgba(244, 114, 182, 0.4)',
+  },
+};
+
+// Each tier has a Roman numeral label (for compact display in badges), 
+// a unique color (forming a green-to-pink gradient as difficulty increases), 
+// and pre-computed background/border variants at low opacity for card styling. 
+// The colors are not CSS variables because they are tier-specific constants, not theme-dependent.
+
+export const TYPE_META: Record<ExerciseType, { label: string; color: string }> = {
+  js: { label: 'JS', color: '#facc15' },
+  html: { label: 'HTML', color: '#f472b6' },
+  css: { label: 'CSS', color: '#22d3ee' },
+  'html-css': { label: 'HTML+CSS', color: '#a78bfa' },
+};
+
+// Type badges use industry-standard color associations: yellow for JavaScript, pink for HTML, cyan for CSS.
+
