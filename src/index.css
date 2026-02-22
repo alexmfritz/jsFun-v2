@@ -141,3 +141,94 @@ h1, h2, h3, h4, h5, h6 {
   outline: 3px solid var(--accent);
   outline-offset: 2px;
 }
+
+/* Screen reader only (visible on focus for skip links) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only-focusable:focus {
+  position: fixed;
+  top: 4px;
+  left: 4px;
+  z-index: 9999;
+  width: auto;
+  height: auto;
+  padding: 8px 16px;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  background-color: var(--accent);
+  color: #fff;
+  border-radius: 4px;
+  font-family: 'Lexend', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* CodeMirror overrides */
+.cm-editor {
+  height: 100%;
+  font-family: 'Source Code Pro', monospace !important;
+  font-size: 14px !important;
+}
+
+.cm-scroller {
+  font-family: 'Source Code Pro', monospace !important;
+  overflow: auto;
+}
+
+.cm-editor.cm-focused {
+  outline: none !important;
+}
+
+/* Animations */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.test-result {
+  animation: slideIn 0.15s ease-out;
+}
+
+@keyframes skeleton-pulse {
+  0%   { opacity: 0.4; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+.skeleton-pulse {
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+/* Tier badge */
+.tier-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: 'Lexend', sans-serif;
+  flex-shrink: 0;
+}
+
+/* Theme transition */
+.transition-theme {
+  transition: background-color 0.2s ease,
+              color 0.2s ease,
+              border-color 0.2s ease;
+}
