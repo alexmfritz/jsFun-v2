@@ -278,3 +278,53 @@ app.post('/api/progress/reset', (req, res) => {
 
 // The reset endpoint checks all possible file extensions because the exercise type might have changed since the solution was saved. 
 // Better to clean up all possible files than leave orphans.
+
+app.post('/api/admin/login', rateLimit, async (req, res) => {
+  const { password } = req.body;
+  if (!password)
+    return res.status(400).json({ error: 'Password required' });
+
+  const config = readJson(ADMIN_CONFIG_FILE);
+  if (!config || !config.passwordHash) {
+    return res.status(401).json({
+      error: 'Admin not configured. Run npm run setup-admin',
+    });
+  }
+
+  const valid = await bcrypt.compare(password, config.passwordHash);
+  if (!valid)
+    return res.status(401).json({ error: 'Invalid password' });
+
+  res.json({ success: true });
+});
+
+app.post('/api/admin/exercises', rateLimit, async (req, res) => {
+  const { adminPassword, ...exerciseData } = req.body;
+
+  const config = readJson(ADMIN_CONFIG_FILE);
+  if (!config || !config.passwordHash) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  const valid = await bcrypt.compare(adminPassword, config.passwordHash);
+  if (!valid)
+    return res.status(401).json({ error: 'Unauthorized' });
+
+  const data = readJson(EXERCISES_FILE);
+  if (!data)
+    return res.status(500).json({ error: 'Failed to read exercises' });
+
+  const maxId = Math.max(0, ...data.exercises.map((e) => e.id));
+  const newExercise = { id: maxId + 1, ...exerciseData };
+  data.exercises.push(newExercise);
+  writeJson(EXERCISES_FILE, data);
+
+  res.json(newExercise);
+});
+
+// Both admin endpoints use the rateLimit middleware. 
+// The login endpoint checks the password against the bcrypt hash stored in admin.config.json. 
+// The add-exercise endpoint re-verifies the password on every request (no session token) -- 
+// simpler than managing tokens, acceptable for a single-user admin.
+
+// New exercise IDs are auto-incremented from the current maximum. 
+// Math.max(0, ...ids) handles the empty-array edge case (returns 0, so the first exercise gets ID 1).
