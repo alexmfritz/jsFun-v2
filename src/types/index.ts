@@ -9,3 +9,29 @@ export type Tier = 1 | 2 | 3 | 4 | 5;
 
 // The Tier type is a numeric union, not an enum, because tiers are ordered (Tier 1 is easier than Tier 5) and we use them in numeric comparisons for filtering.
 
+export interface TestCase {
+  /** CSS selector for DOM queries */
+  query?: string;
+  /** Assertion type */
+  assertion:
+    | 'exists'
+    | 'textContains'
+    | 'countAtLeast'
+    | 'equals'
+    | 'oneOf'
+    | 'sourceContains'
+    | 'sourceMatch'
+    | 'hasId'
+    | 'hasClass';
+  /** CSS property name for computed style assertions */
+  property?: string;
+  /** Expected value */
+  value?: string | number | string[];
+  /** Human-readable test description shown to student */
+  description: string;
+  /** Regex flags for sourceMatch */
+  flags?: string;
+}
+
+// Test cases are JSON-serializable assertion objects, not executable code. This is a deliberate design choice: test logic for HTML/CSS exercises lives in structured data rather than JavaScript strings, which makes them easier to author, validate, and display.
+
