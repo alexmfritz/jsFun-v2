@@ -328,3 +328,26 @@ app.post('/api/admin/exercises', rateLimit, async (req, res) => {
 
 // New exercise IDs are auto-incremented from the current maximum. 
 // Math.max(0, ...ids) handles the empty-array edge case (returns 0, so the first exercise gets ID 1).
+
+if (!isDev) {
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(ROOT, 'dist', 'index.html'));
+  });
+}
+
+app.listen(PORT, () => {
+  console.log(
+    `jsFun server running on http://localhost:${PORT} ` +
+    `(${isDev ? 'dev' : 'production'})`
+  );
+});
+
+module.exports = app;
+
+// The SPA fallback (app.get('*', ...)) catches all GET requests that did not match an API route or static file, and returns index.html. 
+// This is how client-side routing works in production -- 
+// navigating to /exercise/42 hits the Express server, which returns index.html, and React Router takes over from there.
+
+// The module.exports = app line makes the Express app importable for testing. 
+// Even though the server is not a library, exporting the app lets integration tests make requests without starting a real HTTP server 
+// (using supertest or similar).
