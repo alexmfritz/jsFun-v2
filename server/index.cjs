@@ -48,5 +48,18 @@ const PORT = isDev ? Number(process.env.VITE_API_PORT || 3001) : Number(process.
 // Without it, the server serves the built frontend from dist/ on port 3000. 
 // This single file handles both development and production.
 
+const EXERCISES_FILE = path.join(ROOT, 'exercises', 'exercises.json');
+const USER_DATA_DIR = path.join(ROOT, 'user-data');
+const PROGRESS_FILE = path.join(USER_DATA_DIR, 'progress.json');
+const SOLUTIONS_DIR = path.join(USER_DATA_DIR, 'solutions');
+const ADMIN_CONFIG_FILE = path.join(ROOT, 'admin.config.json');
 
+// All paths are relative to the project root (ROOT), not the server file's directory. The critical separation:
+
+// exercises/ is git-tracked. The teacher manages it. Students receive updates via git pull.
+// user-data/ is gitignored. Student progress, saved code, and individual solution files live here. 
+// They survive git pull because Git ignores them entirely.
+// This separation is the foundation of the deployment model. 
+// A teacher can push new exercises to the Gitea server. Students pull the update. 
+// Their progress is untouched because it lives in a gitignored directory.
 
