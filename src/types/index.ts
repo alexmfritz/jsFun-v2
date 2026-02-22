@@ -152,3 +152,13 @@ export interface Progress {
 // Progress is stored as a flat JSON file. Keys are exercise IDs (as strings, since JSON object keys must be strings). 
 // savedSolutions maps exercise IDs to the student's last saved code, enabling auto-save that persists across browser sessions.
 
+export interface TestResult {
+  pass: boolean;
+  description: string;
+  got?: unknown;
+}
+
+// Every test runner (JS Worker, HTML/CSS iframe) returns an array of TestResult objects. 
+// The got field is optional -- when a test fails, it shows the student what their code actually produced versus what was expected. 
+// The description is the human-readable assertion ("should return 42 when given 6 and 7").
+
