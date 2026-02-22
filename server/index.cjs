@@ -92,3 +92,14 @@ function rateLimit(req, res, next) {
 // Why in-memory? The server is single-process and the rate limit state does not need to survive restarts. 
 // If the server restarts, the rate limit resets -- which is fine for a classroom deployment where the admin is the teacher sitting in the same room.
 
+app.use(express.json({ limit: '1mb' }));
+
+if (!isDev) {
+  app.use(express.static(path.join(ROOT, 'dist')));
+}
+
+// express.json({ limit: '1mb' }) parses JSON request bodies up to 1MB. 
+// The limit prevents a malicious or buggy client from sending a multi-gigabyte payload that exhausts server memory.
+
+// In production mode, express.static serves the Vite build output. 
+// In dev mode, Vite handles frontend serving -- Express only needs to handle API routes.
