@@ -129,13 +129,3 @@ export const {
 } = uiSlice.actions;
 
 export default uiSlice.reducer;
-
-// The theme cycle is dark -> light -> high-contrast -> dark. 
-// The current theme is persisted to localStorage so it survives browser refreshes. 
-// The try/catch around localStorage calls handles edge cases where storage is full or disabled.
-
-// The browseFilter object captures all the filter state for the exercise browse view in one place. 
-// This makes it trivial to implement a "Clear all filters" button -- just reset the entire object.
-
-// serverReachable is a global flag that other slices set via dispatch(setServerReachable(false)) when their API calls fail. 
-// Components can check this to show an "Offline - working from cache" banner.

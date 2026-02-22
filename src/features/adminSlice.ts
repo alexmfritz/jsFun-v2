@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AdminState, Exercise } from '../types';
 
 export const loginAdmin = createAsyncThunk<void, string>(
@@ -63,8 +63,3 @@ const adminSlice = createSlice({
 
 export const { logout, clearError } = adminSlice.actions;
 export default adminSlice.reducer;
-
-// The admin slice is intentionally simple. 
-// Authentication is session-only (page refresh = logged out). 
-// There is no JWT, no token storage, no session cookies. 
-// The admin panel is a convenience feature for teachers to add exercises without editing JSON files directly, not a security-critical system.
