@@ -499,10 +499,6 @@
       "description": "The most commonly asked JavaScript interview problems: data structures, algorithms, and pattern recognition. Spanning Tiers 2-4.",
       "color": "#fbbf24",
       "exerciseIds": [
-        4,
-        11,
-        42,
-        47,
         127,
         128,
         146,
@@ -521,39 +517,7 @@
         257,
         263,
         264,
-        265,
-        284,
-        285,
-        289,
-        297,
-        298,
-        299,
-        300,
-        301,
-        302,
-        303,
-        304,
-        305,
-        306,
-        307,
-        308,
-        309,
-        310,
-        311,
-        312,
-        313,
-        314,
-        315,
-        316,
-        317,
-        318,
-        319,
-        320,
-        321,
-        322,
-        323,
-        324,
-        325
+        265
       ]
     },
     {
@@ -12458,7 +12422,7 @@
       "type": "js",
       "tier": 2,
       "category": [
-        "js-fundamentals",
+        "data-structures",
         "objects"
       ],
       "tags": [
@@ -12492,7 +12456,7 @@
       "type": "js",
       "tier": 2,
       "category": [
-        "js-fundamentals",
+        "data-structures",
         "objects"
       ],
       "tags": [
@@ -12526,7 +12490,7 @@
       "type": "js",
       "tier": 2,
       "category": [
-        "js-fundamentals",
+        "data-structures",
         "objects"
       ],
       "tags": [
@@ -12560,7 +12524,7 @@
       "type": "js",
       "tier": 2,
       "category": [
-        "js-fundamentals",
+        "data-structures",
         "objects"
       ],
       "tags": [
@@ -12594,7 +12558,7 @@
       "type": "js",
       "tier": 2,
       "category": [
-        "js-fundamentals",
+        "data-structures",
         "objects"
       ],
       "tags": [
@@ -12628,7 +12592,7 @@
       "type": "js",
       "tier": 2,
       "category": [
-        "js-fundamentals",
+        "data-structures",
         "objects"
       ],
       "tags": [
@@ -12673,7 +12637,7 @@
       "type": "js",
       "tier": 2,
       "category": [
-        "js-fundamentals",
+        "data-structures",
         "objects"
       ],
       "tags": [
@@ -12782,8 +12746,8 @@
       "type": "js",
       "tier": 3,
       "category": [
-        "js-fundamentals",
-        "functions"
+        "functions",
+        "scope"
       ],
       "tags": [
         "context",
