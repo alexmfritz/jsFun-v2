@@ -114,3 +114,19 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
   line-height: 1.3;
 }
+
+/* --- Scrollbar Styles --- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--text-ghost);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-faint);
+}
