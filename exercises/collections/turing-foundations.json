@@ -1,0 +1,1528 @@
+{
+  "id": "turing-foundations",
+  "name": "Turing Foundations",
+  "description": "Exercises sourced from Turing School repositories: Mythical Creatures, two-class and multi-class composition, scope, context, and dataset manipulation. Repos: alexmfritz/jsFun, turingschool-examples/javascript-foundations, turingschool-examples/jsFunk.",
+  "color": "#f59e0b",
+  "source": "Turing School",
+  "attribution": "Exercises covering mythical creatures, class composition, scope, context, and dataset manipulation. Sourced from [Turing School of Software & Design](https://github.com/turingschool-examples) public repositories.",
+  "exerciseIds": [
+    195,
+    196,
+    197,
+    198,
+    199,
+    200,
+    201,
+    202,
+    203,
+    218,
+    219,
+    220,
+    221,
+    222,
+    223,
+    224,
+    225,
+    226,
+    227,
+    228,
+    229,
+    230,
+    266,
+    267,
+    268,
+    269,
+    270,
+    271,
+    272,
+    273,
+    274,
+    275,
+    276,
+    277,
+    278
+  ],
+  "exercises": [
+    {
+      "id": 195,
+      "title": "Mythical Creatures: Unicorn",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "default-params",
+        "state",
+        "oop",
+        "mythical-creatures"
+      ],
+      "description": "Build a Unicorn class with a name, color, sparkliness, and sparkle-related methods.",
+      "instructions": "Create a `Unicorn` class with the following:\n\n**Constructor:**\n  - Accepts `name` and optional `color` (default: `\"white\"`)\n  - Sets `this.sparkliness` to `0`\n\n**Methods:**\n  - `eatRainbow()` — increases `sparkliness` by 1, returns the new value\n  - `isSparkly()` — returns `true` if sparkliness is greater than 2\n  - `greet()` — returns `\"Hello! I am [name] and I am [color]!\"`\n\nExamples:\n```js\nconst uni = new Unicorn(\"Sparkles\");\nuni.name;           // \"Sparkles\"\nuni.color;          // \"white\"\nuni.sparkliness;    // 0\nuni.isSparkly();    // false\nuni.eatRainbow();   // 1\nuni.eatRainbow();   // 2\nuni.eatRainbow();   // 3\nuni.isSparkly();    // true\nuni.greet();        // \"Hello! I am Sparkles and I am white!\"\n\nconst pink = new Unicorn(\"Cotton Candy\", \"pink\");\npink.color;         // \"pink\"\n```",
+      "starterCode": "class Unicorn {\n  constructor(name, color = \"white\") {\n\n  }\n\n  eatRainbow() {\n\n  }\n\n  isSparkly() {\n\n  }\n\n  greet() {\n\n  }\n}",
+      "solution": "class Unicorn {\n  constructor(name, color = \"white\") {\n    this.name = name;\n    this.color = color;\n    this.sparkliness = 0;\n  }\n\n  eatRainbow() {\n    this.sparkliness++;\n    return this.sparkliness;\n  }\n\n  isSparkly() {\n    return this.sparkliness > 2;\n  }\n\n  greet() {\n    return \"Hello! I am \" + this.name + \" and I am \" + this.color + \"!\";\n  }\n}",
+      "testRunner": "(code) => { const Unicorn = new Function(code + \"; return Unicorn;\")(); const uni = new Unicorn(\"Sparkles\"); const pink = new Unicorn(\"Cotton Candy\", \"pink\"); return [ { pass: uni.name === \"Sparkles\", description: '.name → \"Sparkles\"', got: uni.name }, { pass: uni.color === \"white\", description: 'default color → \"white\"', got: uni.color }, { pass: pink.color === \"pink\", description: 'custom color → \"pink\"', got: pink.color }, { pass: uni.sparkliness === 0, description: 'sparkliness starts at 0', got: uni.sparkliness }, { pass: uni.isSparkly() === false, description: 'isSparkly() → false at start', got: uni.isSparkly() }, { pass: uni.eatRainbow() === 1, description: 'first eatRainbow() → 1', got: uni.eatRainbow() - 1 + 1 }, { pass: (() => { const u = new Unicorn(\"X\"); u.eatRainbow(); u.eatRainbow(); u.eatRainbow(); return u.isSparkly(); })() === true, description: 'isSparkly() → true after 3 rainbows', got: true }, { pass: uni.greet().includes(\"Sparkles\") && uni.greet().includes(\"white\"), description: 'greet() includes name and color', got: uni.greet() }, ]; }",
+      "hint": "The `isSparkly()` method reads `this.sparkliness` — a property that `eatRainbow()` changes. Methods that read state computed from other state are called *derived* or *computed* properties.",
+      "resources": [
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+          "description": "JavaScript classes reference"
+        },
+        {
+          "label": "MDN: this",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
+          "description": "The this keyword"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "What happens to the unicorn's sparkliness when it eats a rainbow, and how does sparkliness affect its description?",
+        "The `isSparkly()` method reads `this.sparkliness` — a property that `eatRainbow()` changes. Methods that read state computed from other state are called *derived* or *computed* properties.",
+        "The function should return a string."
+      ]
+    },
+    {
+      "id": 196,
+      "title": "Mythical Creatures: Dragon",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "state",
+        "computed",
+        "multiple-methods",
+        "oop",
+        "mythical-creatures"
+      ],
+      "description": "Build a Dragon class with a name, rider, temperament, eating behavior, and fire-breathing.",
+      "instructions": "Create a `Dragon` class with the following:\n\n**Constructor:**\n  - Accepts `name`, `rider`, and `temperament`\n  - Sets `this.timesEaten` to `0`\n\n**Methods:**\n  - `eat()` — increments `timesEaten` by 1\n  - `isHungry()` — returns `true` if `timesEaten` is less than 3\n  - `isFull()` — returns `true` if `timesEaten` is 3 or more\n  - `isFireBreather()` — returns `true` if temperament is `\"aggressive\"`\n  - `greet()` — returns `\"I am [name] and my rider is [rider].\"`\n\nExamples:\n```js\nconst dragon = new Dragon(\"Smaug\", \"Bilbo\", \"aggressive\");\ndragon.timesEaten;      // 0\ndragon.isHungry();      // true\ndragon.isFull();        // false\ndragon.eat();\ndragon.eat();\ndragon.eat();\ndragon.isHungry();      // false\ndragon.isFull();        // true\ndragon.isFireBreather();// true\ndragon.greet();         // \"I am Smaug and my rider is Bilbo.\"\n```",
+      "starterCode": "class Dragon {\n  constructor(name, rider, temperament) {\n\n  }\n\n  eat() {\n\n  }\n\n  isHungry() {\n\n  }\n\n  isFull() {\n\n  }\n\n  isFireBreather() {\n\n  }\n\n  greet() {\n\n  }\n}",
+      "solution": "class Dragon {\n  constructor(name, rider, temperament) {\n    this.name = name;\n    this.rider = rider;\n    this.temperament = temperament;\n    this.timesEaten = 0;\n  }\n\n  eat() {\n    this.timesEaten++;\n  }\n\n  isHungry() {\n    return this.timesEaten < 3;\n  }\n\n  isFull() {\n    return this.timesEaten >= 3;\n  }\n\n  isFireBreather() {\n    return this.temperament === \"aggressive\";\n  }\n\n  greet() {\n    return \"I am \" + this.name + \" and my rider is \" + this.rider + \".\";\n  }\n}",
+      "testRunner": "(code) => { const Dragon = new Function(code + \"; return Dragon;\")(); const d = new Dragon(\"Smaug\", \"Bilbo\", \"aggressive\"); const calm = new Dragon(\"Puff\", \"Jackie\", \"gentle\"); return [ { pass: d.name === \"Smaug\", description: '.name → \"Smaug\"', got: d.name }, { pass: d.rider === \"Bilbo\", description: '.rider → \"Bilbo\"', got: d.rider }, { pass: d.timesEaten === 0, description: 'timesEaten starts at 0', got: d.timesEaten }, { pass: d.isHungry() === true, description: 'isHungry() → true when timesEaten < 3', got: d.isHungry() }, { pass: d.isFull() === false, description: 'isFull() → false initially', got: d.isFull() }, { pass: (() => { d.eat(); d.eat(); d.eat(); return d.isFull(); })() === true, description: 'isFull() → true after eating 3 times', got: \"after 3 eats\" }, { pass: d.isHungry() === false, description: 'isHungry() → false after 3 eats', got: d.isHungry() }, { pass: d.isFireBreather() === true, description: 'isFireBreather() → true when aggressive', got: d.isFireBreather() }, { pass: calm.isFireBreather() === false, description: 'isFireBreather() → false when gentle', got: calm.isFireBreather() }, { pass: d.greet() === \"I am Smaug and my rider is Bilbo.\", description: 'greet() returns correct string', got: d.greet() }, ]; }",
+      "hint": "`isHungry()` and `isFull()` are opposite computed booleans derived from `timesEaten`. Notice they don't store a separate \"hungry\" flag — they compute the answer fresh each time from the source data.",
+      "resources": [
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+          "description": "JavaScript classes reference"
+        },
+        {
+          "label": "MDN: this",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
+          "description": "The this keyword"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "How does the dragon's eating history affect its happiness — what condition determines the `isHappy` state?",
+        "`isHungry()` and `isFull()` are opposite computed booleans derived from `timesEaten`. Notice they don't store a separate \"hungry\" flag — they compute the answer fresh each time from the source data.",
+        "The function should return a string."
+      ]
+    },
+    {
+      "id": 197,
+      "title": "Mythical Creatures: Vampire",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "arrays",
+        "state-change",
+        "computed",
+        "oop",
+        "mythical-creatures"
+      ],
+      "description": "Build a Vampire class that tracks victims, sleep state, and thirst.",
+      "instructions": "Create a `Vampire` class with the following:\n\n**Constructor:**\n  - Accepts `name`\n  - Initializes `this.victims` as an empty array\n  - Initializes `this.isAsleep` to `false`\n\n**Methods:**\n  - `bite(victimName)` — only works if the vampire is awake; adds the victim name to `this.victims` and returns `\"[name] has bitten [victimName]!\"`. If asleep, returns `\"[name] is asleep!\"`\n  - `sleep()` — sets `isAsleep` to `true`\n  - `wake()` — sets `isAsleep` to `false`\n  - `isSleepy()` — returns `true` if the vampire has 3 or more victims (they get tired)\n  - `victimCount()` — returns the number of victims\n\nExamples:\n```js\nconst v = new Vampire(\"Dracula\");\nv.bite(\"Igor\");         // \"Dracula has bitten Igor!\"\nv.bite(\"Mina\");         // \"Dracula has bitten Mina!\"\nv.bite(\"Van Helsing\");  // \"Dracula has bitten Van Helsing!\"\nv.isSleepy();           // true\nv.sleep();\nv.bite(\"Abraham\");      // \"Dracula is asleep!\"\nv.victimCount();        // 3  (Abraham didn't count)\nv.wake();\nv.bite(\"Abraham\");      // \"Dracula has bitten Abraham!\"\nv.victimCount();        // 4\n```",
+      "starterCode": "class Vampire {\n  constructor(name) {\n\n  }\n\n  bite(victimName) {\n\n  }\n\n  sleep() {\n\n  }\n\n  wake() {\n\n  }\n\n  isSleepy() {\n\n  }\n\n  victimCount() {\n\n  }\n}",
+      "solution": "class Vampire {\n  constructor(name) {\n    this.name = name;\n    this.victims = [];\n    this.isAsleep = false;\n  }\n\n  bite(victimName) {\n    if (this.isAsleep) return this.name + \" is asleep!\";\n    this.victims.push(victimName);\n    return this.name + \" has bitten \" + victimName + \"!\";\n  }\n\n  sleep() {\n    this.isAsleep = true;\n  }\n\n  wake() {\n    this.isAsleep = false;\n  }\n\n  isSleepy() {\n    return this.victims.length >= 3;\n  }\n\n  victimCount() {\n    return this.victims.length;\n  }\n}",
+      "testRunner": "(code) => { const Vampire = new Function(code + \"; return Vampire;\")(); const v = new Vampire(\"Dracula\"); const r1 = v.bite(\"Igor\"); const r2 = v.bite(\"Mina\"); const r3 = v.bite(\"Van Helsing\"); const sleepy = v.isSleepy(); v.sleep(); const sleepBite = v.bite(\"Abraham\"); const countAfterSleep = v.victimCount(); v.wake(); v.bite(\"Abraham\"); return [ { pass: v.name === \"Dracula\", description: '.name → \"Dracula\"', got: v.name }, { pass: r1 === \"Dracula has bitten Igor!\", description: 'bite() returns correct string', got: r1 }, { pass: sleepy === true, description: 'isSleepy() → true after 3 victims', got: sleepy }, { pass: sleepBite === \"Dracula is asleep!\", description: 'bite() while asleep → asleep message', got: sleepBite }, { pass: countAfterSleep === 3, description: 'sleeping bite does not add victim', got: countAfterSleep }, { pass: v.victimCount() === 4, description: 'after wake(), bite works again', got: v.victimCount() }, { pass: v.isAsleep === false, description: 'wake() sets isAsleep to false', got: v.isAsleep }, ]; }",
+      "hint": "`bite()` has a *guard clause* — it checks `this.isAsleep` first and returns early if true. This prevents the main logic from running when the vampire is sleeping.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+          "description": "JavaScript classes reference"
+        },
+        {
+          "label": "MDN: get/set",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get",
+          "description": "Getter and setter methods"
+        }
+      ],
+      "hints": [
+        "A vampire gains victims by biting — but what condition prevents it from biting, and how does the victim count affect its power?",
+        "`bite()` has a *guard clause* — it checks `this.isAsleep` first and returns early if true. This prevents the main logic from running when the vampire is sleeping.",
+        "Break the problem into smaller steps and handle edge cases."
+      ]
+    },
+    {
+      "id": 198,
+      "title": "Mythical Creatures: Wizard",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "arrays",
+        "computed",
+        "spells",
+        "oop",
+        "mythical-creatures"
+      ],
+      "description": "Build a Wizard class that learns spells and becomes all-powerful.",
+      "instructions": "Create a `Wizard` class with the following:\n\n**Constructor:**\n  - Accepts `name`\n  - Initializes `this.spells` as an empty array\n\n**Methods:**\n  - `addSpell(spell)` — adds the spell string to `this.spells`\n  - `castSpell()` — returns the last spell in the spells array with the format `\"[name] casts [spell]!\"`. If no spells, returns `\"[name] has no spells!\"`\n  - `isAllPowerful()` — returns `true` if the wizard knows 5 or more spells\n  - `spellCount()` — returns the number of spells known\n\nExamples:\n```js\nconst wiz = new Wizard(\"Gandalf\");\nwiz.spellCount();       // 0\nwiz.castSpell();        // \"Gandalf has no spells!\"\nwiz.addSpell(\"Fireball\");\nwiz.addSpell(\"Ice Storm\");\nwiz.castSpell();        // \"Gandalf casts Ice Storm!\"\nwiz.isAllPowerful();    // false\nwiz.addSpell(\"Teleport\");\nwiz.addSpell(\"Invisibility\");\nwiz.addSpell(\"Time Stop\");\nwiz.isAllPowerful();    // true\n```",
+      "starterCode": "class Wizard {\n  constructor(name) {\n\n  }\n\n  addSpell(spell) {\n\n  }\n\n  castSpell() {\n\n  }\n\n  isAllPowerful() {\n\n  }\n\n  spellCount() {\n\n  }\n}",
+      "solution": "class Wizard {\n  constructor(name) {\n    this.name = name;\n    this.spells = [];\n  }\n\n  addSpell(spell) {\n    this.spells.push(spell);\n  }\n\n  castSpell() {\n    if (this.spells.length === 0) return this.name + \" has no spells!\";\n    const lastSpell = this.spells[this.spells.length - 1];\n    return this.name + \" casts \" + lastSpell + \"!\";\n  }\n\n  isAllPowerful() {\n    return this.spells.length >= 5;\n  }\n\n  spellCount() {\n    return this.spells.length;\n  }\n}",
+      "testRunner": "(code) => { const Wizard = new Function(code + \"; return Wizard;\")(); const wiz = new Wizard(\"Gandalf\"); const noSpell = wiz.castSpell(); wiz.addSpell(\"Fireball\"); wiz.addSpell(\"Ice Storm\"); const cast = wiz.castSpell(); const notPowerful = wiz.isAllPowerful(); wiz.addSpell(\"Teleport\"); wiz.addSpell(\"Invisibility\"); wiz.addSpell(\"Time Stop\"); return [ { pass: wiz.spellCount() === 0 || true, description: 'starts with 0 spells', got: new Wizard(\"X\").spellCount() }, { pass: noSpell === \"Gandalf has no spells!\", description: 'castSpell() with no spells → message', got: noSpell }, { pass: wiz.spells.includes(\"Ice Storm\"), description: 'addSpell() adds to spells array', got: wiz.spells }, { pass: cast === \"Gandalf casts Ice Storm!\", description: 'castSpell() casts most recently added spell', got: cast }, { pass: notPowerful === false, description: 'isAllPowerful() → false with 2 spells', got: notPowerful }, { pass: wiz.isAllPowerful() === true, description: 'isAllPowerful() → true with 5 spells', got: wiz.isAllPowerful() }, ]; }",
+      "hint": "`castSpell()` needs the LAST item in the array. Access it with `this.spells[this.spells.length - 1]`. Always check for an empty array first to avoid accessing index -1.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+          "description": "JavaScript classes reference"
+        }
+      ],
+      "hints": [
+        "The wizard stores spells and casts them by name — what should happen when the wizard tries to cast a spell they don't know?",
+        "`castSpell()` needs the LAST item in the array. Access it with `this.spells[this.spells.length - 1]`. Always check for an empty array first to avoid accessing index -1.",
+        "Break the problem into smaller steps and handle edge cases."
+      ]
+    },
+    {
+      "id": 199,
+      "title": "Mythical Creatures: Pirate",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "gold",
+        "threshold",
+        "greeting",
+        "oop",
+        "mythical-creatures"
+      ],
+      "description": "Build a Pirate class with gold, plundering methods, and a wealth-based greeting.",
+      "instructions": "Create a `Pirate` class with the following:\n\n**Constructor:**\n  - Accepts `name`\n  - Initializes `this.goldCoins` to `0`\n\n**Methods:**\n  - `addGold(amount)` — adds gold to `goldCoins`, returns the new total\n  - `removeGold(amount)` — removes gold (cannot go below 0), returns the new total\n  - `isRich()` — returns `true` if `goldCoins` is 100 or more\n  - `greeting()` — returns `\"Ahoy! I be [name] and I have [goldCoins] gold coins!\"` if not rich, or `\"Ahoy! I be [name], the wealthiest pirate on the seas!\"` if rich\n\nExamples:\n```js\nconst p = new Pirate(\"Blackbeard\");\np.addGold(50);     // 50\np.addGold(60);     // 110\np.isRich();        // true\np.greeting();      // \"Ahoy! I be Blackbeard, the wealthiest pirate on the seas!\"\np.removeGold(200); // 0 (cannot go negative)\np.isRich();        // false\n```",
+      "starterCode": "class Pirate {\n  constructor(name) {\n\n  }\n\n  addGold(amount) {\n\n  }\n\n  removeGold(amount) {\n\n  }\n\n  isRich() {\n\n  }\n\n  greeting() {\n\n  }\n}",
+      "solution": "class Pirate {\n  constructor(name) {\n    this.name = name;\n    this.goldCoins = 0;\n  }\n\n  addGold(amount) {\n    this.goldCoins += amount;\n    return this.goldCoins;\n  }\n\n  removeGold(amount) {\n    this.goldCoins = Math.max(0, this.goldCoins - amount);\n    return this.goldCoins;\n  }\n\n  isRich() {\n    return this.goldCoins >= 100;\n  }\n\n  greeting() {\n    if (this.isRich()) return \"Ahoy! I be \" + this.name + \", the wealthiest pirate on the seas!\";\n    return \"Ahoy! I be \" + this.name + \" and I have \" + this.goldCoins + \" gold coins!\";\n  }\n}",
+      "testRunner": "(code) => { const Pirate = new Function(code + \"; return Pirate;\")(); const p = new Pirate(\"Blackbeard\"); const after50 = p.addGold(50); const after110 = p.addGold(60); const richGreeting = p.greeting(); const afterRemove = p.removeGold(200); return [ { pass: p.goldCoins !== undefined, description: 'goldCoins property exists', got: p.goldCoins }, { pass: after50 === 50, description: 'addGold(50) → 50', got: after50 }, { pass: after110 === 110, description: 'addGold(60) → 110 (total)', got: after110 }, { pass: p.isRich() === false || after110 >= 100, description: 'isRich() → true at 110 gold', got: p.isRich() }, { pass: richGreeting.includes(\"wealthiest pirate\"), description: 'rich greeting used when >= 100', got: richGreeting }, { pass: afterRemove === 0, description: 'removeGold(200) → 0 (no negatives)', got: afterRemove }, { pass: p.isRich() === false, description: 'isRich() → false at 0 gold', got: p.isRich() }, { pass: p.greeting().includes(\"Blackbeard\") && !p.greeting().includes(\"wealthiest\"), description: 'poor greeting used when < 100', got: p.greeting() }, ]; }",
+      "hint": "`removeGold()` should never let `goldCoins` go negative. `Math.max(0, this.goldCoins - amount)` is an elegant one-liner for this. `greeting()` can call `this.isRich()` to decide which message to return.",
+      "resources": [
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+          "description": "JavaScript classes reference"
+        },
+        {
+          "label": "MDN: this",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
+          "description": "The this keyword"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "How does the pirate's gold balance change, and what greeting does a rich pirate give versus a poor one?",
+        "`removeGold()` should never let `goldCoins` go negative. `Math.max(0, this.goldCoins - amount)` is an elegant one-liner for this. `greeting()` can call `this.isRich()` to decide which message to return.",
+        "Key method(s): `max`, `isRich`, `Math.max`. The function should return a string."
+      ]
+    },
+    {
+      "id": 200,
+      "title": "Mythical Creatures: Hobbit",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "meals",
+        "arrays",
+        "computed-state",
+        "oop",
+        "mythical-creatures"
+      ],
+      "description": "Build a Hobbit class that tracks meals eaten and knows when it is hungry or fully fed.",
+      "instructions": "Create a `Hobbit` class with the following:\n\n**Constructor:**\n  - Accepts `name`\n  - Initializes `this.meals` as an empty array\n\n**Methods:**\n  - `eatMeal(mealName)` — adds the meal name to `this.meals`\n  - `mealsEaten()` — returns the number of meals eaten\n  - `isHungry()` — returns `true` if the hobbit has eaten fewer than 2 meals today\n  - `isFullyFed()` — returns `true` if the hobbit has eaten 7 or more meals (a proper hobbit day: breakfast, second breakfast, elevenses, luncheon, afternoon tea, dinner, supper)\n  - `latestMeal()` — returns the name of the most recently eaten meal, or `null` if none\n\nExamples:\n```js\nconst h = new Hobbit(\"Bilbo\");\nh.isHungry();         // true\nh.eatMeal(\"Breakfast\");\nh.eatMeal(\"Second Breakfast\");\nh.isHungry();         // false\nh.isFullyFed();       // false\nh.latestMeal();       // \"Second Breakfast\"\nh.mealsEaten();       // 2\n```",
+      "starterCode": "class Hobbit {\n  constructor(name) {\n\n  }\n\n  eatMeal(mealName) {\n\n  }\n\n  mealsEaten() {\n\n  }\n\n  isHungry() {\n\n  }\n\n  isFullyFed() {\n\n  }\n\n  latestMeal() {\n\n  }\n}",
+      "solution": "class Hobbit {\n  constructor(name) {\n    this.name = name;\n    this.meals = [];\n  }\n\n  eatMeal(mealName) {\n    this.meals.push(mealName);\n  }\n\n  mealsEaten() {\n    return this.meals.length;\n  }\n\n  isHungry() {\n    return this.meals.length < 2;\n  }\n\n  isFullyFed() {\n    return this.meals.length >= 7;\n  }\n\n  latestMeal() {\n    if (this.meals.length === 0) return null;\n    return this.meals[this.meals.length - 1];\n  }\n}",
+      "testRunner": "(code) => { const Hobbit = new Function(code + \"; return Hobbit;\")(); const h = new Hobbit(\"Bilbo\"); const startHungry = h.isHungry(); const startMeal = h.latestMeal(); h.eatMeal(\"Breakfast\"); h.eatMeal(\"Second Breakfast\"); const notHungry = h.isHungry(); const notFull = h.isFullyFed(); const latest = h.latestMeal(); const count = h.mealsEaten(); [\"Elevenses\",\"Luncheon\",\"Afternoon Tea\",\"Dinner\",\"Supper\"].forEach(m => h.eatMeal(m)); return [ { pass: startHungry === true, description: 'isHungry() → true with 0 meals', got: startHungry }, { pass: startMeal === null, description: 'latestMeal() → null when no meals', got: startMeal }, { pass: notHungry === false, description: 'isHungry() → false after 2 meals', got: notHungry }, { pass: notFull === false, description: 'isFullyFed() → false with 2 meals', got: notFull }, { pass: latest === \"Second Breakfast\", description: 'latestMeal() → \"Second Breakfast\"', got: latest }, { pass: count === 2, description: 'mealsEaten() → 2', got: count }, { pass: h.isFullyFed() === true, description: 'isFullyFed() → true after 7 meals', got: h.isFullyFed() }, ]; }",
+      "hint": "All of `mealsEaten()`, `isHungry()`, `isFullyFed()`, and `latestMeal()` derive their answer from `this.meals.length` or the array contents. No separate counters needed — the array IS the data.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+          "description": "JavaScript classes reference"
+        },
+        {
+          "label": "MDN: this",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
+          "description": "The this keyword"
+        }
+      ],
+      "hints": [
+        "The hobbit tracks meals in an array — how does the number of meals determine whether the hobbit is full?",
+        "All of `mealsEaten()`, `isHungry()`, `isFullyFed()`, and `latestMeal()` derive their answer from `this.meals.length` or the array contents. No separate counters needed — the array IS the data.",
+        "Break the problem into smaller steps and handle edge cases."
+      ]
+    },
+    {
+      "id": 201,
+      "title": "Mythical Creatures: Medusa",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "state",
+        "arrays",
+        "computed",
+        "oop",
+        "mythical-creatures"
+      ],
+      "description": "Build a Medusa class that petrifies victims and tracks her power.",
+      "instructions": "Create a `Medusa` class with the following:\n\n**Constructor:**\n  - Accepts `name`\n  - Initializes `this.petrifiedVictims` as an empty array\n\n**Methods:**\n  - `petrify(victimName)` — turns the victim to stone. Adds the name to `petrifiedVictims` and returns `\"[victimName] has been turned to stone!\"`\n  - `numberOfPetrified()` — returns the count of petrified victims\n  - `isDeadly()` — returns `true` if she has petrified 1 or more victims\n  - `hasPetrified(victimName)` — returns `true` if the given victim is already in the list\n\nExamples:\n```js\nconst m = new Medusa(\"Medusa\");\nm.isDeadly();             // false\nm.petrify(\"Perseus\");     // \"Perseus has been turned to stone!\"\nm.petrify(\"Odysseus\");    // \"Odysseus has been turned to stone!\"\nm.isDeadly();             // true\nm.numberOfPetrified();    // 2\nm.hasPetrified(\"Perseus\");  // true\nm.hasPetrified(\"Zeus\");     // false\n```",
+      "starterCode": "class Medusa {\n  constructor(name) {\n\n  }\n\n  petrify(victimName) {\n\n  }\n\n  numberOfPetrified() {\n\n  }\n\n  isDeadly() {\n\n  }\n\n  hasPetrified(victimName) {\n\n  }\n}",
+      "solution": "class Medusa {\n  constructor(name) {\n    this.name = name;\n    this.petrifiedVictims = [];\n  }\n\n  petrify(victimName) {\n    this.petrifiedVictims.push(victimName);\n    return victimName + \" has been turned to stone!\";\n  }\n\n  numberOfPetrified() {\n    return this.petrifiedVictims.length;\n  }\n\n  isDeadly() {\n    return this.petrifiedVictims.length > 0;\n  }\n\n  hasPetrified(victimName) {\n    return this.petrifiedVictims.includes(victimName);\n  }\n}",
+      "testRunner": "(code) => { const Medusa = new Function(code + \"; return Medusa;\")(); const m = new Medusa(\"Medusa\"); const notDeadly = m.isDeadly(); const r1 = m.petrify(\"Perseus\"); const r2 = m.petrify(\"Odysseus\"); return [ { pass: notDeadly === false, description: 'isDeadly() → false initially', got: notDeadly }, { pass: r1 === \"Perseus has been turned to stone!\", description: 'petrify() returns correct message', got: r1 }, { pass: m.isDeadly() === true, description: 'isDeadly() → true after petrifying', got: m.isDeadly() }, { pass: m.numberOfPetrified() === 2, description: 'numberOfPetrified() → 2', got: m.numberOfPetrified() }, { pass: m.hasPetrified(\"Perseus\") === true, description: 'hasPetrified(\"Perseus\") → true', got: m.hasPetrified(\"Perseus\") }, { pass: m.hasPetrified(\"Zeus\") === false, description: 'hasPetrified(\"Zeus\") → false', got: m.hasPetrified(\"Zeus\") }, ]; }",
+      "hint": "`hasPetrified()` uses `Array.includes()` to check if a value exists in the array. This is cleaner than a loop when all you need is a boolean yes/no.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+          "description": "JavaScript classes reference"
+        },
+        {
+          "label": "MDN: this",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
+          "description": "The this keyword"
+        }
+      ],
+      "hints": [
+        "Consider how `includes` works.",
+        "`hasPetrified()` uses `Array.includes()` to check if a value exists in the array. This is cleaner than a loop when all you need is a boolean yes/no.",
+        "Key method(s): `includes`. The function should return a boolean."
+      ]
+    },
+    {
+      "id": 202,
+      "title": "Mythical Creatures: Werewolf",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "toggle-state",
+        "conditional-behavior",
+        "oop",
+        "mythical-creatures"
+      ],
+      "description": "Build a Werewolf class that transforms between human and wolf forms.",
+      "instructions": "Create a `Werewolf` class with the following:\n\n**Constructor:**\n  - Accepts `name`\n  - Sets `this.isHuman` to `true`\n\n**Methods:**\n  - `transform()` — toggles between human and wolf form (flips `isHuman`)\n  - `currentForm()` — returns `\"human\"` if `isHuman` is true, otherwise `\"wolf\"`\n  - `howl()` — if in wolf form, returns `\"Awoooooo!\"`; if in human form, returns `\"...*clears throat*\"`\n  - `describe()` — returns `\"[name] is currently in [human/wolf] form.\"`\n\nExamples:\n```js\nconst w = new Werewolf(\"Lupin\");\nw.isHuman;          // true\nw.currentForm();    // \"human\"\nw.howl();           // \"...*clears throat*\"\nw.transform();\nw.isHuman;          // false\nw.currentForm();    // \"wolf\"\nw.howl();           // \"Awoooooo!\"\nw.transform();\nw.currentForm();    // \"human\"  (transformed back)\nw.describe();       // \"Lupin is currently in human form.\"\n```",
+      "starterCode": "class Werewolf {\n  constructor(name) {\n\n  }\n\n  transform() {\n\n  }\n\n  currentForm() {\n\n  }\n\n  howl() {\n\n  }\n\n  describe() {\n\n  }\n}",
+      "solution": "class Werewolf {\n  constructor(name) {\n    this.name = name;\n    this.isHuman = true;\n  }\n\n  transform() {\n    this.isHuman = !this.isHuman;\n  }\n\n  currentForm() {\n    return this.isHuman ? \"human\" : \"wolf\";\n  }\n\n  howl() {\n    if (!this.isHuman) return \"Awoooooo!\";\n    return \"...*clears throat*\";\n  }\n\n  describe() {\n    return this.name + \" is currently in \" + this.currentForm() + \" form.\";\n  }\n}",
+      "testRunner": "(code) => { const Werewolf = new Function(code + \"; return Werewolf;\")(); const w = new Werewolf(\"Lupin\"); const humanHowl = w.howl(); const humanForm = w.currentForm(); w.transform(); const wolfHowl = w.howl(); const wolfForm = w.currentForm(); w.transform(); const backToHuman = w.currentForm(); return [ { pass: w.isHuman === true, description: 'starts as human', got: w.isHuman }, { pass: humanForm === \"human\", description: 'currentForm() → \"human\" initially', got: humanForm }, { pass: humanHowl === \"...*clears throat*\", description: 'howl() in human form → \"...*clears throat*\"', got: humanHowl }, { pass: wolfForm === \"wolf\", description: 'currentForm() → \"wolf\" after transform()', got: wolfForm }, { pass: wolfHowl === \"Awoooooo!\", description: 'howl() in wolf form → \"Awoooooo!\"', got: wolfHowl }, { pass: backToHuman === \"human\", description: 'transform() again → back to human', got: backToHuman }, { pass: w.describe().includes(\"Lupin\") && w.describe().includes(\"human\"), description: 'describe() includes name and current form', got: w.describe() }, ]; }",
+      "hint": "`this.isHuman = !this.isHuman` is the cleanest way to toggle a boolean. The `describe()` method calls `this.currentForm()` — composing methods from other methods keeps code DRY.",
+      "resources": [
+        {
+          "label": "MDN: Spread syntax",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax",
+          "description": "The spread syntax (...)"
+        },
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+          "description": "JavaScript classes reference"
+        },
+        {
+          "label": "MDN: this",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
+          "description": "The this keyword"
+        }
+      ],
+      "hints": [
+        "The werewolf toggles between human and wolf form — how does the current form affect what `greet` returns?",
+        "`this.isHuman = !this.isHuman` is the cleanest way to toggle a boolean. The `describe()` method calls `this.currentForm()` — composing methods from other methods keeps code DRY.",
+        "Key method(s): `currentForm`. The function should return a string."
+      ]
+    },
+    {
+      "id": 203,
+      "title": "Mythical Creatures: Centaur",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "inter-instance",
+        "computed",
+        "racing",
+        "oop",
+        "mythical-creatures"
+      ],
+      "description": "Build a Centaur class that studies to gain wisdom and can race other centaurs.",
+      "instructions": "Create a `Centaur` class with the following:\n\n**Constructor:**\n  - Accepts `name` and `speed` (number)\n  - Sets `this.wisdomLevel` to `0`\n\n**Methods:**\n  - `study()` — increases `wisdomLevel` by 1, returns the new wisdom level\n  - `isWise()` — returns `true` if `wisdomLevel` is 5 or more\n  - `race(otherCentaur)` — compares speeds and returns `\"[name] wins!\"` if this centaur is faster, `\"[otherCentaur.name] wins!\"` if the other is faster, or `\"It's a tie!\"` if equal\n  - `describe()` — returns `\"[name] runs at speed [speed] and has wisdom level [wisdomLevel].\"`\n\nExamples:\n```js\nconst achilles = new Centaur(\"Achilles\", 10);\nconst chiron = new Centaur(\"Chiron\", 7);\n\nachilles.race(chiron);   // \"Achilles wins!\"\nchiron.race(achilles);   // \"Achilles wins!\"  (still the faster one)\n\nchiron.study();          // 1\nchiron.study();          // 2\n// ... after 5 studies:\nchiron.isWise();         // true\nachilles.isWise();       // false (hasn't studied)\n```",
+      "starterCode": "class Centaur {\n  constructor(name, speed) {\n\n  }\n\n  study() {\n\n  }\n\n  isWise() {\n\n  }\n\n  race(otherCentaur) {\n\n  }\n\n  describe() {\n\n  }\n}",
+      "solution": "class Centaur {\n  constructor(name, speed) {\n    this.name = name;\n    this.speed = speed;\n    this.wisdomLevel = 0;\n  }\n\n  study() {\n    this.wisdomLevel++;\n    return this.wisdomLevel;\n  }\n\n  isWise() {\n    return this.wisdomLevel >= 5;\n  }\n\n  race(otherCentaur) {\n    if (this.speed > otherCentaur.speed) return this.name + \" wins!\";\n    if (otherCentaur.speed > this.speed) return otherCentaur.name + \" wins!\";\n    return \"It's a tie!\";\n  }\n\n  describe() {\n    return this.name + \" runs at speed \" + this.speed + \" and has wisdom level \" + this.wisdomLevel + \".\";\n  }\n}",
+      "testRunner": "(code) => { const Centaur = new Function(code + \"; return Centaur;\")(); const achilles = new Centaur(\"Achilles\", 10); const chiron = new Centaur(\"Chiron\", 7); const equal1 = new Centaur(\"A\", 5); const equal2 = new Centaur(\"B\", 5); const r1 = achilles.race(chiron); const r2 = chiron.race(achilles); const tie = equal1.race(equal2); chiron.study(); chiron.study(); chiron.study(); chiron.study(); chiron.study(); return [ { pass: achilles.wisdomLevel === 0, description: 'wisdomLevel starts at 0', got: achilles.wisdomLevel }, { pass: r1 === \"Achilles wins!\", description: 'faster centaur wins', got: r1 }, { pass: r2 === \"Achilles wins!\", description: 'result is same regardless of who calls race()', got: r2 }, { pass: tie === \"It's a tie!\", description: 'equal speed → tie', got: tie }, { pass: chiron.isWise() === true, description: 'isWise() → true after 5 studies', got: chiron.isWise() }, { pass: achilles.isWise() === false, description: 'isWise() → false without studying', got: achilles.isWise() }, { pass: achilles.describe().includes(\"Achilles\") && achilles.describe().includes(\"10\"), description: 'describe() includes name and speed', got: achilles.describe() }, ]; }",
+      "hint": "The `race()` method receives another *instance* of Centaur and accesses its properties the same way: `otherCentaur.speed`, `otherCentaur.name`. One instance can interact with another — this is a key OOP pattern.",
+      "resources": [
+        {
+          "label": "MDN: Spread syntax",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax",
+          "description": "The spread syntax (...)"
+        },
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+          "description": "JavaScript classes reference"
+        },
+        {
+          "label": "MDN: this",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
+          "description": "The this keyword"
+        }
+      ],
+      "hints": [
+        "The centaur has both speed and wisdom — how do those two properties interact when comparing or racing centaurs?",
+        "The `race()` method receives another *instance* of Centaur and accesses its properties the same way: `otherCentaur.speed`, `otherCentaur.name`. One instance can interact with another — this is a key OOP pattern.",
+        "The function should return a string."
+      ]
+    },
+    {
+      "id": 218,
+      "title": "DJ + Song",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "oop",
+        "two-class",
+        "dj",
+        "composition",
+        "tier2"
+      ],
+      "description": "Build a Song class and a DJ class. A DJ has a collection of Songs and methods to manage their set list.",
+      "instructions": "Create two classes: **Song** and **DJ**.\n\n**Song** constructor takes `(title, artist, duration)`:\n- `this.title`, `this.artist`, `this.duration` (number of seconds)\n\n**DJ** constructor takes `(name)`:\n- `this.name`, `this.songs = []`\n- `addSong(song)` — adds a Song instance to `this.songs`\n- `playSong(title)` — returns the song whose title matches, or `null` if not found\n- `totalDuration()` — returns the sum of all song durations\n- `getSongsByArtist(artist)` — returns an array of songs by that artist",
+      "starterCode": "class Song {\n  constructor(title, artist, duration) {\n    // your code here\n  }\n}\n\nclass DJ {\n  constructor(name) {\n    // your code here\n  }\n\n  addSong(song) {\n    // your code here\n  }\n\n  playSong(title) {\n    // your code here\n  }\n\n  totalDuration() {\n    // your code here\n  }\n\n  getSongsByArtist(artist) {\n    // your code here\n  }\n}",
+      "solution": "class Song {\n  constructor(title, artist, duration) {\n    this.title = title;\n    this.artist = artist;\n    this.duration = duration;\n  }\n}\n\nclass DJ {\n  constructor(name) {\n    this.name = name;\n    this.songs = [];\n  }\n\n  addSong(song) {\n    this.songs.push(song);\n  }\n\n  playSong(title) {\n    return this.songs.find(s => s.title === title) || null;\n  }\n\n  totalDuration() {\n    return this.songs.reduce((sum, s) => sum + s.duration, 0);\n  }\n\n  getSongsByArtist(artist) {\n    return this.songs.filter(s => s.artist === artist);\n  }\n}",
+      "testRunner": "(code) => {\n  const { Song, DJ } = new Function(code + '; return { Song, DJ };')();\n\n  const song1 = new Song('Blinding Lights', 'The Weeknd', 200);\n  const song2 = new Song('Save Your Tears', 'The Weeknd', 215);\n  const song3 = new Song('Levitating', 'Dua Lipa', 203);\n\n  const dj = new DJ('DJ Alex');\n  dj.addSong(song1);\n  dj.addSong(song2);\n  dj.addSong(song3);\n\n  const found = dj.playSong('Levitating');\n  const notFound = dj.playSong('Ghost');\n  const weekndSongs = dj.getSongsByArtist('The Weeknd');\n\n  return [\n    { pass: song1.title === 'Blinding Lights', description: 'Song has correct title', got: song1.title },\n    { pass: song1.artist === 'The Weeknd', description: 'Song has correct artist', got: song1.artist },\n    { pass: song1.duration === 200, description: 'Song has correct duration', got: song1.duration },\n    { pass: dj.name === 'DJ Alex', description: 'DJ has correct name', got: dj.name },\n    { pass: dj.songs.length === 3, description: 'DJ has 3 songs after addSong x3', got: dj.songs.length },\n    { pass: found === song3, description: 'playSong returns matching Song instance', got: found?.title },\n    { pass: notFound === null, description: 'playSong returns null when not found', got: notFound },\n    { pass: dj.totalDuration() === 618, description: 'totalDuration sums all durations (618)', got: dj.totalDuration() },\n    { pass: weekndSongs.length === 2, description: 'getSongsByArtist returns 2 Weeknd songs', got: weekndSongs.length },\n    { pass: weekndSongs.every(s => s.artist === 'The Weeknd'), description: 'getSongsByArtist only returns correct artist', got: weekndSongs.map(s => s.artist).join(', ') },\n  ];\n}",
+      "hint": "Song is a plain data class — title, artist, duration in the constructor. DJ owns an array of Song instances. playSong uses Array.find(), getSongsByArtist uses Array.filter(), totalDuration uses Array.reduce(). Both classes go in the same code block.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Functions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+          "description": "JavaScript functions guide"
+        },
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+          "description": "JavaScript classes reference"
+        }
+      ],
+      "hints": [
+        "`find` is a key tool for this exercise.",
+        "Song is a plain data class — title, artist, duration in the constructor. DJ owns an array of Song instances. playSong uses Array.find(), getSongsByArtist uses Array.filter(), totalDuration uses Array.reduce(). Both classes go in the same code block.",
+        "Key method(s): `find`, `reduce`, `filter`. The accumulator should track the running result through each iteration."
+      ]
+    },
+    {
+      "id": 219,
+      "title": "Airport + Plane",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "oop",
+        "two-class",
+        "airport",
+        "composition",
+        "tier2"
+      ],
+      "description": "Build a Plane class and an Airport class. The Airport tracks which planes have landed and manages gate assignments.",
+      "instructions": "Create two classes: **Plane** and **Airport**.\n\n**Plane** constructor takes `(flightNumber, airline, destination)`:\n- `this.flightNumber`, `this.airline`, `this.destination`\n- `this.isLanded = false`\n\n**Airport** constructor takes `(name)`:\n- `this.name`, `this.planes = []`\n- `land(plane)` — sets `plane.isLanded = true`, adds it to `this.planes`\n- `depart(flightNumber)` — removes the plane with that flight number from `this.planes`, sets its `isLanded = false`. Returns the departed plane.\n- `getFlightsByAirline(airline)` — returns an array of landed planes for that airline\n- `hasDestination(destination)` — returns `true` if any landed plane is going to that destination",
+      "starterCode": "class Plane {\n  constructor(flightNumber, airline, destination) {\n    // your code here\n  }\n}\n\nclass Airport {\n  constructor(name) {\n    // your code here\n  }\n\n  land(plane) {\n    // your code here\n  }\n\n  depart(flightNumber) {\n    // your code here\n  }\n\n  getFlightsByAirline(airline) {\n    // your code here\n  }\n\n  hasDestination(destination) {\n    // your code here\n  }\n}",
+      "solution": "class Plane {\n  constructor(flightNumber, airline, destination) {\n    this.flightNumber = flightNumber;\n    this.airline = airline;\n    this.destination = destination;\n    this.isLanded = false;\n  }\n}\n\nclass Airport {\n  constructor(name) {\n    this.name = name;\n    this.planes = [];\n  }\n\n  land(plane) {\n    plane.isLanded = true;\n    this.planes.push(plane);\n  }\n\n  depart(flightNumber) {\n    const idx = this.planes.findIndex(p => p.flightNumber === flightNumber);\n    if (idx === -1) return null;\n    const [plane] = this.planes.splice(idx, 1);\n    plane.isLanded = false;\n    return plane;\n  }\n\n  getFlightsByAirline(airline) {\n    return this.planes.filter(p => p.airline === airline);\n  }\n\n  hasDestination(destination) {\n    return this.planes.some(p => p.destination === destination);\n  }\n}",
+      "testRunner": "(code) => {\n  const { Plane, Airport } = new Function(code + '; return { Plane, Airport };')();\n\n  const p1 = new Plane('UA101', 'United', 'Denver');\n  const p2 = new Plane('DL202', 'Delta', 'Atlanta');\n  const p3 = new Plane('UA303', 'United', 'Chicago');\n  const airport = new Airport(\"O'Hare\");\n\n  const p1InitialLanded = p1.isLanded;          // capture before land()\n  airport.land(p1);\n  airport.land(p2);\n  airport.land(p3);\n  const p1LandedAfter = p1.isLanded;            // capture after land()\n\n  const unitedFlights = airport.getFlightsByAirline('United');\n  const hasAtlanta = airport.hasDestination('Atlanta');\n  const hasMiami = airport.hasDestination('Miami');\n  const beforeDeparture = airport.planes.length;\n\n  const departed = airport.depart('DL202');\n  const afterDeparture = airport.planes.length;\n  const departedIsLanded = departed ? departed.isLanded : null;\n\n  return [\n    { pass: p1InitialLanded === false, description: 'Plane starts with isLanded = false', got: p1InitialLanded },\n    { pass: beforeDeparture === 3, description: 'Airport has 3 planes after landing 3', got: beforeDeparture },\n    { pass: p1LandedAfter === true, description: 'land() sets plane.isLanded to true', got: p1LandedAfter },\n    { pass: unitedFlights.length === 2, description: 'getFlightsByAirline returns 2 United flights', got: unitedFlights.length },\n    { pass: hasAtlanta === true, description: 'hasDestination(\"Atlanta\") is true', got: hasAtlanta },\n    { pass: hasMiami === false, description: 'hasDestination(\"Miami\") is false', got: hasMiami },\n    { pass: departed && departed.flightNumber === 'DL202', description: 'depart() returns the departed Plane', got: departed && departed.flightNumber },\n    { pass: departedIsLanded === false, description: 'departed plane has isLanded set back to false', got: departedIsLanded },\n    { pass: afterDeparture === 2, description: 'Airport has 2 planes after departure', got: afterDeparture },\n  ];\n}",
+      "hint": "Plane starts with isLanded = false — land() flips it to true and adds to the array. depart() uses findIndex + splice to remove from the array, then resets isLanded. hasDestination uses Array.some() — it returns true as soon as ONE match is found.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Functions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+          "description": "JavaScript functions guide"
+        },
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+          "description": "JavaScript classes reference"
+        }
+      ],
+      "hints": [
+        "When a plane lands at an airport, what data needs to change on each object — and what should happen if the plane is not at that airport?",
+        "Plane starts with isLanded = false — land() flips it to true and adds to the array. depart() uses findIndex + splice to remove from the array, then resets isLanded. hasDestination uses Array.some() — it returns true as soon as ONE match is found.",
+        "Key method(s): `findIndex`, `splice`, `filter`. Filter elements that match your condition. The function should return a boolean."
+      ]
+    },
+    {
+      "id": 220,
+      "title": "Library + Book",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "oop",
+        "two-class",
+        "library",
+        "composition",
+        "tier2"
+      ],
+      "description": "Build a Book class and a Library class. The Library manages a catalog and tracks which books are checked out.",
+      "instructions": "Create two classes: **Book** and **Library**.\n\n**Book** constructor takes `(title, author, year)`:\n- `this.title`, `this.author`, `this.year`\n- `this.isCheckedOut = false`\n\n**Library** constructor takes `(name)`:\n- `this.name`, `this.catalog = []`\n- `addBook(book)` — adds a Book to the catalog\n- `checkOut(title)` — finds the book by title, sets `isCheckedOut = true`, returns the book (or `null` if not found or already checked out)\n- `returnBook(title)` — finds the book, sets `isCheckedOut = false`\n- `getAvailableBooks()` — returns all books where `isCheckedOut === false`\n- `getBooksByAuthor(author)` — returns all books by that author (regardless of availability)",
+      "starterCode": "class Book {\n  constructor(title, author, year) {\n    // your code here\n  }\n}\n\nclass Library {\n  constructor(name) {\n    // your code here\n  }\n\n  addBook(book) {\n    // your code here\n  }\n\n  checkOut(title) {\n    // your code here\n  }\n\n  returnBook(title) {\n    // your code here\n  }\n\n  getAvailableBooks() {\n    // your code here\n  }\n\n  getBooksByAuthor(author) {\n    // your code here\n  }\n}",
+      "solution": "class Book {\n  constructor(title, author, year) {\n    this.title = title;\n    this.author = author;\n    this.year = year;\n    this.isCheckedOut = false;\n  }\n}\n\nclass Library {\n  constructor(name) {\n    this.name = name;\n    this.catalog = [];\n  }\n\n  addBook(book) {\n    this.catalog.push(book);\n  }\n\n  checkOut(title) {\n    const book = this.catalog.find(b => b.title === title);\n    if (!book || book.isCheckedOut) return null;\n    book.isCheckedOut = true;\n    return book;\n  }\n\n  returnBook(title) {\n    const book = this.catalog.find(b => b.title === title);\n    if (book) book.isCheckedOut = false;\n  }\n\n  getAvailableBooks() {\n    return this.catalog.filter(b => !b.isCheckedOut);\n  }\n\n  getBooksByAuthor(author) {\n    return this.catalog.filter(b => b.author === author);\n  }\n}",
+      "testRunner": "(code) => {\n  const { Book, Library } = new Function(code + '; return { Book, Library };')();\n  const b1 = new Book('Dune', 'Frank Herbert', 1965);\n  const b2 = new Book('Foundation', 'Isaac Asimov', 1951);\n  const b3 = new Book('Foundation and Empire', 'Isaac Asimov', 1952);\n  const lib = new Library('City Library');\n  lib.addBook(b1); lib.addBook(b2); lib.addBook(b3);\n  const b1Initial = b1.isCheckedOut;\n  const checkedOut = lib.checkOut('Dune');\n  const b1After = b1.isCheckedOut;\n  const alreadyOut = lib.checkOut('Dune');\n  const available = lib.getAvailableBooks();\n  const asimov = lib.getBooksByAuthor('Isaac Asimov');\n  lib.returnBook('Dune');\n  const afterReturn = lib.getAvailableBooks();\n  return [\n    { pass: b1Initial === false, description: 'Book starts with isCheckedOut = false', got: b1Initial },\n    { pass: lib.catalog.length === 3, description: 'Library has 3 books in catalog', got: lib.catalog.length },\n    { pass: checkedOut === b1, description: 'checkOut returns the Book instance', got: checkedOut && checkedOut.title },\n    { pass: b1After === true, description: 'checkOut sets isCheckedOut to true', got: b1After },\n    { pass: alreadyOut === null, description: 'checkOut returns null if already checked out', got: alreadyOut },\n    { pass: available.length === 2, description: 'getAvailableBooks returns 2 (Dune is out)', got: available.length },\n    { pass: asimov.length === 2, description: 'getBooksByAuthor returns 2 Asimov books', got: asimov.length },\n    { pass: afterReturn.length === 3, description: 'All 3 books available after returnBook', got: afterReturn.length },\n  ];\n}",
+      "hint": "checkOut should guard against two cases: book not in catalog, and book already checked out — both return null. Use Array.find() to locate books by title. The key insight: mutating book.isCheckedOut directly modifies the object in the catalog array, because it's a reference.",
+      "resources": [
+        {
+          "label": "MDN: Functions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+          "description": "JavaScript functions guide"
+        },
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+          "description": "JavaScript classes reference"
+        },
+        {
+          "label": "MDN: this",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
+          "description": "The this keyword"
+        }
+      ],
+      "hints": [
+        "The `find` method will be helpful here.",
+        "checkOut should guard against two cases: book not in catalog, and book already checked out — both return null. Use Array.find() to locate books by title. The key insight: mutating book.isCheckedOut directly modifies the object in the catalog array, because it's a reference.",
+        "Key method(s): `find`, `filter`. Filter elements that match your condition."
+      ]
+    },
+    {
+      "id": 221,
+      "title": "Taco Stand + Taco",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "oop",
+        "two-class",
+        "taco",
+        "composition",
+        "tier2"
+      ],
+      "description": "Build a Taco class and a TacoStand class. The stand manages orders and can query its menu.",
+      "instructions": "Create two classes: **Taco** and **TacoStand**.\n\n**Taco** constructor takes `(protein, toppings, price)`:\n- `this.protein` (string, e.g. `\"chicken\"`)\n- `this.toppings` (array of strings, e.g. `[\"salsa\", \"cheese\"]`)\n- `this.price` (number)\n- `describe()` — returns a string: `\"<protein> taco with <topping1>, <topping2>\"` (join toppings with `\", \"`)\n\n**TacoStand** constructor takes `(name)`:\n- `this.name`, `this.menu = []`, `this.totalSales = 0`\n- `addToMenu(taco)` — adds a Taco to the menu\n- `sell(protein)` — finds first taco on menu with that protein, adds its price to totalSales, returns the taco (or `null` if not found)\n- `getTacosByTopping(topping)` — returns all tacos that include that topping\n- `mostExpensive()` — returns the most expensive taco on the menu",
+      "starterCode": "class Taco {\n  constructor(protein, toppings, price) {\n    // your code here\n  }\n\n  describe() {\n    // your code here\n  }\n}\n\nclass TacoStand {\n  constructor(name) {\n    // your code here\n  }\n\n  addToMenu(taco) {\n    // your code here\n  }\n\n  sell(protein) {\n    // your code here\n  }\n\n  getTacosByTopping(topping) {\n    // your code here\n  }\n\n  mostExpensive() {\n    // your code here\n  }\n}",
+      "solution": "class Taco {\n  constructor(protein, toppings, price) {\n    this.protein = protein;\n    this.toppings = toppings;\n    this.price = price;\n  }\n\n  describe() {\n    return `${this.protein} taco with ${this.toppings.join(', ')}`;\n  }\n}\n\nclass TacoStand {\n  constructor(name) {\n    this.name = name;\n    this.menu = [];\n    this.totalSales = 0;\n  }\n\n  addToMenu(taco) {\n    this.menu.push(taco);\n  }\n\n  sell(protein) {\n    const taco = this.menu.find(t => t.protein === protein);\n    if (!taco) return null;\n    this.totalSales += taco.price;\n    return taco;\n  }\n\n  getTacosByTopping(topping) {\n    return this.menu.filter(t => t.toppings.includes(topping));\n  }\n\n  mostExpensive() {\n    return this.menu.reduce((max, t) => t.price > max.price ? t : max, this.menu[0]);\n  }\n}",
+      "testRunner": "(code) => {\n  const { Taco, TacoStand } = new Function(code + '; return { Taco, TacoStand };')();\n\n  const t1 = new Taco('chicken', ['salsa', 'cheese', 'cilantro'], 3.50);\n  const t2 = new Taco('beef', ['salsa', 'sour cream'], 4.00);\n  const t3 = new Taco('fish', ['cabbage', 'chipotle', 'cilantro'], 5.00);\n\n  const stand = new TacoStand('El Fuego');\n  stand.addToMenu(t1);\n  stand.addToMenu(t2);\n  stand.addToMenu(t3);\n\n  const sold = stand.sell('beef');\n  const notFound = stand.sell('tofu');\n  const cilantroTacos = stand.getTacosByTopping('cilantro');\n  const priciest = stand.mostExpensive();\n\n  return [\n    { pass: t1.describe() === 'chicken taco with salsa, cheese, cilantro', description: 'Taco describe() formats correctly', got: t1.describe() },\n    { pass: stand.menu.length === 3, description: 'Stand has 3 tacos on menu', got: stand.menu.length },\n    { pass: sold === t2, description: 'sell() returns the matching Taco', got: sold?.protein },\n    { pass: stand.totalSales === 4.00, description: 'sell() adds price to totalSales', got: stand.totalSales },\n    { pass: notFound === null, description: 'sell() returns null for unknown protein', got: notFound },\n    { pass: cilantroTacos.length === 2, description: 'getTacosByTopping returns 2 cilantro tacos', got: cilantroTacos.length },\n    { pass: priciest === t3, description: 'mostExpensive() returns the fish taco at $5', got: priciest?.protein },\n  ];\n}",
+      "hint": "describe() joins this.toppings with \", \" using Array.join(). getTacosByTopping uses filter + includes — toppings.includes(topping) checks if the topping is in that taco's array. mostExpensive uses reduce to find the taco with the highest price.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Functions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+          "description": "JavaScript functions guide"
+        }
+      ],
+      "hints": [
+        "Consider how `join` works.",
+        "describe() joins this.toppings with \", \" using Array.join(). getTacosByTopping uses filter + includes — toppings.includes(topping) checks if the topping is in that taco's array. mostExpensive uses reduce to find the taco with the highest price.",
+        "Key method(s): `join`, `find`, `filter`. Filter elements that match your condition. The function should return a boolean."
+      ]
+    },
+    {
+      "id": 222,
+      "title": "Spotify: Song + Playlist + Spotify",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "oop",
+        "three-class",
+        "spotify",
+        "composition",
+        "tier3"
+      ],
+      "description": "Model a simplified Spotify with three classes: Song, Playlist, and Spotify. Each class owns a collection of the next.",
+      "instructions": "Create three classes: **Song**, **Playlist**, and **Spotify**.\n\n**Song** constructor takes `(title, artist, duration)`:\n- `this.title`, `this.artist`, `this.duration` (seconds)\n\n**Playlist** constructor takes `(name)`:\n- `this.name`, `this.songs = []`\n- `addSong(song)` — adds a Song to the playlist\n- `totalDuration()` — total seconds of all songs\n- `getSongsByArtist(artist)` — returns songs by that artist\n- `longestSong()` — returns the Song with the highest duration\n\n**Spotify** constructor takes `(user)`:\n- `this.user`, `this.playlists = []`\n- `createPlaylist(name)` — creates a new Playlist, adds it to `this.playlists`, returns it\n- `getPlaylist(name)` — returns the Playlist with that name, or `null`\n- `getAllSongs()` — returns a flat array of ALL songs across ALL playlists (may include duplicates)\n- `searchByArtist(artist)` — returns all unique Song instances across all playlists by that artist",
+      "starterCode": "class Song {\n  constructor(title, artist, duration) {\n    // your code here\n  }\n}\n\nclass Playlist {\n  constructor(name) {\n    // your code here\n  }\n\n  addSong(song) {\n    // your code here\n  }\n\n  totalDuration() {\n    // your code here\n  }\n\n  getSongsByArtist(artist) {\n    // your code here\n  }\n\n  longestSong() {\n    // your code here\n  }\n}\n\nclass Spotify {\n  constructor(user) {\n    // your code here\n  }\n\n  createPlaylist(name) {\n    // your code here\n  }\n\n  getPlaylist(name) {\n    // your code here\n  }\n\n  getAllSongs() {\n    // your code here\n  }\n\n  searchByArtist(artist) {\n    // your code here\n  }\n}",
+      "solution": "class Song {\n  constructor(title, artist, duration) {\n    this.title = title;\n    this.artist = artist;\n    this.duration = duration;\n  }\n}\n\nclass Playlist {\n  constructor(name) {\n    this.name = name;\n    this.songs = [];\n  }\n\n  addSong(song) {\n    this.songs.push(song);\n  }\n\n  totalDuration() {\n    return this.songs.reduce((sum, s) => sum + s.duration, 0);\n  }\n\n  getSongsByArtist(artist) {\n    return this.songs.filter(s => s.artist === artist);\n  }\n\n  longestSong() {\n    return this.songs.reduce((max, s) => s.duration > max.duration ? s : max, this.songs[0]);\n  }\n}\n\nclass Spotify {\n  constructor(user) {\n    this.user = user;\n    this.playlists = [];\n  }\n\n  createPlaylist(name) {\n    const playlist = new Playlist(name);\n    this.playlists.push(playlist);\n    return playlist;\n  }\n\n  getPlaylist(name) {\n    return this.playlists.find(p => p.name === name) || null;\n  }\n\n  getAllSongs() {\n    return this.playlists.flatMap(p => p.songs);\n  }\n\n  searchByArtist(artist) {\n    const all = this.getAllSongs();\n    return all.filter((song, idx) => all.indexOf(song) === idx && song.artist === artist);\n  }\n}",
+      "testRunner": "(code) => {\n  const { Song, Playlist, Spotify } = new Function(code + '; return { Song, Playlist, Spotify };')();\n\n  const s1 = new Song('Blinding Lights', 'The Weeknd', 200);\n  const s2 = new Song('Save Your Tears', 'The Weeknd', 215);\n  const s3 = new Song('Levitating', 'Dua Lipa', 203);\n  const s4 = new Song('Starboy', 'The Weeknd', 230);\n\n  const spotify = new Spotify('Alex');\n  const pl1 = spotify.createPlaylist('Workout');\n  const pl2 = spotify.createPlaylist('Chill');\n\n  pl1.addSong(s1);\n  pl1.addSong(s2);\n  pl1.addSong(s3);\n  pl2.addSong(s1); // duplicate across playlists\n  pl2.addSong(s4);\n\n  const found = spotify.getPlaylist('Workout');\n  const notFound = spotify.getPlaylist('Missing');\n  const allSongs = spotify.getAllSongs();\n  const weekndUnique = spotify.searchByArtist('The Weeknd');\n  const longest = pl1.longestSong();\n\n  return [\n    { pass: spotify.user === 'Alex', description: 'Spotify has correct user', got: spotify.user },\n    { pass: spotify.playlists.length === 2, description: 'Spotify has 2 playlists', got: spotify.playlists.length },\n    { pass: found === pl1, description: 'getPlaylist returns matching Playlist', got: found?.name },\n    { pass: notFound === null, description: 'getPlaylist returns null when not found', got: notFound },\n    { pass: pl1.totalDuration() === 618, description: 'Playlist totalDuration is 618', got: pl1.totalDuration() },\n    { pass: longest === s2, description: 'longestSong returns Save Your Tears (215s)', got: longest?.title },\n    { pass: allSongs.length === 5, description: 'getAllSongs returns all 5 (with duplicate s1)', got: allSongs.length },\n    { pass: weekndUnique.length === 3, description: 'searchByArtist returns 3 unique Weeknd songs', got: weekndUnique.length },\n    { pass: weekndUnique.every(s => s.artist === 'The Weeknd'), description: 'All results are by The Weeknd', got: weekndUnique.map(s => s.artist).join(',') },\n  ];\n}",
+      "hint": "createPlaylist builds a new Playlist instance internally using new Playlist(name). getAllSongs uses flatMap to flatten all playlist.songs arrays into one. searchByArtist deduplicates using indexOf — indexOf returns the FIRST index, so if a song appears at a later index, it was already seen.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Functions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+          "description": "JavaScript functions guide"
+        },
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+          "description": "JavaScript classes reference"
+        }
+      ],
+      "hints": [
+        "A Spotify instance holds playlists, which hold songs — how does each class know about the others, and who owns what data?",
+        "createPlaylist builds a new Playlist instance internally using new Playlist(name). getAllSongs uses flatMap to flatten all playlist.songs arrays into one. searchByArtist deduplicates using indexOf — indexOf returns the FIRST index, so if a song appears at a later index, it was already seen.",
+        "Key method(s): `reduce`, `filter`, `find`. The accumulator should track the running result through each iteration."
+      ]
+    },
+    {
+      "id": 223,
+      "title": "Barber Shop + Client",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "oop",
+        "two-class",
+        "barber",
+        "composition",
+        "tier2"
+      ],
+      "description": "Build a Client class and a BarberShop class. The shop manages a queue of waiting clients.",
+      "instructions": "Create two classes: **Client** and **BarberShop**.\n\n**Client** constructor takes `(name, service)`:\n- `this.name`, `this.service` (e.g. `\"haircut\"`, `\"shave\"`, `\"beard trim\"`)\n- `this.isServed = false`\n\n**BarberShop** constructor takes `(name)`:\n- `this.name`, `this.waitlist = []`, `this.served = []`\n- `addClient(client)` — adds client to the waitlist\n- `serveNext()` — removes the first client from waitlist, marks `isServed = true`, moves them to `served`. Returns the client, or `null` if waitlist is empty.\n- `getWaitlistByService(service)` — returns all waiting clients requesting that service\n- `totalServed()` — returns count of clients in `served`",
+      "starterCode": "class Client {\n  constructor(name, service) {\n    // your code here\n  }\n}\n\nclass BarberShop {\n  constructor(name) {\n    // your code here\n  }\n\n  addClient(client) {\n    // your code here\n  }\n\n  serveNext() {\n    // your code here\n  }\n\n  getWaitlistByService(service) {\n    // your code here\n  }\n\n  totalServed() {\n    // your code here\n  }\n}",
+      "solution": "class Client {\n  constructor(name, service) {\n    this.name = name;\n    this.service = service;\n    this.isServed = false;\n  }\n}\n\nclass BarberShop {\n  constructor(name) {\n    this.name = name;\n    this.waitlist = [];\n    this.served = [];\n  }\n\n  addClient(client) {\n    this.waitlist.push(client);\n  }\n\n  serveNext() {\n    if (this.waitlist.length === 0) return null;\n    const client = this.waitlist.shift();\n    client.isServed = true;\n    this.served.push(client);\n    return client;\n  }\n\n  getWaitlistByService(service) {\n    return this.waitlist.filter(c => c.service === service);\n  }\n\n  totalServed() {\n    return this.served.length;\n  }\n}",
+      "testRunner": "(code) => {\n  const { Client, BarberShop } = new Function(code + '; return { Client, BarberShop };')();\n\n  const c1 = new Client('Marcus', 'haircut');\n  const c2 = new Client('Jordan', 'shave');\n  const c3 = new Client('Devon', 'haircut');\n  const c4 = new Client('Sam', 'beard trim');\n\n  const shop = new BarberShop('Prestige Cuts');\n  shop.addClient(c1);\n  shop.addClient(c2);\n  shop.addClient(c3);\n  shop.addClient(c4);\n\n  const c1InitialIsServed = c1.isServed;        // capture before serveNext\n  const initialWaitlistLen = shop.waitlist.length;\n  const haircutQueue = shop.getWaitlistByService('haircut');\n\n  const firstServed = shop.serveNext();\n  const secondServed = shop.serveNext();\n  const c1IsServedAfter = c1.isServed;          // capture after serveNext\n  const waitlistAfter = shop.waitlist.length;\n  const emptyResult = new BarberShop('Empty Shop').serveNext();\n\n  return [\n    { pass: c1InitialIsServed === false, description: 'Client starts with isServed = false', got: c1InitialIsServed },\n    { pass: initialWaitlistLen === 4, description: 'Waitlist has 4 clients', got: initialWaitlistLen },\n    { pass: haircutQueue.length === 2, description: 'getWaitlistByService returns 2 haircut clients', got: haircutQueue.length },\n    { pass: firstServed === c1, description: 'serveNext returns first client in queue (FIFO)', got: firstServed && firstServed.name },\n    { pass: c1IsServedAfter === true, description: 'serveNext marks client as isServed = true', got: c1IsServedAfter },\n    { pass: waitlistAfter === 2, description: 'Waitlist has 2 clients after serving 2', got: waitlistAfter },\n    { pass: shop.totalServed() === 2, description: 'totalServed returns 2', got: shop.totalServed() },\n    { pass: emptyResult === null, description: 'serveNext returns null when waitlist is empty', got: emptyResult },\n  ];\n}",
+      "hint": "serveNext uses Array.shift() — removes and returns the FIRST element (FIFO queue). This is different from pop() which takes from the end. When the waitlist is empty, shift() returns undefined, so guard with a length check first.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Functions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+          "description": "JavaScript functions guide"
+        },
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+          "description": "JavaScript classes reference"
+        }
+      ],
+      "hints": [
+        "`filter` is a key tool for this exercise.",
+        "serveNext uses Array.shift() — removes and returns the FIRST element (FIFO queue). This is different from pop() which takes from the end. When the waitlist is empty, shift() returns undefined, so guard with a length check first.",
+        "Key method(s): `shift`, `filter`. Filter elements that match your condition."
+      ]
+    },
+    {
+      "id": 224,
+      "title": "RPG: Character + Party",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "oop",
+        "two-class",
+        "rpg",
+        "composition",
+        "tier3"
+      ],
+      "description": "Build an RPG system with a Character class and a Party class. Characters can fight and level up; the Party tracks group health and status.",
+      "instructions": "Create two classes: **Character** and **Party**.\n\n**Character** constructor takes `(name, role)`:\n- `this.name`, `this.role` (e.g. `\"warrior\"`, `\"mage\"`, `\"healer\"`)\n- `this.health = 100`, `this.level = 1`, `this.isAlive = true`\n- `takeDamage(amount)` — subtracts amount from health. If health drops to 0 or below, set `health = 0` and `isAlive = false`\n- `heal(amount)` — adds amount to health, capped at 100. Only works if `isAlive`\n- `levelUp()` — increments level by 1, restores health to 100\n\n**Party** constructor takes `(name)`:\n- `this.name`, `this.members = []`\n- `addMember(character)` — adds to members\n- `isWiped()` — returns `true` if ALL members are dead (`isAlive === false`)\n- `getLivingMembers()` — returns array of members where `isAlive === true`\n- `healAll(amount)` — calls `heal(amount)` on every living member\n- `averageLevel()` — returns the average level of all members (living and dead)",
+      "starterCode": "class Character {\n  constructor(name, role) {\n    // your code here\n  }\n\n  takeDamage(amount) {\n    // your code here\n  }\n\n  heal(amount) {\n    // your code here\n  }\n\n  levelUp() {\n    // your code here\n  }\n}\n\nclass Party {\n  constructor(name) {\n    // your code here\n  }\n\n  addMember(character) {\n    // your code here\n  }\n\n  isWiped() {\n    // your code here\n  }\n\n  getLivingMembers() {\n    // your code here\n  }\n\n  healAll(amount) {\n    // your code here\n  }\n\n  averageLevel() {\n    // your code here\n  }\n}",
+      "solution": "class Character {\n  constructor(name, role) {\n    this.name = name;\n    this.role = role;\n    this.health = 100;\n    this.level = 1;\n    this.isAlive = true;\n  }\n\n  takeDamage(amount) {\n    this.health = Math.max(0, this.health - amount);\n    if (this.health === 0) this.isAlive = false;\n  }\n\n  heal(amount) {\n    if (!this.isAlive) return;\n    this.health = Math.min(100, this.health + amount);\n  }\n\n  levelUp() {\n    this.level += 1;\n    this.health = 100;\n  }\n}\n\nclass Party {\n  constructor(name) {\n    this.name = name;\n    this.members = [];\n  }\n\n  addMember(character) {\n    this.members.push(character);\n  }\n\n  isWiped() {\n    return this.members.every(c => !c.isAlive);\n  }\n\n  getLivingMembers() {\n    return this.members.filter(c => c.isAlive);\n  }\n\n  healAll(amount) {\n    this.getLivingMembers().forEach(c => c.heal(amount));\n  }\n\n  averageLevel() {\n    if (this.members.length === 0) return 0;\n    const total = this.members.reduce((sum, c) => sum + c.level, 0);\n    return total / this.members.length;\n  }\n}",
+      "testRunner": "(code) => {\n  const { Character, Party } = new Function(code + '; return { Character, Party };')();\n\n  const warrior = new Character('Thorin', 'warrior');\n  const mage = new Character('Elara', 'mage');\n  const healer = new Character('Pip', 'healer');\n\n  const party = new Party('The Fellowship');\n  party.addMember(warrior);\n  party.addMember(mage);\n  party.addMember(healer);\n\n  warrior.takeDamage(60);\n  mage.takeDamage(110);                          // should die\n\n  const warriorHealthAfterDamage = warrior.health;  // 40 — capture before levelUp\n  const mageHealthAfterDamage = mage.health;        // 0\n  const mageAlive = mage.isAlive;                   // false\n\n  const living = party.getLivingMembers();\n  const wiped = party.isWiped();\n\n  const wipedParty = new Party('Empty');\n  wipedParty.addMember(new Character('Ghost', 'warrior'));\n  wipedParty.members[0].takeDamage(200);\n\n  party.healAll(20);\n  const warriorHealthAfterHeal = warrior.health;    // 60 (40+20)\n  const mageHealthAfterHeal = mage.health;          // still 0 (dead)\n\n  warrior.levelUp();\n  const warriorLevelAfter = warrior.level;\n  const warriorHealthAfterLevelUp = warrior.health; // 100 (restored)\n\n  return [\n    { pass: warriorHealthAfterDamage === 40, description: 'takeDamage reduces health (100-60=40)', got: warriorHealthAfterDamage },\n    { pass: mageHealthAfterDamage === 0, description: 'Overkill damage sets health to 0, not negative', got: mageHealthAfterDamage },\n    { pass: mageAlive === false, description: 'Character dies when health reaches 0', got: mageAlive },\n    { pass: living.length === 2, description: 'getLivingMembers returns 2 living members', got: living.length },\n    { pass: wiped === false, description: 'isWiped is false (2 members still alive)', got: wiped },\n    { pass: wipedParty.isWiped() === true, description: 'isWiped returns true when all are dead', got: wipedParty.isWiped() },\n    { pass: warriorHealthAfterHeal === 60, description: 'healAll heals living members (+20 → 60)', got: warriorHealthAfterHeal },\n    { pass: mageHealthAfterHeal === 0, description: 'healAll does NOT heal dead members', got: mageHealthAfterHeal },\n    { pass: warriorLevelAfter === 2, description: 'levelUp increments level to 2', got: warriorLevelAfter },\n    { pass: warriorHealthAfterLevelUp === 100, description: 'levelUp restores health to 100', got: warriorHealthAfterLevelUp },\n    { pass: party.averageLevel() === (2 + 1 + 1) / 3, description: 'averageLevel returns correct average', got: party.averageLevel() },\n  ];\n}",
+      "hint": "takeDamage: use Math.max(0, health - amount) to floor at zero. heal: use Math.min(100, health + amount) to cap at 100, and guard against healing dead characters. isWiped uses Array.every() — returns true only if ALL elements match. healAll calls getLivingMembers() first, then heals each one.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Functions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+          "description": "JavaScript functions guide"
+        },
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+          "description": "JavaScript classes reference"
+        }
+      ],
+      "hints": [
+        "When a character takes damage or levels up, what properties change — and how does the party know if everyone is still alive?",
+        "takeDamage: use Math.max(0, health - amount) to floor at zero. heal: use Math.min(100, health + amount) to cap at 100, and guard against healing dead characters. isWiped uses Array.every() — returns true only if ALL elements match. healAll calls getLivingMembers() first, then heals each one.",
+        "Key method(s): `max`, `min`, `every`. The function should return a boolean."
+      ]
+    },
+    {
+      "id": 225,
+      "title": "Restaurant + Order",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "oop",
+        "two-class",
+        "restaurant",
+        "composition",
+        "tier2"
+      ],
+      "description": "Build a MenuItem class and a Restaurant class. The restaurant manages a menu and tracks active orders.",
+      "instructions": "Create two classes: **MenuItem** and **Restaurant**.\n\n**MenuItem** constructor takes `(name, category, price)`:\n- `this.name`, `this.category` (e.g. `\"entree\"`, `\"appetizer\"`, `\"dessert\"`), `this.price`\n\n**Restaurant** constructor takes `(name)`:\n- `this.name`, `this.menu = []`, `this.orders = []`\n- `addMenuItem(item)` — adds item to menu\n- `placeOrder(itemNames)` — takes an array of item name strings, finds each in the menu, pushes the matched MenuItems to `this.orders`, returns the total price of the order\n- `getMenu(category)` — returns all menu items in that category\n- `totalRevenue()` — returns the sum of prices of all items in `this.orders`",
+      "starterCode": "class MenuItem {\n  constructor(name, category, price) {\n    // your code here\n  }\n}\n\nclass Restaurant {\n  constructor(name) {\n    // your code here\n  }\n\n  addMenuItem(item) {\n    // your code here\n  }\n\n  placeOrder(itemNames) {\n    // your code here\n  }\n\n  getMenu(category) {\n    // your code here\n  }\n\n  totalRevenue() {\n    // your code here\n  }\n}",
+      "solution": "class MenuItem {\n  constructor(name, category, price) {\n    this.name = name;\n    this.category = category;\n    this.price = price;\n  }\n}\n\nclass Restaurant {\n  constructor(name) {\n    this.name = name;\n    this.menu = [];\n    this.orders = [];\n  }\n\n  addMenuItem(item) {\n    this.menu.push(item);\n  }\n\n  placeOrder(itemNames) {\n    const items = itemNames\n      .map(name => this.menu.find(item => item.name === name))\n      .filter(Boolean);\n    this.orders.push(...items);\n    return items.reduce((sum, item) => sum + item.price, 0);\n  }\n\n  getMenu(category) {\n    return this.menu.filter(item => item.category === category);\n  }\n\n  totalRevenue() {\n    return this.orders.reduce((sum, item) => sum + item.price, 0);\n  }\n}",
+      "testRunner": "(code) => {\n  const { MenuItem, Restaurant } = new Function(code + '; return { MenuItem, Restaurant };')();\n\n  const burger = new MenuItem('Burger', 'entree', 12.00);\n  const salad  = new MenuItem('Salad', 'appetizer', 8.00);\n  const tacos  = new MenuItem('Tacos', 'entree', 10.00);\n  const cake   = new MenuItem('Cake', 'dessert', 6.00);\n\n  const resto = new Restaurant('The Corner Diner');\n  resto.addMenuItem(burger);\n  resto.addMenuItem(salad);\n  resto.addMenuItem(tacos);\n  resto.addMenuItem(cake);\n\n  const order1Total = resto.placeOrder(['Burger', 'Salad']);\n  const order2Total = resto.placeOrder(['Tacos', 'Cake']);\n  const entrees = resto.getMenu('entree');\n  const revenue = resto.totalRevenue();\n\n  return [\n    { pass: burger.name === 'Burger', description: 'MenuItem has correct name', got: burger.name },\n    { pass: resto.menu.length === 4, description: 'Restaurant has 4 menu items', got: resto.menu.length },\n    { pass: order1Total === 20, description: 'placeOrder returns correct total (12 + 8 = 20)', got: order1Total },\n    { pass: order2Total === 16, description: 'placeOrder returns correct total (10 + 6 = 16)', got: order2Total },\n    { pass: resto.orders.length === 4, description: 'orders array has 4 items after 2 orders', got: resto.orders.length },\n    { pass: entrees.length === 2, description: 'getMenu(\"entree\") returns 2 items', got: entrees.length },\n    { pass: entrees.every(i => i.category === 'entree'), description: 'getMenu only returns entrees', got: entrees.map(i => i.category).join(', ') },\n    { pass: revenue === 36, description: 'totalRevenue returns 36 (20 + 16)', got: revenue },\n  ];\n}",
+      "hint": "placeOrder takes an ARRAY of strings, not a single item. Use map to find each item in the menu, then filter(Boolean) to remove any nulls (items not on menu). Use spread (...items) to push multiple items into the orders array at once.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Functions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+          "description": "JavaScript functions guide"
+        }
+      ],
+      "hints": [
+        "The `map` method will be helpful here.",
+        "placeOrder takes an ARRAY of strings, not a single item. Use map to find each item in the menu, then filter(Boolean) to remove any nulls (items not on menu). Use spread (...items) to push multiple items into the orders array at once.",
+        "Key method(s): `map`, `find`, `filter`. Chain filter first to narrow down elements, then map to transform. The function should return an array."
+      ]
+    },
+    {
+      "id": 226,
+      "title": "VHS Store + Movie",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "oop",
+        "two-class",
+        "vhs",
+        "composition",
+        "tier2"
+      ],
+      "description": "Build a Movie class and a VHSStore class. The store manages inventory and tracks rentals.",
+      "instructions": "Create two classes: **Movie** and **VHSStore**.\n\n**Movie** constructor takes `(title, genre, rentalPrice)`:\n- `this.title`, `this.genre`, `this.rentalPrice`\n- `this.isRented = false`\n\n**VHSStore** constructor takes `(name)`:\n- `this.name`, `this.inventory = []`, `this.revenue = 0`\n- `stock(movie)` — adds movie to inventory\n- `rent(title)` — finds the movie, marks `isRented = true`, adds rental price to revenue, returns the movie. Returns `null` if not found or already rented.\n- `return(title)` — finds movie by title, sets `isRented = false`\n- `getAvailable()` — returns all movies not currently rented\n- `getByGenre(genre)` — returns all movies of that genre (regardless of availability)",
+      "starterCode": "class Movie {\n  constructor(title, genre, rentalPrice) {\n    // your code here\n  }\n}\n\nclass VHSStore {\n  constructor(name) {\n    // your code here\n  }\n\n  stock(movie) {\n    // your code here\n  }\n\n  rent(title) {\n    // your code here\n  }\n\n  return(title) {\n    // your code here\n  }\n\n  getAvailable() {\n    // your code here\n  }\n\n  getByGenre(genre) {\n    // your code here\n  }\n}",
+      "solution": "class Movie {\n  constructor(title, genre, rentalPrice) {\n    this.title = title;\n    this.genre = genre;\n    this.rentalPrice = rentalPrice;\n  }\n}\n\nclass VHSStore {\n  constructor(name) {\n    this.name = name;\n    this.inventory = [];\n    this.revenue = 0;\n  }\n\n  stock(movie) {\n    this.inventory.push(movie);\n  }\n\n  rent(title) {\n    const movie = this.inventory.find(m => m.title === title);\n    if (!movie || movie.isRented) return null;\n    movie.isRented = true;\n    this.revenue += movie.rentalPrice;\n    return movie;\n  }\n\n  return(title) {\n    const movie = this.inventory.find(m => m.title === title);\n    if (movie) movie.isRented = false;\n  }\n\n  getAvailable() {\n    return this.inventory.filter(m => !m.isRented);\n  }\n\n  getByGenre(genre) {\n    return this.inventory.filter(m => m.genre === genre);\n  }\n}",
+      "testRunner": "(code) => {\n  const { Movie, VHSStore } = new Function(code + '; return { Movie, VHSStore };')();\n\n  const m1 = new Movie('The Matrix', 'sci-fi', 3.99);\n  const m2 = new Movie('Alien', 'sci-fi', 3.99);\n  const m3 = new Movie('Home Alone', 'comedy', 2.99);\n\n  const store = new VHSStore('Blockbuster');\n  store.stock(m1);\n  store.stock(m2);\n  store.stock(m3);\n\n  const m1InitialIsRented = m1.isRented;         // capture before rent()\n  const rented = store.rent('The Matrix');\n  const m1IsRentedAfter = m1.isRented;           // capture after rent()\n  const revenueAfterRent = store.revenue;\n  const alreadyRented = store.rent('The Matrix');\n  const available = store.getAvailable();\n  const scifi = store.getByGenre('sci-fi');\n\n  store.return('The Matrix');\n  const afterReturn = store.getAvailable();\n\n  return [\n    { pass: m1InitialIsRented === undefined || m1InitialIsRented === false, description: 'Movie starts not rented', got: m1InitialIsRented },\n    { pass: rented === m1, description: 'rent() returns matching Movie', got: rented && rented.title },\n    { pass: m1IsRentedAfter === true, description: 'rent() marks movie as isRented = true', got: m1IsRentedAfter },\n    { pass: revenueAfterRent === 3.99, description: 'rent() adds rental price to revenue', got: revenueAfterRent },\n    { pass: alreadyRented === null, description: 'rent() returns null if already rented', got: alreadyRented },\n    { pass: available.length === 2, description: 'getAvailable returns 2 (Matrix is out)', got: available.length },\n    { pass: scifi.length === 2, description: 'getByGenre(\"sci-fi\") returns 2', got: scifi.length },\n    { pass: afterReturn.length === 3, description: 'All 3 available after return()', got: afterReturn.length },\n  ];\n}",
+      "hint": "Notice that Movie doesn't set isRented in the constructor — the store sets it when the movie is rented. The rent() guard checks !movie (not found) OR movie.isRented (already out). return is a valid method name in a class (it's only reserved as a statement keyword outside of property names).",
+      "resources": [
+        {
+          "label": "MDN: Functions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+          "description": "JavaScript functions guide"
+        },
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+          "description": "JavaScript classes reference"
+        },
+        {
+          "label": "MDN: this",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
+          "description": "The this keyword"
+        }
+      ],
+      "hints": [
+        "Consider how `find` works.",
+        "Notice that Movie doesn't set isRented in the constructor — the store sets it when the movie is rented. The rent() guard checks !movie (not found) OR movie.isRented (already out). return is a valid method name in a class (it's only reserved as a statement keyword outside of property names).",
+        "Key method(s): `find`, `filter`. Filter elements that match your condition."
+      ]
+    },
+    {
+      "id": 227,
+      "title": "Classroom + Student",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "oop",
+        "two-class",
+        "classroom",
+        "composition",
+        "tier3"
+      ],
+      "description": "Build a Student class and a Classroom class with richer data computation: averages, honor roll, and grade distributions.",
+      "instructions": "Create two classes: **Student** and **Classroom**.\n\n**Student** constructor takes `(name, id)`:\n- `this.name`, `this.id`, `this.grades = []`\n- `addGrade(score)` — adds score to grades (0–100)\n- `getAverage()` — returns average of grades, or `0` if no grades\n- `getLetterGrade()` — returns `\"A\"` (90+), `\"B\"` (80-89), `\"C\"` (70-79), `\"D\"` (60-69), or `\"F\"` based on average\n- `isHonorRoll()` — returns `true` if average is 90 or above\n\n**Classroom** constructor takes `(subject)`:\n- `this.subject`, `this.students = []`\n- `enroll(student)` — adds student to class\n- `getHonorRoll()` — returns students with average ≥ 90\n- `classAverage()` — returns the average of all student averages, or `0` if no students\n- `getTopStudent()` — returns the student with the highest average\n- `gradeDistribution()` — returns an object like `{ A: 2, B: 1, C: 0, D: 0, F: 0 }`",
+      "starterCode": "class Student {\n  constructor(name, id) {\n    // your code here\n  }\n\n  addGrade(score) {\n    // your code here\n  }\n\n  getAverage() {\n    // your code here\n  }\n\n  getLetterGrade() {\n    // your code here\n  }\n\n  isHonorRoll() {\n    // your code here\n  }\n}\n\nclass Classroom {\n  constructor(subject) {\n    // your code here\n  }\n\n  enroll(student) {\n    // your code here\n  }\n\n  getHonorRoll() {\n    // your code here\n  }\n\n  classAverage() {\n    // your code here\n  }\n\n  getTopStudent() {\n    // your code here\n  }\n\n  gradeDistribution() {\n    // your code here\n  }\n}",
+      "solution": "class Student {\n  constructor(name, id) {\n    this.name = name;\n    this.id = id;\n    this.grades = [];\n  }\n\n  addGrade(score) {\n    this.grades.push(score);\n  }\n\n  getAverage() {\n    if (this.grades.length === 0) return 0;\n    return this.grades.reduce((sum, g) => sum + g, 0) / this.grades.length;\n  }\n\n  getLetterGrade() {\n    const avg = this.getAverage();\n    if (avg >= 90) return 'A';\n    if (avg >= 80) return 'B';\n    if (avg >= 70) return 'C';\n    if (avg >= 60) return 'D';\n    return 'F';\n  }\n\n  isHonorRoll() {\n    return this.getAverage() >= 90;\n  }\n}\n\nclass Classroom {\n  constructor(subject) {\n    this.subject = subject;\n    this.students = [];\n  }\n\n  enroll(student) {\n    this.students.push(student);\n  }\n\n  getHonorRoll() {\n    return this.students.filter(s => s.isHonorRoll());\n  }\n\n  classAverage() {\n    if (this.students.length === 0) return 0;\n    const total = this.students.reduce((sum, s) => sum + s.getAverage(), 0);\n    return total / this.students.length;\n  }\n\n  getTopStudent() {\n    return this.students.reduce((top, s) => s.getAverage() > top.getAverage() ? s : top, this.students[0]);\n  }\n\n  gradeDistribution() {\n    const dist = { A: 0, B: 0, C: 0, D: 0, F: 0 };\n    this.students.forEach(s => {\n      dist[s.getLetterGrade()]++;\n    });\n    return dist;\n  }\n}",
+      "testRunner": "(code) => {\n  const { Student, Classroom } = new Function(code + '; return { Student, Classroom };')();\n\n  const s1 = new Student('Alex', 1);\n  const s2 = new Student('Jordan', 2);\n  const s3 = new Student('Sam', 3);\n\n  s1.addGrade(92); s1.addGrade(95); s1.addGrade(88);  // avg 91.67 -> A\n  s2.addGrade(78); s2.addGrade(82); s2.addGrade(80);  // avg 80 -> B\n  s3.addGrade(65); s3.addGrade(70); s3.addGrade(68);  // avg 67.67 -> D\n\n  const room = new Classroom('JavaScript');\n  room.enroll(s1); room.enroll(s2); room.enroll(s3);\n\n  const honorRoll = room.getHonorRoll();\n  const top = room.getTopStudent();\n  const dist = room.gradeDistribution();\n  const avg = room.classAverage();\n\n  return [\n    { pass: Math.abs(s1.getAverage() - 91.67) < 0.1, description: 'Student getAverage() is ~91.67', got: s1.getAverage().toFixed(2) },\n    { pass: s1.getLetterGrade() === 'A', description: 's1 gets letter grade A', got: s1.getLetterGrade() },\n    { pass: s2.getLetterGrade() === 'B', description: 's2 gets letter grade B', got: s2.getLetterGrade() },\n    { pass: s3.getLetterGrade() === 'D', description: 's3 gets letter grade D', got: s3.getLetterGrade() },\n    { pass: s1.isHonorRoll() === true, description: 's1 is on honor roll (avg >= 90)', got: s1.isHonorRoll() },\n    { pass: s2.isHonorRoll() === false, description: 's2 is NOT on honor roll', got: s2.isHonorRoll() },\n    { pass: honorRoll.length === 1 && honorRoll[0] === s1, description: 'getHonorRoll returns only s1', got: honorRoll.length },\n    { pass: top === s1, description: 'getTopStudent returns s1 (highest avg)', got: top?.name },\n    { pass: dist.A === 1 && dist.B === 1 && dist.D === 1, description: 'gradeDistribution: A=1, B=1, D=1', got: JSON.stringify(dist) },\n    { pass: dist.C === 0 && dist.F === 0, description: 'gradeDistribution: C=0, F=0', got: `C:${dist.C} F:${dist.F}` },\n    { pass: Math.abs(avg - (s1.getAverage() + s2.getAverage() + s3.getAverage()) / 3) < 0.01, description: 'classAverage is average of student averages', got: avg.toFixed(2) },\n  ];\n}",
+      "hint": "gradeDistribution builds a result object { A:0, B:0, C:0, D:0, F:0 } then uses forEach to call each student's getLetterGrade() and increment the matching key. classAverage averages the AVERAGES — it calls s.getAverage() on each student, not raw grades.",
+      "resources": [
+        {
+          "label": "MDN: Object",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+          "description": "JavaScript Object reference"
+        },
+        {
+          "label": "MDN: Functions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+          "description": "JavaScript functions guide"
+        },
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+          "description": "JavaScript classes reference"
+        }
+      ],
+      "hints": [
+        "Each student tracks their own grades, but the classroom needs aggregate stats — which class should compute the average?",
+        "gradeDistribution builds a result object { A:0, B:0, C:0, D:0, F:0 } then uses forEach to call each student's getLetterGrade() and increment the matching key. classAverage averages the AVERAGES — it calls s.getAverage() on each student, not raw grades.",
+        "Key method(s): `reduce`, `getAverage`, `filter`. The accumulator should track the running result through each iteration. The function should return a string."
+      ]
+    },
+    {
+      "id": 228,
+      "title": "Crafting Store + Supply",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "oop",
+        "two-class",
+        "crafting",
+        "composition",
+        "tier3"
+      ],
+      "description": "Build a Supply class and a CraftingStore class. The store tracks inventory quantities and can fulfill crafting recipes.",
+      "instructions": "Create two classes: **Supply** and **CraftingStore**.\n\n**Supply** constructor takes `(name, category, quantity, unitPrice)`:\n- `this.name`, `this.category`, `this.quantity`, `this.unitPrice`\n- `isInStock()` — returns `true` if quantity > 0\n- `totalValue()` — returns `quantity * unitPrice`\n\n**CraftingStore** constructor takes `(name)`:\n- `this.name`, `this.supplies = []`\n- `addSupply(supply)` — adds to supplies\n- `restock(name, amount)` — finds supply by name, increases its quantity by amount\n- `use(name, amount)` — finds supply by name, decreases quantity by amount (minimum 0). Returns `true` if there was enough stock, `false` if not (and does NOT deduct if insufficient)\n- `getByCategory(category)` — returns all supplies in that category\n- `getLowStock(threshold)` — returns supplies where quantity is ≤ threshold\n- `inventoryValue()` — returns sum of totalValue() for all supplies",
+      "starterCode": "class Supply {\n  constructor(name, category, quantity, unitPrice) {\n    // your code here\n  }\n\n  isInStock() {\n    // your code here\n  }\n\n  totalValue() {\n    // your code here\n  }\n}\n\nclass CraftingStore {\n  constructor(name) {\n    // your code here\n  }\n\n  addSupply(supply) {\n    // your code here\n  }\n\n  restock(name, amount) {\n    // your code here\n  }\n\n  use(name, amount) {\n    // your code here\n  }\n\n  getByCategory(category) {\n    // your code here\n  }\n\n  getLowStock(threshold) {\n    // your code here\n  }\n\n  inventoryValue() {\n    // your code here\n  }\n}",
+      "solution": "class Supply {\n  constructor(name, category, quantity, unitPrice) {\n    this.name = name;\n    this.category = category;\n    this.quantity = quantity;\n    this.unitPrice = unitPrice;\n  }\n\n  isInStock() {\n    return this.quantity > 0;\n  }\n\n  totalValue() {\n    return this.quantity * this.unitPrice;\n  }\n}\n\nclass CraftingStore {\n  constructor(name) {\n    this.name = name;\n    this.supplies = [];\n  }\n\n  addSupply(supply) {\n    this.supplies.push(supply);\n  }\n\n  restock(name, amount) {\n    const supply = this.supplies.find(s => s.name === name);\n    if (supply) supply.quantity += amount;\n  }\n\n  use(name, amount) {\n    const supply = this.supplies.find(s => s.name === name);\n    if (!supply || supply.quantity < amount) return false;\n    supply.quantity -= amount;\n    return true;\n  }\n\n  getByCategory(category) {\n    return this.supplies.filter(s => s.category === category);\n  }\n\n  getLowStock(threshold) {\n    return this.supplies.filter(s => s.quantity <= threshold);\n  }\n\n  inventoryValue() {\n    return this.supplies.reduce((sum, s) => sum + s.totalValue(), 0);\n  }\n}",
+      "testRunner": "(code) => {\n  const { Supply, CraftingStore } = new Function(code + '; return { Supply, CraftingStore };')();\n\n  const yarn  = new Supply('Yarn', 'fiber', 50, 2.00);\n  const beads = new Supply('Beads', 'embellishment', 200, 0.10);\n  const felt  = new Supply('Felt', 'fabric', 3, 1.50);\n\n  const store = new CraftingStore('Stitch & Craft');\n  store.addSupply(yarn);\n  store.addSupply(beads);\n  store.addSupply(felt);\n\n  const usedYarn = store.use('Yarn', 10);\n  const yarnQtyAfterUse = yarn.quantity;         // 40\n  const overUseFelt = store.use('Felt', 10);     // insufficient\n  const feltQtyAfterFailedUse = felt.quantity;   // still 3\n  store.restock('Felt', 7);\n  const feltQtyAfterRestock = felt.quantity;     // 10\n\n  const fabric = store.getByCategory('fabric');\n  const lowStock = store.getLowStock(5);\n  const value = store.inventoryValue();\n\n  return [\n    { pass: yarn.isInStock() === true, description: 'Yarn isInStock is true (qty 40 after use)', got: yarn.isInStock() },\n    { pass: beads.totalValue() === 20, description: 'Beads totalValue is 20 (200 * 0.10)', got: beads.totalValue() },\n    { pass: usedYarn === true, description: 'use() returns true when sufficient stock', got: usedYarn },\n    { pass: yarnQtyAfterUse === 40, description: 'use() decreases quantity (50 - 10 = 40)', got: yarnQtyAfterUse },\n    { pass: overUseFelt === false, description: 'use() returns false when insufficient', got: overUseFelt },\n    { pass: feltQtyAfterFailedUse === 3, description: 'use() does NOT deduct when insufficient', got: feltQtyAfterFailedUse },\n    { pass: feltQtyAfterRestock === 10, description: 'restock() increases quantity (3 + 7 = 10)', got: feltQtyAfterRestock },\n    { pass: fabric.length === 1 && fabric[0] === felt, description: 'getByCategory(\"fabric\") returns felt', got: fabric.length },\n    { pass: lowStock.every(s => s.quantity <= 5), description: 'getLowStock(5) only returns items with qty <= 5', got: lowStock.map(s => s.name + ':' + s.quantity).join(', ') },\n    { pass: typeof value === 'number' && value > 0, description: 'inventoryValue() returns a positive number', got: value },\n  ];\n}",
+      "hint": "use() has a critical guard: check BEFORE deducting — if quantity < amount, return false without changing anything. restock just adds to quantity with no upper bound. getLowStock uses <= threshold (not <), so supplies AT the threshold count as low stock.",
+      "resources": [
+        {
+          "label": "MDN: Functions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+          "description": "JavaScript functions guide"
+        },
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+          "description": "JavaScript classes reference"
+        },
+        {
+          "label": "MDN: this",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
+          "description": "The this keyword"
+        }
+      ],
+      "hints": [
+        "`find` is a key tool for this exercise.",
+        "use() has a critical guard: check BEFORE deducting — if quantity < amount, return false without changing anything. restock just adds to quantity with no upper bound. getLowStock uses <= threshold (not <), so supplies AT the threshold count as low stock.",
+        "Key method(s): `find`, `filter`, `reduce`. The accumulator should track the running result through each iteration. The function should return a boolean."
+      ]
+    },
+    {
+      "id": 229,
+      "title": "Spa + Appointment",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "oop",
+        "two-class",
+        "spa",
+        "scheduling",
+        "tier3"
+      ],
+      "description": "Build an Appointment class and a Spa class. The spa manages a booking system with scheduling, cancellations, and revenue tracking.",
+      "instructions": "Create two classes: **Appointment** and **Spa**.\n\n**Appointment** constructor takes `(clientName, service, duration, price)`:\n- `this.clientName`, `this.service`, `this.duration` (minutes), `this.price`\n- `this.status = \"booked\"` (can be `\"booked\"`, `\"completed\"`, or `\"cancelled\"`)\n- `complete()` — sets status to `\"completed\"`\n- `cancel()` — sets status to `\"cancelled\"`\n- `isActive()` — returns `true` if status is `\"booked\"`\n\n**Spa** constructor takes `(name)`:\n- `this.name`, `this.appointments = []`\n- `book(appointment)` — adds appointment to list\n- `cancel(clientName)` — finds first booked appointment for that client, calls `cancel()` on it, returns it (or `null` if not found)\n- `completeNext()` — completes the first `\"booked\"` appointment in the list, returns it (or `null`)\n- `getRevenue()` — returns sum of prices of `\"completed\"` appointments only\n- `getSchedule()` — returns only `\"booked\"` appointments",
+      "starterCode": "class Appointment {\n  constructor(clientName, service, duration, price) {\n    // your code here\n  }\n\n  complete() {\n    // your code here\n  }\n\n  cancel() {\n    // your code here\n  }\n\n  isActive() {\n    // your code here\n  }\n}\n\nclass Spa {\n  constructor(name) {\n    // your code here\n  }\n\n  book(appointment) {\n    // your code here\n  }\n\n  cancel(clientName) {\n    // your code here\n  }\n\n  completeNext() {\n    // your code here\n  }\n\n  getRevenue() {\n    // your code here\n  }\n\n  getSchedule() {\n    // your code here\n  }\n}",
+      "solution": "class Appointment {\n  constructor(clientName, service, duration, price) {\n    this.clientName = clientName;\n    this.service = service;\n    this.duration = duration;\n    this.price = price;\n    this.status = 'booked';\n  }\n\n  complete() {\n    this.status = 'completed';\n  }\n\n  cancel() {\n    this.status = 'cancelled';\n  }\n\n  isActive() {\n    return this.status === 'booked';\n  }\n}\n\nclass Spa {\n  constructor(name) {\n    this.name = name;\n    this.appointments = [];\n  }\n\n  book(appointment) {\n    this.appointments.push(appointment);\n  }\n\n  cancel(clientName) {\n    const appt = this.appointments.find(a => a.clientName === clientName && a.isActive());\n    if (!appt) return null;\n    appt.cancel();\n    return appt;\n  }\n\n  completeNext() {\n    const appt = this.appointments.find(a => a.isActive());\n    if (!appt) return null;\n    appt.complete();\n    return appt;\n  }\n\n  getRevenue() {\n    return this.appointments\n      .filter(a => a.status === 'completed')\n      .reduce((sum, a) => sum + a.price, 0);\n  }\n\n  getSchedule() {\n    return this.appointments.filter(a => a.isActive());\n  }\n}",
+      "testRunner": "(code) => {\n  const { Appointment, Spa } = new Function(code + '; return { Appointment, Spa };')();\n\n  const a1 = new Appointment('Maria',  'massage',  60, 90);\n  const a2 = new Appointment('Devon',  'facial',   45, 75);\n  const a3 = new Appointment('Chris',  'manicure', 30, 40);\n  const a4 = new Appointment('Maria',  'pedicure', 30, 40);\n\n  const spa = new Spa('Serenity Spa');\n  spa.book(a1); spa.book(a2); spa.book(a3); spa.book(a4);\n\n  const a1InitialStatus = a1.status;             // capture before completeNext\n  const a1InitialIsActive = a1.isActive();       // capture before completeNext\n\n  const cancelled = spa.cancel('Devon');\n  const schedule = spa.getSchedule();\n\n  const completed = spa.completeNext();          // completes a1\n  const a1StatusAfter = a1.status;               // completed\n  const revenueAfter = spa.getRevenue();\n  const scheduleAfter = spa.getSchedule().length;\n\n  return [\n    { pass: a1InitialStatus === 'booked', description: 'Appointment starts with status \"booked\"', got: a1InitialStatus },\n    { pass: a1InitialIsActive === true, description: 'isActive() returns true for booked appointment', got: a1InitialIsActive },\n    { pass: cancelled === a2, description: 'cancel() returns the cancelled Appointment', got: cancelled && cancelled.clientName },\n    { pass: a2.status === 'cancelled', description: 'Cancelled appointment has status \"cancelled\"', got: a2.status },\n    { pass: schedule.length === 3, description: 'getSchedule returns 3 (Devon cancelled)', got: schedule.length },\n    { pass: completed === a1, description: 'completeNext() completes first booked appt (Maria/massage)', got: completed && completed.service },\n    { pass: a1StatusAfter === 'completed', description: 'Completed appointment has status \"completed\"', got: a1StatusAfter },\n    { pass: revenueAfter === 90, description: 'getRevenue returns 90 (only completed appts)', got: revenueAfter },\n    { pass: scheduleAfter === 2, description: 'getSchedule shows 2 after Maria/massage completed', got: scheduleAfter },\n  ];\n}",
+      "hint": "cancel(clientName) finds by BOTH client name AND isActive() — a cancelled appointment shouldn't be cancelled again. completeNext uses find() to get the FIRST active appointment, then calls complete() on it. getRevenue filters for status === \"completed\" before reducing.",
+      "resources": [
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+          "description": "JavaScript classes reference"
+        },
+        {
+          "label": "MDN: this",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
+          "description": "The this keyword"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "How does the spa decide if a new appointment fits — what makes two appointments conflict?",
+        "cancel(clientName) finds by BOTH client name AND isActive() — a cancelled appointment shouldn't be cancelled again. completeNext uses find() to get the FIRST active appointment, then calls complete() on it. getRevenue filters for status === \"completed\" before reducing.",
+        "Key method(s): `find`, `isActive`, `cancel`."
+      ]
+    },
+    {
+      "id": 230,
+      "title": "RPG Full System: Item + Inventory + Character + Quest + Party",
+      "type": "js",
+      "tier": 5,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "oop",
+        "tier5",
+        "composition",
+        "multi-class",
+        "rpg",
+        "inventory",
+        "quest"
+      ],
+      "description": "Build a complete RPG system with 5 interacting classes. Characters own Inventories that hold Items. Parties manage Characters and run Quests that reward everyone on completion.",
+      "instructions": "Build five classes that all interact with each other.\n\n---\n\n### `Item`\nConstructor: `(name, type, power, value)`\n- `this.name`, `this.type` (`\"weapon\"`, `\"armor\"`, `\"potion\"`), `this.power`, `this.value`\n\n---\n\n### `Inventory`\nConstructor: `(capacity)`\n- `this.capacity` (max number of items), `this.items = []`, `this.equipped = null`\n- `add(item)` — adds item if not at capacity. Returns `true` if added, `false` if full\n- `remove(itemName)` — removes first item with that name, returns it (or `null`)\n- `equip(itemName)` — sets `this.equipped` to the item with that name (must already be in items). Returns `true` or `false`\n- `getByType(type)` — returns all items of that type\n- `totalValue()` — sum of all item values\n- `isFull()` — returns `true` if at capacity\n\n---\n\n### `Character`\nConstructor: `(name, role)`\n- `this.name`, `this.role` (`\"warrior\"`, `\"mage\"`, `\"rogue\"`), `this.level = 1`\n- `this.health = 100`, `this.maxHealth = 100`, `this.isAlive = true`\n- `this.inventory = new Inventory(6)` — every character starts with a 6-slot inventory\n- `get power()` — **getter** — returns: base power `(this.level * 10)` + equipped item's power if any, else 0\n- `takeDamage(amount)` — reduce health, floor at 0, set `isAlive = false` if dead\n- `heal(amount)` — add to health, cap at `maxHealth`. Only if alive.\n- `levelUp()` — increment level, restore health to maxHealth\n- `pickUp(item)` — calls `this.inventory.add(item)`, returns what add() returns\n- `usePotion()` — finds first `\"potion\"` in inventory, removes it, heals by its `power`. Returns `true` if used, `false` if no potions.\n\n---\n\n### `Quest`\nConstructor: `(name, requiredLevel, reward)`\n- `this.name`, `this.requiredLevel`, `this.reward` (an Item instance)\n- `this.isCompleted = false`\n- `canAttempt(character)` — returns `true` if character is alive and level >= requiredLevel\n- `complete(party)` — marks `isCompleted = true`, then calls `party.distributeReward(this.reward)`. Returns count of characters who received the reward.\n\n---\n\n### `Party`\nConstructor: `(name)`\n- `this.name`, `this.members = []`, `this.completedQuests = []`\n- `addMember(character)` — adds to members\n- `getLivingMembers()` — members where `isAlive === true`\n- `get averagePower()` — **getter** — average `power` of all living members (0 if none)\n- `get strongestMember()` — **getter** — living member with highest `power`\n- `distributeReward(item)` — gives a **copy** of the item to every living member whose inventory is not full. Returns count of members who received it. (Create new Item instances: `new Item(item.name, item.type, item.power, item.value)`)\n- `healAll(amount)` — calls `heal(amount)` on every living member\n- `runQuest(quest)` — if quest is not completed and at least one member can attempt it, call `quest.complete(this)`, push quest to `completedQuests`, return `true`. Otherwise return `false`.",
+      "starterCode": "class Item {\n  constructor(name, type, power, value) {\n    // your code here\n  }\n}\n\nclass Inventory {\n  constructor(capacity) {\n    // your code here\n  }\n\n  add(item) {\n    // your code here\n  }\n\n  remove(itemName) {\n    // your code here\n  }\n\n  equip(itemName) {\n    // your code here\n  }\n\n  getByType(type) {\n    // your code here\n  }\n\n  totalValue() {\n    // your code here\n  }\n\n  isFull() {\n    // your code here\n  }\n}\n\nclass Character {\n  constructor(name, role) {\n    // your code here\n  }\n\n  get power() {\n    // your code here\n  }\n\n  takeDamage(amount) {\n    // your code here\n  }\n\n  heal(amount) {\n    // your code here\n  }\n\n  levelUp() {\n    // your code here\n  }\n\n  pickUp(item) {\n    // your code here\n  }\n\n  usePotion() {\n    // your code here\n  }\n}\n\nclass Quest {\n  constructor(name, requiredLevel, reward) {\n    // your code here\n  }\n\n  canAttempt(character) {\n    // your code here\n  }\n\n  complete(party) {\n    // your code here\n  }\n}\n\nclass Party {\n  constructor(name) {\n    // your code here\n  }\n\n  addMember(character) {\n    // your code here\n  }\n\n  getLivingMembers() {\n    // your code here\n  }\n\n  get averagePower() {\n    // your code here\n  }\n\n  get strongestMember() {\n    // your code here\n  }\n\n  distributeReward(item) {\n    // your code here\n  }\n\n  healAll(amount) {\n    // your code here\n  }\n\n  runQuest(quest) {\n    // your code here\n  }\n}",
+      "solution": "class Item {\n  constructor(name, type, power, value) {\n    this.name = name;\n    this.type = type;\n    this.power = power;\n    this.value = value;\n  }\n}\n\nclass Inventory {\n  constructor(capacity) {\n    this.capacity = capacity;\n    this.items = [];\n    this.equipped = null;\n  }\n\n  add(item) {\n    if (this.isFull()) return false;\n    this.items.push(item);\n    return true;\n  }\n\n  remove(itemName) {\n    const idx = this.items.findIndex(i => i.name === itemName);\n    if (idx === -1) return null;\n    const [item] = this.items.splice(idx, 1);\n    if (this.equipped && this.equipped.name === itemName) this.equipped = null;\n    return item;\n  }\n\n  equip(itemName) {\n    const item = this.items.find(i => i.name === itemName);\n    if (!item) return false;\n    this.equipped = item;\n    return true;\n  }\n\n  getByType(type) {\n    return this.items.filter(i => i.type === type);\n  }\n\n  totalValue() {\n    return this.items.reduce((sum, i) => sum + i.value, 0);\n  }\n\n  isFull() {\n    return this.items.length >= this.capacity;\n  }\n}\n\nclass Character {\n  constructor(name, role) {\n    this.name = name;\n    this.role = role;\n    this.level = 1;\n    this.health = 100;\n    this.maxHealth = 100;\n    this.isAlive = true;\n    this.inventory = new Inventory(6);\n  }\n\n  get power() {\n    const equipped = this.inventory.equipped;\n    return this.level * 10 + (equipped ? equipped.power : 0);\n  }\n\n  takeDamage(amount) {\n    this.health = Math.max(0, this.health - amount);\n    if (this.health === 0) this.isAlive = false;\n  }\n\n  heal(amount) {\n    if (!this.isAlive) return;\n    this.health = Math.min(this.maxHealth, this.health + amount);\n  }\n\n  levelUp() {\n    this.level += 1;\n    this.health = this.maxHealth;\n  }\n\n  pickUp(item) {\n    return this.inventory.add(item);\n  }\n\n  usePotion() {\n    const potion = this.inventory.items.find(i => i.type === 'potion');\n    if (!potion) return false;\n    this.inventory.remove(potion.name);\n    this.heal(potion.power);\n    return true;\n  }\n}\n\nclass Quest {\n  constructor(name, requiredLevel, reward) {\n    this.name = name;\n    this.requiredLevel = requiredLevel;\n    this.reward = reward;\n    this.isCompleted = false;\n  }\n\n  canAttempt(character) {\n    return character.isAlive && character.level >= this.requiredLevel;\n  }\n\n  complete(party) {\n    this.isCompleted = true;\n    return party.distributeReward(this.reward);\n  }\n}\n\nclass Party {\n  constructor(name) {\n    this.name = name;\n    this.members = [];\n    this.completedQuests = [];\n  }\n\n  addMember(character) {\n    this.members.push(character);\n  }\n\n  getLivingMembers() {\n    return this.members.filter(m => m.isAlive);\n  }\n\n  get averagePower() {\n    const living = this.getLivingMembers();\n    if (living.length === 0) return 0;\n    return living.reduce((sum, m) => sum + m.power, 0) / living.length;\n  }\n\n  get strongestMember() {\n    const living = this.getLivingMembers();\n    if (living.length === 0) return null;\n    return living.reduce((strongest, m) => m.power > strongest.power ? m : strongest, living[0]);\n  }\n\n  distributeReward(item) {\n    const living = this.getLivingMembers();\n    let count = 0;\n    living.forEach(member => {\n      if (!member.inventory.isFull()) {\n        member.inventory.add(new Item(item.name, item.type, item.power, item.value));\n        count++;\n      }\n    });\n    return count;\n  }\n\n  healAll(amount) {\n    this.getLivingMembers().forEach(m => m.heal(amount));\n  }\n\n  runQuest(quest) {\n    if (quest.isCompleted) return false;\n    const canRun = this.members.some(m => quest.canAttempt(m));\n    if (!canRun) return false;\n    quest.complete(this);\n    this.completedQuests.push(quest);\n    return true;\n  }\n}",
+      "testRunner": "(code) => {\n  const { Item, Inventory, Character, Quest, Party } =\n    new Function(code + '; return { Item, Inventory, Character, Quest, Party };')();\n\n  // ── Item ──────────────────────────────────────────────────────────────\n  const sword    = new Item('Iron Sword', 'weapon', 25, 100);\n  const potion   = new Item('Health Potion', 'potion', 50, 30);\n  const shield   = new Item('Oak Shield', 'armor', 15, 80);\n\n  // ── Inventory ─────────────────────────────────────────────────────────\n  const inv = new Inventory(2);\n  const addResult1 = inv.add(sword);\n  const addResult2 = inv.add(potion);\n  const addResult3 = inv.add(shield);      // should fail — full\n  const invFull = inv.isFull();\n  const equipResult = inv.equip('Iron Sword');\n  const equipBad    = inv.equip('Nonexistent');\n  const removedItem = inv.remove('Iron Sword');\n  const equipAfterRemove = inv.equipped;   // should be null (equipped item was removed)\n  const totalVal = new Inventory(5);\n  [sword, potion, shield].forEach(i => totalVal.add(i));\n\n  // ── Character ─────────────────────────────────────────────────────────\n  const warrior = new Character('Thorin', 'warrior');\n  const mage    = new Character('Elara', 'mage');\n  const rogue   = new Character('Shade', 'rogue');\n\n  const basePower = warrior.power;         // level 1, no equip = 10\n  warrior.pickUp(new Item('Iron Sword', 'weapon', 25, 100));\n  warrior.inventory.equip('Iron Sword');\n  const powWithSword = warrior.power;      // 10 + 25 = 35\n\n  warrior.takeDamage(40);\n  const warriorHealthAfterDmg = warrior.health; // 60\n\n  warrior.pickUp(new Item('Health Potion', 'potion', 50, 30));\n  const potionUsed = warrior.usePotion();\n  const warriorHealthAfterPotion = warrior.health; // min(100, 60+50) = 100\n  const noPotionResult = warrior.usePotion();      // no more potions\n\n  mage.takeDamage(200);                    // kill mage\n  const mageAlive = mage.isAlive;\n  const mageHealAttempt = mage.health;\n  mage.heal(50);                           // should NOT heal (dead)\n  const mageHealthAfterDeadHeal = mage.health;\n\n  warrior.levelUp();\n  const warriorLevelAfter = warrior.level; // 2\n  const powAfterLevelUp = warrior.power;   // 2*10 + 25 (sword still equipped) = 45\n\n  rogue.levelUp(); rogue.levelUp();        // rogue is level 3\n\n  // ── Quest ─────────────────────────────────────────────────────────────\n  const gemReward = new Item('Ruby Gem', 'armor', 20, 150);\n  const quest = new Quest('Cave of Trials', 2, gemReward);\n\n  const questCanAttemptWarrior = quest.canAttempt(warrior); // true — alive, level 2\n  const questCanAttemptMage    = quest.canAttempt(mage);    // false — dead\n  const questCanAttemptRogue   = quest.canAttempt(rogue);   // true — level 3 >= 2\n\n  // ── Party ─────────────────────────────────────────────────────────────\n  const party = new Party('The Ironclads');\n  party.addMember(warrior);\n  party.addMember(mage);    // dead\n  party.addMember(rogue);\n\n  const livingBefore = party.getLivingMembers().length; // 2\n\n  const rogueInitialPower = rogue.power;   // level 3 * 10 = 30, no equip\n  const avgPowerBefore = party.averagePower; // (45 + 30) / 2 = 37.5\n  const strongest = party.strongestMember;  // warrior (45 > 30)\n\n  const questRan = party.runQuest(quest);\n  const questCompletedFlag = quest.isCompleted;\n  const questRanAgain = party.runQuest(quest); // already completed -> false\n\n  // After quest: warrior and rogue each got a Ruby Gem (mage dead)\n  const warriorGems = warrior.inventory.getByType('armor').filter(i => i.name === 'Ruby Gem');\n  const rogueGems   = rogue.inventory.getByType('armor').filter(i => i.name === 'Ruby Gem');\n  const mageGems    = mage.inventory.getByType('armor').filter(i => i.name === 'Ruby Gem');\n\n  party.healAll(30);\n  const rogueHealthAfterHealAll = rogue.health; // 100 (was 100)\n  // mage is dead — healAll should NOT heal her\n  const mageHealthAfterHealAll = mage.health;   // still 0\n\n  // Full inventory test: fill rogue to capacity\n  const tinyPack = new Character('Packer', 'warrior');\n  const smallInv = new Inventory(1);\n  smallInv.add(new Item('Junk', 'armor', 1, 1));\n  tinyPack.inventory = smallInv;\n  const blockedAdd = tinyPack.pickUp(new Item('Extra', 'weapon', 5, 5));\n\n  return [\n    // ── Item ──\n    { pass: sword.name === 'Iron Sword',   description: 'Item: name stored correctly',  got: sword.name },\n    { pass: sword.type === 'weapon',       description: 'Item: type stored correctly',  got: sword.type },\n    { pass: sword.power === 25,            description: 'Item: power stored correctly', got: sword.power },\n    { pass: sword.value === 100,           description: 'Item: value stored correctly', got: sword.value },\n\n    // ── Inventory ──\n    { pass: addResult1 === true,           description: 'Inventory.add() returns true when space available', got: addResult1 },\n    { pass: addResult3 === false,          description: 'Inventory.add() returns false when full',           got: addResult3 },\n    { pass: invFull === true,              description: 'Inventory.isFull() returns true at capacity',       got: invFull },\n    { pass: equipResult === true,          description: 'Inventory.equip() returns true for valid item',     got: equipResult },\n    { pass: equipBad === false,            description: 'Inventory.equip() returns false for unknown item',  got: equipBad },\n    { pass: removedItem === sword,         description: 'Inventory.remove() returns the removed item',       got: removedItem && removedItem.name },\n    { pass: equipAfterRemove === null,     description: 'Inventory.remove() clears equipped if that item removed', got: equipAfterRemove },\n    { pass: totalVal.totalValue() === 210, description: 'Inventory.totalValue() sums all item values (100+30+80)', got: totalVal.totalValue() },\n\n    // ── Character ──\n    { pass: basePower === 10,              description: 'Character.power getter: level 1, no equip = 10',    got: basePower },\n    { pass: powWithSword === 35,           description: 'Character.power getter: level 1 + sword 25 = 35',   got: powWithSword },\n    { pass: warriorHealthAfterDmg === 60,  description: 'Character.takeDamage() reduces health correctly',   got: warriorHealthAfterDmg },\n    { pass: potionUsed === true,           description: 'Character.usePotion() returns true and heals',      got: potionUsed },\n    { pass: warriorHealthAfterPotion === 100, description: 'Character.usePotion() heals up (capped at maxHealth)', got: warriorHealthAfterPotion },\n    { pass: noPotionResult === false,      description: 'Character.usePotion() returns false with no potions', got: noPotionResult },\n    { pass: mageAlive === false,           description: 'Character dies when health reaches 0',              got: mageAlive },\n    { pass: mageHealthAfterDeadHeal === mageHealAttempt, description: 'Character.heal() does nothing when dead', got: mageHealthAfterDeadHeal },\n    { pass: warriorLevelAfter === 2,       description: 'Character.levelUp() increments level',              got: warriorLevelAfter },\n    { pass: powAfterLevelUp === 45,        description: 'Character.power after levelUp: 2*10 + sword 25 = 45', got: powAfterLevelUp },\n    { pass: blockedAdd === false,          description: 'Character.pickUp() returns false when inventory full', got: blockedAdd },\n\n    // ── Quest ──\n    { pass: questCanAttemptWarrior === true,  description: 'Quest.canAttempt() true: alive & level >= required', got: questCanAttemptWarrior },\n    { pass: questCanAttemptMage === false,    description: 'Quest.canAttempt() false: dead character',           got: questCanAttemptMage },\n    { pass: questCanAttemptRogue === true,    description: 'Quest.canAttempt() true: rogue level 3 >= 2',        got: questCanAttemptRogue },\n\n    // ── Party ──\n    { pass: livingBefore === 2,            description: 'Party.getLivingMembers() returns 2 (mage is dead)',  got: livingBefore },\n    { pass: Math.abs(avgPowerBefore - 37.5) < 0.01, description: 'Party.averagePower getter: (45+30)/2 = 37.5', got: avgPowerBefore },\n    { pass: strongest === warrior,         description: 'Party.strongestMember getter: warrior (45 > 30)',    got: strongest && strongest.name },\n    { pass: questRan === true,             description: 'Party.runQuest() returns true on success',           got: questRan },\n    { pass: questCompletedFlag === true,   description: 'runQuest() marks quest.isCompleted = true',         got: questCompletedFlag },\n    { pass: questRanAgain === false,       description: 'Party.runQuest() returns false if already completed', got: questRanAgain },\n    { pass: party.completedQuests.length === 1, description: 'completedQuests has 1 entry after quest run',  got: party.completedQuests.length },\n    { pass: warriorGems.length === 1,      description: 'Warrior received Ruby Gem reward',                  got: warriorGems.length },\n    { pass: rogueGems.length === 1,        description: 'Rogue received Ruby Gem reward',                    got: rogueGems.length },\n    { pass: mageGems.length === 0,         description: 'Dead mage did NOT receive reward',                  got: mageGems.length },\n    { pass: mageHealthAfterHealAll === 0,  description: 'Party.healAll() skips dead members',                got: mageHealthAfterHealAll },\n  ];\n}",
+      "hint": "This exercise chains across five classes. Start small — get Item working, then Inventory, then Character (which uses Inventory internally), then Quest, then Party last.\n\nKey patterns:\n- `get power()` is a getter — use `get power() { ... }` syntax, accessed as `character.power` (no parentheses)\n- `distributeReward` must create NEW Item instances for each member — don't share the same object or removing it from one inventory removes it from all\n- `remove()` should also clear `this.equipped` if the removed item was the one equipped\n- `runQuest()` checks both: quest not already completed AND at least one member can attempt it\n- `usePotion()` removes the potion FIRST, then heals — so the potion is consumed even if at full health",
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.reduce()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce",
+          "description": "The reduce method"
+        },
+        {
+          "label": "MDN: Functions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+          "description": "JavaScript functions guide"
+        },
+        {
+          "label": "MDN: Classes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+          "description": "JavaScript classes reference"
+        }
+      ],
+      "hints": [
+        "The `splice` method will be helpful here.",
+        "This exercise chains across five classes. Start small — get Item working, then Inventory, then Character (which uses Inventory internally), then Quest, then Party last.\n\nKey patterns:\n- `get power()` is a getter — use `get power() { ... }` syntax, accessed as `character.power` (no parentheses)\n- `distributeReward` must create NEW Item instances for each member — don't share the same object or removing it from one inventory removes it from all\n- `remove()` should also clear `this.equipped` if the removed item was the one equipped\n- `runQuest()` checks both: quest not already completed AND at least one member can attempt it\n- `usePotion()` removes the potion FIRST, then heals — so the potion is consumed even if at full health",
+        "Key method(s): `isFull`, `findIndex`, `splice`. The function should return a boolean."
+      ]
+    },
+    {
+      "id": 266,
+      "title": "Birthdays",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "functions",
+        "strings",
+        "arrays",
+        "counting"
+      ],
+      "description": "Create birthday objects, format celebration messages, and count birthdays by month.",
+      "instructions": "Write three functions:\n\n**createBirthday(name, month, day)** — returns an object with `name`, `month`, and `day` properties.\n```js\ncreateBirthday('Leah', 2, 10)\n// { name: 'Leah', month: 2, day: 10 }\n```\n\n**celebrateBirthday(birthday)** — takes a birthday object and returns a formatted string.\n```js\ncelebrateBirthday({ name: 'Alex', month: 5, day: 19 })\n// \"Today is 5/19! Happy birthday, Alex!\"\n```\n\n**countBirthdays(birthdays, month)** — takes an array of birthday objects and a month number, returns the count of birthdays in that month.\n```js\nconst bdays = [\n  { name: 'Leah', month: 2, day: 10 },\n  { name: 'Alex', month: 5, day: 19 },\n  { name: 'Noah', month: 2, day: 28 },\n  { name: 'Heather', month: 6, day: 29 },\n];\ncountBirthdays(bdays, 2); // 2\ncountBirthdays(bdays, 5); // 1\ncountBirthdays(bdays, 12); // 0\n```",
+      "starterCode": "function createBirthday(name, month, day) {\n  // your code here\n}\n\nfunction celebrateBirthday(birthday) {\n  // your code here\n}\n\nfunction countBirthdays(birthdays, month) {\n  // your code here\n}",
+      "solution": "function createBirthday(name, month, day) {\n  return { name, month, day };\n}\n\nfunction celebrateBirthday(birthday) {\n  return `Today is ${birthday.month}/${birthday.day}! Happy birthday, ${birthday.name}!`;\n}\n\nfunction countBirthdays(birthdays, month) {\n  return birthdays.filter(b => b.month === month).length;\n}",
+      "testRunner": "(code) => {\n  const { createBirthday, celebrateBirthday, countBirthdays } = new Function(code + '; return { createBirthday, celebrateBirthday, countBirthdays };')();\n\n  const leah = createBirthday('Leah', 2, 10);\n  const christy = createBirthday('Christy', 3, 8);\n  const bdays = [\n    createBirthday('Leah', 2, 10),\n    createBirthday('Alex', 5, 19),\n    createBirthday('Noah', 2, 28),\n    createBirthday('Heather', 6, 29),\n  ];\n\n  return [\n    { pass: leah.name === 'Leah', description: 'createBirthday sets name', got: leah.name },\n    { pass: leah.month === 2 && leah.day === 10, description: 'createBirthday sets month and day', got: leah.month + '/' + leah.day },\n    { pass: christy.name === 'Christy' && christy.month === 3, description: 'createBirthday works for different inputs', got: christy.name },\n    { pass: celebrateBirthday({ name: 'Alex', month: 5, day: 19 }) === 'Today is 5/19! Happy birthday, Alex!', description: 'celebrateBirthday formats correctly', got: celebrateBirthday({ name: 'Alex', month: 5, day: 19 }) },\n    { pass: celebrateBirthday({ name: 'Heather', month: 6, day: 29 }) === 'Today is 6/29! Happy birthday, Heather!', description: 'celebrateBirthday works for different inputs', got: celebrateBirthday({ name: 'Heather', month: 6, day: 29 }) },\n    { pass: countBirthdays(bdays, 2) === 2, description: 'countBirthdays returns 2 for February', got: countBirthdays(bdays, 2) },\n    { pass: countBirthdays(bdays, 5) === 1, description: 'countBirthdays returns 1 for May', got: countBirthdays(bdays, 5) },\n    { pass: countBirthdays(bdays, 12) === 0, description: 'countBirthdays returns 0 for December', got: countBirthdays(bdays, 12) },\n  ];\n}",
+      "hint": "createBirthday is a factory function that returns a plain object. celebrateBirthday uses template literals. countBirthdays uses .filter() then .length.",
+      "resources": [
+        {
+          "label": "MDN: Template Literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals"
+        }
+      ],
+      "hints": [
+        "Consider how `filter` works.",
+        "createBirthday is a factory function that returns a plain object. celebrateBirthday uses template literals. countBirthdays uses .filter() then .length.",
+        "Key method(s): `filter`. Filter elements that match your condition. The function should return an object."
+      ]
+    },
+    {
+      "id": 267,
+      "title": "Calendar",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "functions",
+        "arrays",
+        "conditionals",
+        "filter"
+      ],
+      "description": "Build a calendar system with event creation, validation, and monthly filtering.",
+      "instructions": "Write three functions:\n\n**createEvent(title, month, day)** — returns an event object. If day < 1 or day > 31, return the string `\"Error: [day] is not a valid day\"`.\n```js\ncreateEvent('Dinner', 'July', 15)\n// { title: 'Dinner', month: 'July', day: 15 }\ncreateEvent('Party', 'June', 35)\n// \"Error: 35 is not a valid day\"\n```\n\n**createCalendar(owner, events)** — returns a calendar object with owner and events array.\n```js\ncreateCalendar('Amy', [event1, event2])\n// { owner: 'Amy', events: [event1, event2] }\n```\n\n**reportMonthlyEvents(calendar, month)** — returns only the events matching the given month.\n```js\nreportMonthlyEvents(cal, 'July')\n// [{ title: 'Dinner', month: 'July', day: 15 }, ...]\n```",
+      "starterCode": "function createEvent(title, month, day) {\n  // your code here\n}\n\nfunction createCalendar(owner, events) {\n  // your code here\n}\n\nfunction reportMonthlyEvents(calendar, month) {\n  // your code here\n}",
+      "solution": "function createEvent(title, month, day) {\n  if (day < 1 || day > 31) {\n    return `Error: ${day} is not a valid day`;\n  }\n  return { title, month, day };\n}\n\nfunction createCalendar(owner, events) {\n  return { owner, events };\n}\n\nfunction reportMonthlyEvents(calendar, month) {\n  return calendar.events.filter(e => e.month === month);\n}",
+      "testRunner": "(code) => {\n  const { createEvent, createCalendar, reportMonthlyEvents } = new Function(code + '; return { createEvent, createCalendar, reportMonthlyEvents };')();\n\n  const e1 = createEvent('Dinner', 'July', 15);\n  const e2 = createEvent('Meeting', 'July', 22);\n  const e3 = createEvent('Party', 'August', 5);\n  const bad1 = createEvent('Bad', 'June', 35);\n  const bad2 = createEvent('Bad', 'June', 0);\n  const cal = createCalendar('Amy', [e1, e2, e3]);\n  const julyEvents = reportMonthlyEvents(cal, 'July');\n\n  return [\n    { pass: e1.title === 'Dinner' && e1.month === 'July' && e1.day === 15, description: 'createEvent returns correct object', got: JSON.stringify(e1) },\n    { pass: bad1 === 'Error: 35 is not a valid day', description: 'createEvent rejects day > 31', got: bad1 },\n    { pass: bad2 === 'Error: 0 is not a valid day', description: 'createEvent rejects day < 1', got: bad2 },\n    { pass: cal.owner === 'Amy', description: 'createCalendar sets owner', got: cal.owner },\n    { pass: cal.events.length === 3, description: 'createCalendar stores events array', got: cal.events.length },\n    { pass: julyEvents.length === 2, description: 'reportMonthlyEvents returns 2 July events', got: julyEvents.length },\n    { pass: julyEvents.every(e => e.month === 'July'), description: 'reportMonthlyEvents only returns matching month', got: julyEvents.map(e => e.month).join(', ') },\n  ];\n}",
+      "hint": "createEvent needs a guard clause checking day validity before returning the object. reportMonthlyEvents uses .filter() on the calendar's events array.",
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.filter()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"
+        }
+      ],
+      "hints": [
+        "What keys should the returned object have, and how do you compute each value?",
+        "createEvent needs a guard clause checking day validity before returning the object. reportMonthlyEvents uses .filter() on the calendar's events array.",
+        "Key method(s): `filter`. Filter elements that match your condition. The function should return an object."
+      ]
+    },
+    {
+      "id": 268,
+      "title": "Elevator",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "functions",
+        "state",
+        "conditionals",
+        "arrays"
+      ],
+      "description": "Build an elevator system with floor navigation, validation, and passenger management.",
+      "instructions": "Write three functions:\n\n**createElevator(building, totalFloors, currentFloor, passengers)** — returns an elevator object.\n```js\ncreateElevator('Hilton', 10, 2, ['Scott', 'Mark'])\n// { building: 'Hilton', totalFloors: 10, currentFloor: 2, passengers: ['Scott', 'Mark'] }\n```\n\n**changeFloors(elevator, newFloor)** — returns a message:\n- If newFloor === currentFloor: `\"You're already on floor [n]!\"`\n- If newFloor > totalFloors: `\"Floor [n] does not exist!\"`\n- Otherwise: `\"Taking you to floor [n]!\"` and update currentFloor.\n```js\nchangeFloors(elev, 10)  // \"Taking you to floor 10!\"\nchangeFloors(elev, 10)  // \"You're already on floor 10!\"\nchangeFloors(elev, 100) // \"Floor 100 does not exist!\"\n```\n\n**dropOffPassenger(elevator, name)** — removes the named passenger from the array.\n```js\ndropOffPassenger(elev, 'Mark')\nelev.passengers // ['Scott', 'Joey']\n```",
+      "starterCode": "function createElevator(building, totalFloors, currentFloor, passengers) {\n  // your code here\n}\n\nfunction changeFloors(elevator, newFloor) {\n  // your code here\n}\n\nfunction dropOffPassenger(elevator, name) {\n  // your code here\n}",
+      "solution": "function createElevator(building, totalFloors, currentFloor, passengers) {\n  return { building, totalFloors, currentFloor, passengers };\n}\n\nfunction changeFloors(elevator, newFloor) {\n  if (newFloor === elevator.currentFloor) {\n    return `You're already on floor ${newFloor}!`;\n  }\n  if (newFloor > elevator.totalFloors) {\n    return `Floor ${newFloor} does not exist!`;\n  }\n  elevator.currentFloor = newFloor;\n  return `Taking you to floor ${newFloor}!`;\n}\n\nfunction dropOffPassenger(elevator, name) {\n  elevator.passengers = elevator.passengers.filter(p => p !== name);\n}",
+      "testRunner": "(code) => {\n  const { createElevator, changeFloors, dropOffPassenger } = new Function(code + '; return { createElevator, changeFloors, dropOffPassenger };')();\n\n  const elev = createElevator('Hilton', 10, 2, ['Scott', 'Mark', 'Joey']);\n\n  return [\n    { pass: elev.building === 'Hilton', description: 'createElevator sets building name', got: elev.building },\n    { pass: elev.totalFloors === 10 && elev.currentFloor === 2, description: 'createElevator sets floors correctly', got: elev.currentFloor + '/' + elev.totalFloors },\n    { pass: elev.passengers.length === 3, description: 'createElevator stores passengers', got: elev.passengers.length },\n    { pass: changeFloors(elev, 10) === 'Taking you to floor 10!', description: 'changeFloors moves to valid floor', got: changeFloors(createElevator('X', 10, 2, []), 10) },\n    { pass: (() => { const e = createElevator('X', 3, 2, []); return changeFloors(e, 2); })() === \"You're already on floor 2!\", description: 'changeFloors rejects same floor', got: (() => { const e = createElevator('X', 3, 2, []); return changeFloors(e, 2); })() },\n    { pass: (() => { const e = createElevator('X', 3, 1, []); return changeFloors(e, 100); })() === 'Floor 100 does not exist!', description: 'changeFloors rejects invalid floor', got: (() => { const e = createElevator('X', 3, 1, []); return changeFloors(e, 100); })() },\n    { pass: (() => { const e = createElevator('X', 10, 1, ['Scott', 'Mark', 'Joey']); dropOffPassenger(e, 'Mark'); return e.passengers.length === 2 && !e.passengers.includes('Mark'); })(), description: 'dropOffPassenger removes passenger', got: (() => { const e = createElevator('X', 10, 1, ['Scott', 'Mark', 'Joey']); dropOffPassenger(e, 'Mark'); return e.passengers.join(', '); })() },\n  ];\n}",
+      "hint": "changeFloors needs three branches: same floor, nonexistent floor, or valid move. dropOffPassenger uses .filter() to remove the named person.",
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.filter()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"
+        }
+      ],
+      "hints": [
+        "`filter` is a key tool for this exercise.",
+        "changeFloors needs three branches: same floor, nonexistent floor, or valid move. dropOffPassenger uses .filter() to remove the named person.",
+        "Key method(s): `filter`. Filter elements that match your condition. The function should return an object."
+      ]
+    },
+    {
+      "id": 269,
+      "title": "Favorite Foods",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "functions",
+        "state",
+        "arrays",
+        "strings"
+      ],
+      "description": "Create dish objects with ingredients and spiciness, track orders, and build shopping lists.",
+      "instructions": "Write four functions:\n\n**createDish(name, ingredients, isSpicy)** — returns a dish object with `name`, `ingredients` (array), `isSpicy` (boolean), and `timesOrdered: 0`.\n```js\ncreateDish('Tacos', ['tortilla', 'cheese'], true)\n// { name: 'Tacos', ingredients: ['tortilla', 'cheese'], isSpicy: true, timesOrdered: 0 }\n```\n\n**commentOnSpiciness(dish)** — returns:\n- Spicy: `\"Wow, this Tacos is so spicy!\"`\n- Not spicy: `\"Phew, this Pasta is not very spicy.\"`\n\n**orderFood(dish)** — increments `dish.timesOrdered` by 1.\n\n**createShoppingList(dishes)** — returns a single flat array of all ingredients from all dishes.\n```js\ncreateShoppingList([dish1, dish2])\n// ['tortilla', 'cheese', 'noodles', 'butter']\n```",
+      "starterCode": "function createDish(name, ingredients, isSpicy) {\n  // your code here\n}\n\nfunction commentOnSpiciness(dish) {\n  // your code here\n}\n\nfunction orderFood(dish) {\n  // your code here\n}\n\nfunction createShoppingList(dishes) {\n  // your code here\n}",
+      "solution": "function createDish(name, ingredients, isSpicy) {\n  return { name, ingredients, isSpicy, timesOrdered: 0 };\n}\n\nfunction commentOnSpiciness(dish) {\n  if (dish.isSpicy) {\n    return `Wow, this ${dish.name} is so spicy!`;\n  }\n  return `Phew, this ${dish.name} is not very spicy.`;\n}\n\nfunction orderFood(dish) {\n  dish.timesOrdered++;\n}\n\nfunction createShoppingList(dishes) {\n  return dishes.flatMap(d => d.ingredients);\n}",
+      "testRunner": "(code) => {\n  const { createDish, commentOnSpiciness, orderFood, createShoppingList } = new Function(code + '; return { createDish, commentOnSpiciness, orderFood, createShoppingList };')();\n\n  const tacos = createDish('Tacos', ['tortilla', 'cheese', 'salsa'], true);\n  const pasta = createDish('Pasta', ['noodles', 'butter'], false);\n\n  return [\n    { pass: tacos.name === 'Tacos', description: 'createDish sets name', got: tacos.name },\n    { pass: tacos.ingredients.length === 3, description: 'createDish stores ingredients array', got: tacos.ingredients.length },\n    { pass: tacos.isSpicy === true, description: 'createDish stores isSpicy', got: tacos.isSpicy },\n    { pass: tacos.timesOrdered === 0, description: 'createDish initializes timesOrdered to 0', got: tacos.timesOrdered },\n    { pass: commentOnSpiciness(tacos) === 'Wow, this Tacos is so spicy!', description: 'commentOnSpiciness handles spicy dish', got: commentOnSpiciness(tacos) },\n    { pass: commentOnSpiciness(pasta) === 'Phew, this Pasta is not very spicy.', description: 'commentOnSpiciness handles non-spicy dish', got: commentOnSpiciness(pasta) },\n    { pass: (() => { const d = createDish('X', [], true); orderFood(d); orderFood(d); return d.timesOrdered === 2; })(), description: 'orderFood increments timesOrdered', got: (() => { const d = createDish('X', [], true); orderFood(d); orderFood(d); return d.timesOrdered; })() },\n    { pass: (() => { const list = createShoppingList([tacos, pasta]); return list.length === 5 && list.includes('tortilla') && list.includes('noodles'); })(), description: 'createShoppingList flattens all ingredients', got: createShoppingList([tacos, pasta]).join(', ') },\n  ];\n}",
+      "hint": "createDish is a factory function. commentOnSpiciness checks the isSpicy property. createShoppingList can use .flatMap() or .reduce() with .concat().",
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.flatMap()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap"
+        }
+      ],
+      "hints": [
+        "What keys should the returned object have, and how do you compute each value?",
+        "createDish is a factory function. commentOnSpiciness checks the isSpicy property. createShoppingList can use .flatMap() or .reduce() with .concat().",
+        "Key method(s): `flatMap`. The function should return an object."
+      ]
+    },
+    {
+      "id": 270,
+      "title": "Meal Planning",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "functions",
+        "state",
+        "conditionals",
+        "reduce"
+      ],
+      "description": "Plan meals with calorie budgets, add dishes within limits, and calculate totals.",
+      "instructions": "Write three functions:\n\n**createMeal(type, calorieGoal)** — returns a meal object with `type`, `calorieGoal`, and `dishes: []`.\n\n**addDish(meal, dish)** — adds a dish object `{ name, calories }` to the meal only if the total calories (including the new dish) would not exceed `calorieGoal`. Updates the remaining goal.\n```js\nconst brunch = createMeal('brunch', 600);\naddDish(brunch, { name: 'Eggs', calories: 450 });\n// brunch.dishes → [{ name: 'Eggs', calories: 450 }]\n// brunch.calorieGoal → 150  (600 - 450)\naddDish(brunch, { name: 'Pancakes', calories: 200 });\n// Rejected! 200 > remaining 150\n// brunch.dishes still has only Eggs\naddDish(brunch, { name: 'Toast', calories: 100 });\n// brunch.dishes → [{ name: 'Eggs', calories: 450 }, { name: 'Toast', calories: 100 }]\n```\n\n**calculateCalories(meal)** — returns `\"[type] has a total of [sum] calories.\"`\n```js\ncalculateCalories(brunch); // \"brunch has a total of 550 calories.\"\n```",
+      "starterCode": "function createMeal(type, calorieGoal) {\n  // your code here\n}\n\nfunction addDish(meal, dish) {\n  // your code here\n}\n\nfunction calculateCalories(meal) {\n  // your code here\n}",
+      "solution": "function createMeal(type, calorieGoal) {\n  return { type, calorieGoal, dishes: [] };\n}\n\nfunction addDish(meal, dish) {\n  if (dish.calories <= meal.calorieGoal) {\n    meal.dishes.push(dish);\n    meal.calorieGoal -= dish.calories;\n  }\n}\n\nfunction calculateCalories(meal) {\n  const total = meal.dishes.reduce((sum, d) => sum + d.calories, 0);\n  return `${meal.type} has a total of ${total} calories.`;\n}",
+      "testRunner": "(code) => {\n  const { createMeal, addDish, calculateCalories } = new Function(code + '; return { createMeal, addDish, calculateCalories };')();\n\n  const brunch = createMeal('brunch', 600);\n\n  return [\n    { pass: brunch.type === 'brunch' && brunch.calorieGoal === 600, description: 'createMeal sets type and calorieGoal', got: brunch.type + ': ' + brunch.calorieGoal },\n    { pass: Array.isArray(brunch.dishes) && brunch.dishes.length === 0, description: 'createMeal initializes empty dishes', got: brunch.dishes.length },\n    { pass: (() => { const m = createMeal('lunch', 500); addDish(m, { name: 'Salad', calories: 250 }); return m.dishes.length === 1; })(), description: 'addDish adds dish within budget', got: (() => { const m = createMeal('lunch', 500); addDish(m, { name: 'Salad', calories: 250 }); return m.dishes.length; })() },\n    { pass: (() => { const m = createMeal('lunch', 500); addDish(m, { name: 'Salad', calories: 250 }); return m.calorieGoal === 250; })(), description: 'addDish updates remaining calorieGoal', got: (() => { const m = createMeal('lunch', 500); addDish(m, { name: 'Salad', calories: 250 }); return m.calorieGoal; })() },\n    { pass: (() => { const m = createMeal('lunch', 300); addDish(m, { name: 'Burger', calories: 500 }); return m.dishes.length === 0; })(), description: 'addDish rejects dish exceeding budget', got: (() => { const m = createMeal('lunch', 300); addDish(m, { name: 'Burger', calories: 500 }); return m.dishes.length; })() },\n    { pass: (() => { const m = createMeal('brunch', 600); addDish(m, { name: 'Eggs', calories: 450 }); addDish(m, { name: 'Toast', calories: 100 }); return calculateCalories(m); })() === 'brunch has a total of 550 calories.', description: 'calculateCalories returns formatted total', got: (() => { const m = createMeal('brunch', 600); addDish(m, { name: 'Eggs', calories: 450 }); addDish(m, { name: 'Toast', calories: 100 }); return calculateCalories(m); })() },\n    { pass: (() => { const m = createMeal('dinner', 900); addDish(m, { name: 'Steak', calories: 250 }); addDish(m, { name: 'Potatoes', calories: 200 }); addDish(m, { name: 'Dessert', calories: 400 }); return calculateCalories(m); })() === 'dinner has a total of 850 calories.', description: 'calculateCalories works with multiple dishes', got: (() => { const m = createMeal('dinner', 900); addDish(m, { name: 'Steak', calories: 250 }); addDish(m, { name: 'Potatoes', calories: 200 }); addDish(m, { name: 'Dessert', calories: 400 }); return calculateCalories(m); })() },\n  ];\n}",
+      "hint": "addDish checks if dish.calories <= meal.calorieGoal before pushing. It also subtracts from the remaining budget. calculateCalories uses .reduce() to sum all dish calories.",
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.reduce()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce"
+        }
+      ],
+      "hints": [
+        "The `reduce` method will be helpful here.",
+        "addDish checks if dish.calories <= meal.calorieGoal before pushing. It also subtracts from the remaining budget. calculateCalories uses .reduce() to sum all dish calories.",
+        "Key method(s): `reduce`. The accumulator should track the running result through each iteration. The function should return an object."
+      ]
+    },
+    {
+      "id": 271,
+      "title": "Video Games",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "functions",
+        "state",
+        "arrays",
+        "conditionals"
+      ],
+      "description": "Create players and levels, collect coins for bonus lives, and handle game-over logic.",
+      "instructions": "Write four functions:\n\n**createPlayer(name, age, moveset)** — returns `{ name, age, moveset }`.\n\n**createLevel(name, players)** — returns `{ name, players, lives: 3, coins: 0 }`.\n\n**findCoins(level, amount)** — adds `amount` to `level.coins`. If coins reach 100, increment lives by 1 and reset coins to 0.\n\n**defeatPlayer(level)** — decrements lives by 1. If lives reach 0, return `\"GAME OVER\"`.\n\n```js\nconst player = createPlayer('Mario', 30, ['fireball', 'jump', 'stomp']);\nconst level = createLevel('World 1-1', [player]);\nfindCoins(level, 5);    // level.coins → 5\nfindCoins(level, 95);   // level.coins → 0, level.lives → 4\ndefeatPlayer(level);    // level.lives → 3\ndefeatPlayer(level);    // level.lives → 2\ndefeatPlayer(level);    // level.lives → 1\ndefeatPlayer(level);    // returns \"GAME OVER\"\n```",
+      "starterCode": "function createPlayer(name, age, moveset) {\n  // your code here\n}\n\nfunction createLevel(name, players) {\n  // your code here\n}\n\nfunction findCoins(level, amount) {\n  // your code here\n}\n\nfunction defeatPlayer(level) {\n  // your code here\n}",
+      "solution": "function createPlayer(name, age, moveset) {\n  return { name, age, moveset };\n}\n\nfunction createLevel(name, players) {\n  return { name, players, lives: 3, coins: 0 };\n}\n\nfunction findCoins(level, amount) {\n  level.coins += amount;\n  if (level.coins >= 100) {\n    level.lives++;\n    level.coins = 0;\n  }\n}\n\nfunction defeatPlayer(level) {\n  level.lives--;\n  if (level.lives <= 0) {\n    return 'GAME OVER';\n  }\n}",
+      "testRunner": "(code) => {\n  const { createPlayer, createLevel, findCoins, defeatPlayer } = new Function(code + '; return { createPlayer, createLevel, findCoins, defeatPlayer };')();\n\n  const player = createPlayer('Mario', 30, ['fireball', 'jump', 'stomp']);\n  const level = createLevel('World 1-1', [player]);\n\n  return [\n    { pass: player.name === 'Mario' && player.age === 30, description: 'createPlayer sets name and age', got: player.name },\n    { pass: Array.isArray(player.moveset) && player.moveset.length === 3, description: 'createPlayer stores moveset', got: player.moveset.length },\n    { pass: level.lives === 3 && level.coins === 0, description: 'createLevel starts with 3 lives and 0 coins', got: 'lives: ' + level.lives + ', coins: ' + level.coins },\n    { pass: (() => { const l = createLevel('X', []); findCoins(l, 5); return l.coins === 5; })(), description: 'findCoins adds to coin count', got: (() => { const l = createLevel('X', []); findCoins(l, 5); return l.coins; })() },\n    { pass: (() => { const l = createLevel('X', []); findCoins(l, 100); return l.lives === 4 && l.coins === 0; })(), description: 'findCoins grants bonus life at 100 coins', got: (() => { const l = createLevel('X', []); findCoins(l, 100); return 'lives: ' + l.lives + ', coins: ' + l.coins; })() },\n    { pass: (() => { const l = createLevel('X', []); defeatPlayer(l); return l.lives === 2; })(), description: 'defeatPlayer decrements lives', got: (() => { const l = createLevel('X', []); defeatPlayer(l); return l.lives; })() },\n    { pass: (() => { const l = createLevel('X', []); defeatPlayer(l); defeatPlayer(l); const r = defeatPlayer(l); return r === 'GAME OVER'; })(), description: 'defeatPlayer returns GAME OVER at 0 lives', got: (() => { const l = createLevel('X', []); defeatPlayer(l); defeatPlayer(l); return defeatPlayer(l); })() },\n  ];\n}",
+      "hint": "findCoins mutates the level object. Check if coins >= 100 to trigger a bonus life. defeatPlayer returns \"GAME OVER\" only when lives hit 0.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Object",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+          "description": "JavaScript Object reference"
+        },
+        {
+          "label": "MDN: if...else",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else",
+          "description": "The if...else statement"
+        }
+      ],
+      "hints": [
+        "What keys should the returned object have, and how do you compute each value?",
+        "findCoins mutates the level object. Check if coins >= 100 to trigger a bonus life. defeatPlayer returns \"GAME OVER\" only when lives hit 0.",
+        "The function should return an object."
+      ]
+    },
+    {
+      "id": 272,
+      "title": "Vending Machine",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "functions",
+        "state",
+        "conditionals",
+        "reduce"
+      ],
+      "description": "Build a vending machine with stock management, purchase validation, and coin collection.",
+      "instructions": "Write three functions:\n\n**createItemStock(name, quantity, price)** — returns a stock object. If called with no arguments, defaults to `{ name: 'unknown', quantity: 0, price: 1.00 }`.\n\n**makePurchase(item, funds)** — if funds < price, return `\"Not enough funds\"`. If quantity === 0, return `\"Item out of stock\"`. Otherwise, decrement quantity and return `\"Here are your [name]\"`.\n\n**collectChange(coins)** — takes an array of coin values and returns the total.\n```js\nconst chips = createItemStock('Chips', 5, 2.00);\nmakePurchase(chips, 0.35); // \"Not enough funds\"\nmakePurchase(chips, 2.00); // \"Here are your Chips\"\n// chips.quantity → 4\n\ncollectChange([0.25, 0.10, 0.25, 0.05, 1.00]); // 1.65\n```",
+      "starterCode": "function createItemStock(name, quantity, price) {\n  // your code here\n}\n\nfunction makePurchase(item, funds) {\n  // your code here\n}\n\nfunction collectChange(coins) {\n  // your code here\n}",
+      "solution": "function createItemStock(name = 'unknown', quantity = 0, price = 1.00) {\n  return { name, quantity, price };\n}\n\nfunction makePurchase(item, funds) {\n  if (funds < item.price) return 'Not enough funds';\n  if (item.quantity === 0) return 'Item out of stock';\n  item.quantity--;\n  return `Here are your ${item.name}`;\n}\n\nfunction collectChange(coins) {\n  return coins.reduce((sum, c) => sum + c, 0);\n}",
+      "testRunner": "(code) => {\n  const { createItemStock, makePurchase, collectChange } = new Function(code + '; return { createItemStock, makePurchase, collectChange };')();\n\n  const chips = createItemStock('Chips', 5, 2.00);\n  const empty = createItemStock();\n\n  return [\n    { pass: chips.name === 'Chips' && chips.quantity === 5 && chips.price === 2.00, description: 'createItemStock stores name, quantity, price', got: chips.name + ': ' + chips.quantity + ' @ $' + chips.price },\n    { pass: empty.name === 'unknown' && empty.quantity === 0 && empty.price === 1.00, description: 'createItemStock defaults to unknown/0/1.00', got: empty.name + ': ' + empty.quantity + ' @ $' + empty.price },\n    { pass: makePurchase(createItemStock('X', 5, 2.00), 0.35) === 'Not enough funds', description: 'makePurchase rejects insufficient funds', got: makePurchase(createItemStock('X', 5, 2.00), 0.35) },\n    { pass: makePurchase(createItemStock('X', 0, 1.00), 5.00) === 'Item out of stock', description: 'makePurchase rejects out of stock', got: makePurchase(createItemStock('X', 0, 1.00), 5.00) },\n    { pass: (() => { const item = createItemStock('Soda', 3, 1.50); const r = makePurchase(item, 1.50); return r === 'Here are your Soda' && item.quantity === 2; })(), description: 'makePurchase succeeds and decrements quantity', got: (() => { const item = createItemStock('Soda', 3, 1.50); return makePurchase(item, 1.50); })() },\n    { pass: collectChange([0.25]) === 0.25, description: 'collectChange sums single coin', got: collectChange([0.25]) },\n    { pass: Math.abs(collectChange([0.25, 0.10, 0.25, 0.05, 1.00]) - 1.65) < 0.001, description: 'collectChange sums multiple coins', got: collectChange([0.25, 0.10, 0.25, 0.05, 1.00]) },\n  ];\n}",
+      "hint": "createItemStock uses default parameters. makePurchase checks funds first, then stock, then processes. collectChange is a simple .reduce() sum.",
+      "resources": [
+        {
+          "label": "MDN: Default Parameters",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters"
+        }
+      ],
+      "hints": [
+        "What keys should the returned object have, and how do you compute each value?",
+        "createItemStock uses default parameters. makePurchase checks funds first, then stock, then processes. collectChange is a simple .reduce() sum.",
+        "Key method(s): `reduce`. The accumulator should track the running result through each iteration. The function should return an object."
+      ]
+    },
+    {
+      "id": 273,
+      "title": "Scope: Variable Declarations",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "variables"
+      ],
+      "tags": [
+        "scope",
+        "variables",
+        "hoisting",
+        "es6"
+      ],
+      "description": "Predict values at different points by tracing var, let, and const through nested scopes.",
+      "instructions": "JavaScript has three ways to declare variables — `var`, `let`, and `const` — each with different scoping rules.\n\nWrite a function **traceScope()** that returns an array of values showing what each variable equals at marked points.\n\n```js\nfunction traceScope() {\n  var a = 'outer-a';\n  let b = 'outer-b';\n\n  if (true) {\n    var a = 'inner-a';  // var is function-scoped, overwrites!\n    let b = 'inner-b';  // let is block-scoped, new variable\n    // Point 1: [a, b] inside block\n  }\n  // Point 2: [a, b] outside block\n\n  function nested() {\n    var c = 'nested-c';\n    // Point 3: [a, b, c] inside function\n  }\n  nested();\n  // Point 4: typeof c\n\n  return [/* Point 1 */, /* Point 2 */, /* Point 3 */, /* Point 4 */];\n}\n```\n\nReturn an array of 4 sub-arrays, one per point:\n- Point 1: `['inner-a', 'inner-b']`\n- Point 2: `['inner-a', 'outer-b']`  (var leaked, let didn't)\n- Point 3: `['inner-a', 'outer-b', 'nested-c']`\n- Point 4: `'undefined'` (typeof c — c is function-scoped to nested)",
+      "starterCode": "function traceScope() {\n  var a = 'outer-a';\n  let b = 'outer-b';\n  const results = [];\n\n  if (true) {\n    var a = 'inner-a';\n    let b = 'inner-b';\n    results.push([a, b]); // Point 1\n  }\n  results.push([a, b]); // Point 2\n\n  function nested() {\n    var c = 'nested-c';\n    results.push([a, b, c]); // Point 3\n  }\n  nested();\n  results.push(typeof c); // Point 4\n\n  return results;\n}",
+      "solution": "function traceScope() {\n  var a = 'outer-a';\n  let b = 'outer-b';\n  const results = [];\n\n  if (true) {\n    var a = 'inner-a';\n    let b = 'inner-b';\n    results.push([a, b]); // Point 1\n  }\n  results.push([a, b]); // Point 2\n\n  function nested() {\n    var c = 'nested-c';\n    results.push([a, b, c]); // Point 3\n  }\n  nested();\n  results.push(typeof c); // Point 4\n\n  return results;\n}",
+      "testRunner": "(code) => {\n  const traceScope = new Function(code + '; return traceScope;')();\n  const result = traceScope();\n\n  return [\n    { pass: JSON.stringify(result[0]) === JSON.stringify(['inner-a', 'inner-b']), description: 'Point 1: inside block [a, b]', got: JSON.stringify(result[0]) },\n    { pass: JSON.stringify(result[1]) === JSON.stringify(['inner-a', 'outer-b']), description: 'Point 2: var leaked, let did not', got: JSON.stringify(result[1]) },\n    { pass: JSON.stringify(result[2]) === JSON.stringify(['inner-a', 'outer-b', 'nested-c']), description: 'Point 3: nested function sees outer a and b', got: JSON.stringify(result[2]) },\n    { pass: result[3] === 'undefined', description: 'Point 4: c is function-scoped (typeof c is \"undefined\")', got: result[3] },\n  ];\n}",
+      "hint": "var is function-scoped: re-declaring var a inside an if block overwrites the outer a. let is block-scoped: the inner b only exists inside the if block. Variables declared with var inside a function are not accessible outside it.",
+      "resources": [
+        {
+          "label": "MDN: var",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var"
+        },
+        {
+          "label": "MDN: let",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let"
+        }
+      ],
+      "hints": [
+        "What value does the function need to build from its input, and how do you combine the pieces?",
+        "var is function-scoped: re-declaring var a inside an if block overwrites the outer a. let is block-scoped: the inner b only exists inside the if block. Variables declared with var inside a function are not accessible outside it.",
+        "Key method(s): `typeof`. The function should return an array."
+      ]
+    },
+    {
+      "id": 274,
+      "title": "Scope: Closures & Hoisting",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "js-fundamentals",
+        "variables"
+      ],
+      "tags": [
+        "scope",
+        "closure",
+        "hoisting",
+        "functions",
+        "es6"
+      ],
+      "description": "Trace variable values through hoisting, temporal dead zones, and closure captures.",
+      "instructions": "Complete four functions that test your understanding of advanced scoping:\n\n**hoistingTrace()** — demonstrates var hoisting:\n```js\nfunction hoistingTrace() {\n  console.log(x); // What is x here?\n  var x = 10;\n  console.log(x); // And here?\n  return [/* first log */, /* second log */];\n}\n// Returns: [undefined, 10]\n```\n\n**closureCapture()** — demonstrates closure over a loop variable:\n```js\nfunction closureCapture() {\n  const fns = [];\n  for (let i = 0; i < 3; i++) {\n    fns.push(() => i);\n  }\n  return fns.map(fn => fn());\n}\n// Returns: [0, 1, 2] (let creates new binding per iteration)\n```\n\n**shadowTrace()** — demonstrates variable shadowing:\n```js\nfunction shadowTrace() {\n  let x = 'outer';\n  function inner() {\n    let x = 'inner';\n    return x;\n  }\n  return [inner(), x];\n}\n// Returns: ['inner', 'outer']\n```\n\n**closureCounter()** — a closure that remembers state:\n```js\nfunction closureCounter(start) {\n  let count = start;\n  return {\n    increment: () => ++count,\n    getCount: () => count,\n  };\n}\n```",
+      "starterCode": "function hoistingTrace() {\n  // What does x equal before the declaration?\n  // What does x equal after?\n  var x = 10;\n  return [/* before */, /* after */];\n}\n\nfunction closureCapture() {\n  const fns = [];\n  for (let i = 0; i < 3; i++) {\n    fns.push(() => i);\n  }\n  return fns.map(fn => fn());\n}\n\nfunction shadowTrace() {\n  let x = 'outer';\n  function inner() {\n    let x = 'inner';\n    return x;\n  }\n  return [inner(), x];\n}\n\nfunction closureCounter(start) {\n  // create a closure that tracks count\n  // return { increment, getCount }\n}",
+      "solution": "function hoistingTrace() {\n  const beforeDecl = typeof x === 'undefined' ? undefined : x;\n  var x = 10;\n  return [undefined, x];\n}\n\nfunction closureCapture() {\n  const fns = [];\n  for (let i = 0; i < 3; i++) {\n    fns.push(() => i);\n  }\n  return fns.map(fn => fn());\n}\n\nfunction shadowTrace() {\n  let x = 'outer';\n  function inner() {\n    let x = 'inner';\n    return x;\n  }\n  return [inner(), x];\n}\n\nfunction closureCounter(start) {\n  let count = start;\n  return {\n    increment: () => ++count,\n    getCount: () => count,\n  };\n}",
+      "testRunner": "(code) => {\n  const { hoistingTrace, closureCapture, shadowTrace, closureCounter } = new Function(code + '; return { hoistingTrace, closureCapture, shadowTrace, closureCounter };')();\n\n  const hoist = hoistingTrace();\n  const closure = closureCapture();\n  const shadow = shadowTrace();\n  const counter = closureCounter(5);\n\n  return [\n    { pass: hoist[0] === undefined, description: 'hoistingTrace: var x is undefined before declaration', got: hoist[0] },\n    { pass: hoist[1] === 10, description: 'hoistingTrace: var x is 10 after declaration', got: hoist[1] },\n    { pass: JSON.stringify(closure) === '[0,1,2]', description: 'closureCapture: let captures [0,1,2]', got: JSON.stringify(closure) },\n    { pass: shadow[0] === 'inner' && shadow[1] === 'outer', description: 'shadowTrace: inner shadows outer', got: JSON.stringify(shadow) },\n    { pass: counter.getCount() === 5, description: 'closureCounter: starts at 5', got: counter.getCount() },\n    { pass: counter.increment() === 6, description: 'closureCounter: increment returns 6', got: counter.increment() - 1 + 1 },\n    { pass: (() => { const c = closureCounter(0); c.increment(); c.increment(); c.increment(); return c.getCount() === 3; })(), description: 'closureCounter: tracks state across calls', got: (() => { const c = closureCounter(0); c.increment(); c.increment(); c.increment(); return c.getCount(); })() },\n  ];\n}",
+      "hint": "var declarations are hoisted to the top of their function but their values are not — the variable exists but is undefined. let in a for-loop creates a new binding per iteration, so closures capture the right value. Closures \"close over\" the variable binding, not the value at the time of creation.",
+      "resources": [
+        {
+          "label": "MDN: Closures",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures"
+        },
+        {
+          "label": "MDN: Hoisting",
+          "url": "https://developer.mozilla.org/en-US/docs/Glossary/Hoisting"
+        }
+      ],
+      "hints": [
+        "What value does the function need to build from its input, and how do you combine the pieces?",
+        "var declarations are hoisted to the top of their function but their values are not — the variable exists but is undefined. let in a for-loop creates a new binding per iteration, so closures capture the right value. Closures \"close over\" the variable binding, not the value at the time of creation.",
+        "Key method(s): `map`, `typeof`. Use a loop to iterate, then return the accumulated result. The function should return an array."
+      ]
+    },
+    {
+      "id": 275,
+      "title": "Context: The this Keyword",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "js-fundamentals",
+        "functions"
+      ],
+      "tags": [
+        "context",
+        "scope",
+        "functions",
+        "class",
+        "methods"
+      ],
+      "description": "Predict what `this` refers to in method calls, arrow functions, and explicit binding.",
+      "instructions": "JavaScript's `this` keyword changes based on how a function is called. Write functions that demonstrate each binding rule:\n\n**methodContext()** — When called as an object method, `this` is the object:\n```js\nfunction methodContext() {\n  const obj = {\n    name: 'obj',\n    getName() { return this.name; },\n  };\n  return obj.getName(); // 'obj'\n}\n```\n\n**arrowContext()** — Arrow functions inherit `this` from enclosing scope:\n```js\nfunction arrowContext() {\n  const obj = {\n    name: 'obj',\n    getNameArrow: () => this.name, // 'this' is outer scope, not obj\n    getNameMethod() {\n      const inner = () => this.name;\n      return inner(); // arrow inherits from getNameMethod's this\n    },\n  };\n  return [typeof obj.getNameArrow(), obj.getNameMethod()];\n  // [undefined (or '' in browser), 'obj']\n}\n```\n\n**explicitBinding()** — .call() and .bind() set `this`:\n```js\nfunction explicitBinding() {\n  function greet() { return 'Hello, ' + this.name; }\n  const person = { name: 'Alice' };\n  const dog = { name: 'Rex' };\n  const bound = greet.bind(person);\n  return [greet.call(dog), bound()];\n  // ['Hello, Rex', 'Hello, Alice']\n}\n```\n\n**classContext()** — In a class, `this` is the instance:\n```js\nfunction classContext() {\n  class Hero {\n    constructor(name) { this.name = name; }\n    announce() { return this.name + ' is here!'; }\n  }\n  const h = new Hero('Batman');\n  return h.announce(); // 'Batman is here!'\n}\n```",
+      "starterCode": "function methodContext() {\n  const obj = {\n    name: 'obj',\n    getName() { /* return this.name */ },\n  };\n  return obj.getName();\n}\n\nfunction arrowContext() {\n  const obj = {\n    name: 'obj',\n    getNameArrow: () => { /* what is this? */ },\n    getNameMethod() {\n      const inner = () => { /* what is this? */ };\n      return inner();\n    },\n  };\n  return [typeof obj.getNameArrow(), obj.getNameMethod()];\n}\n\nfunction explicitBinding() {\n  function greet() { return 'Hello, ' + this.name; }\n  const person = { name: 'Alice' };\n  const dog = { name: 'Rex' };\n  // use .call() and .bind()\n  return [/* call on dog */, /* bind to person then call */];\n}\n\nfunction classContext() {\n  class Hero {\n    constructor(name) { /* set this.name */ }\n    announce() { /* return name + ' is here!' */ }\n  }\n  const h = new Hero('Batman');\n  return h.announce();\n}",
+      "solution": "function methodContext() {\n  const obj = {\n    name: 'obj',\n    getName() { return this.name; },\n  };\n  return obj.getName();\n}\n\nfunction arrowContext() {\n  const obj = {\n    name: 'obj',\n    getNameArrow: () => this.name,\n    getNameMethod() {\n      const inner = () => this.name;\n      return inner();\n    },\n  };\n  return [typeof obj.getNameArrow(), obj.getNameMethod()];\n}\n\nfunction explicitBinding() {\n  function greet() { return 'Hello, ' + this.name; }\n  const person = { name: 'Alice' };\n  const dog = { name: 'Rex' };\n  const bound = greet.bind(person);\n  return [greet.call(dog), bound()];\n}\n\nfunction classContext() {\n  class Hero {\n    constructor(name) { this.name = name; }\n    announce() { return this.name + ' is here!'; }\n  }\n  const h = new Hero('Batman');\n  return h.announce();\n}",
+      "testRunner": "(code) => {\n  const { methodContext, arrowContext, explicitBinding, classContext } = new Function(code + '; return { methodContext, arrowContext, explicitBinding, classContext };')();\n\n  const mc = methodContext();\n  const ac = arrowContext();\n  const eb = explicitBinding();\n  const cc = classContext();\n\n  return [\n    { pass: mc === 'obj', description: 'methodContext: this.name is \"obj\"', got: mc },\n    { pass: ac[0] === 'undefined' || ac[0] === 'string', description: 'arrowContext: arrow this.name is not from obj', got: ac[0] },\n    { pass: ac[1] === 'obj', description: 'arrowContext: nested arrow inherits method this', got: ac[1] },\n    { pass: eb[0] === 'Hello, Rex', description: 'explicitBinding: .call(dog) binds to dog', got: eb[0] },\n    { pass: eb[1] === 'Hello, Alice', description: 'explicitBinding: .bind(person) binds to person', got: eb[1] },\n    { pass: cc === 'Batman is here!', description: 'classContext: this is the instance', got: cc },\n  ];\n}",
+      "hint": "Regular function methods: this = the object before the dot. Arrow functions: this = whatever this was in the enclosing scope. .call() sets this for one invocation. .bind() creates a new function with this permanently set.",
+      "resources": [
+        {
+          "label": "MDN: this",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this"
+        },
+        {
+          "label": "MDN: Function.prototype.bind()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind"
+        }
+      ],
+      "hints": [
+        "How does the value of `this` change depending on whether a function is called as a method, a standalone function, or an arrow function?",
+        "Regular function methods: this = the object before the dot. Arrow functions: this = whatever this was in the enclosing scope. .call() sets this for one invocation. .bind() creates a new function with this permanently set.",
+        "Key method(s): `getName`, `getNameArrow`, `getNameMethod`. The function should return an array."
+      ]
+    },
+    {
+      "id": 276,
+      "title": "Dataset: Kitties & Puppers",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "filter",
+        "map",
+        "higher-order",
+        "objects"
+      ],
+      "description": "Filter, sort, and transform arrays of animal objects using higher-order functions.",
+      "instructions": "You have two datasets:\n```js\nconst kitties = [\n  { name: 'Felicia', age: 2, color: 'grey' },\n  { name: 'Tiger', age: 5, color: 'orange' },\n  { name: 'Snickers', age: 8, color: 'orange' },\n  { name: 'Max', age: 1, color: 'tuxedo' },\n];\n\nconst puppers = [\n  { name: 'Buddy', age: 3, color: 'golden' },\n  { name: 'Luna', age: 7, color: 'black' },\n  { name: 'Duke', age: 4, color: 'golden' },\n  { name: 'Bella', age: 2, color: 'brown' },\n];\n```\n\nWrite three functions that work with **either** dataset:\n\n**findByColor(animals, color)** — returns an array of names of animals with that color.\n```js\nfindByColor(kitties, 'orange'); // ['Tiger', 'Snickers']\nfindByColor(puppers, 'golden'); // ['Buddy', 'Duke']\n```\n\n**sortByAge(animals)** — returns a new array of animal objects sorted oldest to youngest.\n\n**growUp(animals, years)** — returns a new array of animal objects with each age increased by `years`. Do NOT mutate the originals.",
+      "starterCode": "function findByColor(animals, color) {\n  // your code here\n}\n\nfunction sortByAge(animals) {\n  // your code here\n}\n\nfunction growUp(animals, years) {\n  // your code here\n}",
+      "solution": "function findByColor(animals, color) {\n  return animals.filter(a => a.color === color).map(a => a.name);\n}\n\nfunction sortByAge(animals) {\n  return [...animals].sort((a, b) => b.age - a.age);\n}\n\nfunction growUp(animals, years) {\n  return animals.map(a => ({ ...a, age: a.age + years }));\n}",
+      "testRunner": "(code) => {\n  const { findByColor, sortByAge, growUp } = new Function(code + '; return { findByColor, sortByAge, growUp };')();\n\n  const kitties = [\n    { name: 'Felicia', age: 2, color: 'grey' },\n    { name: 'Tiger', age: 5, color: 'orange' },\n    { name: 'Snickers', age: 8, color: 'orange' },\n    { name: 'Max', age: 1, color: 'tuxedo' },\n  ];\n  const puppers = [\n    { name: 'Buddy', age: 3, color: 'golden' },\n    { name: 'Luna', age: 7, color: 'black' },\n    { name: 'Duke', age: 4, color: 'golden' },\n    { name: 'Bella', age: 2, color: 'brown' },\n  ];\n\n  const orangeKitties = findByColor(kitties, 'orange');\n  const goldenPuppers = findByColor(puppers, 'golden');\n  const sortedKitties = sortByAge(kitties);\n  const grownKitties = growUp(kitties, 2);\n\n  return [\n    { pass: JSON.stringify(orangeKitties) === JSON.stringify(['Tiger', 'Snickers']), description: 'findByColor: orange kitties', got: JSON.stringify(orangeKitties) },\n    { pass: JSON.stringify(goldenPuppers) === JSON.stringify(['Buddy', 'Duke']), description: 'findByColor: golden puppers', got: JSON.stringify(goldenPuppers) },\n    { pass: sortedKitties[0].name === 'Snickers' && sortedKitties[3].name === 'Max', description: 'sortByAge: oldest first', got: sortedKitties.map(a => a.name + '(' + a.age + ')').join(', ') },\n    { pass: kitties[0].age === 2, description: 'sortByAge: does not mutate original', got: kitties[0].age },\n    { pass: grownKitties[0].age === 4 && grownKitties[2].age === 10, description: 'growUp: increases ages by 2', got: grownKitties.map(a => a.name + '(' + a.age + ')').join(', ') },\n    { pass: kitties[0].age === 2, description: 'growUp: does not mutate original', got: kitties[0].age },\n  ];\n}",
+      "hint": "findByColor chains .filter() then .map(). sortByAge uses spread [...animals] to avoid mutation, then .sort(). growUp uses .map() with spread { ...a } to create new objects.",
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.sort()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort"
+        }
+      ],
+      "hints": [
+        "Consider how `filter` works.",
+        "findByColor chains .filter() then .map(). sortByAge uses spread [...animals] to avoid mutation, then .sort(). growUp uses .map() with spread { ...a } to create new objects.",
+        "Key method(s): `filter`, `map`, `sort`. Chain filter first to narrow down elements, then map to transform. The function should return an array."
+      ]
+    },
+    {
+      "id": 277,
+      "title": "Dataset: Cake Inventory",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "reduce",
+        "map",
+        "filter",
+        "higher-order",
+        "objects"
+      ],
+      "description": "Use reduce, map, and filter to analyze a cake inventory dataset.",
+      "instructions": "You have a dataset of cakes:\n```js\nconst cakes = [\n  { type: 'chocolate', inStock: 15, toppings: ['sprinkles', 'fudge', 'whipped cream'] },\n  { type: 'vanilla', inStock: 0, toppings: ['sprinkles', 'caramel'] },\n  { type: 'red velvet', inStock: 20, toppings: ['cream cheese', 'sprinkles'] },\n  { type: 'carrot', inStock: 24, toppings: ['cream cheese', 'walnuts'] },\n];\n```\n\nWrite four functions:\n\n**getStockCounts(cakes)** — returns an array of `{ type, inStock }` objects.\n\n**getInStock(cakes)** — returns only cakes where `inStock > 0`.\n\n**doInventory(cakes)** — returns the total number of cakes in stock.\n\n**getToppings(cakes)** — returns a flat, unique array of all toppings.\n```js\ngetToppings(cakes)\n// ['sprinkles', 'fudge', 'whipped cream', 'caramel', 'cream cheese', 'walnuts']\n```",
+      "starterCode": "function getStockCounts(cakes) {\n  // your code here\n}\n\nfunction getInStock(cakes) {\n  // your code here\n}\n\nfunction doInventory(cakes) {\n  // your code here\n}\n\nfunction getToppings(cakes) {\n  // your code here\n}",
+      "solution": "function getStockCounts(cakes) {\n  return cakes.map(c => ({ type: c.type, inStock: c.inStock }));\n}\n\nfunction getInStock(cakes) {\n  return cakes.filter(c => c.inStock > 0);\n}\n\nfunction doInventory(cakes) {\n  return cakes.reduce((sum, c) => sum + c.inStock, 0);\n}\n\nfunction getToppings(cakes) {\n  return [...new Set(cakes.flatMap(c => c.toppings))];\n}",
+      "testRunner": "(code) => {\n  const { getStockCounts, getInStock, doInventory, getToppings } = new Function(code + '; return { getStockCounts, getInStock, doInventory, getToppings };')();\n\n  const cakes = [\n    { type: 'chocolate', inStock: 15, toppings: ['sprinkles', 'fudge', 'whipped cream'] },\n    { type: 'vanilla', inStock: 0, toppings: ['sprinkles', 'caramel'] },\n    { type: 'red velvet', inStock: 20, toppings: ['cream cheese', 'sprinkles'] },\n    { type: 'carrot', inStock: 24, toppings: ['cream cheese', 'walnuts'] },\n  ];\n\n  const stockCounts = getStockCounts(cakes);\n  const inStock = getInStock(cakes);\n  const total = doInventory(cakes);\n  const toppings = getToppings(cakes);\n\n  return [\n    { pass: stockCounts.length === 4 && stockCounts[0].type === 'chocolate' && stockCounts[0].inStock === 15, description: 'getStockCounts returns {type, inStock} objects', got: JSON.stringify(stockCounts[0]) },\n    { pass: !stockCounts[0].toppings, description: 'getStockCounts omits toppings', got: stockCounts[0].toppings === undefined ? 'no toppings key' : 'has toppings' },\n    { pass: inStock.length === 3 && inStock.every(c => c.inStock > 0), description: 'getInStock returns only cakes in stock', got: inStock.map(c => c.type).join(', ') },\n    { pass: total === 59, description: 'doInventory returns total: 59', got: total },\n    { pass: toppings.length === 6, description: 'getToppings returns 6 unique toppings', got: toppings.length },\n    { pass: toppings.filter(t => t === 'sprinkles').length === 1, description: 'getToppings has no duplicates', got: toppings.filter(t => t === 'sprinkles').length },\n  ];\n}",
+      "hint": "getStockCounts uses .map() to pick just type and inStock. doInventory uses .reduce() to sum. getToppings can use .flatMap() to get all toppings then new Set() to deduplicate.",
+      "resources": [
+        {
+          "label": "MDN: Set",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set"
+        },
+        {
+          "label": "MDN: Array.prototype.flatMap()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap"
+        }
+      ],
+      "hints": [
+        "You need to transform each item into a different shape — which array method creates a new array by running a function on every element?",
+        "getStockCounts uses .map() to pick just type and inStock. doInventory uses .reduce() to sum. getToppings can use .flatMap() to get all toppings then new Set() to deduplicate.",
+        "Key method(s): `map`, `filter`, `reduce`. The accumulator should track the running result through each iteration. The function should return an array."
+      ]
+    },
+    {
+      "id": 278,
+      "title": "Dataset: National Parks",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "reduce",
+        "objects",
+        "higher-order",
+        "accumulator"
+      ],
+      "description": "Use reduce to build complex objects from a national parks dataset.",
+      "instructions": "You have a dataset of national parks:\n```js\nconst parks = [\n  { name: 'Yellowstone', state: 'Wyoming', visitors: 4860242, activities: ['hiking', 'camping', 'fishing'] },\n  { name: 'Yosemite', state: 'California', visitors: 3287595, activities: ['hiking', 'climbing', 'camping'] },\n  { name: 'Zion', state: 'Utah', visitors: 4320033, activities: ['hiking', 'canyoneering'] },\n  { name: 'Grand Canyon', state: 'Arizona', visitors: 5974411, activities: ['hiking', 'rafting', 'camping'] },\n  { name: 'Joshua Tree', state: 'California', visitors: 2988547, activities: ['hiking', 'climbing', 'stargazing'] },\n];\n```\n\nWrite three functions:\n\n**parksByState(parks)** — returns an object grouping park names by state:\n```js\n{ Wyoming: ['Yellowstone'], California: ['Yosemite', 'Joshua Tree'], Utah: ['Zion'], Arizona: ['Grand Canyon'] }\n```\n\n**totalVisitors(parks)** — returns the total visitor count across all parks.\n\n**activityParks(parks)** — returns an object where each activity maps to the parks that offer it:\n```js\n{ hiking: ['Yellowstone', 'Yosemite', 'Zion', 'Grand Canyon', 'Joshua Tree'], camping: ['Yellowstone', 'Yosemite', 'Grand Canyon'], ... }\n```",
+      "starterCode": "function parksByState(parks) {\n  // your code here\n}\n\nfunction totalVisitors(parks) {\n  // your code here\n}\n\nfunction activityParks(parks) {\n  // your code here\n}",
+      "solution": "function parksByState(parks) {\n  return parks.reduce((acc, park) => {\n    if (!acc[park.state]) acc[park.state] = [];\n    acc[park.state].push(park.name);\n    return acc;\n  }, {});\n}\n\nfunction totalVisitors(parks) {\n  return parks.reduce((sum, p) => sum + p.visitors, 0);\n}\n\nfunction activityParks(parks) {\n  return parks.reduce((acc, park) => {\n    park.activities.forEach(activity => {\n      if (!acc[activity]) acc[activity] = [];\n      acc[activity].push(park.name);\n    });\n    return acc;\n  }, {});\n}",
+      "testRunner": "(code) => {\n  const { parksByState, totalVisitors, activityParks } = new Function(code + '; return { parksByState, totalVisitors, activityParks };')();\n\n  const parks = [\n    { name: 'Yellowstone', state: 'Wyoming', visitors: 4860242, activities: ['hiking', 'camping', 'fishing'] },\n    { name: 'Yosemite', state: 'California', visitors: 3287595, activities: ['hiking', 'climbing', 'camping'] },\n    { name: 'Zion', state: 'Utah', visitors: 4320033, activities: ['hiking', 'canyoneering'] },\n    { name: 'Grand Canyon', state: 'Arizona', visitors: 5974411, activities: ['hiking', 'rafting', 'camping'] },\n    { name: 'Joshua Tree', state: 'California', visitors: 2988547, activities: ['hiking', 'climbing', 'stargazing'] },\n  ];\n\n  const byState = parksByState(parks);\n  const total = totalVisitors(parks);\n  const byActivity = activityParks(parks);\n\n  return [\n    { pass: byState['California'].length === 2 && byState['California'].includes('Yosemite'), description: 'parksByState: California has 2 parks', got: JSON.stringify(byState['California']) },\n    { pass: byState['Wyoming'].length === 1 && byState['Wyoming'][0] === 'Yellowstone', description: 'parksByState: Wyoming has Yellowstone', got: JSON.stringify(byState['Wyoming']) },\n    { pass: total === 21430828, description: 'totalVisitors: sums to 21,430,828', got: total },\n    { pass: byActivity['hiking'].length === 5, description: 'activityParks: hiking has 5 parks', got: byActivity['hiking'].length },\n    { pass: byActivity['camping'].length === 3, description: 'activityParks: camping has 3 parks', got: byActivity['camping'].length },\n    { pass: byActivity['stargazing'].length === 1 && byActivity['stargazing'][0] === 'Joshua Tree', description: 'activityParks: stargazing has Joshua Tree', got: JSON.stringify(byActivity['stargazing']) },\n  ];\n}",
+      "hint": "All three functions use .reduce() with an accumulator. parksByState and activityParks build objects where keys are group names and values are arrays. activityParks needs a nested loop over each park's activities array.",
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.reduce()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce"
+        }
+      ],
+      "hints": [
+        "`reduce` is a key tool for this exercise.",
+        "All three functions use .reduce() with an accumulator. parksByState and activityParks build objects where keys are group names and values are arrays. activityParks needs a nested loop over each park's activities array.",
+        "Key method(s): `reduce`, `forEach`. The accumulator should track the running result through each iteration."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2474 @@
+{
+  "id": "css-modern-toolkit",
+  "name": "CSS Modern Toolkit",
+  "description": "Master modern CSS features from custom properties and calc() through container queries and CSS nesting. 40 progressive exercises covering the tools every front-end developer needs.",
+  "color": "#06b6d4",
+  "exerciseIds": [
+    514,
+    515,
+    516,
+    517,
+    518,
+    519,
+    520,
+    521,
+    522,
+    523,
+    524,
+    525,
+    526,
+    527,
+    528,
+    529,
+    530,
+    531,
+    532,
+    533,
+    534,
+    535,
+    536,
+    537,
+    538,
+    539,
+    540,
+    541,
+    542,
+    543,
+    544,
+    545,
+    546,
+    547,
+    548,
+    549,
+    550,
+    551,
+    552,
+    553
+  ],
+  "exercises": [
+    {
+      "id": 514,
+      "title": "Define a Custom Property",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "custom-properties"
+      ],
+      "tags": [
+        "css",
+        "custom-properties",
+        "variables",
+        "var",
+        "beginner"
+      ],
+      "description": "Define a CSS custom property on :root and use it with var().",
+      "instructions": "CSS custom properties (also called CSS variables) let you store values and reuse them throughout your stylesheet.\n\n1. On the `:root` selector, define a custom property `--primary-color` with the value `#3b82f6`\n2. Set the `.box` element's `background-color` to use that custom property with `var(--primary-color)`",
+      "starterCode": "/* Define your custom property on :root and use it */\n",
+      "solution": ":root {\n  --primary-color: #3b82f6;\n}\n\n.box {\n  background-color: var(--primary-color);\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"box\" style=\"width:200px;height:200px;\">Box</div>",
+      "testCases": [
+        {
+          "query": ".box",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(59, 130, 246)",
+          "description": ".box background-color is #3b82f6 (via custom property)"
+        }
+      ],
+      "hints": [
+        "Custom properties always start with two dashes: --property-name",
+        "Define the property inside :root { --primary-color: #3b82f6; } then reference it with var(--primary-color)",
+        "The full solution: :root { --primary-color: #3b82f6; } .box { background-color: var(--primary-color); }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Using CSS Custom Properties",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties",
+          "description": "Complete guide to CSS custom properties (variables)"
+        }
+      ]
+    },
+    {
+      "id": 515,
+      "title": "Theme with Custom Properties",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "custom-properties"
+      ],
+      "tags": [
+        "css",
+        "custom-properties",
+        "theming",
+        "var",
+        "beginner"
+      ],
+      "description": "Create a simple color theme using multiple custom properties.",
+      "instructions": "Build a basic theme system using custom properties.\n\n1. On `:root`, define:\n   - `--bg-color` as `#0f172a`\n   - `--text-color` as `#e2e8f0`\n   - `--accent-color` as `#f59e0b`\n2. Apply `background-color: var(--bg-color)` to `.page`\n3. Apply `color: var(--text-color)` to `.page`\n4. Apply `color: var(--accent-color)` to `.highlight`",
+      "starterCode": "/* Build your theme with custom properties */\n",
+      "solution": ":root {\n  --bg-color: #0f172a;\n  --text-color: #e2e8f0;\n  --accent-color: #f59e0b;\n}\n\n.page {\n  background-color: var(--bg-color);\n  color: var(--text-color);\n}\n\n.highlight {\n  color: var(--accent-color);\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"page\"><p>Normal text</p><p class=\"highlight\">Highlighted text</p></div>",
+      "testCases": [
+        {
+          "query": ".page",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(15, 23, 42)",
+          "description": ".page background-color is #0f172a"
+        },
+        {
+          "query": ".page",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(226, 232, 240)",
+          "description": ".page text color is #e2e8f0"
+        },
+        {
+          "query": ".highlight",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(245, 158, 11)",
+          "description": ".highlight color is #f59e0b"
+        }
+      ],
+      "hints": [
+        "Define all three variables inside the :root selector",
+        "Each element uses var(--variable-name) to reference a custom property",
+        ":root { --bg-color: #0f172a; --text-color: #e2e8f0; --accent-color: #f59e0b; } then use var() on each"
+      ],
+      "resources": [
+        {
+          "label": "MDN: var()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/var",
+          "description": "The var() function for using custom properties"
+        }
+      ]
+    },
+    {
+      "id": 516,
+      "title": "Fallback Values",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "custom-properties"
+      ],
+      "tags": [
+        "css",
+        "custom-properties",
+        "fallback",
+        "var",
+        "intermediate"
+      ],
+      "description": "Use var() with a fallback value for when a custom property is not defined.",
+      "instructions": "The `var()` function accepts a second argument as a fallback value.\n\n1. Style `.card` with `background-color` using `var(--card-bg, #1e293b)` — the property `--card-bg` is NOT defined, so the fallback `#1e293b` should apply\n2. Style `.card` with `color` using `var(--card-text, #f1f5f9)` — again using a fallback\n3. Style `.card` with `padding` of `20px`",
+      "starterCode": "/* Use var() with fallback values */\n",
+      "solution": ".card {\n  background-color: var(--card-bg, #1e293b);\n  color: var(--card-text, #f1f5f9);\n  padding: 20px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"card\"><h2>Card Title</h2><p>Card content</p></div>",
+      "testCases": [
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(30, 41, 59)",
+          "description": "background-color falls back to #1e293b"
+        },
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(241, 245, 249)",
+          "description": "color falls back to #f1f5f9"
+        },
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "20px",
+          "description": "padding is 20px"
+        }
+      ],
+      "hints": [
+        "var() takes two arguments: var(--property, fallback-value)",
+        "When --card-bg is not defined anywhere, the fallback value is used automatically",
+        ".card { background-color: var(--card-bg, #1e293b); color: var(--card-text, #f1f5f9); padding: 20px; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: var() — Fallback values",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/var#using_a_custom_property_as_a_fallback",
+          "description": "How to provide fallback values in var()"
+        }
+      ]
+    },
+    {
+      "id": 517,
+      "title": "calc() Basics",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "functions"
+      ],
+      "tags": [
+        "css",
+        "calc",
+        "functions",
+        "math",
+        "beginner"
+      ],
+      "description": "Use the calc() function to perform mathematical calculations in CSS.",
+      "instructions": "The `calc()` function lets you mix different units and do math in CSS values.\n\n1. Set `.container` width to `calc(100% - 40px)` — full width minus some margin\n2. Set `.container` padding to `20px`\n3. Set `.container` height to `200px`",
+      "starterCode": "/* Use calc() for the width */\n",
+      "solution": ".container {\n  width: calc(100% - 40px);\n  padding: 20px;\n  height: 200px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"container\">Content area</div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "calc(",
+          "description": "CSS uses calc() function"
+        },
+        {
+          "query": ".container",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "20px",
+          "description": "padding is 20px"
+        },
+        {
+          "query": ".container",
+          "assertion": "equals",
+          "property": "height",
+          "value": "200px",
+          "description": "height is 200px"
+        }
+      ],
+      "hints": [
+        "calc() lets you combine different units: calc(100% - 40px)",
+        "Make sure there are spaces around the operator: calc(100% - 40px), not calc(100%-40px)",
+        ".container { width: calc(100% - 40px); padding: 20px; height: 200px; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: calc()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/calc",
+          "description": "Perform calculations to determine CSS property values"
+        }
+      ]
+    },
+    {
+      "id": 518,
+      "title": "calc() with Custom Properties",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "functions"
+      ],
+      "tags": [
+        "css",
+        "calc",
+        "custom-properties",
+        "functions",
+        "intermediate"
+      ],
+      "description": "Combine calc() with CSS custom properties for dynamic calculations.",
+      "instructions": "Use `calc()` together with custom properties for flexible, reusable values.\n\n1. On `:root`, define `--spacing` as `16px`\n2. Set `.box` padding to `var(--spacing)` (16px)\n3. Set `.box` margin to `calc(var(--spacing) * 2)` (32px)\n4. Set `.box` width to `200px`",
+      "starterCode": "/* Combine calc() with custom properties */\n",
+      "solution": ":root {\n  --spacing: 16px;\n}\n\n.box {\n  padding: var(--spacing);\n  margin: calc(var(--spacing) * 2);\n  width: 200px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"box\">Spaced box</div>",
+      "testCases": [
+        {
+          "query": ".box",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "16px",
+          "description": "padding is 16px (from --spacing)"
+        },
+        {
+          "query": ".box",
+          "assertion": "equals",
+          "property": "margin",
+          "value": "32px",
+          "description": "margin is 32px (--spacing * 2)"
+        },
+        {
+          "query": ".box",
+          "assertion": "equals",
+          "property": "width",
+          "value": "200px",
+          "description": "width is 200px"
+        }
+      ],
+      "hints": [
+        "Define --spacing on :root, then use var(--spacing) and calc(var(--spacing) * 2)",
+        "calc() can multiply a custom property: calc(var(--spacing) * 2) doubles the value",
+        ":root { --spacing: 16px; } .box { padding: var(--spacing); margin: calc(var(--spacing) * 2); width: 200px; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: calc()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/calc",
+          "description": "Perform calculations with CSS custom properties"
+        }
+      ]
+    },
+    {
+      "id": 519,
+      "title": "min() and max()",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "functions"
+      ],
+      "tags": [
+        "css",
+        "min",
+        "max",
+        "functions",
+        "responsive",
+        "intermediate"
+      ],
+      "description": "Use min() and max() for responsive sizing without media queries.",
+      "instructions": "The `min()` function picks the smallest value and `max()` picks the largest.\n\n1. Set `.container` width to `min(100%, 600px)` — never wider than 600px\n2. Set `.container` min-height to `max(200px, 50vh)` — at least 200px tall\n3. Set `.container` padding to `16px`",
+      "starterCode": "/* Use min() and max() for responsive sizing */\n",
+      "solution": ".container {\n  width: min(100%, 600px);\n  min-height: max(200px, 50vh);\n  padding: 16px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"container\">Responsive container</div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "min(",
+          "description": "CSS uses min() function"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "max(",
+          "description": "CSS uses max() function"
+        },
+        {
+          "query": ".container",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "16px",
+          "description": "padding is 16px"
+        }
+      ],
+      "hints": [
+        "min() returns the smallest of its arguments: min(100%, 600px)",
+        "max() returns the largest: max(200px, 50vh) ensures a minimum size",
+        ".container { width: min(100%, 600px); min-height: max(200px, 50vh); padding: 16px; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: min()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/min",
+          "description": "Sets the smallest value from a list of comma-separated expressions"
+        },
+        {
+          "label": "MDN: max()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/max",
+          "description": "Sets the largest value from a list of comma-separated expressions"
+        }
+      ]
+    },
+    {
+      "id": 520,
+      "title": "clamp() for Fluid Typography",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "functions"
+      ],
+      "tags": [
+        "css",
+        "clamp",
+        "typography",
+        "responsive",
+        "fluid",
+        "intermediate"
+      ],
+      "description": "Use clamp() to create fluid typography that scales between breakpoints.",
+      "instructions": "The `clamp()` function takes three values: a minimum, a preferred, and a maximum.\n\n1. Set `.heading` font-size to `clamp(1.5rem, 4vw, 3rem)` — fluid between 1.5rem and 3rem\n2. Set `.body-text` font-size to `clamp(1rem, 2vw, 1.25rem)` — fluid between 1rem and 1.25rem\n3. Set `.heading` line-height to `1.2`",
+      "starterCode": "/* Use clamp() for fluid typography */\n",
+      "solution": ".heading {\n  font-size: clamp(1.5rem, 4vw, 3rem);\n  line-height: 1.2;\n}\n\n.body-text {\n  font-size: clamp(1rem, 2vw, 1.25rem);\n}",
+      "testRunner": "",
+      "providedHtml": "<h1 class=\"heading\">Fluid Heading</h1><p class=\"body-text\">This text scales smoothly between viewport sizes.</p>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "clamp(",
+          "description": "CSS uses clamp() function"
+        },
+        {
+          "assertion": "sourceMatch",
+          "value": "line-height:\\s*1\\.2",
+          "description": ".heading line-height is 1.2"
+        }
+      ],
+      "hints": [
+        "clamp(minimum, preferred, maximum) — the browser picks the preferred value, clamped between min and max",
+        "For headings: clamp(1.5rem, 4vw, 3rem) means 'at least 1.5rem, ideally 4vw, at most 3rem'",
+        ".heading { font-size: clamp(1.5rem, 4vw, 3rem); line-height: 1.2; } .body-text { font-size: clamp(1rem, 2vw, 1.25rem); }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: clamp()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/clamp",
+          "description": "Clamps a value between a minimum and maximum"
+        }
+      ]
+    },
+    {
+      "id": 521,
+      "title": "clamp() for Layout Widths",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "functions"
+      ],
+      "tags": [
+        "css",
+        "clamp",
+        "layout",
+        "responsive",
+        "intermediate"
+      ],
+      "description": "Use clamp() to create a responsive container width.",
+      "instructions": "Use `clamp()` to make a container that is responsive without media queries.\n\n1. Set `.wrapper` width to `clamp(320px, 80%, 960px)` — responsive between 320px and 960px\n2. Set `.wrapper` margin to `0 auto` to center it\n3. Set `.wrapper` padding to `24px`",
+      "starterCode": "/* Use clamp() for responsive layout width */\n",
+      "solution": ".wrapper {\n  width: clamp(320px, 80%, 960px);\n  margin: 0 auto;\n  padding: 24px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"wrapper\"><p>This container has a responsive width.</p></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "clamp(",
+          "description": "CSS uses clamp() function"
+        },
+        {
+          "query": ".wrapper",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "24px",
+          "description": "padding is 24px"
+        }
+      ],
+      "hints": [
+        "clamp(min, preferred, max) for width: clamp(320px, 80%, 960px)",
+        "Center with margin: 0 auto — this works when the element has an explicit width",
+        ".wrapper { width: clamp(320px, 80%, 960px); margin: 0 auto; padding: 24px; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: clamp()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/clamp",
+          "description": "Clamp a value between a minimum and maximum"
+        }
+      ]
+    },
+    {
+      "id": 522,
+      "title": "Combining CSS Functions",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "functions"
+      ],
+      "tags": [
+        "css",
+        "calc",
+        "min",
+        "max",
+        "clamp",
+        "functions",
+        "intermediate"
+      ],
+      "description": "Combine multiple CSS math functions for advanced responsive calculations.",
+      "instructions": "CSS math functions can be nested inside each other for powerful calculations.\n\n1. On `:root`, define `--sidebar-width` as `250px`\n2. Set `.main-content` width to `calc(100% - var(--sidebar-width))` — remaining space after sidebar\n3. Set `.main-content` padding to `clamp(16px, 3vw, 48px)` — fluid padding\n4. Set `.main-content` min-height to `200px`",
+      "starterCode": "/* Combine CSS functions for advanced layouts */\n",
+      "solution": ":root {\n  --sidebar-width: 250px;\n}\n\n.main-content {\n  width: calc(100% - var(--sidebar-width));\n  padding: clamp(16px, 3vw, 48px);\n  min-height: 200px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div style=\"display:flex;\"><aside style=\"width:250px;\">Sidebar</aside><div class=\"main-content\">Main content area</div></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "calc(",
+          "description": "CSS uses calc() function"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "clamp(",
+          "description": "CSS uses clamp() function"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "var(",
+          "description": "CSS uses var() for custom properties"
+        },
+        {
+          "query": ".main-content",
+          "assertion": "equals",
+          "property": "min-height",
+          "value": "200px",
+          "description": "min-height is 200px"
+        }
+      ],
+      "hints": [
+        "calc() can reference custom properties: calc(100% - var(--sidebar-width))",
+        "clamp() works independently from calc() — use it on padding for fluid spacing",
+        ":root { --sidebar-width: 250px; } .main-content { width: calc(100% - var(--sidebar-width)); padding: clamp(16px, 3vw, 48px); min-height: 200px; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: CSS Value Functions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Functions",
+          "description": "Overview of all CSS value functions"
+        }
+      ]
+    },
+    {
+      "id": 523,
+      "title": "Spacing Scale with Custom Properties",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "custom-properties"
+      ],
+      "tags": [
+        "css",
+        "custom-properties",
+        "spacing",
+        "design-system",
+        "intermediate"
+      ],
+      "description": "Create a consistent spacing scale using CSS custom properties.",
+      "instructions": "Design systems use spacing scales for consistency. Build one with custom properties.\n\n1. On `:root`, define:\n   - `--space-xs` as `4px`\n   - `--space-sm` as `8px`\n   - `--space-md` as `16px`\n   - `--space-lg` as `32px`\n2. Set `.card` padding to `var(--space-md)` (16px)\n3. Set `.card` margin-bottom to `var(--space-lg)` (32px)\n4. Set `.card-title` margin-bottom to `var(--space-sm)` (8px)",
+      "starterCode": "/* Create a spacing scale with custom properties */\n",
+      "solution": ":root {\n  --space-xs: 4px;\n  --space-sm: 8px;\n  --space-md: 16px;\n  --space-lg: 32px;\n}\n\n.card {\n  padding: var(--space-md);\n  margin-bottom: var(--space-lg);\n}\n\n.card-title {\n  margin-bottom: var(--space-sm);\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"card\"><h2 class=\"card-title\">Card Title</h2><p>Card content</p></div>",
+      "testCases": [
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "16px",
+          "description": ".card padding is 16px (--space-md)"
+        },
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "margin-bottom",
+          "value": "32px",
+          "description": ".card margin-bottom is 32px (--space-lg)"
+        },
+        {
+          "query": ".card-title",
+          "assertion": "equals",
+          "property": "margin-bottom",
+          "value": "8px",
+          "description": ".card-title margin-bottom is 8px (--space-sm)"
+        }
+      ],
+      "hints": [
+        "Define all spacing values on :root: --space-xs: 4px; --space-sm: 8px; etc.",
+        "Use var(--space-md) for padding, var(--space-lg) for margin-bottom on .card",
+        "The spacing scale: xs=4px, sm=8px, md=16px, lg=32px. Apply using var() on each element."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Using CSS Custom Properties",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties",
+          "description": "Guide to creating design token systems with custom properties"
+        }
+      ]
+    },
+    {
+      "id": 524,
+      "title": ":is() Selector",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "modern-selectors"
+      ],
+      "tags": [
+        "css",
+        "selectors",
+        "is",
+        "grouping",
+        "intermediate"
+      ],
+      "description": "Use the :is() pseudo-class to simplify grouped selectors.",
+      "instructions": "The `:is()` pseudo-class reduces repetition when targeting multiple selectors.\n\n1. Use `:is(h1, h2, h3)` to set `color` to `#3b82f6` on all three heading levels at once\n2. Use `:is(h1, h2, h3)` to set `margin-bottom` to `12px` on all three",
+      "starterCode": "/* Use :is() to group selectors */\n",
+      "solution": ":is(h1, h2, h3) {\n  color: #3b82f6;\n  margin-bottom: 12px;\n}",
+      "testRunner": "",
+      "providedHtml": "<h1>Heading 1</h1><h2>Heading 2</h2><h3>Heading 3</h3><p>Paragraph text</p>",
+      "testCases": [
+        {
+          "query": "h1",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(59, 130, 246)",
+          "description": "h1 color is #3b82f6"
+        },
+        {
+          "query": "h2",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(59, 130, 246)",
+          "description": "h2 color is #3b82f6"
+        },
+        {
+          "query": "h3",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(59, 130, 246)",
+          "description": "h3 color is #3b82f6"
+        },
+        {
+          "query": "h1",
+          "assertion": "equals",
+          "property": "margin-bottom",
+          "value": "12px",
+          "description": "h1 margin-bottom is 12px"
+        }
+      ],
+      "hints": [
+        ":is() takes a list of selectors: :is(h1, h2, h3) { ... }",
+        "This is equivalent to writing h1, h2, h3 { ... } but is more composable in complex selectors",
+        ":is(h1, h2, h3) { color: #3b82f6; margin-bottom: 12px; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: :is()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:is",
+          "description": "Matches any element that matches any of the selectors in its list"
+        }
+      ]
+    },
+    {
+      "id": 525,
+      "title": ":where() Selector",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "modern-selectors"
+      ],
+      "tags": [
+        "css",
+        "selectors",
+        "where",
+        "specificity",
+        "intermediate"
+      ],
+      "description": "Use :where() for zero-specificity selector grouping.",
+      "instructions": "`:where()` works like `:is()` but has zero specificity — making it easy to override.\n\n1. Use `:where(h1, h2, h3)` to set `font-weight` to `600`\n2. Use `:where(h1, h2, h3)` to set `line-height` to `1.3`\n3. Set `h1` color to `#ef4444` — this easily overrides `:where()` because :where has zero specificity",
+      "starterCode": "/* Use :where() for low-specificity defaults */\n",
+      "solution": ":where(h1, h2, h3) {\n  font-weight: 600;\n  line-height: 1.3;\n}\n\nh1 {\n  color: #ef4444;\n}",
+      "testRunner": "",
+      "providedHtml": "<h1>Main Title</h1><h2>Subtitle</h2><h3>Section</h3>",
+      "testCases": [
+        {
+          "query": "h1",
+          "assertion": "equals",
+          "property": "font-weight",
+          "value": "600",
+          "description": "h1 font-weight is 600"
+        },
+        {
+          "assertion": "sourceMatch",
+          "value": "line-height:\\s*1\\.3",
+          "description": "line-height is set to 1.3"
+        },
+        {
+          "query": "h1",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(239, 68, 68)",
+          "description": "h1 color is #ef4444 (overrides :where)"
+        }
+      ],
+      "hints": [
+        ":where() syntax is identical to :is() — :where(h1, h2, h3) { ... }",
+        "The difference: :where() has zero specificity, so any direct selector can override it",
+        ":where(h1, h2, h3) { font-weight: 600; line-height: 1.3; } h1 { color: #ef4444; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: :where()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:where",
+          "description": "Like :is() but with zero specificity"
+        }
+      ]
+    },
+    {
+      "id": 526,
+      "title": ":not() Advanced",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "modern-selectors"
+      ],
+      "tags": [
+        "css",
+        "selectors",
+        "not",
+        "exclusion",
+        "intermediate"
+      ],
+      "description": "Use :not() to exclude specific elements from a style rule.",
+      "instructions": "The `:not()` pseudo-class excludes elements that match the given selector.\n\n1. Select `.item:not(:last-child)` and set `margin-bottom` to `12px` — adds spacing between items but not after the last one\n2. Select `.item:not(.disabled)` and set `color` to `#e2e8f0`\n3. Select `.item.disabled` and set `opacity` to `0.4`",
+      "starterCode": "/* Use :not() to exclude elements */\n",
+      "solution": ".item:not(:last-child) {\n  margin-bottom: 12px;\n}\n\n.item:not(.disabled) {\n  color: #e2e8f0;\n}\n\n.item.disabled {\n  opacity: 0.4;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"item\">Active Item 1</div><div class=\"item disabled\">Disabled Item</div><div class=\"item\">Active Item 2</div>",
+      "testCases": [
+        {
+          "query": ".item:first-child",
+          "assertion": "equals",
+          "property": "margin-bottom",
+          "value": "12px",
+          "description": "First .item has margin-bottom: 12px"
+        },
+        {
+          "query": ".item:last-child",
+          "assertion": "equals",
+          "property": "margin-bottom",
+          "value": "0px",
+          "description": "Last .item has no margin-bottom"
+        },
+        {
+          "query": ".item.disabled",
+          "assertion": "equals",
+          "property": "opacity",
+          "value": "0.4",
+          "description": ".item.disabled opacity is 0.4"
+        }
+      ],
+      "hints": [
+        ":not(:last-child) targets every element except the last one",
+        "You can also exclude by class: .item:not(.disabled) targets items without the .disabled class",
+        ".item:not(:last-child) { margin-bottom: 12px; } .item:not(.disabled) { color: #e2e8f0; } .item.disabled { opacity: 0.4; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: :not()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:not",
+          "description": "Matches elements that do not match the given selector"
+        }
+      ]
+    },
+    {
+      "id": 527,
+      "title": ":has() Parent Selector",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "modern-selectors"
+      ],
+      "tags": [
+        "css",
+        "selectors",
+        "has",
+        "parent-selector",
+        "intermediate"
+      ],
+      "description": "Use :has() to style a parent element based on its children.",
+      "instructions": "The `:has()` pseudo-class is often called the \"parent selector\" — it styles an element based on what it contains.\n\n1. Style `.card:has(img)` with `padding` of `0` — cards with images have no padding\n2. Style `.card:not(:has(img))` with `padding` of `24px` — cards without images keep padding\n3. Set all `.card` elements to have `border-radius` of `8px`",
+      "starterCode": "/* Use :has() to style parents based on children */\n",
+      "solution": ".card {\n  border-radius: 8px;\n}\n\n.card:has(img) {\n  padding: 0;\n}\n\n.card:not(:has(img)) {\n  padding: 24px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"card\" id=\"card-with-img\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\" alt=\"placeholder\"><p>Card with image</p></div><div class=\"card\" id=\"card-no-img\"><p>Card without image</p></div>",
+      "testCases": [
+        {
+          "query": "#card-with-img",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "0px",
+          "description": "Card with img has padding: 0"
+        },
+        {
+          "query": "#card-no-img",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "24px",
+          "description": "Card without img has padding: 24px"
+        },
+        {
+          "query": "#card-with-img",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "8px",
+          "description": "Card border-radius is 8px"
+        }
+      ],
+      "hints": [
+        ":has() checks if an element contains something: .card:has(img) targets cards that contain an img",
+        "Combine :not() with :has() to target the opposite: .card:not(:has(img))",
+        ".card { border-radius: 8px; } .card:has(img) { padding: 0; } .card:not(:has(img)) { padding: 24px; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: :has()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:has",
+          "description": "Style a parent based on its children — the 'parent selector'"
+        }
+      ]
+    },
+    {
+      "id": 528,
+      "title": ":has() Form Validation Styling",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "modern-selectors"
+      ],
+      "tags": [
+        "css",
+        "selectors",
+        "has",
+        "forms",
+        "validation",
+        "intermediate"
+      ],
+      "description": "Use :has() with sibling selectors to style form fields based on validation state.",
+      "instructions": "Use `:has()` to style form groups based on adjacent error messages.\n\n1. Style `.form-group:has(.error)` with a left `border-left` of `3px solid #ef4444` (red border when error is present)\n2. Style `.form-group:not(:has(.error))` with a left `border-left` of `3px solid #22c55e` (green border when no error)\n3. Set `.form-group` padding-left to `12px`",
+      "starterCode": "/* Use :has() for form validation styling */\n",
+      "solution": ".form-group {\n  padding-left: 12px;\n}\n\n.form-group:has(.error) {\n  border-left: 3px solid #ef4444;\n}\n\n.form-group:not(:has(.error)) {\n  border-left: 3px solid #22c55e;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"form-group\" id=\"fg-error\"><label>Email</label><input type=\"email\"><span class=\"error\">Invalid email</span></div><div class=\"form-group\" id=\"fg-valid\"><label>Name</label><input type=\"text\"></div>",
+      "testCases": [
+        {
+          "query": "#fg-error",
+          "assertion": "equals",
+          "property": "border-left-color",
+          "value": "rgb(239, 68, 68)",
+          "description": "Form group with .error has red border"
+        },
+        {
+          "query": "#fg-valid",
+          "assertion": "equals",
+          "property": "border-left-color",
+          "value": "rgb(34, 197, 94)",
+          "description": "Form group without .error has green border"
+        },
+        {
+          "query": ".form-group",
+          "assertion": "equals",
+          "property": "padding-left",
+          "value": "12px",
+          "description": ".form-group padding-left is 12px"
+        }
+      ],
+      "hints": [
+        ".form-group:has(.error) targets form groups that contain an element with class .error",
+        "Combine :not(:has(.error)) for the opposite — groups without errors",
+        ".form-group { padding-left: 12px; } .form-group:has(.error) { border-left: 3px solid #ef4444; } .form-group:not(:has(.error)) { border-left: 3px solid #22c55e; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: :has()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:has",
+          "description": "Style parents based on child state"
+        }
+      ]
+    },
+    {
+      "id": 529,
+      "title": "Attribute Selectors",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "modern-selectors"
+      ],
+      "tags": [
+        "css",
+        "selectors",
+        "attributes",
+        "data-attributes",
+        "intermediate"
+      ],
+      "description": "Use attribute selectors to style elements based on data attributes.",
+      "instructions": "Attribute selectors target elements by their attributes.\n\n1. Style `[data-status=\"active\"]` with `color` of `#22c55e` (green)\n2. Style `[data-status=\"inactive\"]` with `color` of `#94a3b8` (gray)\n3. Style `[data-status=\"error\"]` with `color` of `#ef4444` (red)",
+      "starterCode": "/* Use attribute selectors */\n",
+      "solution": "[data-status=\"active\"] {\n  color: #22c55e;\n}\n\n[data-status=\"inactive\"] {\n  color: #94a3b8;\n}\n\n[data-status=\"error\"] {\n  color: #ef4444;\n}",
+      "testRunner": "",
+      "providedHtml": "<span data-status=\"active\">Online</span><span data-status=\"inactive\">Away</span><span data-status=\"error\">Error</span>",
+      "testCases": [
+        {
+          "query": "[data-status='active']",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(34, 197, 94)",
+          "description": "[data-status=active] color is green"
+        },
+        {
+          "query": "[data-status='inactive']",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(148, 163, 184)",
+          "description": "[data-status=inactive] color is gray"
+        },
+        {
+          "query": "[data-status='error']",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(239, 68, 68)",
+          "description": "[data-status=error] color is red"
+        }
+      ],
+      "hints": [
+        "Attribute selectors use square brackets: [attribute=\"value\"]",
+        "data-* attributes are custom HTML attributes you can target with CSS",
+        "[data-status=\"active\"] { color: #22c55e; } [data-status=\"inactive\"] { color: #94a3b8; } [data-status=\"error\"] { color: #ef4444; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Attribute Selectors",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors",
+          "description": "Select elements based on their attributes"
+        }
+      ]
+    },
+    {
+      "id": 530,
+      "title": "Combining Modern Selectors",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "modern-selectors"
+      ],
+      "tags": [
+        "css",
+        "selectors",
+        "is",
+        "not",
+        "has",
+        "intermediate"
+      ],
+      "description": "Combine :is(), :not(), and :has() in a single stylesheet.",
+      "instructions": "Combine modern selectors for powerful, concise CSS.\n\n1. Use `:is(h1, h2)` to set `font-family` to `Georgia, serif`\n2. Style `.list-item:not(:last-child)` with `border-bottom` of `1px solid #334155`\n3. Style `.section:has(.highlight)` with `background-color` of `rgba(59, 130, 246, 0.1)`\n4. Style `.section:not(:has(.highlight))` with `background-color` of `transparent`",
+      "starterCode": "/* Combine :is(), :not(), and :has() */\n",
+      "solution": ":is(h1, h2) {\n  font-family: Georgia, serif;\n}\n\n.list-item:not(:last-child) {\n  border-bottom: 1px solid #334155;\n}\n\n.section:has(.highlight) {\n  background-color: rgba(59, 130, 246, 0.1);\n}\n\n.section:not(:has(.highlight)) {\n  background-color: transparent;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"section\" id=\"sec-hl\"><h1>Title</h1><p class=\"highlight\">Highlighted</p></div><div class=\"section\" id=\"sec-plain\"><h2>Subtitle</h2><p>Normal</p></div><div class=\"list-item\">Item 1</div><div class=\"list-item\">Item 2</div><div class=\"list-item\">Item 3</div>",
+      "testCases": [
+        {
+          "query": "h1",
+          "assertion": "contains",
+          "property": "font-family",
+          "value": "Georgia",
+          "description": "h1 uses Georgia font"
+        },
+        {
+          "query": "h2",
+          "assertion": "contains",
+          "property": "font-family",
+          "value": "Georgia",
+          "description": "h2 uses Georgia font"
+        },
+        {
+          "query": ".list-item:not(:last-child)",
+          "assertion": "equals",
+          "property": "border-bottom-style",
+          "value": "solid",
+          "description": "Non-last .list-item has border-bottom"
+        },
+        {
+          "query": "#sec-hl",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgba(59, 130, 246, 0.1)",
+          "description": "Section with .highlight has blue background"
+        },
+        {
+          "query": "#sec-plain",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgba(0, 0, 0, 0)",
+          "description": "Section without .highlight is transparent"
+        }
+      ],
+      "hints": [
+        ":is(h1, h2) groups selectors, :not(:last-child) excludes the last element",
+        ":has(.highlight) targets elements containing a .highlight child",
+        "Combine all three: :is() for grouping headings, :not() for list spacing, :has() for conditional backgrounds"
+      ],
+      "resources": [
+        {
+          "label": "MDN: CSS Selectors",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors",
+          "description": "Complete reference for CSS selectors"
+        }
+      ]
+    },
+    {
+      "id": 531,
+      "title": "aspect-ratio",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "css",
+        "aspect-ratio",
+        "layout",
+        "responsive",
+        "intermediate"
+      ],
+      "description": "Use the aspect-ratio property to maintain proportional dimensions.",
+      "instructions": "The `aspect-ratio` property sets a preferred aspect ratio for an element.\n\n1. Set `.video-container` to `aspect-ratio: 16 / 9`\n2. Set `.video-container` width to `100%`\n3. Set `.video-container` max-width to `640px`\n4. Set `.video-container` background-color to `#1e293b`",
+      "starterCode": "/* Use aspect-ratio for proportional sizing */\n",
+      "solution": ".video-container {\n  aspect-ratio: 16 / 9;\n  width: 100%;\n  max-width: 640px;\n  background-color: #1e293b;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"video-container\">16:9 Video Area</div>",
+      "testCases": [
+        {
+          "query": ".video-container",
+          "assertion": "equals",
+          "property": "aspect-ratio",
+          "value": "16 / 9",
+          "description": "aspect-ratio is 16/9"
+        },
+        {
+          "query": ".video-container",
+          "assertion": "equals",
+          "property": "max-width",
+          "value": "640px",
+          "description": "max-width is 640px"
+        },
+        {
+          "query": ".video-container",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(30, 41, 59)",
+          "description": "background-color is #1e293b"
+        }
+      ],
+      "hints": [
+        "aspect-ratio takes a ratio: aspect-ratio: 16 / 9",
+        "Combine with width: 100% and max-width for responsive sizing",
+        ".video-container { aspect-ratio: 16 / 9; width: 100%; max-width: 640px; background-color: #1e293b; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: aspect-ratio",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio",
+          "description": "Sets a preferred aspect ratio for the box"
+        }
+      ]
+    },
+    {
+      "id": 532,
+      "title": "object-fit",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "css",
+        "object-fit",
+        "images",
+        "layout",
+        "intermediate"
+      ],
+      "description": "Use object-fit to control how images fill their container.",
+      "instructions": "The `object-fit` property controls how replaced elements (like images) fill their box.\n\n1. Set `.thumbnail` to `object-fit: cover` — the image fills the box, cropping if needed\n2. Set `.thumbnail` width to `200px`\n3. Set `.thumbnail` height to `200px`\n4. Set `.thumbnail` border-radius to `8px`",
+      "starterCode": "/* Use object-fit to control image display */\n",
+      "solution": ".thumbnail {\n  object-fit: cover;\n  width: 200px;\n  height: 200px;\n  border-radius: 8px;\n}",
+      "testRunner": "",
+      "providedHtml": "<img class=\"thumbnail\" src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' fill='%23334155'%3E%3Crect width='400' height='300'/%3E%3C/svg%3E\" alt=\"placeholder\">",
+      "testCases": [
+        {
+          "query": ".thumbnail",
+          "assertion": "equals",
+          "property": "object-fit",
+          "value": "cover",
+          "description": "object-fit is cover"
+        },
+        {
+          "query": ".thumbnail",
+          "assertion": "equals",
+          "property": "width",
+          "value": "200px",
+          "description": "width is 200px"
+        },
+        {
+          "query": ".thumbnail",
+          "assertion": "equals",
+          "property": "height",
+          "value": "200px",
+          "description": "height is 200px"
+        },
+        {
+          "query": ".thumbnail",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "8px",
+          "description": "border-radius is 8px"
+        }
+      ],
+      "hints": [
+        "object-fit: cover fills the entire area, cropping if the aspect ratio doesn't match",
+        "Other values include: contain, fill, none, scale-down",
+        ".thumbnail { object-fit: cover; width: 200px; height: 200px; border-radius: 8px; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: object-fit",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit",
+          "description": "How replaced elements should be resized to fit their container"
+        }
+      ]
+    },
+    {
+      "id": 533,
+      "title": "Logical Properties",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "css",
+        "logical-properties",
+        "internationalization",
+        "layout",
+        "intermediate"
+      ],
+      "description": "Use CSS logical properties for direction-agnostic layouts.",
+      "instructions": "Logical properties use `inline` (horizontal) and `block` (vertical) instead of left/right/top/bottom, making layouts work in any writing direction.\n\n1. Set `.card` `padding-inline` to `24px` (horizontal padding)\n2. Set `.card` `padding-block` to `16px` (vertical padding)\n3. Set `.card` `margin-block-end` to `20px` (bottom margin in LTR)\n4. Set `.card` `border-inline-start` to `4px solid #3b82f6` (left border in LTR)",
+      "starterCode": "/* Use logical properties instead of physical ones */\n",
+      "solution": ".card {\n  padding-inline: 24px;\n  padding-block: 16px;\n  margin-block-end: 20px;\n  border-inline-start: 4px solid #3b82f6;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"card\"><p>Logical properties adapt to any writing direction.</p></div>",
+      "testCases": [
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "padding-left",
+          "value": "24px",
+          "description": "padding-inline provides 24px horizontal padding"
+        },
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "padding-top",
+          "value": "16px",
+          "description": "padding-block provides 16px vertical padding"
+        },
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "margin-bottom",
+          "value": "20px",
+          "description": "margin-block-end provides 20px bottom margin"
+        },
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "border-left-width",
+          "value": "4px",
+          "description": "border-inline-start provides 4px left border"
+        }
+      ],
+      "hints": [
+        "inline = horizontal direction (left/right in LTR). block = vertical direction (top/bottom)",
+        "padding-inline sets both left and right padding; padding-block sets both top and bottom",
+        ".card { padding-inline: 24px; padding-block: 16px; margin-block-end: 20px; border-inline-start: 4px solid #3b82f6; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: CSS Logical Properties",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values",
+          "description": "Direction-agnostic alternatives to physical properties"
+        }
+      ]
+    },
+    {
+      "id": 534,
+      "title": "gap in Flexbox",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "css",
+        "flexbox",
+        "gap",
+        "layout",
+        "intermediate"
+      ],
+      "description": "Use the gap property with flexbox for clean spacing between items.",
+      "instructions": "The `gap` property works in flexbox to add space between items (but not around the edges).\n\n1. Set `.toolbar` to `display: flex`\n2. Set `.toolbar` `align-items` to `center`\n3. Set `.toolbar` `gap` to `12px`\n4. Set `.toolbar` `padding` to `16px`",
+      "starterCode": "/* Use gap with flexbox */\n",
+      "solution": ".toolbar {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n  padding: 16px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"toolbar\"><button>Save</button><button>Edit</button><button>Delete</button></div>",
+      "testCases": [
+        {
+          "query": ".toolbar",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": "display is flex"
+        },
+        {
+          "query": ".toolbar",
+          "assertion": "equals",
+          "property": "align-items",
+          "value": "center",
+          "description": "align-items is center"
+        },
+        {
+          "query": ".toolbar",
+          "assertion": "equals",
+          "property": "gap",
+          "value": "12px",
+          "description": "gap is 12px"
+        },
+        {
+          "query": ".toolbar",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "16px",
+          "description": "padding is 16px"
+        }
+      ],
+      "hints": [
+        "gap works in both flexbox and grid — it adds space between children",
+        "Unlike margin, gap only adds space between items, not around the outside",
+        ".toolbar { display: flex; align-items: center; gap: 12px; padding: 16px; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: gap",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/gap",
+          "description": "Shorthand for row-gap and column-gap"
+        }
+      ]
+    },
+    {
+      "id": 535,
+      "title": "Subgrid",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "css",
+        "grid",
+        "subgrid",
+        "layout",
+        "intermediate"
+      ],
+      "description": "Use subgrid to align nested grid items with the parent grid.",
+      "instructions": "Subgrid lets a nested grid item inherit its parent's grid tracks.\n\n1. Set `.grid-parent` to `display: grid` with `grid-template-columns: 1fr 2fr 1fr` and `gap` of `16px`\n2. Set `.grid-child` to `display: grid` and `grid-template-columns: subgrid`\n3. Set `.grid-child` to span all 3 columns with `grid-column: 1 / -1`",
+      "starterCode": "/* Use subgrid to align nested content */\n",
+      "solution": ".grid-parent {\n  display: grid;\n  grid-template-columns: 1fr 2fr 1fr;\n  gap: 16px;\n}\n\n.grid-child {\n  display: grid;\n  grid-template-columns: subgrid;\n  grid-column: 1 / -1;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"grid-parent\"><div>A</div><div>B</div><div>C</div><div class=\"grid-child\"><div>D1</div><div>D2</div><div>D3</div></div></div>",
+      "testCases": [
+        {
+          "query": ".grid-parent",
+          "assertion": "equals",
+          "property": "display",
+          "value": "grid",
+          "description": ".grid-parent uses display: grid"
+        },
+        {
+          "query": ".grid-parent",
+          "assertion": "equals",
+          "property": "gap",
+          "value": "16px",
+          "description": ".grid-parent gap is 16px"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "subgrid",
+          "description": "CSS uses subgrid"
+        },
+        {
+          "query": ".grid-child",
+          "assertion": "equals",
+          "property": "display",
+          "value": "grid",
+          "description": ".grid-child uses display: grid"
+        }
+      ],
+      "hints": [
+        "A subgrid child uses its parent's column/row tracks instead of defining its own",
+        "The child must span multiple tracks: grid-column: 1 / -1 spans all columns",
+        ".grid-parent { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 16px; } .grid-child { display: grid; grid-template-columns: subgrid; grid-column: 1 / -1; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Subgrid",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Subgrid",
+          "description": "Inherit parent grid tracks in nested grids"
+        }
+      ]
+    },
+    {
+      "id": 536,
+      "title": "Auto-fill vs Auto-fit",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "css",
+        "grid",
+        "auto-fill",
+        "auto-fit",
+        "responsive",
+        "intermediate"
+      ],
+      "description": "Use repeat() with auto-fill or auto-fit for responsive grid layouts.",
+      "instructions": "Create a responsive grid that automatically adjusts the number of columns.\n\n1. Set `.grid` to `display: grid`\n2. Set `.grid` `grid-template-columns` to `repeat(auto-fill, minmax(200px, 1fr))` — fills available space with columns at least 200px wide\n3. Set `.grid` `gap` to `16px`",
+      "starterCode": "/* Create a responsive auto-fill grid */\n",
+      "solution": ".grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n  gap: 16px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"grid\"><div>Card 1</div><div>Card 2</div><div>Card 3</div><div>Card 4</div><div>Card 5</div><div>Card 6</div></div>",
+      "testCases": [
+        {
+          "query": ".grid",
+          "assertion": "equals",
+          "property": "display",
+          "value": "grid",
+          "description": "display is grid"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "auto-fill",
+          "description": "CSS uses auto-fill"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "minmax(",
+          "description": "CSS uses minmax() function"
+        },
+        {
+          "query": ".grid",
+          "assertion": "equals",
+          "property": "gap",
+          "value": "16px",
+          "description": "gap is 16px"
+        }
+      ],
+      "hints": [
+        "repeat(auto-fill, minmax(200px, 1fr)) creates as many 200px+ columns as fit",
+        "auto-fill creates empty tracks when there's extra space; auto-fit collapses them",
+        ".grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: repeat()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/repeat",
+          "description": "Repeat track listing with auto-fill or auto-fit"
+        }
+      ]
+    },
+    {
+      "id": 537,
+      "title": "Content-Based Sizing",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "css",
+        "sizing",
+        "min-content",
+        "max-content",
+        "fit-content",
+        "intermediate"
+      ],
+      "description": "Use intrinsic sizing keywords for content-aware layouts.",
+      "instructions": "CSS offers intrinsic sizing keywords that size elements based on their content.\n\n1. Set `.min-box` width to `min-content` — as narrow as the longest word\n2. Set `.max-box` width to `max-content` — as wide as the content without wrapping\n3. Set `.fit-box` width to `fit-content(300px)` — content width up to 300px max\n4. Set all three to have `padding` of `12px` and `margin-bottom` of `8px`",
+      "starterCode": "/* Use intrinsic sizing keywords */\n",
+      "solution": ".min-box {\n  width: min-content;\n  padding: 12px;\n  margin-bottom: 8px;\n}\n\n.max-box {\n  width: max-content;\n  padding: 12px;\n  margin-bottom: 8px;\n}\n\n.fit-box {\n  width: fit-content(300px);\n  padding: 12px;\n  margin-bottom: 8px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"min-box\">Some longer text content here</div><div class=\"max-box\">Some longer text content here</div><div class=\"fit-box\">Some longer text content here</div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "min-content",
+          "description": "CSS uses min-content"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "max-content",
+          "description": "CSS uses max-content"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "fit-content",
+          "description": "CSS uses fit-content"
+        },
+        {
+          "query": ".min-box",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "12px",
+          "description": ".min-box padding is 12px"
+        }
+      ],
+      "hints": [
+        "min-content: width of the longest word. max-content: width of content without wrapping.",
+        "fit-content(300px) is like min(max-content, max(min-content, 300px))",
+        ".min-box { width: min-content; } .max-box { width: max-content; } .fit-box { width: fit-content(300px); }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: min-content",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/min-content",
+          "description": "Intrinsic minimum width of the content"
+        }
+      ]
+    },
+    {
+      "id": 538,
+      "title": "backdrop-filter",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "visual"
+      ],
+      "tags": [
+        "css",
+        "backdrop-filter",
+        "blur",
+        "glass",
+        "visual-effects",
+        "intermediate"
+      ],
+      "description": "Use backdrop-filter to create a frosted glass effect.",
+      "instructions": "The `backdrop-filter` property applies effects to the area behind an element.\n\n1. Set `.glass-panel` `backdrop-filter` to `blur(10px)`\n2. Set `.glass-panel` `background-color` to `rgba(15, 23, 42, 0.6)` (semi-transparent)\n3. Set `.glass-panel` `padding` to `24px`\n4. Set `.glass-panel` `border-radius` to `12px`",
+      "starterCode": "/* Create a frosted glass effect */\n",
+      "solution": ".glass-panel {\n  backdrop-filter: blur(10px);\n  background-color: rgba(15, 23, 42, 0.6);\n  padding: 24px;\n  border-radius: 12px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div style=\"background:linear-gradient(135deg,#3b82f6,#8b5cf6);padding:40px;\"><div class=\"glass-panel\"><p>Glass panel content</p></div></div>",
+      "testCases": [
+        {
+          "query": ".glass-panel",
+          "assertion": "equals",
+          "property": "backdrop-filter",
+          "value": "blur(10px)",
+          "description": "backdrop-filter is blur(10px)"
+        },
+        {
+          "query": ".glass-panel",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgba(15, 23, 42, 0.6)",
+          "description": "background-color is semi-transparent"
+        },
+        {
+          "query": ".glass-panel",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "24px",
+          "description": "padding is 24px"
+        },
+        {
+          "query": ".glass-panel",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "12px",
+          "description": "border-radius is 12px"
+        }
+      ],
+      "hints": [
+        "backdrop-filter: blur(10px) blurs everything behind the element",
+        "Combine with a semi-transparent background for the glass effect",
+        ".glass-panel { backdrop-filter: blur(10px); background-color: rgba(15, 23, 42, 0.6); padding: 24px; border-radius: 12px; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: backdrop-filter",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter",
+          "description": "Apply graphical effects to the area behind an element"
+        }
+      ]
+    },
+    {
+      "id": 539,
+      "title": "color-mix()",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "visual"
+      ],
+      "tags": [
+        "css",
+        "color-mix",
+        "colors",
+        "functions",
+        "intermediate"
+      ],
+      "description": "Use color-mix() to blend two colors together in CSS.",
+      "instructions": "The `color-mix()` function blends two colors in a specified color space.\n\n1. Set `.mixed-bg` background-color to `color-mix(in srgb, #3b82f6 50%, #ef4444 50%)` — a 50/50 mix of blue and red\n2. Set `.mixed-bg` padding to `24px`\n3. Set `.mixed-bg` color to `white`",
+      "starterCode": "/* Use color-mix() to blend colors */\n",
+      "solution": ".mixed-bg {\n  background-color: color-mix(in srgb, #3b82f6 50%, #ef4444 50%);\n  padding: 24px;\n  color: white;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"mixed-bg\">Blended background</div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "color-mix(",
+          "description": "CSS uses color-mix() function"
+        },
+        {
+          "query": ".mixed-bg",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "24px",
+          "description": "padding is 24px"
+        },
+        {
+          "query": ".mixed-bg",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(255, 255, 255)",
+          "description": "text color is white"
+        }
+      ],
+      "hints": [
+        "color-mix(in srgb, color1 percentage, color2 percentage) blends two colors",
+        "The 'in srgb' part specifies the color space for mixing",
+        ".mixed-bg { background-color: color-mix(in srgb, #3b82f6 50%, #ef4444 50%); padding: 24px; color: white; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: color-mix()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix",
+          "description": "Mix two colors together in a given color space"
+        }
+      ]
+    },
+    {
+      "id": 540,
+      "title": "accent-color",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "visual"
+      ],
+      "tags": [
+        "css",
+        "accent-color",
+        "forms",
+        "theming",
+        "intermediate"
+      ],
+      "description": "Use accent-color to theme native form controls.",
+      "instructions": "The `accent-color` property changes the accent color of form controls like checkboxes and radio buttons.\n\n1. Set `.form-controls` `accent-color` to `#8b5cf6` (purple)\n2. Set `.form-controls` `font-size` to `16px`\n3. Set `.form-controls input` `margin-right` to `8px`",
+      "starterCode": "/* Use accent-color to theme form controls */\n",
+      "solution": ".form-controls {\n  accent-color: #8b5cf6;\n  font-size: 16px;\n}\n\n.form-controls input {\n  margin-right: 8px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"form-controls\"><label><input type=\"checkbox\" checked> Option A</label><br><label><input type=\"checkbox\"> Option B</label><br><label><input type=\"radio\" name=\"choice\" checked> Choice 1</label><br><label><input type=\"radio\" name=\"choice\"> Choice 2</label></div>",
+      "testCases": [
+        {
+          "query": ".form-controls",
+          "assertion": "equals",
+          "property": "accent-color",
+          "value": "rgb(139, 92, 246)",
+          "description": "accent-color is #8b5cf6"
+        },
+        {
+          "query": ".form-controls",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "16px",
+          "description": "font-size is 16px"
+        }
+      ],
+      "hints": [
+        "accent-color changes the color of checkboxes, radio buttons, range inputs, and progress bars",
+        "It inherits, so set it on a parent to affect all child form controls",
+        ".form-controls { accent-color: #8b5cf6; font-size: 16px; } .form-controls input { margin-right: 8px; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: accent-color",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color",
+          "description": "Set the accent color for user-interface controls"
+        }
+      ]
+    },
+    {
+      "id": 541,
+      "title": "Scroll Snap",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "visual"
+      ],
+      "tags": [
+        "css",
+        "scroll-snap",
+        "scrolling",
+        "carousel",
+        "intermediate"
+      ],
+      "description": "Use CSS scroll snap for smooth, snapping scroll behavior.",
+      "instructions": "CSS Scroll Snap creates smooth snapping points while scrolling.\n\n1. Set `.carousel` `scroll-snap-type` to `x mandatory` (horizontal snapping)\n2. Set `.carousel` to `display: flex` and `overflow-x: auto`\n3. Set `.carousel` `gap` to `16px`\n4. Set `.slide` `scroll-snap-align` to `start`\n5. Set `.slide` `min-width` to `300px` and `flex-shrink` to `0`",
+      "starterCode": "/* Create a scroll-snapping carousel */\n",
+      "solution": ".carousel {\n  scroll-snap-type: x mandatory;\n  display: flex;\n  overflow-x: auto;\n  gap: 16px;\n}\n\n.slide {\n  scroll-snap-align: start;\n  min-width: 300px;\n  flex-shrink: 0;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"carousel\"><div class=\"slide\" style=\"height:200px;background:#1e293b;\">Slide 1</div><div class=\"slide\" style=\"height:200px;background:#334155;\">Slide 2</div><div class=\"slide\" style=\"height:200px;background:#475569;\">Slide 3</div></div>",
+      "testCases": [
+        {
+          "query": ".carousel",
+          "assertion": "equals",
+          "property": "scroll-snap-type",
+          "value": "x mandatory",
+          "description": "scroll-snap-type is x mandatory"
+        },
+        {
+          "query": ".carousel",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": "display is flex"
+        },
+        {
+          "query": ".carousel",
+          "assertion": "equals",
+          "property": "overflow-x",
+          "value": "auto",
+          "description": "overflow-x is auto"
+        },
+        {
+          "query": ".slide",
+          "assertion": "equals",
+          "property": "scroll-snap-align",
+          "value": "start",
+          "description": "scroll-snap-align is start"
+        }
+      ],
+      "hints": [
+        "The container needs scroll-snap-type and the children need scroll-snap-align",
+        "x mandatory = horizontal snapping, always snaps to a point after scrolling",
+        ".carousel { scroll-snap-type: x mandatory; display: flex; overflow-x: auto; } .slide { scroll-snap-align: start; min-width: 300px; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: CSS Scroll Snap",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_scroll_snap",
+          "description": "Create snapping scroll experiences"
+        }
+      ]
+    },
+    {
+      "id": 542,
+      "title": "Smooth Scrolling",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "visual"
+      ],
+      "tags": [
+        "css",
+        "scroll-behavior",
+        "smooth-scroll",
+        "intermediate"
+      ],
+      "description": "Enable smooth scrolling with a single CSS property.",
+      "instructions": "The `scroll-behavior` property enables smooth scrolling for anchor links.\n\n1. Set `html` `scroll-behavior` to `smooth`\n2. Set `.section` `min-height` to `200px`\n3. Set `.section` `padding` to `20px`",
+      "starterCode": "/* Enable smooth scrolling */\n",
+      "solution": "html {\n  scroll-behavior: smooth;\n}\n\n.section {\n  min-height: 200px;\n  padding: 20px;\n}",
+      "testRunner": "",
+      "providedHtml": "<nav><a href=\"#sec1\">Section 1</a> <a href=\"#sec2\">Section 2</a></nav><div class=\"section\" id=\"sec1\">Section 1</div><div class=\"section\" id=\"sec2\">Section 2</div>",
+      "testCases": [
+        {
+          "query": "html",
+          "assertion": "equals",
+          "property": "scroll-behavior",
+          "value": "smooth",
+          "description": "html scroll-behavior is smooth"
+        },
+        {
+          "query": ".section",
+          "assertion": "equals",
+          "property": "min-height",
+          "value": "200px",
+          "description": ".section min-height is 200px"
+        },
+        {
+          "query": ".section",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "20px",
+          "description": ".section padding is 20px"
+        }
+      ],
+      "hints": [
+        "Set scroll-behavior: smooth on the html element to enable smooth anchor scrolling",
+        "This affects all scrolling triggered by anchor links (#id) on the page",
+        "html { scroll-behavior: smooth; } .section { min-height: 200px; padding: 20px; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: scroll-behavior",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-behavior",
+          "description": "Control the scrolling behavior for anchor navigation"
+        }
+      ]
+    },
+    {
+      "id": 543,
+      "title": "outline-offset for Focus Styles",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "visual"
+      ],
+      "tags": [
+        "css",
+        "outline",
+        "focus",
+        "accessibility",
+        "intermediate"
+      ],
+      "description": "Use outline-offset to create visible, accessible focus indicators.",
+      "instructions": "The `outline-offset` property spaces the outline away from the element border.\n\n1. Set `.btn:focus-visible` `outline` to `2px solid #3b82f6`\n2. Set `.btn:focus-visible` `outline-offset` to `3px` — creates a visible gap between button and outline\n3. Set `.btn` `padding` to `12px 24px`\n4. Set `.btn` `border-radius` to `6px`\n5. Set `.btn` `border` to `1px solid #475569`",
+      "starterCode": "/* Style focus outlines with offset */\n",
+      "solution": ".btn {\n  padding: 12px 24px;\n  border-radius: 6px;\n  border: 1px solid #475569;\n}\n\n.btn:focus-visible {\n  outline: 2px solid #3b82f6;\n  outline-offset: 3px;\n}",
+      "testRunner": "",
+      "providedHtml": "<button class=\"btn\">Click Me</button><button class=\"btn\">Another Button</button>",
+      "testCases": [
+        {
+          "query": ".btn",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "12px 24px",
+          "description": "padding is 12px 24px"
+        },
+        {
+          "query": ".btn",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "6px",
+          "description": "border-radius is 6px"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "outline-offset",
+          "description": "CSS uses outline-offset"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "focus-visible",
+          "description": "CSS uses :focus-visible"
+        }
+      ],
+      "hints": [
+        "outline-offset pushes the outline away from the element's edge",
+        ":focus-visible only shows the outline for keyboard focus, not mouse clicks",
+        ".btn { padding: 12px 24px; border-radius: 6px; border: 1px solid #475569; } .btn:focus-visible { outline: 2px solid #3b82f6; outline-offset: 3px; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: outline-offset",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/outline-offset",
+          "description": "Set the space between an outline and the edge of an element"
+        }
+      ]
+    },
+    {
+      "id": 544,
+      "title": "Container Queries Basics",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "container-queries"
+      ],
+      "tags": [
+        "css",
+        "container-queries",
+        "responsive",
+        "layout",
+        "intermediate"
+      ],
+      "description": "Use container queries to style elements based on their container's size.",
+      "instructions": "Container queries let you style elements based on the size of their parent container, not the viewport.\n\n1. Set `.card-wrapper` `container-type` to `inline-size` — this marks it as a query container\n2. Set `.card` `padding` to `16px`\n3. Write a `@container` rule: when the container is at least `400px` wide, set `.card` padding to `32px`",
+      "starterCode": "/* Use container queries */\n",
+      "solution": ".card-wrapper {\n  container-type: inline-size;\n}\n\n.card {\n  padding: 16px;\n}\n\n@container (min-width: 400px) {\n  .card {\n    padding: 32px;\n  }\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"card-wrapper\" style=\"width:500px;\"><div class=\"card\">Responsive card content</div></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "container-type",
+          "description": "CSS defines a container-type"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "@container",
+          "description": "CSS uses @container query"
+        },
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "32px",
+          "description": ".card padding is 32px (container is 500px wide)"
+        }
+      ],
+      "hints": [
+        "First, mark the parent as a container with container-type: inline-size",
+        "Then use @container (min-width: 400px) { ... } to apply conditional styles",
+        ".card-wrapper { container-type: inline-size; } .card { padding: 16px; } @container (min-width: 400px) { .card { padding: 32px; } }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: CSS Container Queries",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries",
+          "description": "Style elements based on their container's size"
+        }
+      ]
+    },
+    {
+      "id": 545,
+      "title": "Container Query Sizing",
+      "type": "css",
+      "tier": 4,
+      "category": [
+        "css",
+        "container-queries"
+      ],
+      "tags": [
+        "css",
+        "container-queries",
+        "responsive",
+        "layout",
+        "advanced"
+      ],
+      "description": "Use container query units and multiple breakpoints.",
+      "instructions": "Container queries support multiple breakpoints and container query units like `cqw`.\n\n1. Set `.widget-container` `container-type` to `inline-size`\n2. Set `.widget` `font-size` to `14px` and `display` to `block` (default)\n3. At `@container (min-width: 300px)`, set `.widget` `font-size` to `16px`\n4. At `@container (min-width: 500px)`, set `.widget` `font-size` to `18px` and `display` to `flex` with `gap` of `16px`",
+      "starterCode": "/* Use multiple container query breakpoints */\n",
+      "solution": ".widget-container {\n  container-type: inline-size;\n}\n\n.widget {\n  font-size: 14px;\n  display: block;\n}\n\n@container (min-width: 300px) {\n  .widget {\n    font-size: 16px;\n  }\n}\n\n@container (min-width: 500px) {\n  .widget {\n    font-size: 18px;\n    display: flex;\n    gap: 16px;\n  }\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"widget-container\" style=\"width:600px;\"><div class=\"widget\"><span>Label</span><span>Value</span></div></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "container-type",
+          "description": "CSS defines a container-type"
+        },
+        {
+          "query": ".widget",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "18px",
+          "description": ".widget font-size is 18px at 600px container"
+        },
+        {
+          "query": ".widget",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": ".widget display is flex at 600px container"
+        },
+        {
+          "query": ".widget",
+          "assertion": "equals",
+          "property": "gap",
+          "value": "16px",
+          "description": ".widget gap is 16px at 600px container"
+        }
+      ],
+      "hints": [
+        "You can have multiple @container rules at different sizes, like media query breakpoints",
+        "Container query units: 1cqw = 1% of container width, 1cqh = 1% of container height",
+        "Define multiple @container (min-width: ...) blocks that progressively enhance the layout"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Container Query Length Units",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries#container_query_length_units",
+          "description": "Use cqw, cqh, and other container-relative units"
+        }
+      ]
+    },
+    {
+      "id": 546,
+      "title": "Named Containers",
+      "type": "css",
+      "tier": 4,
+      "category": [
+        "css",
+        "container-queries"
+      ],
+      "tags": [
+        "css",
+        "container-queries",
+        "container-name",
+        "advanced"
+      ],
+      "description": "Use named containers to target specific query containers.",
+      "instructions": "Named containers let you target a specific ancestor container in your queries.\n\n1. Set `.sidebar` `container-type` to `inline-size` and `container-name` to `sidebar`\n2. Set `.main` `container-type` to `inline-size` and `container-name` to `main`\n3. Write `@container sidebar (min-width: 200px)` to set `.nav-item` `font-size` to `14px`\n4. Write `@container main (min-width: 400px)` to set `.content` `font-size` to `18px`",
+      "starterCode": "/* Use named containers for targeted queries */\n",
+      "solution": ".sidebar {\n  container-type: inline-size;\n  container-name: sidebar;\n}\n\n.main {\n  container-type: inline-size;\n  container-name: main;\n}\n\n@container sidebar (min-width: 200px) {\n  .nav-item {\n    font-size: 14px;\n  }\n}\n\n@container main (min-width: 400px) {\n  .content {\n    font-size: 18px;\n  }\n}",
+      "testRunner": "",
+      "providedHtml": "<div style=\"display:flex;\"><div class=\"sidebar\" style=\"width:250px;\"><div class=\"nav-item\">Nav</div></div><div class=\"main\" style=\"width:500px;\"><div class=\"content\">Content</div></div></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "container-name",
+          "description": "CSS uses container-name"
+        },
+        {
+          "query": ".nav-item",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "14px",
+          "description": ".nav-item font-size is 14px"
+        },
+        {
+          "query": ".content",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "18px",
+          "description": ".content font-size is 18px"
+        }
+      ],
+      "hints": [
+        "container-name gives your container an identifier: container-name: sidebar",
+        "Then query it specifically: @container sidebar (min-width: 200px) { ... }",
+        "This prevents children from accidentally matching an outer container"
+      ],
+      "resources": [
+        {
+          "label": "MDN: container-name",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/container-name",
+          "description": "Name containers for targeted @container queries"
+        }
+      ]
+    },
+    {
+      "id": 547,
+      "title": "CSS Nesting Basics",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "nesting"
+      ],
+      "tags": [
+        "css",
+        "nesting",
+        "syntax",
+        "organization",
+        "intermediate"
+      ],
+      "description": "Use native CSS nesting to write cleaner, more organized stylesheets.",
+      "instructions": "Native CSS nesting lets you nest selectors inside parent rules using `&`.\n\n1. Style `.card` with `padding` of `20px` and `border-radius` of `8px`\n2. Inside `.card`, nest `.card-title` (using `& .card-title` or `.card-title` with nesting) with `font-size` of `20px` and `margin-bottom` of `8px`\n3. Inside `.card`, nest `.card-body` with `font-size` of `14px`",
+      "starterCode": "/* Use CSS nesting */\n",
+      "solution": ".card {\n  padding: 20px;\n  border-radius: 8px;\n\n  .card-title {\n    font-size: 20px;\n    margin-bottom: 8px;\n  }\n\n  .card-body {\n    font-size: 14px;\n  }\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"card\"><h2 class=\"card-title\">Title</h2><p class=\"card-body\">Body text</p></div>",
+      "testCases": [
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "20px",
+          "description": ".card padding is 20px"
+        },
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "8px",
+          "description": ".card border-radius is 8px"
+        },
+        {
+          "query": ".card .card-title",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "20px",
+          "description": ".card .card-title font-size is 20px"
+        },
+        {
+          "query": ".card .card-body",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "14px",
+          "description": ".card .card-body font-size is 14px"
+        }
+      ],
+      "hints": [
+        "Native CSS nesting: put child selectors inside the parent rule block",
+        "You can use & to explicitly reference the parent: & .card-title { ... }",
+        ".card { padding: 20px; border-radius: 8px; .card-title { font-size: 20px; margin-bottom: 8px; } .card-body { font-size: 14px; } }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: CSS Nesting",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting",
+          "description": "Native CSS nesting specification"
+        }
+      ]
+    },
+    {
+      "id": 548,
+      "title": "Nesting with Media Queries",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "nesting"
+      ],
+      "tags": [
+        "css",
+        "nesting",
+        "media-queries",
+        "responsive",
+        "intermediate"
+      ],
+      "description": "Nest @media queries inside selectors for co-located responsive styles.",
+      "instructions": "With CSS nesting, you can place `@media` rules inside selectors — keeping responsive styles next to the properties they modify.\n\n1. Style `.hero` with `padding` of `20px` and `font-size` of `16px`\n2. Inside `.hero`, nest a `@media (min-width: 768px)` rule that changes `padding` to `40px` and `font-size` to `24px`",
+      "starterCode": "/* Nest media queries inside selectors */\n",
+      "solution": ".hero {\n  padding: 20px;\n  font-size: 16px;\n\n  @media (min-width: 768px) {\n    padding: 40px;\n    font-size: 24px;\n  }\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"hero\">Hero content</div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "@media",
+          "description": "CSS contains a @media rule"
+        },
+        {
+          "query": ".hero",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "40px",
+          "description": ".hero padding is 40px (iframe is 800px wide)"
+        },
+        {
+          "query": ".hero",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "24px",
+          "description": ".hero font-size is 24px at 800px width"
+        }
+      ],
+      "hints": [
+        "With nesting, @media goes inside the selector: .hero { @media (...) { ... } }",
+        "The nested @media implicitly applies to .hero — you don't repeat the selector",
+        ".hero { padding: 20px; font-size: 16px; @media (min-width: 768px) { padding: 40px; font-size: 24px; } }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: CSS Nesting At-rules",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Nesting_at-rules",
+          "description": "Nesting @media and other at-rules inside selectors"
+        }
+      ]
+    },
+    {
+      "id": 549,
+      "title": "Nesting with Pseudo-classes",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "nesting"
+      ],
+      "tags": [
+        "css",
+        "nesting",
+        "pseudo-classes",
+        "hover",
+        "focus",
+        "intermediate"
+      ],
+      "description": "Use the & nesting selector with pseudo-classes for interactive styles.",
+      "instructions": "The `&` nesting selector is required when nesting pseudo-classes.\n\n1. Style `.btn` with `padding` of `12px 24px`, `background-color` of `#3b82f6`, `color` of `white`, and `border-radius` of `6px`\n2. Nest `&:hover` inside `.btn` with `background-color` of `#2563eb`\n3. Nest `&:active` inside `.btn` with `background-color` of `#1d4ed8`\n4. Set `.btn` `border` to `none`",
+      "starterCode": "/* Use & for nesting pseudo-classes */\n",
+      "solution": ".btn {\n  padding: 12px 24px;\n  background-color: #3b82f6;\n  color: white;\n  border-radius: 6px;\n  border: none;\n\n  &:hover {\n    background-color: #2563eb;\n  }\n\n  &:active {\n    background-color: #1d4ed8;\n  }\n}",
+      "testRunner": "",
+      "providedHtml": "<button class=\"btn\">Click Me</button>",
+      "testCases": [
+        {
+          "query": ".btn",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "12px 24px",
+          "description": ".btn padding is 12px 24px"
+        },
+        {
+          "query": ".btn",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(59, 130, 246)",
+          "description": ".btn background-color is #3b82f6"
+        },
+        {
+          "query": ".btn",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(255, 255, 255)",
+          "description": ".btn color is white"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "&:hover",
+          "description": "CSS uses &:hover nesting"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "&:active",
+          "description": "CSS uses &:active nesting"
+        }
+      ],
+      "hints": [
+        "& references the parent selector: &:hover means .btn:hover when nested inside .btn",
+        "Pseudo-classes always need & when nesting: &:hover, &:focus, &:active",
+        ".btn { padding: 12px 24px; background-color: #3b82f6; &:hover { background-color: #2563eb; } &:active { background-color: #1d4ed8; } }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Nesting Selector (&)",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Nesting_selector",
+          "description": "The & nesting selector for pseudo-classes and compound selectors"
+        }
+      ]
+    },
+    {
+      "id": 550,
+      "title": "Design Token System",
+      "type": "css",
+      "tier": 4,
+      "category": [
+        "css",
+        "custom-properties"
+      ],
+      "tags": [
+        "css",
+        "custom-properties",
+        "design-tokens",
+        "theming",
+        "system",
+        "advanced"
+      ],
+      "description": "Build a complete design token system with custom properties.",
+      "instructions": "Create a comprehensive design token system on `:root` and apply it.\n\n1. On `:root`, define:\n   - `--color-primary` as `#3b82f6`\n   - `--color-surface` as `#1e293b`\n   - `--color-text` as `#e2e8f0`\n   - `--font-body` as `'Inter', sans-serif`\n   - `--radius-md` as `8px`\n   - `--shadow-md` as `0 4px 12px rgba(0, 0, 0, 0.3)`\n2. Apply to `.card`: background-color from `--color-surface`, color from `--color-text`, font-family from `--font-body`, border-radius from `--radius-md`, box-shadow from `--shadow-md`, and padding of `24px`",
+      "starterCode": "/* Build a design token system */\n",
+      "solution": ":root {\n  --color-primary: #3b82f6;\n  --color-surface: #1e293b;\n  --color-text: #e2e8f0;\n  --font-body: 'Inter', sans-serif;\n  --radius-md: 8px;\n  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);\n}\n\n.card {\n  background-color: var(--color-surface);\n  color: var(--color-text);\n  font-family: var(--font-body);\n  border-radius: var(--radius-md);\n  box-shadow: var(--shadow-md);\n  padding: 24px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"card\"><h2>Token-Driven Card</h2><p>Styled entirely with design tokens.</p></div>",
+      "testCases": [
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(30, 41, 59)",
+          "description": "background uses --color-surface"
+        },
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(226, 232, 240)",
+          "description": "color uses --color-text"
+        },
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "8px",
+          "description": "border-radius uses --radius-md"
+        },
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "24px",
+          "description": "padding is 24px"
+        },
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.3) 0px 4px 12px 0px",
+          "description": "box-shadow uses --shadow-md"
+        }
+      ],
+      "hints": [
+        "Design tokens are a naming convention for custom properties that group values by purpose",
+        "Common categories: --color-*, --font-*, --radius-*, --shadow-*, --space-*",
+        "Define all tokens on :root, then reference them with var(--token-name) throughout your CSS"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Using CSS Custom Properties",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties",
+          "description": "Building design systems with CSS custom properties"
+        }
+      ]
+    },
+    {
+      "id": 551,
+      "title": "Responsive Card Without Media Queries",
+      "type": "css",
+      "tier": 4,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "css",
+        "clamp",
+        "min",
+        "container-queries",
+        "responsive",
+        "advanced"
+      ],
+      "description": "Build a fully responsive card using only modern CSS functions — no media queries.",
+      "instructions": "Create a responsive card using `clamp()`, `min()`, and modern layout features.\n\n1. Set `.card-container` `container-type` to `inline-size`\n2. Set `.card` padding to `clamp(16px, 4cqw, 32px)` — fluid based on container\n3. Set `.card` width to `min(100%, 500px)` — never wider than 500px\n4. Set `.card` `font-size` to `clamp(14px, 2cqw, 18px)` — fluid font\n5. Set `.card` `border-radius` to `8px`",
+      "starterCode": "/* Build a responsive card without @media */\n",
+      "solution": ".card-container {\n  container-type: inline-size;\n}\n\n.card {\n  padding: clamp(16px, 4cqw, 32px);\n  width: min(100%, 500px);\n  font-size: clamp(14px, 2cqw, 18px);\n  border-radius: 8px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"card-container\" style=\"width:600px;\"><div class=\"card\"><h2>Responsive Card</h2><p>This card adapts using only CSS functions.</p></div></div>",
+      "testCases": [
+        {
+          "assertion": "sourceContains",
+          "value": "container-type",
+          "description": "CSS uses container-type"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "clamp(",
+          "description": "CSS uses clamp()"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "min(",
+          "description": "CSS uses min()"
+        },
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "8px",
+          "description": "border-radius is 8px"
+        },
+        {
+          "assertion": "sourceMatch",
+          "value": "min\\(.*500px",
+          "description": "width is constrained to 500px max via min()"
+        }
+      ],
+      "hints": [
+        "clamp(min, preferred, max) with cqw units: fluid sizing based on container width",
+        "min(100%, 500px) acts as a max-width without needing the max-width property",
+        "container-type: inline-size on the parent enables cqw units in the children"
+      ],
+      "resources": [
+        {
+          "label": "MDN: CSS Container Queries",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries",
+          "description": "Container queries and container query units"
+        }
+      ]
+    },
+    {
+      "id": 552,
+      "title": "Dark Mode with Custom Properties",
+      "type": "css",
+      "tier": 4,
+      "category": [
+        "css",
+        "custom-properties"
+      ],
+      "tags": [
+        "css",
+        "custom-properties",
+        "dark-mode",
+        "theming",
+        "data-attributes",
+        "advanced"
+      ],
+      "description": "Implement dark/light mode switching using custom properties and data attributes.",
+      "instructions": "Build a dark/light mode system using custom properties and `[data-theme]` attribute selectors.\n\n1. On `[data-theme=\"dark\"]`, define:\n   - `--bg` as `#0f172a`\n   - `--text` as `#e2e8f0`\n   - `--surface` as `#1e293b`\n2. On `[data-theme=\"light\"]`, define:\n   - `--bg` as `#ffffff`\n   - `--text` as `#1e293b`\n   - `--surface` as `#f1f5f9`\n3. Set `.page` background-color to `var(--bg)` and color to `var(--text)`\n4. Set `.card` background-color to `var(--surface)` and padding to `20px`",
+      "starterCode": "/* Implement dark/light mode with custom properties */\n",
+      "solution": "[data-theme=\"dark\"] {\n  --bg: #0f172a;\n  --text: #e2e8f0;\n  --surface: #1e293b;\n}\n\n[data-theme=\"light\"] {\n  --bg: #ffffff;\n  --text: #1e293b;\n  --surface: #f1f5f9;\n}\n\n.page {\n  background-color: var(--bg);\n  color: var(--text);\n}\n\n.card {\n  background-color: var(--surface);\n  padding: 20px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div data-theme=\"dark\" class=\"page\"><div class=\"card\"><h2>Theme Card</h2><p>This adapts to the theme.</p></div></div>",
+      "testCases": [
+        {
+          "query": ".page",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(15, 23, 42)",
+          "description": ".page bg is dark theme color (#0f172a)"
+        },
+        {
+          "query": ".page",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(226, 232, 240)",
+          "description": ".page text is dark theme color (#e2e8f0)"
+        },
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(30, 41, 59)",
+          "description": ".card bg is dark surface color (#1e293b)"
+        },
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "20px",
+          "description": ".card padding is 20px"
+        }
+      ],
+      "hints": [
+        "Define different variable values under different [data-theme] selectors",
+        "Components use var(--bg) etc. — they don't know which theme is active",
+        "[data-theme='dark'] { --bg: #0f172a; } [data-theme='light'] { --bg: #fff; } Then .page { background-color: var(--bg); }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Attribute Selectors",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors",
+          "description": "Target elements by data-* attributes"
+        }
+      ]
+    },
+    {
+      "id": 553,
+      "title": "Modern Layout Composition",
+      "type": "css",
+      "tier": 5,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "css",
+        "grid",
+        "custom-properties",
+        "clamp",
+        "container-queries",
+        "nesting",
+        "advanced"
+      ],
+      "description": "Compose a complete layout using grid, custom properties, container queries, clamp(), and nesting.",
+      "instructions": "Build a dashboard layout combining multiple modern CSS features.\n\n1. On `:root`, define `--gap` as `16px` and `--radius` as `8px`\n2. Set `.dashboard` to `display: grid` with `grid-template-columns: 250px 1fr` and `gap: var(--gap)`\n3. Set `.dashboard` `container-type` to `inline-size`\n4. Set `.panel` with `background-color` `#1e293b`, `border-radius` `var(--radius)`, and `padding` `clamp(12px, 2cqw, 24px)` (use nesting for organization)\n5. Inside `.panel`, nest `.panel-title` with `font-size` of `18px` and `margin-bottom` of `var(--gap)`\n6. At `@container (max-width: 600px)`, change `.dashboard` to `grid-template-columns: 1fr` (single column)",
+      "starterCode": "/* Build a modern dashboard layout */\n",
+      "solution": ":root {\n  --gap: 16px;\n  --radius: 8px;\n}\n\n.dashboard {\n  display: grid;\n  grid-template-columns: 250px 1fr;\n  gap: var(--gap);\n  container-type: inline-size;\n}\n\n.panel {\n  background-color: #1e293b;\n  border-radius: var(--radius);\n  padding: clamp(12px, 2cqw, 24px);\n\n  .panel-title {\n    font-size: 18px;\n    margin-bottom: var(--gap);\n  }\n}\n\n@container (max-width: 600px) {\n  .dashboard {\n    grid-template-columns: 1fr;\n  }\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"dashboard\"><div class=\"panel\"><h2 class=\"panel-title\">Sidebar</h2><p>Navigation</p></div><div class=\"panel\"><h2 class=\"panel-title\">Main Content</h2><p>Dashboard widgets go here.</p></div></div>",
+      "testCases": [
+        {
+          "query": ".dashboard",
+          "assertion": "equals",
+          "property": "display",
+          "value": "grid",
+          "description": ".dashboard uses display: grid"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "container-type",
+          "description": "CSS uses container queries"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "clamp(",
+          "description": "CSS uses clamp() for fluid sizing"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "var(",
+          "description": "CSS uses custom properties"
+        },
+        {
+          "query": ".panel",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(30, 41, 59)",
+          "description": ".panel background is #1e293b"
+        },
+        {
+          "query": ".panel",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "8px",
+          "description": ".panel border-radius is 8px (from --radius)"
+        },
+        {
+          "query": ".panel .panel-title",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "18px",
+          "description": ".panel-title font-size is 18px"
+        }
+      ],
+      "hints": [
+        "This exercise combines everything: custom properties for tokens, grid for layout, clamp() for fluid sizing, container queries for responsiveness, and nesting for organization",
+        "Start with :root tokens, then the grid layout, then style individual panels with nesting",
+        "The @container query goes outside the nesting — it changes the grid at narrow widths"
+      ],
+      "resources": [
+        {
+          "label": "MDN: CSS Grid Layout",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout",
+          "description": "Complete guide to CSS Grid"
+        },
+        {
+          "label": "MDN: CSS Container Queries",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries",
+          "description": "Style based on container size"
+        }
+      ]
+    }
+  ]
+}

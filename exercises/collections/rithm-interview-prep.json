@@ -1,0 +1,2040 @@
+{
+  "id": "rithm-interview-prep",
+  "name": "Rithm Interview Prep",
+  "description": "Interview-style exercises from Rithm School covering strings, arrays, objects, matrices, and simulation",
+  "color": "#f97316",
+  "source": "Rithm School",
+  "license": "MIT",
+  "attribution": "Interview-style JavaScript exercises covering strings, arrays, objects, and problem-solving. Sourced from [Rithm School](https://rithmschool.com). Used under the MIT License.",
+  "exerciseIds": [
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65
+  ],
+  "exercises": [
+    {
+      "id": 21,
+      "title": "Append to String",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "concatenation",
+        "beginner"
+      ],
+      "description": "Return a new string with the second string appended to the first.",
+      "instructions": "Write a function called `appendToString` that accepts two strings and returns a new string with the second appended to the first.\n\nExamples:\n  appendToString(\"Hello\", \" World!\") → \"Hello World!\"\n  appendToString(\"Foo\", \"bar\")       → \"Foobar\"\n  appendToString(\"\", \"test\")         → \"test\"\n  appendToString(\"other test\", \"\")   → \"other test\"",
+      "starterCode": "function appendToString(str1, str2) {\n  // Your code here\n\n}",
+      "solution": "function appendToString(str1, str2) {\n  return str1 + str2;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return appendToString;')(); return [ { pass: fn('Hello',' World!') === 'Hello World!', description: 'appendToString(\"Hello\", \" World!\") → \"Hello World!\"', got: fn('Hello',' World!') }, { pass: fn('Foo','bar') === 'Foobar', description: 'appendToString(\"Foo\",\"bar\") → \"Foobar\"', got: fn('Foo','bar') }, { pass: fn('bar','Foo') === 'barFoo', description: 'appendToString(\"bar\",\"Foo\") → \"barFoo\"', got: fn('bar','Foo') }, { pass: fn('','test') === 'test', description: 'empty first string → \"test\"', got: fn('','test') }, { pass: fn('other test','') === 'other test', description: 'empty second string → \"other test\"', got: fn('other test','') } ]; }",
+      "hint": "Combining two strings is called concatenation. The + operator joins strings together. Think about what order the strings need to appear in.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "What operator joins two strings together end-to-end?",
+        "Combining two strings is called concatenation. The + operator joins strings together. Think about what order the strings need to appear in.",
+        "Break the problem into smaller steps and handle edge cases."
+      ]
+    },
+    {
+      "id": 22,
+      "title": "Prepend to String",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "concatenation",
+        "beginner"
+      ],
+      "description": "Return a new string with the second string prepended to the first.",
+      "instructions": "Write a function called `prependToString` that accepts two strings and returns a new string with the second prepended to the first.\n\nExamples:\n  prependToString(\"awesome\", \"very\")    → \"veryawesome\"\n  prependToString(\"world\", \"hello \")    → \"hello world\"\n  prependToString(\"nothing\", \"\")         → \"nothing\"",
+      "starterCode": "function prependToString(str1, str2) {\n  // Your code here\n\n}",
+      "solution": "function prependToString(str1, str2) {\n  return str2 + str1;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return prependToString;')(); return [ { pass: fn('awesome','very') === 'veryawesome', description: 'prependToString(\"awesome\",\"very\") → \"veryawesome\"', got: fn('awesome','very') }, { pass: fn('world','hello ') === 'hello world', description: 'prependToString(\"world\",\"hello \") → \"hello world\"', got: fn('world','hello ') }, { pass: fn('nothing','') === 'nothing', description: 'empty second string → \"nothing\"', got: fn('nothing','') } ]; }",
+      "hint": "Prepend means \"put before\". If the second string goes in front, what order do the operands need to be in when you concatenate?",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "If you want the second string to appear before the first, which order do you concatenate them?",
+        "Prepend means \"put before\". If the second string goes in front, what order do the operands need to be in when you concatenate?",
+        "Break the problem into smaller steps and handle edge cases."
+      ]
+    },
+    {
+      "id": 23,
+      "title": "charAt (No Built-in)",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "loops",
+        "indexing",
+        "no-built-ins",
+        "intermediate"
+      ],
+      "description": "Return the character at a given index — without using the built-in charAt method.",
+      "instructions": "Write a function called `charAt` which accepts a string and an index (number) and returns the character at that index.\n\nReturn an empty string if the index is greater than or equal to the length of the string.\n\n**Do not use the built-in `String.prototype.charAt()` method.**\n\nExamples:\n  charAt(\"awesome\", 2)  → \"e\"\n  charAt(\"awesome\", 12) → \"\"",
+      "starterCode": "function charAt(str, idx) {\n  // Do not use str.charAt() — use bracket notation or another approach\n\n}",
+      "solution": "function charAt(str, idx) {\n  if (idx >= str.length) return \"\";\n  return str[idx];\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return charAt;')(); return [ { pass: fn('awesome',2) === 'e', description: 'charAt(\"awesome\",2) → \"e\"', got: fn('awesome',2) }, { pass: fn('awesome',0) === 'a', description: 'charAt(\"awesome\",0) → \"a\"', got: fn('awesome',0) }, { pass: fn('awesome',12) === '', description: 'out-of-bounds → \"\"', got: fn('awesome',12) }, { pass: fn('awesome',6) === 'e', description: 'charAt(\"awesome\",6) → \"e\"', got: fn('awesome',6) } ]; }",
+      "hint": "Strings in JavaScript support bracket notation just like arrays — you can access individual characters with str[index]. What should happen when the index is larger than the last valid position?",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Prototypal inheritance",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain",
+          "description": "Inheritance and the prototype chain"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        }
+      ],
+      "hints": [
+        "How do you access a single character in a string by its position — what syntax uses the index directly?",
+        "Strings in JavaScript support bracket notation just like arrays — you can access individual characters with str[index]. What should happen when the index is larger than the last valid position?",
+        "The function should return a string."
+      ]
+    },
+    {
+      "id": 24,
+      "title": "stringIncludes (No Built-in)",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "loops",
+        "searching",
+        "no-built-ins",
+        "intermediate"
+      ],
+      "description": "Return true if a string contains a character — without using String.includes().",
+      "instructions": "Write a function called `stringIncludes` which accepts two strings: a word and a single character.\n\nReturn `true` if the word contains the character, otherwise `false`.\n\n**Do not use the built-in `String.prototype.includes()` method.**\n\nExamples:\n  stringIncludes(\"awesome\", \"e\") → true\n  stringIncludes(\"awesome\", \"z\") → false",
+      "starterCode": "function stringIncludes(word, char) {\n  // Do not use word.includes()\n\n}",
+      "solution": "function stringIncludes(word, char) {\n  for (let i = 0; i < word.length; i++) {\n    if (word[i] === char) return true;\n  }\n  return false;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return stringIncludes;')(); return [ { pass: fn('awesome','e') === true, description: 'stringIncludes(\"awesome\",\"e\") → true', got: fn('awesome','e') }, { pass: fn('awesome','z') === false, description: 'stringIncludes(\"awesome\",\"z\") → false', got: fn('awesome','z') }, { pass: fn('awesome','a') === true, description: '\"a\" is the first char', got: fn('awesome','a') }, { pass: fn('awesome','e') === true, description: '\"e\" appears at multiple positions', got: fn('awesome','e') } ]; }",
+      "hint": "You can walk through each character of a string with a loop and compare it to the target character. As soon as you find a match, what should you return? What if you finish the loop without finding one?",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Prototypal inheritance",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain",
+          "description": "Inheritance and the prototype chain"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        }
+      ],
+      "hints": [
+        "Start by thinking about string methods and loops and iteration.",
+        "You can walk through each character of a string with a loop and compare it to the target character. As soon as you find a match, what should you return? What if you finish the loop without finding one?",
+        "Use a loop to iterate, then return the accumulated result. The function should return a boolean."
+      ]
+    },
+    {
+      "id": 25,
+      "title": "stringIndexOf (No Built-in)",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "loops",
+        "searching",
+        "no-built-ins",
+        "intermediate"
+      ],
+      "description": "Return the first index of a character in a string — without String.indexOf().",
+      "instructions": "Write a function called `stringIndexOf` which accepts two strings: a word and a single character.\n\nReturn the first index where the character is found, or `-1` if not found.\n\n**Do not use the built-in `String.prototype.indexOf()` method.**\n\nExamples:\n  stringIndexOf(\"awesome\", \"e\") → 2\n  stringIndexOf(\"awesome\", \"z\") → -1",
+      "starterCode": "function stringIndexOf(word, char) {\n  // Do not use word.indexOf()\n\n}",
+      "solution": "function stringIndexOf(word, char) {\n  for (let i = 0; i < word.length; i++) {\n    if (word[i] === char) return i;\n  }\n  return -1;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return stringIndexOf;')(); return [ { pass: fn('awesome','e') === 2, description: 'stringIndexOf(\"awesome\",\"e\") → 2', got: fn('awesome','e') }, { pass: fn('awesome','z') === -1, description: 'not found → -1', got: fn('awesome','z') }, { pass: fn('awesome','a') === 0, description: '\"a\" is at index 0', got: fn('awesome','a') }, { pass: fn('hello','l') === 2, description: 'returns first occurrence for \"hello\",\"l\" → 2', got: fn('hello','l') } ]; }",
+      "hint": "Loop through the string with an index counter. The moment you find a matching character, return that index. If the loop ends without a match, -1 is the conventional \"not found\" sentinel value.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Prototypal inheritance",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain",
+          "description": "Inheritance and the prototype chain"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        }
+      ],
+      "hints": [
+        "How do you walk through each character and check if it matches — and what do you return the moment you find it?",
+        "Loop through the string with an index counter. The moment you find a matching character, return that index. If the loop ends without a match, -1 is the conventional \"not found\" sentinel value.",
+        "Use a loop to iterate, then return the accumulated result."
+      ]
+    },
+    {
+      "id": 26,
+      "title": "stringLastIndexOf (No Built-in)",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "loops",
+        "searching",
+        "no-built-ins",
+        "intermediate"
+      ],
+      "description": "Return the last index of a character in a string — without String.lastIndexOf().",
+      "instructions": "Write a function called `stringLastIndexOf` which accepts two strings: a word and a single character.\n\nReturn the last index where the character appears, or `-1` if not found.\n\n**Do not use the built-in `String.prototype.lastIndexOf()` method.**\n\nExamples:\n  stringLastIndexOf(\"awesome\", \"e\") → 6\n  stringLastIndexOf(\"awesome\", \"z\") → -1",
+      "starterCode": "function stringLastIndexOf(word, char) {\n  // Do not use word.lastIndexOf()\n\n}",
+      "solution": "function stringLastIndexOf(word, char) {\n  for (let i = word.length - 1; i >= 0; i--) {\n    if (word[i] === char) return i;\n  }\n  return -1;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return stringLastIndexOf;')(); return [ { pass: fn('awesome','e') === 6, description: 'stringLastIndexOf(\"awesome\",\"e\") → 6', got: fn('awesome','e') }, { pass: fn('awesome','z') === -1, description: 'not found → -1', got: fn('awesome','z') }, { pass: fn('hello','l') === 3, description: '\"hello\",\"l\" → 3 (last l)', got: fn('hello','l') }, { pass: fn('awesome','a') === 0, description: '\"a\" only appears at 0', got: fn('awesome','a') } ]; }",
+      "hint": "Finding the last occurrence is like finding the first — except you should iterate in reverse, from the end of the string toward the beginning. The first match you find going backwards is the last match going forwards.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Prototypal inheritance",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain",
+          "description": "Inheritance and the prototype chain"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        }
+      ],
+      "hints": [
+        "To find the last match, should you start searching from the beginning or the end of the string?",
+        "Finding the last occurrence is like finding the first — except you should iterate in reverse, from the end of the string toward the beginning. The first match you find going backwards is the last match going forwards.",
+        "Use a loop to iterate, then return the accumulated result."
+      ]
+    },
+    {
+      "id": 27,
+      "title": "repeat (No Built-in)",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "loops",
+        "no-built-ins",
+        "intermediate"
+      ],
+      "description": "Repeat a string n times — without String.repeat().",
+      "instructions": "Write a function called `repeat` which accepts a string and a number and returns the string repeated that many times.\n\n**Do not use the built-in `String.prototype.repeat()` method.**\n\nExamples:\n  repeat(\"Matt\", 3)    → \"MattMattMatt\"\n  repeat(\"Elie\", 2)    → \"ElieElie\"\n  repeat(\"Michael\", 0) → \"\"",
+      "starterCode": "function repeat(str, n) {\n  // Do not use str.repeat()\n\n}",
+      "solution": "function repeat(str, n) {\n  let result = \"\";\n  for (let i = 0; i < n; i++) {\n    result += str;\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return repeat;')(); return [ { pass: fn('Matt',3) === 'MattMattMatt', description: 'repeat(\"Matt\",3) → \"MattMattMatt\"', got: fn('Matt',3) }, { pass: fn('Elie',2) === 'ElieElie', description: 'repeat(\"Elie\",2) → \"ElieElie\"', got: fn('Elie',2) }, { pass: fn('Michael',0) === '', description: 'repeat(\"Michael\",0) → \"\"', got: fn('Michael',0) }, { pass: fn('a',1) === 'a', description: 'repeat(\"a\",1) → \"a\"', got: fn('a',1) } ]; }",
+      "hint": "You need an accumulator that starts empty. Each time through a loop, add the string to it. How many times should the loop run? What should you return when n is 0?",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Prototypal inheritance",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain",
+          "description": "Inheritance and the prototype chain"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        }
+      ],
+      "hints": [
+        "If you start with an empty string and add the original to it n times, what does the final result look like?",
+        "You need an accumulator that starts empty. Each time through a loop, add the string to it. How many times should the loop run? What should you return when n is 0?",
+        "Use a loop to iterate, then return the accumulated result."
+      ]
+    },
+    {
+      "id": 28,
+      "title": "removeFromString",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "slicing",
+        "intermediate"
+      ],
+      "description": "Remove a section of characters from a string given a start index and count.",
+      "instructions": "Write a function called `removeFromString` which accepts a string, a starting index, and a number of characters to remove.\n\nReturn the new string with those characters removed.\n\nExamples:\n  removeFromString(\"Elie\", 2, 2)       → \"El\"\n  removeFromString(\"Elie\", 0, 1)       → \"lie\"\n  removeFromString(\"Rithm School\", 0, 6) → \"School\"\n  removeFromString(\"Rithm School\", 2, 4) → \"RiSchool\"\n  removeFromString(\"Rithm School\", 6, 400) → \"Rithm \"",
+      "starterCode": "function removeFromString(str, startIdx, numChars) {\n  // Your code here\n\n}",
+      "solution": "function removeFromString(str, startIdx, numChars) {\n  return str.slice(0, startIdx) + str.slice(startIdx + numChars);\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return removeFromString;')(); return [ { pass: fn('Elie',2,2) === 'El', description: 'removeFromString(\"Elie\",2,2) → \"El\"', got: fn('Elie',2,2) }, { pass: fn('Elie',0,1) === 'lie', description: 'removeFromString(\"Elie\",0,1) → \"lie\"', got: fn('Elie',0,1) }, { pass: fn('Rithm School',0,6) === 'School', description: 'remove first 6 chars', got: fn('Rithm School',0,6) }, { pass: fn('Rithm School',2,4) === 'RiSchool', description: 'remove from middle', got: fn('Rithm School',2,4) }, { pass: fn('Rithm School',6,400) === 'Rithm ', description: 'large count clips to end', got: fn('Rithm School',6,400) } ]; }",
+      "hint": "Think of the result as two parts joined together: everything before the removal point, and everything after the removal section ends. String.slice() takes a start and end index.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "`slice` is a key tool for this exercise.",
+        "Think of the result as two parts joined together: everything before the removal point, and everything after the removal section ends. String.slice() takes a start and end index.",
+        "Key method(s): `slice`."
+      ]
+    },
+    {
+      "id": 29,
+      "title": "includes (Universal)",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "strings",
+        "objects",
+        "searching",
+        "intermediate"
+      ],
+      "description": "Check if a value exists in a string, array, or object.",
+      "instructions": "Write a function called `includes` which accepts a collection (string, array, or object), a value, and an optional starting index.\n\nReturn `true` if the value exists in the collection from that starting point, otherwise `false`.\n\n- For strings and arrays, the third parameter is the starting index.\n- For objects, search among values (index is ignored).\n\nExamples:\n  includes([1,2,3], 1)        → true\n  includes([1,2,3], 1, 2)     → false\n  includes({a:1,b:2}, 1)      → true\n  includes({a:1,b:2}, \"a\")   → false\n  includes(\"abcd\", \"b\")       → true\n  includes(\"abcd\", \"a\", 2)    → false",
+      "starterCode": "function includes(collection, value, startIdx) {\n  // Handle string, array, and object cases\n\n}",
+      "solution": "function includes(collection, value, startIdx) {\n  if (typeof collection === 'string' || Array.isArray(collection)) {\n    const start = startIdx !== undefined ? startIdx : 0;\n    for (let i = start; i < collection.length; i++) {\n      if (collection[i] === value) return true;\n    }\n    return false;\n  }\n  // object\n  return Object.values(collection).some(v => v === value);\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return includes;')(); return [ { pass: fn([1,2,3],1) === true, description: 'includes([1,2,3],1) → true', got: fn([1,2,3],1) }, { pass: fn([1,2,3],1,2) === false, description: 'includes([1,2,3],1,2) → false (startIdx=2)', got: fn([1,2,3],1,2) }, { pass: fn([1,2,3],6) === false, description: 'value not in array → false', got: fn([1,2,3],6) }, { pass: fn({a:1,b:2},1) === true, description: 'includes({a:1,b:2},1) → true (value exists)', got: fn({a:1,b:2},1) }, { pass: fn({a:1,b:2},'a') === false, description: 'includes({a:1,b:2},\"a\") → false (keys not searched)', got: fn({a:1,b:2},'a') }, { pass: fn('abcd','b') === true, description: 'includes(\"abcd\",\"b\") → true', got: fn('abcd','b') }, { pass: fn('abcd','a',2) === false, description: 'includes(\"abcd\",\"a\",2) → false (startIdx=2)', got: fn('abcd','a',2) } ]; }",
+      "hint": "Three different collection types need three different strategies. For ordered collections (strings, arrays), you can use a loop that starts at the given index. For objects, you only care about values, not keys.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Object",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+          "description": "JavaScript Object reference"
+        }
+      ],
+      "hints": [
+        "What does the input array contain, and what shape should the output be — a new array, a single value, or something else?",
+        "Three different collection types need three different strategies. For ordered collections (strings, arrays), you can use a loop that starts at the given index. For objects, you only care about values, not keys.",
+        "Key method(s): `isArray`, `values`, `some`. Use a loop to iterate, then return the accumulated result. The function should return a boolean."
+      ]
+    },
+    {
+      "id": 30,
+      "title": "indexOf (No Built-in)",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "loops",
+        "searching",
+        "no-built-ins",
+        "intermediate"
+      ],
+      "description": "Return the first index of a value in an array — without Array.indexOf().",
+      "instructions": "Write a function called `indexOf` which accepts an array and a value.\n\nReturn the first index at which the value exists, or `-1` if not found.\n\n**Do not use the built-in `Array.prototype.indexOf()` method.**\n\nExamples:\n  indexOf([5,10,15,20], 20) → 3\n  indexOf([1,2,3,4,5], 2)  → 1\n  indexOf([1,2], 10)        → -1",
+      "starterCode": "function indexOf(arr, value) {\n  // Do not use arr.indexOf()\n\n}",
+      "solution": "function indexOf(arr, value) {\n  for (let i = 0; i < arr.length; i++) {\n    if (arr[i] === value) return i;\n  }\n  return -1;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return indexOf;')(); return [ { pass: fn([5,10,15,20],20) === 3, description: 'indexOf([5,10,15,20],20) → 3', got: fn([5,10,15,20],20) }, { pass: fn([1,2,3,4,5],2) === 1, description: 'indexOf([1,2,3,4,5],2) → 1', got: fn([1,2,3,4,5],2) }, { pass: fn([1,2],10) === -1, description: 'not found → -1', got: fn([1,2],10) }, { pass: fn([1,2,3,1],1) === 0, description: 'returns first occurrence', got: fn([1,2,3,1],1) } ]; }",
+      "hint": "Loop through each element comparing it to the target value. When you find a match, return the current index. If the loop completes without a match, return -1.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Prototypal inheritance",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain",
+          "description": "Inheritance and the prototype chain"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        }
+      ],
+      "hints": [
+        "How do you walk through each element and check if it matches — and what do you return as soon as you find it?",
+        "Loop through each element comparing it to the target value. When you find a match, return the current index. If the loop completes without a match, return -1.",
+        "Use a loop to iterate, then return the accumulated result."
+      ]
+    },
+    {
+      "id": 31,
+      "title": "lastIndexOf (No Built-in)",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "loops",
+        "searching",
+        "no-built-ins",
+        "intermediate"
+      ],
+      "description": "Return the last index of a value in an array — without Array.lastIndexOf().",
+      "instructions": "Write a function called `lastIndexOf` which accepts an array and a value.\n\nReturn the last index where the value exists, or `-1` if not found.\n\n**Do not use the built-in `Array.prototype.lastIndexOf()` method.**\n\nExamples:\n  lastIndexOf([1,2,3,4], 2)    → 1\n  lastIndexOf([1,2,3,4,2], 2)  → 4\n  lastIndexOf([1,2,3,4], 22)   → -1",
+      "starterCode": "function lastIndexOf(arr, value) {\n  // Do not use arr.lastIndexOf()\n\n}",
+      "solution": "function lastIndexOf(arr, value) {\n  for (let i = arr.length - 1; i >= 0; i--) {\n    if (arr[i] === value) return i;\n  }\n  return -1;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return lastIndexOf;')(); return [ { pass: fn([1,2,3,4],2) === 1, description: 'lastIndexOf([1,2,3,4],2) → 1', got: fn([1,2,3,4],2) }, { pass: fn([1,2,3,4,2],2) === 4, description: 'lastIndexOf([1,2,3,4,2],2) → 4', got: fn([1,2,3,4,2],2) }, { pass: fn([1,2,3,4],22) === -1, description: 'not found → -1', got: fn([1,2,3,4],22) }, { pass: fn([5,5,5],5) === 2, description: 'all same: returns last index', got: fn([5,5,5],5) } ]; }",
+      "hint": "To find the last occurrence, iterate from the end of the array toward the beginning. The first match you encounter going backwards is the last match in the original order.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Prototypal inheritance",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain",
+          "description": "Inheritance and the prototype chain"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        }
+      ],
+      "hints": [
+        "To find the last occurrence, which direction should you loop through the array — start to end, or end to start?",
+        "To find the last occurrence, iterate from the end of the array toward the beginning. The first match you encounter going backwards is the last match in the original order.",
+        "Use a loop to iterate, then return the accumulated result."
+      ]
+    },
+    {
+      "id": 32,
+      "title": "max (No Built-in)",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "loops",
+        "comparison",
+        "no-built-ins",
+        "intermediate"
+      ],
+      "description": "Find the highest value in an array — without Math.max().",
+      "instructions": "Write a function called `max` which accepts an array of numbers and returns the highest value.\n\n**Do not use the built-in `Math.max()` function.**\n\nExamples:\n  max([5,1,4,7,1,2])       → 7\n  max([3,4,12,1,8])        → 12\n  max([-1,6,3,2.2,-10,-4]) → 6",
+      "starterCode": "function max(arr) {\n  // Do not use Math.max()\n\n}",
+      "solution": "function max(arr) {\n  let highest = arr[0];\n  for (let i = 1; i < arr.length; i++) {\n    if (arr[i] > highest) highest = arr[i];\n  }\n  return highest;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return max;')(); return [ { pass: fn([5,1,4,7,1,2]) === 7, description: 'max([5,1,4,7,1,2]) → 7', got: fn([5,1,4,7,1,2]) }, { pass: fn([3,4,12,1,8]) === 12, description: 'max([3,4,12,1,8]) → 12', got: fn([3,4,12,1,8]) }, { pass: fn([-1,6,3,2.2,-10,-4]) === 6, description: 'max with negatives → 6', got: fn([-1,6,3,2.2,-10,-4]) }, { pass: fn([42]) === 42, description: 'single element → itself', got: fn([42]) } ]; }",
+      "hint": "Keep a running \"champion\" — start with the first element and compare each subsequent element to it. Whenever you find something larger, it becomes the new champion. At the end, return whoever won.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Math",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math",
+          "description": "JavaScript Math reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        }
+      ],
+      "hints": [
+        "If you assume the first element is the biggest, how do you walk through the rest and update your answer when you find something larger?",
+        "Keep a running \"champion\" — start with the first element and compare each subsequent element to it. Whenever you find something larger, it becomes the new champion. At the end, return whoever won.",
+        "Use a loop to iterate, then return the accumulated result."
+      ]
+    },
+    {
+      "id": 33,
+      "title": "min (No Built-in)",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "loops",
+        "comparison",
+        "no-built-ins",
+        "intermediate"
+      ],
+      "description": "Find the lowest value in an array — without Math.min().",
+      "instructions": "Write a function called `min` which accepts an array of numbers and returns the lowest value.\n\n**Do not use the built-in `Math.min()` function.**\n\nExamples:\n  min([5,1,4,7,1,2])       → 1\n  min([-1,6,3,2.2,-10,-4]) → -10",
+      "starterCode": "function min(arr) {\n  // Do not use Math.min()\n\n}",
+      "solution": "function min(arr) {\n  let lowest = arr[0];\n  for (let i = 1; i < arr.length; i++) {\n    if (arr[i] < lowest) lowest = arr[i];\n  }\n  return lowest;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return min;')(); return [ { pass: fn([5,1,4,7,1,2]) === 1, description: 'min([5,1,4,7,1,2]) → 1', got: fn([5,1,4,7,1,2]) }, { pass: fn([-1,6,3,2.2,-10,-4]) === -10, description: 'min with negatives → -10', got: fn([-1,6,3,2.2,-10,-4]) }, { pass: fn([100,200,50]) === 50, description: 'min([100,200,50]) → 50', got: fn([100,200,50]) }, { pass: fn([-5]) === -5, description: 'single element → itself', got: fn([-5]) } ]; }",
+      "hint": "The same \"running champion\" pattern as max — but this time you update whenever you find something smaller, not larger.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Math",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math",
+          "description": "JavaScript Math reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        }
+      ],
+      "hints": [
+        "If you assume the first element is the smallest, how do you update your answer as you check each remaining element?",
+        "The same \"running champion\" pattern as max — but this time you update whenever you find something smaller, not larger.",
+        "Use a loop to iterate, then return the accumulated result."
+      ]
+    },
+    {
+      "id": 34,
+      "title": "slice (No Built-in)",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "loops",
+        "slicing",
+        "no-built-ins",
+        "intermediate"
+      ],
+      "description": "Return a slice of an array from start to end — without Array.slice().",
+      "instructions": "Write a function called `slice` which accepts an array and two numbers (start, end).\n\nReturn a new array with elements from startIdx up to (but not including) endIdx.\n\nIf end is not provided, slice to the end of the array. If end exceeds the length, also slice to the end.\n\n**Do not use the built-in `Array.prototype.slice()` method.**\n\nExamples:\n  slice([1,2,3,4,5], 0, 2)  → [1,2]\n  slice([1,2,3,4,5], 2, 4)  → [3,4]\n  slice([1,2,3,4,5], 2)     → [3,4,5]\n  slice([1,2,3,4,5], 2, 10) → [3,4,5]",
+      "starterCode": "function slice(arr, startIdx, endIdx) {\n  // Do not use arr.slice()\n\n}",
+      "solution": "function slice(arr, startIdx, endIdx) {\n  const end = endIdx === undefined ? arr.length : Math.min(endIdx, arr.length);\n  const result = [];\n  for (let i = startIdx; i < end; i++) {\n    result.push(arr[i]);\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return slice;')(); return [ { pass: JSON.stringify(fn([1,2,3,4,5],0,2)) === '[1,2]', description: 'slice([1,2,3,4,5],0,2) → [1,2]', got: JSON.stringify(fn([1,2,3,4,5],0,2)) }, { pass: JSON.stringify(fn([1,2,3,4,5],2,4)) === '[3,4]', description: 'slice([1,2,3,4,5],2,4) → [3,4]', got: JSON.stringify(fn([1,2,3,4,5],2,4)) }, { pass: JSON.stringify(fn([1,2,3,4,5],2)) === '[3,4,5]', description: 'no end → slices to end', got: JSON.stringify(fn([1,2,3,4,5],2)) }, { pass: JSON.stringify(fn([1,2,3,4,5],2,10)) === '[3,4,5]', description: 'end > length → clips to end', got: JSON.stringify(fn([1,2,3,4,5],2,10)) } ]; }",
+      "hint": "Build a new array by looping from startIdx to endIdx. You need to handle two edge cases: when endIdx is not provided at all, and when it is larger than the array length.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Prototypal inheritance",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain",
+          "description": "Inheritance and the prototype chain"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        }
+      ],
+      "hints": [
+        "To copy a portion of an array, you need a start and end index — how do you loop through just that range and collect elements?",
+        "Build a new array by looping from startIdx to endIdx. You need to handle two edge cases: when endIdx is not provided at all, and when it is larger than the array length.",
+        "Key method(s): `min`, `Math.min`. Use a loop to iterate, then return the accumulated result. The function should return an array."
+      ]
+    },
+    {
+      "id": 35,
+      "title": "countValues",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "loops",
+        "counting",
+        "beginner"
+      ],
+      "description": "Count how many times a value appears in an array.",
+      "instructions": "Write a function called `countValues` which accepts an array and a value and returns the number of times that value appears in the array.\n\nExamples:\n  countValues([4,1,4,2,3,4,4], 4)   → 4\n  countValues([4,1,4,2,3,4,4], 100) → 0\n  countValues([], 1)                  → 0",
+      "starterCode": "function countValues(arr, value) {\n  // Your code here\n\n}",
+      "solution": "function countValues(arr, value) {\n  let count = 0;\n  for (let i = 0; i < arr.length; i++) {\n    if (arr[i] === value) count++;\n  }\n  return count;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return countValues;')(); return [ { pass: fn([4,1,4,2,3,4,4],4) === 4, description: 'countValues([4,1,4,2,3,4,4],4) → 4', got: fn([4,1,4,2,3,4,4],4) }, { pass: fn([4,1,4,2,3,4,4],100) === 0, description: 'value not present → 0', got: fn([4,1,4,2,3,4,4],100) }, { pass: fn([],1) === 0, description: 'empty array → 0', got: fn([],1) }, { pass: fn([1,1,1],1) === 3, description: 'all matching → 3', got: fn([1,1,1],1) } ]; }",
+      "hint": "Use a counter variable that starts at 0 and increments every time you find a matching element while looping.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "As you loop through the array, how do you keep a running count of matches?",
+        "Use a counter variable that starts at 0 and increments every time you find a matching element while looping.",
+        "Use a loop to iterate, then return the accumulated result. The function should return a number."
+      ]
+    },
+    {
+      "id": 36,
+      "title": "keys (No Built-in)",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "loops",
+        "no-built-ins",
+        "intermediate"
+      ],
+      "description": "Return an array of all property names in an object — without Object.keys().",
+      "instructions": "Write a function called `keys` which accepts an object and returns an array of all its keys.\n\n**Do not use the built-in `Object.keys()` function.**\n\nExamples:\n  keys({ a: 1, b: 2, c: 3 })          → [\"a\",\"b\",\"c\"]\n  keys({ first: \"Matt\", last: \"Lane\" }) → [\"first\",\"last\"]\n  keys({})                              → []",
+      "starterCode": "function keys(obj) {\n  // Do not use Object.keys()\n\n}",
+      "solution": "function keys(obj) {\n  const result = [];\n  for (let key in obj) {\n    if (obj.hasOwnProperty(key)) result.push(key);\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return keys;')(); const r1 = fn({a:1,b:2,c:3}); const r2 = fn({}); return [ { pass: r1.includes('a') && r1.includes('b') && r1.includes('c') && r1.length === 3, description: 'keys({a:1,b:2,c:3}) → [\"a\",\"b\",\"c\"]', got: JSON.stringify(r1) }, { pass: JSON.stringify(r2) === '[]', description: 'keys({}) → []', got: JSON.stringify(r2) }, { pass: fn({x:10}).includes('x'), description: 'single key object', got: JSON.stringify(fn({x:10})) } ]; }",
+      "hint": "The for...in loop iterates over the enumerable property names of an object. You can collect them by pushing each key into an array.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Object",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+          "description": "JavaScript Object reference"
+        },
+        {
+          "label": "MDN: Object.keys()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys",
+          "description": "The Object.keys method"
+        }
+      ],
+      "hints": [
+        "How do you loop through an object's own properties and collect just the key names into an array?",
+        "The for...in loop iterates over the enumerable property names of an object. You can collect them by pushing each key into an array.",
+        "Key method(s): `hasOwnProperty`. Use a loop to iterate, then return the accumulated result. The function should return an array."
+      ]
+    },
+    {
+      "id": 37,
+      "title": "values (No Built-in)",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "loops",
+        "no-built-ins",
+        "intermediate"
+      ],
+      "description": "Return an array of all property values in an object — without Object.values().",
+      "instructions": "Write a function called `values` which accepts an object and returns an array of all its values.\n\n**Do not use the built-in `Object.values()` function.**\n\nExamples:\n  values({ a: 1, b: 2, c: 3 })                         → [1,2,3]\n  values({ first: \"Matt\", last: \"Lane\", isDogOwner: true }) → [\"Matt\",\"Lane\",true]\n  values({})                                             → []",
+      "starterCode": "function values(obj) {\n  // Do not use Object.values()\n\n}",
+      "solution": "function values(obj) {\n  const result = [];\n  for (let key in obj) {\n    if (obj.hasOwnProperty(key)) result.push(obj[key]);\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return values;')(); const r1 = fn({a:1,b:2,c:3}); const r2 = fn({}); return [ { pass: r1.includes(1) && r1.includes(2) && r1.includes(3) && r1.length === 3, description: 'values({a:1,b:2,c:3}) → [1,2,3]', got: JSON.stringify(r1) }, { pass: JSON.stringify(r2) === '[]', description: 'values({}) → []', got: JSON.stringify(r2) }, { pass: fn({isDogOwner:true})[0] === true, description: 'boolean value preserved', got: JSON.stringify(fn({isDogOwner:true})) } ]; }",
+      "hint": "Similar to keys, but instead of collecting the property name, collect the property value using bracket notation: obj[key].",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Object",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+          "description": "JavaScript Object reference"
+        },
+        {
+          "label": "MDN: Object.values()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values",
+          "description": "The Object.values method"
+        }
+      ],
+      "hints": [
+        "If you loop through an object's keys, how do you access the value for each key?",
+        "Similar to keys, but instead of collecting the property name, collect the property value using bracket notation: obj[key].",
+        "Key method(s): `hasOwnProperty`. Use a loop to iterate, then return the accumulated result. The function should return an array."
+      ]
+    },
+    {
+      "id": 38,
+      "title": "squareEvenNumbers",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "loops",
+        "modulo",
+        "intermediate"
+      ],
+      "description": "Sum the squares of all even numbers in an array.",
+      "instructions": "Write a function called `squareEvenNumbers` which accepts an array of numbers and returns the sum of all even numbers squared.\n\nExamples:\n  squareEvenNumbers([1,2,3,4,5]) → 20\n  squareEvenNumbers([1,3,5,7])   → 0\n  squareEvenNumbers([5,6,7])     → 36",
+      "starterCode": "function squareEvenNumbers(arr) {\n  // Your code here\n\n}",
+      "solution": "function squareEvenNumbers(arr) {\n  let sum = 0;\n  for (let i = 0; i < arr.length; i++) {\n    if (arr[i] % 2 === 0) sum += arr[i] * arr[i];\n  }\n  return sum;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return squareEvenNumbers;')(); return [ { pass: fn([1,2,3,4,5]) === 20, description: 'squareEvenNumbers([1,2,3,4,5]) → 20', got: fn([1,2,3,4,5]) }, { pass: fn([1,3,5,7]) === 0, description: 'no evens → 0', got: fn([1,3,5,7]) }, { pass: fn([5,6,7]) === 36, description: 'squareEvenNumbers([5,6,7]) → 36', got: fn([5,6,7]) }, { pass: fn([]) === 0, description: 'empty array → 0', got: fn([]) } ]; }",
+      "hint": "Combine two concepts: filtering for even numbers (modulo 2 equals 0) and accumulating a sum. For each even number, add its square to a running total.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        },
+        {
+          "label": "MDN: Remainder (%)",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Remainder",
+          "description": "The remainder operator"
+        }
+      ],
+      "hints": [
+        "You need to both filter (only evens) and accumulate (sum of squares) — can you do both in one pass through the array?",
+        "Combine two concepts: filtering for even numbers (modulo 2 equals 0) and accumulating a sum. For each even number, add its square to a running total.",
+        "Use a loop to iterate, then return the accumulated result. The function should return a number."
+      ]
+    },
+    {
+      "id": 39,
+      "title": "entries (No Built-in)",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "arrays",
+        "loops",
+        "no-built-ins",
+        "intermediate"
+      ],
+      "description": "Return key-value pairs as an array of arrays — without Object.entries().",
+      "instructions": "Write a function called `entries` which accepts an object and returns an array of [key, value] pairs.\n\n**Do not use the built-in `Object.entries()` function.**\n\nExamples:\n  entries({ a: 1, b: 2, c: 3 })\n  → [[\"a\",1],[\"b\",2],[\"c\",3]]\n\n  entries({})\n  → []",
+      "starterCode": "function entries(obj) {\n  // Do not use Object.entries()\n\n}",
+      "solution": "function entries(obj) {\n  const result = [];\n  for (let key in obj) {\n    if (obj.hasOwnProperty(key)) result.push([key, obj[key]]);\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return entries;')(); const r1 = fn({a:1,b:2,c:3}); const r2 = fn({}); const hasPair = (arr, k, v) => arr.some(pair => pair[0] === k && pair[1] === v); return [ { pass: hasPair(r1,'a',1) && hasPair(r1,'b',2) && hasPair(r1,'c',3) && r1.length === 3, description: 'entries({a:1,b:2,c:3}) → [[\"a\",1],[\"b\",2],[\"c\",3]]', got: JSON.stringify(r1) }, { pass: JSON.stringify(r2) === '[]', description: 'entries({}) → []', got: JSON.stringify(r2) }, { pass: r1.every(p => Array.isArray(p) && p.length === 2), description: 'each entry is a 2-element array', got: 'checked structure' } ]; }",
+      "hint": "You need to produce pairs of [key, value]. Use a for...in loop: for each property, push a new two-element array containing the key and its corresponding value.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Object",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+          "description": "JavaScript Object reference"
+        },
+        {
+          "label": "MDN: Object.entries()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries",
+          "description": "The Object.entries method"
+        }
+      ],
+      "hints": [
+        "Start by thinking about object manipulation and array methods.",
+        "You need to produce pairs of [key, value]. Use a for...in loop: for each property, push a new two-element array containing the key and its corresponding value.",
+        "Key method(s): `hasOwnProperty`. Use a loop to iterate, then return the accumulated result. The function should return an array."
+      ]
+    },
+    {
+      "id": 40,
+      "title": "multiples",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "loops"
+      ],
+      "tags": [
+        "loops",
+        "arrays",
+        "math",
+        "beginner"
+      ],
+      "description": "Return the first n multiples of a number.",
+      "instructions": "Write a function called `multiples` that accepts two numbers `x` and `n`.\n\nReturn an array of the first `n` multiples of `x`.\n\nExamples:\n  multiples(3, 4) → [3,6,9,12]\n  multiples(2, 5) → [2,4,6,8,10]",
+      "starterCode": "function multiples(x, n) {\n  // Your code here\n\n}",
+      "solution": "function multiples(x, n) {\n  const result = [];\n  for (let i = 1; i <= n; i++) {\n    result.push(x * i);\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return multiples;')(); return [ { pass: JSON.stringify(fn(3,4)) === '[3,6,9,12]', description: 'multiples(3,4) → [3,6,9,12]', got: JSON.stringify(fn(3,4)) }, { pass: JSON.stringify(fn(2,5)) === '[2,4,6,8,10]', description: 'multiples(2,5) → [2,4,6,8,10]', got: JSON.stringify(fn(2,5)) }, { pass: JSON.stringify(fn(5,1)) === '[5]', description: 'multiples(5,1) → [5]', got: JSON.stringify(fn(5,1)) }, { pass: JSON.stringify(fn(10,3)) === '[10,20,30]', description: 'multiples(10,3) → [10,20,30]', got: JSON.stringify(fn(10,3)) } ]; }",
+      "hint": "The first multiple of x is x * 1, the second is x * 2, and so on. Loop from 1 to n, computing x * i each time and collecting the results.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "The first n multiples of x are x*1, x*2, ... x*n — how do you build that list with a loop?",
+        "The first multiple of x is x * 1, the second is x * 2, and so on. Loop from 1 to n, computing x * i each time and collecting the results.",
+        "Use a loop to iterate, then return the accumulated result. The function should return an array."
+      ]
+    },
+    {
+      "id": 41,
+      "title": "pluck",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "objects",
+        "map",
+        "intermediate"
+      ],
+      "description": "Extract a specific property from each object in an array.",
+      "instructions": "Write a function called `pluck` which accepts an array of objects and a key name.\n\nReturn an array of the values for that key in each object (or `undefined` if the key is absent).\n\nExamples:\n  pluck([{name:\"Tim\"},{name:\"Matt\"},{name:\"Elie\"}], \"name\")\n  → [\"Tim\",\"Matt\",\"Elie\"]\n\n  pluck([{name:\"Tim\",isBoatOwner:true},{name:\"Matt\",isBoatOwner:false},{name:\"Elie\"}], \"isBoatOwner\")\n  → [true,false,undefined]",
+      "starterCode": "function pluck(arr, key) {\n  // Your code here\n\n}",
+      "solution": "function pluck(arr, key) {\n  return arr.map(obj => obj[key]);\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return pluck;')(); const r1 = fn([{name:'Tim'},{name:'Matt'},{name:'Elie'}],'name'); const r2 = fn([{name:'Tim',isBoatOwner:true},{name:'Matt',isBoatOwner:false},{name:'Elie'}],'isBoatOwner'); return [ { pass: JSON.stringify(r1) === '[\"Tim\",\"Matt\",\"Elie\"]', description: 'pluck names → [\"Tim\",\"Matt\",\"Elie\"]', got: JSON.stringify(r1) }, { pass: r2[0] === true && r2[1] === false && r2[2] === undefined, description: 'pluck isBoatOwner → [true,false,undefined]', got: JSON.stringify(r2) }, { pass: JSON.stringify(fn([],'name')) === '[]', description: 'empty array → []', got: JSON.stringify(fn([],'name')) } ]; }",
+      "hint": "This is a classic use case for .map(). Transform each object in the array into just the value at the specified key. Bracket notation (obj[key]) lets you access a property dynamically.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Array.prototype.map()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map",
+          "description": "The map method"
+        },
+        {
+          "label": "MDN: Object",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+          "description": "JavaScript Object reference"
+        }
+      ],
+      "hints": [
+        "Consider how `map` works.",
+        "This is a classic use case for .map(). Transform each object in the array into just the value at the specified key. Bracket notation (obj[key]) lets you access a property dynamically.",
+        "Key method(s): `map`. Map each element to its transformed value. The function should return an array."
+      ]
+    },
+    {
+      "id": 42,
+      "title": "twoHighest",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "loops",
+        "comparison",
+        "no-built-ins",
+        "intermediate"
+      ],
+      "description": "Find the two highest numbers in an array — without Array.sort().",
+      "instructions": "Write a function called `twoHighest` that accepts an array of numbers and returns the two highest values as `[secondHighest, highest]`.\n\n**Do not use the built-in `Array.prototype.sort()` method.**\n\nExamples:\n  twoHighest([1,2,10,8])         → [8,10]\n  twoHighest([6,1,9,10,4])       → [9,10]\n  twoHighest([4,25,3,20,19,5])   → [20,25]\n  twoHighest([1,2,2])            → [2,2]",
+      "starterCode": "function twoHighest(arr) {\n  // Do not use arr.sort()\n  // Return [secondHighest, highest]\n\n}",
+      "solution": "function twoHighest(arr) {\n  let highest = -Infinity;\n  let second = -Infinity;\n  for (let i = 0; i < arr.length; i++) {\n    if (arr[i] >= highest) {\n      second = highest;\n      highest = arr[i];\n    } else if (arr[i] > second) {\n      second = arr[i];\n    }\n  }\n  return [second, highest];\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return twoHighest;')(); return [ { pass: JSON.stringify(fn([1,2,10,8])) === '[8,10]', description: 'twoHighest([1,2,10,8]) → [8,10]', got: JSON.stringify(fn([1,2,10,8])) }, { pass: JSON.stringify(fn([6,1,9,10,4])) === '[9,10]', description: 'twoHighest([6,1,9,10,4]) → [9,10]', got: JSON.stringify(fn([6,1,9,10,4])) }, { pass: JSON.stringify(fn([4,25,3,20,19,5])) === '[20,25]', description: 'twoHighest([4,25,3,20,19,5]) → [20,25]', got: JSON.stringify(fn([4,25,3,20,19,5])) }, { pass: JSON.stringify(fn([1,2,2])) === '[2,2]', description: 'twoHighest([1,2,2]) → [2,2] (duplicates)', got: JSON.stringify(fn([1,2,2])) } ]; }",
+      "hint": "Track two variables simultaneously: the highest value seen so far, and the second highest. When a new number beats the current highest, the old highest becomes the new second. When it only beats the second, update just that.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Array.prototype.sort()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+          "description": "The sort method"
+        },
+        {
+          "label": "MDN: Prototypal inheritance",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain",
+          "description": "Inheritance and the prototype chain"
+        }
+      ],
+      "hints": [
+        "You need to track two values as you iterate — how do you update both when you find a new number that is bigger than either?",
+        "Track two variables simultaneously: the highest value seen so far, and the second highest. When a new number beats the current highest, the old highest becomes the new second. When it only beats the second, update just that.",
+        "Use a loop to iterate, then return the accumulated result. The function should return an array."
+      ]
+    },
+    {
+      "id": 43,
+      "title": "minMaxKeyInObject",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "loops",
+        "comparison",
+        "intermediate"
+      ],
+      "description": "Find the minimum and maximum numeric keys in an object.",
+      "instructions": "Write a function called `minMaxKeyInObject` that accepts an object with numeric keys.\n\nReturn `[lowestKey, highestKey]`.\n\nExamples:\n  minMaxKeyInObject({ 2:\"a\", 7:\"b\", 1:\"c\", 10:\"d\", 4:\"e\" })\n  → [1,10]\n\n  minMaxKeyInObject({ 1:\"Elie\", 4:\"Matt\", 2:\"Tim\" })\n  → [1,4]",
+      "starterCode": "function minMaxKeyInObject(obj) {\n  // Your code here\n\n}",
+      "solution": "function minMaxKeyInObject(obj) {\n  const numKeys = Object.keys(obj).map(Number);\n  let min = numKeys[0];\n  let max = numKeys[0];\n  for (let i = 1; i < numKeys.length; i++) {\n    if (numKeys[i] < min) min = numKeys[i];\n    if (numKeys[i] > max) max = numKeys[i];\n  }\n  return [min, max];\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return minMaxKeyInObject;')(); return [ { pass: JSON.stringify(fn({2:'a',7:'b',1:'c',10:'d',4:'e'})) === '[1,10]', description: 'minMaxKeyInObject({2,7,1,10,4}) → [1,10]', got: JSON.stringify(fn({2:'a',7:'b',1:'c',10:'d',4:'e'})) }, { pass: JSON.stringify(fn({1:'Elie',4:'Matt',2:'Tim'})) === '[1,4]', description: 'minMaxKeyInObject({1,4,2}) → [1,4]', got: JSON.stringify(fn({1:'Elie',4:'Matt',2:'Tim'})) }, { pass: JSON.stringify(fn({5:'only'})) === '[5,5]', description: 'single key → [5,5]', got: JSON.stringify(fn({5:'only'})) } ]; }",
+      "hint": "Object keys are always strings, even when they look like numbers. Get the keys, convert them to numbers, then find both the minimum and maximum in a single pass.",
+      "resources": [
+        {
+          "label": "MDN: Object",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+          "description": "JavaScript Object reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "`keys` is a key tool for this exercise.",
+        "Object keys are always strings, even when they look like numbers. Get the keys, convert them to numbers, then find both the minimum and maximum in a single pass.",
+        "Key method(s): `keys`, `map`, `Object.keys`. Use a loop to iterate, then return the accumulated result. The function should return an array."
+      ]
+    },
+    {
+      "id": 44,
+      "title": "stringFromObject",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "strings",
+        "loops",
+        "intermediate"
+      ],
+      "description": "Build a \"key = value\" string from an object's entries.",
+      "instructions": "Write a function called `stringFromObject` that generates a string from an object's key-value pairs in the format `\"key = value, key = value\"`.\n\nPairs are separated by \", \" except the last one.\n\nExamples:\n  stringFromObject({ a: 1, b: \"2\" })\n  → \"a = 1, b = 2\"\n\n  stringFromObject({ name: \"Elie\", job: \"Instructor\", isCatOwner: false })\n  → \"name = Elie, job = Instructor, isCatOwner = false\"\n\n  stringFromObject({})\n  → \"\"",
+      "starterCode": "function stringFromObject(obj) {\n  // Your code here\n\n}",
+      "solution": "function stringFromObject(obj) {\n  return Object.entries(obj)\n    .map(([k, v]) => k + ' = ' + v)\n    .join(', ');\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return stringFromObject;')(); return [ { pass: fn({a:1,b:'2'}) === 'a = 1, b = 2', description: 'stringFromObject({a:1,b:\"2\"}) → \"a = 1, b = 2\"', got: fn({a:1,b:'2'}) }, { pass: fn({name:'Elie',job:'Instructor',isCatOwner:false}) === 'name = Elie, job = Instructor, isCatOwner = false', description: 'multi-property object', got: fn({name:'Elie',job:'Instructor',isCatOwner:false}) }, { pass: fn({}) === '', description: 'empty object → \"\"', got: fn({}) } ]; }",
+      "hint": "Build an array of \"key = value\" strings, one per pair, then join them with \", \". The tricky part is that you need no separator after the last pair — which join() handles automatically.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Object",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+          "description": "JavaScript Object reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        }
+      ],
+      "hints": [
+        "How do you get both keys and values from an object and format each pair into a string?",
+        "Build an array of \"key = value\" strings, one per pair, then join them with \", \". The tricky part is that you need no separator after the last pair — which join() handles automatically.",
+        "Key method(s): `entries`, `map`, `join`. Map each element to its transformed value. The function should return a string."
+      ]
+    },
+    {
+      "id": 45,
+      "title": "countNumbers",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "strings",
+        "type-conversion",
+        "beginner"
+      ],
+      "description": "Count how many strings in an array can be converted to a valid number.",
+      "instructions": "Write a function called `countNumbers` which accepts an array of strings and returns a count of how many can be successfully converted to a number.\n\nExamples:\n  countNumbers([\"a\",\"b\",\"3\",\"awesome\",\"4\"])     → 2\n  countNumbers([\"32\",\"55\",\"awesome\",\"test\",\"100\"]) → 3\n  countNumbers([\"4\",\"1\",\"0\",\"NaN\"])               → 3\n  countNumbers([\"7\",\"12\",\"a\",\"\",\"6\",\"8\",\" \"])     → 4",
+      "starterCode": "function countNumbers(arr) {\n  // Your code here\n\n}",
+      "solution": "function countNumbers(arr) {\n  let count = 0;\n  for (let i = 0; i < arr.length; i++) {\n    if (arr[i] !== '' && arr[i].trim() !== '' && !isNaN(Number(arr[i]))) count++;\n  }\n  return count;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return countNumbers;')(); return [ { pass: fn(['a','b','3','awesome','4']) === 2, description: 'countNumbers([\"a\",\"b\",\"3\",\"awesome\",\"4\"]) → 2', got: fn(['a','b','3','awesome','4']) }, { pass: fn(['32','55','awesome','test','100']) === 3, description: 'countNumbers([\"32\",\"55\",\"awesome\",\"test\",\"100\"]) → 3', got: fn(['32','55','awesome','test','100']) }, { pass: fn(['4','1','0','NaN']) === 3, description: '\"NaN\" does not count as a number', got: fn(['4','1','0','NaN']) }, { pass: fn(['7','12','a','','6','8',' ']) === 4, description: 'empty string and whitespace do not count', got: fn(['7','12','a','','6','8',' ']) } ]; }",
+      "hint": "Number() converts a string to a number, and isNaN() tells you if the result is \"Not a Number\". Watch out for edge cases: empty strings and whitespace-only strings convert to 0, which is a valid number in one sense, but the problem excludes them.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "The `trim` method will be helpful here.",
+        "Number() converts a string to a number, and isNaN() tells you if the result is \"Not a Number\". Watch out for edge cases: empty strings and whitespace-only strings convert to 0, which is a valid number in one sense, but the problem excludes them.",
+        "Key method(s): `trim`, `isNaN`. Use a loop to iterate, then return the accumulated result. The function should return a number."
+      ]
+    },
+    {
+      "id": 46,
+      "title": "removeVowels",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "loops",
+        "filtering",
+        "beginner"
+      ],
+      "description": "Return a string with all vowels removed.",
+      "instructions": "Write a function called `removeVowels` which accepts a string and returns a new string with all vowels (a, e, i, o, u) removed. \"y\" is not a vowel.\n\nExamples:\n  removeVowels(\"Hello!\")                         → \"Hll!\"\n  removeVowels(\"Tomatoes\")                        → \"Tmts\"\n  removeVowels(\"aeiou\")                           → \"\"\n  removeVowels(\"why try, shy fly?\")               → \"why try, shy fly?\"",
+      "starterCode": "function removeVowels(str) {\n  // Your code here\n\n}",
+      "solution": "function removeVowels(str) {\n  const vowels = 'aeiouAEIOU';\n  let result = '';\n  for (let i = 0; i < str.length; i++) {\n    if (!vowels.includes(str[i])) result += str[i];\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return removeVowels;')(); return [ { pass: fn('Hello!') === 'Hll!', description: 'removeVowels(\"Hello!\") → \"Hll!\"', got: fn('Hello!') }, { pass: fn('Tomatoes') === 'Tmts', description: 'removeVowels(\"Tomatoes\") → \"Tmts\"', got: fn('Tomatoes') }, { pass: fn('aeiou') === '', description: 'all vowels → \"\"', got: fn('aeiou') }, { pass: fn('why try, shy fly?') === 'why try, shy fly?', description: 'no vowels → unchanged', got: fn('why try, shy fly?') }, { pass: fn('Reverse Vowels In The String') === 'Rvrs Vwls n Th Strng', description: 'mixed case vowel removal', got: fn('Reverse Vowels In The String') } ]; }",
+      "hint": "Build a result by including only non-vowel characters. You need to handle both uppercase and lowercase vowels. One approach: define a string of all vowels and check if each character is in it.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: try...catch",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch",
+          "description": "The try...catch statement"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        }
+      ],
+      "hints": [
+        "Consider how `includes` works.",
+        "Build a result by including only non-vowel characters. You need to handle both uppercase and lowercase vowels. One approach: define a string of all vowels and check if each character is in it.",
+        "Key method(s): `includes`. Use a loop to iterate, then return the accumulated result. The function should return a boolean."
+      ]
+    },
+    {
+      "id": 47,
+      "title": "findTheDuplicate",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "objects",
+        "frequency-counter",
+        "intermediate"
+      ],
+      "description": "Find the single duplicate number in an array.",
+      "instructions": "Write a function called `findTheDuplicate` which accepts an array of numbers containing exactly one duplicate. Return the duplicate number, or `undefined` if none exists.\n\nExamples:\n  findTheDuplicate([1,2,1,4,3,12]) → 1\n  findTheDuplicate([6,1,9,5,3,4,9]) → 9\n  findTheDuplicate([2,1,3,4])       → undefined",
+      "starterCode": "function findTheDuplicate(arr) {\n  // Your code here\n\n}",
+      "solution": "function findTheDuplicate(arr) {\n  const seen = {};\n  for (let i = 0; i < arr.length; i++) {\n    if (seen[arr[i]]) return arr[i];\n    seen[arr[i]] = true;\n  }\n  return undefined;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return findTheDuplicate;')(); return [ { pass: fn([1,2,1,4,3,12]) === 1, description: 'findTheDuplicate([1,2,1,4,3,12]) → 1', got: fn([1,2,1,4,3,12]) }, { pass: fn([6,1,9,5,3,4,9]) === 9, description: 'findTheDuplicate([6,1,9,5,3,4,9]) → 9', got: fn([6,1,9,5,3,4,9]) }, { pass: fn([2,1,3,4]) === undefined, description: 'no duplicate → undefined', got: fn([2,1,3,4]) } ]; }",
+      "hint": "Track which numbers you have already seen using an object as a lookup table. The first time you see a number, record it. The second time you see it, you found your duplicate.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Object",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+          "description": "JavaScript Object reference"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "How can you remember which numbers you have already seen so that you recognize the duplicate instantly?",
+        "Track which numbers you have already seen using an object as a lookup table. The first time you see a number, record it. The second time you see it, you found your duplicate.",
+        "Use a loop to iterate, then return the accumulated result."
+      ]
+    },
+    {
+      "id": 48,
+      "title": "totalCaps",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "strings",
+        "loops",
+        "intermediate"
+      ],
+      "description": "Count the total number of uppercase letters across an array of strings.",
+      "instructions": "Write a function called `totalCaps` which accepts an array of strings and returns the total number of uppercase letters across all strings. Do not convert the array into a single string first.\n\nExamples:\n  totalCaps([\"AwesomE\",\"ThIngs\",\"hAppEning\",\"HerE\"]) → 8\n  totalCaps([\"Elie\",\"Matt\",\"Tim\"])                    → 3\n  totalCaps([\"hello\",\"world\"])                         → 0",
+      "starterCode": "function totalCaps(arr) {\n  // Count uppercase letters across all strings\n\n}",
+      "solution": "function totalCaps(arr) {\n  let count = 0;\n  for (let i = 0; i < arr.length; i++) {\n    for (let j = 0; j < arr[i].length; j++) {\n      if (arr[i][j] >= 'A' && arr[i][j] <= 'Z') count++;\n    }\n  }\n  return count;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return totalCaps;')(); return [ { pass: fn(['AwesomE','ThIngs','hAppEning','HerE']) === 8, description: 'totalCaps([\"AwesomE\",\"ThIngs\",\"hAppEning\",\"HerE\"]) → 8', got: fn(['AwesomE','ThIngs','hAppEning','HerE']) }, { pass: fn(['Elie','Matt','Tim']) === 3, description: 'totalCaps([\"Elie\",\"Matt\",\"Tim\"]) → 3', got: fn(['Elie','Matt','Tim']) }, { pass: fn(['hello','world']) === 0, description: 'all lowercase → 0', got: fn(['hello','world']) }, { pass: fn([]) === 0, description: 'empty array → 0', got: fn([]) } ]; }",
+      "hint": "This is a nested loop problem: for each string in the array, check each character in that string. A character is uppercase if it falls between \"A\" and \"Z\" — you can compare characters directly with < and > in JavaScript.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        }
+      ],
+      "hints": [
+        "You need to check every character in every string — does that mean two nested loops, or is there a way to combine them?",
+        "This is a nested loop problem: for each string in the array, check each character in that string. A character is uppercase if it falls between \"A\" and \"Z\" — you can compare characters directly with < and > in JavaScript.",
+        "Use a loop to iterate, then return the accumulated result. The function should return a number."
+      ]
+    },
+    {
+      "id": 49,
+      "title": "separate",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "sorting",
+        "filtering",
+        "intermediate"
+      ],
+      "description": "Rearrange an array of 'dogs', 'cats', and 'water' so cats come first, water in the middle, dogs last.",
+      "instructions": "Write a function called `separate` that accepts an array containing the strings \"dog\", \"cat\", and \"water\".\n\nReturn a new array where all cats come first, then all the water, then all the dogs.\n\nYou can assume the array always has at least one of each.\n\nExamples:\n  separate(['dog','cat','water'])\n  // ['cat','water','dog']\n\n  separate(['dog','cat','water','cat'])\n  // ['cat','cat','water','dog']\n\n  separate(['cat','cat','water','dog','water','cat','water','dog'])\n  // ['cat','cat','cat','water','water','water','dog','dog']",
+      "starterCode": "function separate(arr) {\n  // Your code here\n\n}",
+      "solution": "function separate(arr) {\n  const cats = arr.filter(x => x === 'cat');\n  const water = arr.filter(x => x === 'water');\n  const dogs = arr.filter(x => x === 'dog');\n  return [...cats, ...water, ...dogs];\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return separate;')();\n  return [\n    { pass: JSON.stringify(fn(['dog','cat','water'])) === '[\"cat\",\"water\",\"dog\"]', description: \"['dog','cat','water'] → ['cat','water','dog']\", got: JSON.stringify(fn(['dog','cat','water'])) },\n    { pass: JSON.stringify(fn(['dog','cat','water','cat'])) === '[\"cat\",\"cat\",\"water\",\"dog\"]', description: \"extra cat → cats first\", got: JSON.stringify(fn(['dog','cat','water','cat'])) },\n    { pass: JSON.stringify(fn(['cat','cat','water','dog','water','cat','water','dog'])) === '[\"cat\",\"cat\",\"cat\",\"water\",\"water\",\"water\",\"dog\",\"dog\"]', description: \"multiple of each → correct groups\", got: JSON.stringify(fn(['cat','cat','water','dog','water','cat','water','dog'])) },\n    { pass: fn(['dog','cat','water']).indexOf('cat') < fn(['dog','cat','water']).indexOf('water'), description: \"cats always before water\", got: 'checked order' },\n    { pass: fn(['dog','cat','water']).indexOf('water') < fn(['dog','cat','water']).indexOf('dog'), description: \"water always before dogs\", got: 'checked order' },\n  ];\n}",
+      "hint": "One clean approach: make three separate passes through the array — one collecting only cats, one collecting only water, one collecting only dogs — then concatenate the three results in order.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Array.prototype.filter()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter",
+          "description": "The filter method"
+        }
+      ],
+      "hints": [
+        "You need a single total from many numbers — do you reach for a loop with a running total, or is there a built-in method that accumulates values?",
+        "One clean approach: make three separate passes through the array — one collecting only cats, one collecting only water, one collecting only dogs — then concatenate the three results in order.",
+        "Key method(s): `filter`. Filter elements that match your condition. The function should return an array."
+      ]
+    },
+    {
+      "id": 50,
+      "title": "isAlt",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "loops",
+        "vowels",
+        "pattern-checking",
+        "advanced"
+      ],
+      "description": "Return true if vowels and consonants strictly alternate throughout the string.",
+      "instructions": "Write a function called `isAlt` that accepts a string and returns `true` if the vowels (a, e, i, o, u) and consonants alternate throughout the string, `false` otherwise.\n\nExamples:\n  isAlt(\"amazon\")  // true   (v-c-v-c-v-c)\n  isAlt(\"apple\")   // false  (v-c-c-l-e — two consonants in a row)\n  isAlt(\"banana\")  // true   (c-v-c-v-c-v)",
+      "starterCode": "function isAlt(str) {\n  // Your code here\n\n}",
+      "solution": "function isAlt(str) {\n  const vowels = 'aeiouAEIOU';\n  for (let i = 1; i < str.length; i++) {\n    const prevIsVowel = vowels.includes(str[i - 1]);\n    const currIsVowel = vowels.includes(str[i]);\n    if (prevIsVowel === currIsVowel) return false;\n  }\n  return true;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return isAlt;')();\n  return [\n    { pass: fn(\"amazon\") === true, description: '\"amazon\" alternates (v-c-v-c-v-c) → true', got: fn(\"amazon\") },\n    { pass: fn(\"apple\") === false, description: '\"apple\" has two consonants in a row → false', got: fn(\"apple\") },\n    { pass: fn(\"banana\") === true, description: '\"banana\" alternates (c-v-c-v-c-v) → true', got: fn(\"banana\") },\n    { pass: fn(\"a\") === true, description: 'single character always alternates → true', got: fn(\"a\") },\n    { pass: fn(\"aa\") === false, description: '\"aa\" two vowels in a row → false', got: fn(\"aa\") },\n    { pass: fn(\"ba\") === true, description: '\"ba\" consonant-vowel → true', got: fn(\"ba\") },\n  ];\n}",
+      "hint": "Compare each character to the one before it. If two adjacent characters are both vowels, or both consonants, alternation is broken. You don't need to care about the full pattern — just check each neighboring pair.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "The `includes` method will be helpful here.",
+        "Compare each character to the one before it. If two adjacent characters are both vowels, or both consonants, alternation is broken. You don't need to care about the full pattern — just check each neighboring pair.",
+        "Key method(s): `includes`. Use a loop to iterate, then return the accumulated result. The function should return a boolean."
+      ]
+    },
+    {
+      "id": 51,
+      "title": "calculateMonthlyOrders",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "arrays",
+        "loops",
+        "accumulator",
+        "intermediate"
+      ],
+      "description": "Sum all numeric values across an array of month-keyed objects.",
+      "instructions": "Write a function called `calculateMonthlyOrders` that accepts an array of objects. Each object has one or more month-name properties, each with a numeric value. Return the sum of all values across all objects.\n\nExamples:\n  calculateMonthlyOrders([\n    { February: 1, March: 2, April: 2 },\n    { April: 1, May: 2, June: 2 }\n  ]) // 10\n\n  calculateMonthlyOrders([\n    { January: 100, February: 200, ..., December: 1200 },\n    { January: 200, February: 300, ..., December: 1300 }\n  ]) // 16800",
+      "starterCode": "function calculateMonthlyOrders(orders) {\n  // Your code here\n\n}",
+      "solution": "function calculateMonthlyOrders(orders) {\n  let total = 0;\n  for (let i = 0; i < orders.length; i++) {\n    for (let month in orders[i]) {\n      total += orders[i][month];\n    }\n  }\n  return total;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return calculateMonthlyOrders;')();\n  const orders1 = [{ February: 1, March: 2, April: 2 }, { April: 1, May: 2, June: 2 }];\n  const orders2 = [\n    { January: 100, February: 200, March: 300, April: 400, May: 500, June: 600, July: 700, August: 800, September: 900, October: 1000, November: 1100, December: 1200 },\n    { January: 200, February: 300, March: 400, April: 500, May: 600, June: 700, July: 800, August: 900, September: 1000, October: 1100, November: 1200, December: 1300 }\n  ];\n  return [\n    { pass: fn(orders1) === 10, description: 'small orders sum → 10', got: fn(orders1) },\n    { pass: fn(orders2) === 16800, description: 'full year two objects → 16800', got: fn(orders2) },\n    { pass: fn([{ Jan: 5 }]) === 5, description: 'single object single month → 5', got: fn([{ Jan: 5 }]) },\n    { pass: fn([]) === 0, description: 'empty array → 0', got: fn([]) },\n  ];\n}",
+      "hint": "You need two nested loops: one to iterate over each order object, and one to iterate over each property in that object. Add every value to a running total.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Spread syntax",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax",
+          "description": "The spread syntax (...)"
+        },
+        {
+          "label": "MDN: Object",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+          "description": "JavaScript Object reference"
+        }
+      ],
+      "hints": [
+        "Each object might have different month keys — how do you loop through all properties of each object and add up every value?",
+        "You need two nested loops: one to iterate over each order object, and one to iterate over each property in that object. Add every value to a running total.",
+        "Use a loop to iterate, then return the accumulated result. The function should return a number."
+      ]
+    },
+    {
+      "id": 52,
+      "title": "collectOddsAndEvens",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "objects",
+        "loops",
+        "modulo",
+        "beginner"
+      ],
+      "description": "Count the odd and even numbers in an array and return an object.",
+      "instructions": "Write a function called `collectOddsAndEvens` that accepts an array of positive integers and returns an object with keys \"odd\" and \"even\" containing the respective counts.\n\nExamples:\n  collectOddsAndEvens([1, 2, 3, 4, 5, 6, 7, 8, 9])\n  // { odd: 5, even: 4 }\n\n  collectOddsAndEvens([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])\n  // { odd: 5, even: 5 }",
+      "starterCode": "function collectOddsAndEvens(arr) {\n  // Your code here\n\n}",
+      "solution": "function collectOddsAndEvens(arr) {\n  const result = { odd: 0, even: 0 };\n  for (let i = 0; i < arr.length; i++) {\n    if (arr[i] % 2 === 0) result.even++;\n    else result.odd++;\n  }\n  return result;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return collectOddsAndEvens;')();\n  const r1 = fn([1,2,3,4,5,6,7,8,9]);\n  const r2 = fn([1,2,3,4,5,6,7,8,9,10]);\n  const r3 = fn([2,4,6]);\n  return [\n    { pass: r1.odd === 5 && r1.even === 4, description: '[1..9] → { odd:5, even:4 }', got: JSON.stringify(r1) },\n    { pass: r2.odd === 5 && r2.even === 5, description: '[1..10] → { odd:5, even:5 }', got: JSON.stringify(r2) },\n    { pass: r3.odd === 0 && r3.even === 3, description: 'all evens → { odd:0, even:3 }', got: JSON.stringify(r3) },\n    { pass: fn([]).odd === 0 && fn([]).even === 0, description: 'empty → { odd:0, even:0 }', got: JSON.stringify(fn([])) },\n  ];\n}",
+      "hint": "Start with an object that has odd and even both set to 0. Loop through the array and use the modulo operator (%) to decide which counter to increment.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Object",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+          "description": "JavaScript Object reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        }
+      ],
+      "hints": [
+        "Which array method creates a new array containing only the elements that pass a test?",
+        "Start with an object that has odd and even both set to 0. Loop through the array and use the modulo operator (%) to decide which counter to increment.",
+        "Use a loop to iterate, then return the accumulated result."
+      ]
+    },
+    {
+      "id": 53,
+      "title": "countIfHasValue",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "arrays",
+        "loops",
+        "searching",
+        "intermediate"
+      ],
+      "description": "Count how many arrays in an object contain a given value.",
+      "instructions": "Write a function called `countIfHasValue` which accepts an object where all values are arrays, and a numeric value to search for. Return the number of arrays that contain that value.\n\nExamples:\n  let obj = { a: [1,10,3], b: [4,1,7], c: [7,7,7], d: [10,7,12] };\n  countIfHasValue(obj, 1)  // 2\n  countIfHasValue(obj, 7)  // 3\n  countIfHasValue(obj, 10) // 1 (note: 10 appears in a and d, but 'd' has 10 too)\n  countIfHasValue(obj, 13) // 0",
+      "starterCode": "function countIfHasValue(obj, value) {\n  // Your code here\n\n}",
+      "solution": "function countIfHasValue(obj, value) {\n  let count = 0;\n  for (let key in obj) {\n    if (obj[key].includes(value)) count++;\n  }\n  return count;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return countIfHasValue;')();\n  const obj = { a: [1,10,3], b: [4,1,7], c: [7,7,7], d: [10,7,12] };\n  return [\n    { pass: fn(obj, 1) === 2, description: 'value 1 appears in 2 arrays', got: fn(obj, 1) },\n    { pass: fn(obj, 7) === 3, description: 'value 7 appears in 3 arrays', got: fn(obj, 7) },\n    { pass: fn(obj, 10) === 2, description: 'value 10 appears in 2 arrays', got: fn(obj, 10) },\n    { pass: fn(obj, 13) === 0, description: 'value 13 not found → 0', got: fn(obj, 13) },\n  ];\n}",
+      "hint": "Loop over the keys of the object. For each key, check whether that array includes the target value. If it does, increment your counter.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Object",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+          "description": "JavaScript Object reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        }
+      ],
+      "hints": [
+        "`includes` is a key tool for this exercise.",
+        "Loop over the keys of the object. For each key, check whether that array includes the target value. If it does, increment your counter.",
+        "Key method(s): `includes`. Use a loop to iterate, then return the accumulated result. The function should return a boolean."
+      ]
+    },
+    {
+      "id": 54,
+      "title": "countValidNumsInString",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "loops",
+        "type-conversion",
+        "intermediate"
+      ],
+      "description": "Count how many individual digit characters appear in a string.",
+      "instructions": "Write a function called `countValidNumsInString` which counts the number of valid numeric digit characters in a string.\n\nExamples:\n  countValidNumsInString(\"\")           // 0\n  countValidNumsInString(\"1\")          // 1\n  countValidNumsInString(\"12\")         // 2\n  countValidNumsInString(\"12abc3\")     // 3\n  countValidNumsInString(\"1s2d3dsadas4\") // 4\n  countValidNumsInString(\"512,3,4!?!\") // 5\n  countValidNumsInString(\"123456\")     // 6",
+      "starterCode": "function countValidNumsInString(str) {\n  // Your code here\n\n}",
+      "solution": "function countValidNumsInString(str) {\n  let count = 0;\n  for (let i = 0; i < str.length; i++) {\n    if (str[i] >= '0' && str[i] <= '9') count++;\n  }\n  return count;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return countValidNumsInString;')();\n  return [\n    { pass: fn(\"\") === 0, description: 'empty string → 0', got: fn(\"\") },\n    { pass: fn(\"1\") === 1, description: '\"1\" → 1', got: fn(\"1\") },\n    { pass: fn(\"12\") === 2, description: '\"12\" → 2', got: fn(\"12\") },\n    { pass: fn(\"12abc3\") === 3, description: '\"12abc3\" → 3', got: fn(\"12abc3\") },\n    { pass: fn(\"512,3,4!?!\") === 5, description: '\"512,3,4!?!\" → 5', got: fn(\"512,3,4!?!\") },\n    { pass: fn(\"123456\") === 6, description: '\"123456\" → 6', got: fn(\"123456\") },\n  ];\n}",
+      "hint": "Each character in a string can be compared to \"0\" and \"9\" using >= and <= — JavaScript compares characters by their character code, so this works just like comparing numbers. Count each character that falls in that range.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "Start by thinking about string methods and loops and iteration.",
+        "Each character in a string can be compared to \"0\" and \"9\" using >= and <= — JavaScript compares characters by their character code, so this works just like comparing numbers. Count each character that falls in that range.",
+        "Use a loop to iterate, then return the accumulated result. The function should return a number."
+      ]
+    },
+    {
+      "id": 55,
+      "title": "divideObject",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "arrays",
+        "type-checking",
+        "intermediate"
+      ],
+      "description": "Separate an object's numeric and string values into two sub-totals.",
+      "instructions": "Write a function called `divideObject` that accepts an object with string or number values. Return an array of two sub-arrays: the first contains the sum of all numbers, the second contains the total character count of all strings.\n\nExamples:\n  divideObject({\n    first: \"hi\",    // 2 chars\n    second: \"hello\", // 5 chars\n    third: \"hey\",   // 3 chars\n    fourth: 2,\n    fifth: \"fun\",   // 3 chars\n    sixth: 10,\n  })\n  // [ [12], [13] ]",
+      "starterCode": "function divideObject(obj) {\n  // Return [ [sumOfNumbers], [totalStringLength] ]\n\n}",
+      "solution": "function divideObject(obj) {\n  let numSum = 0;\n  let strLen = 0;\n  for (let key in obj) {\n    if (typeof obj[key] === 'number') numSum += obj[key];\n    else strLen += obj[key].length;\n  }\n  return [[numSum], [strLen]];\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return divideObject;')();\n  const r1 = fn({ first: \"hi\", second: \"hello\", third: \"hey\", fourth: 2, fifth: \"fun\", sixth: 10 });\n  const r2 = fn({ a: 5, b: 10 });\n  const r3 = fn({ x: \"abc\", y: \"de\" });\n  return [\n    { pass: JSON.stringify(r1) === '[[12],[13]]', description: 'mixed object → [[12],[13]]', got: JSON.stringify(r1) },\n    { pass: JSON.stringify(r2) === '[[15],[0]]', description: 'all numbers → [[15],[0]]', got: JSON.stringify(r2) },\n    { pass: JSON.stringify(r3) === '[[0],[5]]', description: 'all strings → [[0],[5]]', got: JSON.stringify(r3) },\n  ];\n}",
+      "hint": "Use typeof to distinguish between number and string values. Accumulate two separate totals — a numeric sum and a string-length sum — then return them each wrapped in their own array.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Object",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+          "description": "JavaScript Object reference"
+        }
+      ],
+      "hints": [
+        "You need to sort values by type (number vs. string) — how does `typeof` help you decide where each value goes?",
+        "Use typeof to distinguish between number and string values. Accumulate two separate totals — a numeric sum and a string-length sum — then return them each wrapped in their own array.",
+        "Key method(s): `typeof`. Use a loop to iterate, then return the accumulated result. The function should return an array."
+      ]
+    },
+    {
+      "id": 56,
+      "title": "findFirstAndLastIndex",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "loops",
+        "searching",
+        "intermediate"
+      ],
+      "description": "Return the first and last index of a value, or -1 if it appears fewer than twice.",
+      "instructions": "Write a function called `findFirstAndLastIndex` that accepts an array and a number. Return `[firstIndex, lastIndex]` for that number. If the number doesn't appear at least twice, return `-1`.\n\nExamples:\n  findFirstAndLastIndex([1, 2, 3, 4, 5], 3)  // -1 (only once)\n  findFirstAndLastIndex([1, 2, 2, 2, 5], 12) // -1 (not found)\n  findFirstAndLastIndex([1, 2, 2, 2, 5], 2)  // [1, 3]",
+      "starterCode": "function findFirstAndLastIndex(arr, num) {\n  // Your code here\n\n}",
+      "solution": "function findFirstAndLastIndex(arr, num) {\n  let first = -1;\n  let last = -1;\n  for (let i = 0; i < arr.length; i++) {\n    if (arr[i] === num) {\n      if (first === -1) first = i;\n      last = i;\n    }\n  }\n  if (first === last) return -1;\n  return [first, last];\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return findFirstAndLastIndex;')();\n  return [\n    { pass: fn([1,2,3,4,5], 3) === -1, description: 'appears once → -1', got: fn([1,2,3,4,5], 3) },\n    { pass: fn([1,2,2,2,5], 12) === -1, description: 'not found → -1', got: fn([1,2,2,2,5], 12) },\n    { pass: JSON.stringify(fn([1,2,2,2,5], 2)) === '[1,3]', description: '[1,2,2,2,5] value 2 → [1,3]', got: JSON.stringify(fn([1,2,2,2,5], 2)) },\n    { pass: JSON.stringify(fn([5,5], 5)) === '[0,1]', description: 'two-element match → [0,1]', got: JSON.stringify(fn([5,5], 5)) },\n  ];\n}",
+      "hint": "Track two things simultaneously: the first index where you see the value (set it once and never update it again) and the last index (update it every time you see the value). At the end, if they're the same, it only appeared once.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "You need both the first and last position of a value — how do you update each as you scan through the array?",
+        "Track two things simultaneously: the first index where you see the value (set it once and never update it again) and the last index (update it every time you see the value). At the end, if they're the same, it only appeared once.",
+        "Use a loop to iterate, then return the accumulated result. The function should return an array."
+      ]
+    },
+    {
+      "id": 57,
+      "title": "findFirstMove",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "nested-arrays",
+        "loops",
+        "searching",
+        "intermediate"
+      ],
+      "description": "Find the [row, col] of a move's first occurrence in an array of arrays.",
+      "instructions": "Write a function called `findFirstMove` that accepts an array of arrays (moves) and a single move string. Return `[rowIndex, colIndex]` of its first occurrence, or `-1` if not found.\n\nExamples:\n  let moves = [[\"a\",\"b\",\"c\"], [\"d\",\"a\",\"f\"], [\"g\",\"h\",\"h\"]];\n  findFirstMove(moves, \"a\") // [0, 0]\n  findFirstMove(moves, \"h\") // [2, 1]\n  findFirstMove(moves, \"z\") // -1",
+      "starterCode": "function findFirstMove(moves, move) {\n  // Your code here\n\n}",
+      "solution": "function findFirstMove(moves, move) {\n  for (let i = 0; i < moves.length; i++) {\n    for (let j = 0; j < moves[i].length; j++) {\n      if (moves[i][j] === move) return [i, j];\n    }\n  }\n  return -1;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return findFirstMove;')();\n  const moves = [[\"a\",\"b\",\"c\"],[\"d\",\"a\",\"f\"],[\"g\",\"h\",\"h\"]];\n  return [\n    { pass: JSON.stringify(fn(moves, \"a\")) === '[0,0]', description: '\"a\" first at [0,0]', got: JSON.stringify(fn(moves, \"a\")) },\n    { pass: JSON.stringify(fn(moves, \"h\")) === '[2,1]', description: '\"h\" first at [2,1]', got: JSON.stringify(fn(moves, \"h\")) },\n    { pass: fn(moves, \"z\") === -1, description: '\"z\" not found → -1', got: fn(moves, \"z\") },\n    { pass: JSON.stringify(fn(moves, \"d\")) === '[1,0]', description: '\"d\" at [1,0]', got: JSON.stringify(fn(moves, \"d\")) },\n  ];\n}",
+      "hint": "This requires a nested loop — an outer loop for each row, an inner loop for each element in that row. As soon as you find a match, return the current [row, col] indices immediately.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        }
+      ],
+      "hints": [
+        "The moves are in a 2D array (array of arrays) — how do you search row by row and column by column?",
+        "This requires a nested loop — an outer loop for each row, an inner loop for each element in that row. As soon as you find a match, return the current [row, col] indices immediately.",
+        "Use a loop to iterate, then return the accumulated result. The function should return an array."
+      ]
+    },
+    {
+      "id": 58,
+      "title": "findHighestPriorityTodo",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "objects",
+        "loops",
+        "comparison",
+        "intermediate"
+      ],
+      "description": "Find the todo with the highest priority value.",
+      "instructions": "Write a function called `findHighestPriorityTodo` which accepts an array of todo objects, each with a `task` and `priority` property. Return `[taskName, priorityValue]` for the highest-priority item.\n\nExamples:\n  findHighestPriorityTodo([\n    { task: \"Eat\", priority: 18 },\n    { task: \"Sleep\", priority: 22 },\n    { task: \"Solve problems\", priority: 17 }\n  ]) // [\"Sleep\", 22]\n\n  findHighestPriorityTodo([\n    { task: \"Task 1\", priority: 1 },\n    { task: \"Task 2\", priority: 2 },\n    { task: \"Task 3\", priority: 3 }\n  ]) // [\"Task 3\", 3]",
+      "starterCode": "function findHighestPriorityTodo(todos) {\n  // Your code here\n\n}",
+      "solution": "function findHighestPriorityTodo(todos) {\n  let best = todos[0];\n  for (let i = 1; i < todos.length; i++) {\n    if (todos[i].priority > best.priority) best = todos[i];\n  }\n  return [best.task, best.priority];\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return findHighestPriorityTodo;')();\n  const t1 = [{ task:\"Eat\",priority:18},{ task:\"Sleep\",priority:22},{ task:\"Solve problems\",priority:17}];\n  const t2 = [{ task:\"Task 1\",priority:1},{ task:\"Task 2\",priority:2},{ task:\"Task 3\",priority:3}];\n  const t3 = [{ task:\"Only\",priority:5}];\n  return [\n    { pass: JSON.stringify(fn(t1)) === '[\"Sleep\",22]', description: 'highest priority is Sleep at 22', got: JSON.stringify(fn(t1)) },\n    { pass: JSON.stringify(fn(t2)) === '[\"Task 3\",3]', description: 'highest priority is Task 3 at 3', got: JSON.stringify(fn(t2)) },\n    { pass: JSON.stringify(fn(t3)) === '[\"Only\",5]', description: 'single todo → itself', got: JSON.stringify(fn(t3)) },\n  ];\n}",
+      "hint": "Keep track of the \"best so far\" object, starting with the first element. Loop through the rest and whenever you find one with a higher priority, it becomes the new best. At the end, return the task name and priority of the winner.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Object",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+          "description": "JavaScript Object reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        }
+      ],
+      "hints": [
+        "How do you track the \"best so far\" as you loop, updating it whenever you find a higher priority?",
+        "Keep track of the \"best so far\" object, starting with the first element. Loop through the rest and whenever you find one with a higher priority, it becomes the new best. At the end, return the task name and priority of the winner.",
+        "Use a loop to iterate, then return the accumulated result. The function should return an array."
+      ]
+    },
+    {
+      "id": 59,
+      "title": "inMatrix",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "nested-arrays",
+        "loops",
+        "searching",
+        "intermediate"
+      ],
+      "description": "Return true if a value exists anywhere in a 2D matrix.",
+      "instructions": "Write a function called `inMatrix` which accepts an array of arrays (a matrix) and a value. Return `true` if the value is anywhere in the matrix, `false` otherwise.\n\nExamples:\n  let matrix = [[1,2,3],[4,5,6],[7,8,9]];\n  inMatrix(matrix, 5)  // true\n  inMatrix(matrix, 8)  // true\n  inMatrix(matrix, 10) // false",
+      "starterCode": "function inMatrix(matrix, value) {\n  // Your code here\n\n}",
+      "solution": "function inMatrix(matrix, value) {\n  for (let i = 0; i < matrix.length; i++) {\n    for (let j = 0; j < matrix[i].length; j++) {\n      if (matrix[i][j] === value) return true;\n    }\n  }\n  return false;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return inMatrix;')();\n  const m = [[1,2,3],[4,5,6],[7,8,9]];\n  return [\n    { pass: fn(m, 5) === true, description: '5 is in the matrix', got: fn(m, 5) },\n    { pass: fn(m, 8) === true, description: '8 is in the matrix', got: fn(m, 8) },\n    { pass: fn(m, 10) === false, description: '10 is not in the matrix', got: fn(m, 10) },\n    { pass: fn([[1]], 1) === true, description: '1x1 matrix match', got: fn([[1]],1) },\n    { pass: fn([[1]], 2) === false, description: '1x1 matrix no match', got: fn([[1]],2) },\n  ];\n}",
+      "hint": "A matrix is just an array of arrays. You need two nested loops to visit every cell. The moment you find a match, return true. If both loops complete without a match, return false.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "Start by thinking about array methods and loops and iteration.",
+        "A matrix is just an array of arrays. You need two nested loops to visit every cell. The moment you find a match, return true. If both loops complete without a match, return false.",
+        "Use a loop to iterate, then return the accumulated result. The function should return a boolean."
+      ]
+    },
+    {
+      "id": 60,
+      "title": "replaceAfter",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "splice",
+        "mutation",
+        "intermediate"
+      ],
+      "description": "Replace two elements at a given index with \"Hello\" and \"world\".",
+      "instructions": "Write a function called `replaceAfter` that accepts an array and an index. Remove two elements starting at that index and insert the strings \"Hello\" and \"world\" in their place. Return the modified array.\n\nExamples:\n  replaceAfter([\"1\",\"2\",\"a\",\"b\",\"3\",\"4\"], 2)\n  // [\"1\",\"2\",\"Hello\",\"world\",\"3\",\"4\"]\n\n  replaceAfter([\"a\",\"b\",\"c\"], 0)\n  // [\"Hello\",\"world\",\"c\"]",
+      "starterCode": "function replaceAfter(arr, idx) {\n  // Your code here\n\n}",
+      "solution": "function replaceAfter(arr, idx) {\n  arr.splice(idx, 2, \"Hello\", \"world\");\n  return arr;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return replaceAfter;')();\n  return [\n    { pass: JSON.stringify(fn([\"1\",\"2\",\"a\",\"b\",\"3\",\"4\"], 2)) === '[\"1\",\"2\",\"Hello\",\"world\",\"3\",\"4\"]', description: 'replaceAfter at index 2', got: JSON.stringify(fn([\"1\",\"2\",\"a\",\"b\",\"3\",\"4\"], 2)) },\n    { pass: JSON.stringify(fn([\"a\",\"b\",\"c\"], 0)) === '[\"Hello\",\"world\",\"c\"]', description: 'replaceAfter at index 0', got: JSON.stringify(fn([\"a\",\"b\",\"c\"], 0)) },\n    { pass: JSON.stringify(fn([\"x\",\"y\"], 0)) === '[\"Hello\",\"world\"]', description: 'replaceAfter entire two-element array', got: JSON.stringify(fn([\"x\",\"y\"], 0)) },\n  ];\n}",
+      "hint": "Array.splice(start, deleteCount, ...items) removes elements and inserts new ones in a single operation. Here you always remove 2 and insert exactly two specific strings.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Array.prototype.splice()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice",
+          "description": "The splice method"
+        }
+      ],
+      "hints": [
+        "The `splice` method will be helpful here.",
+        "Array.splice(start, deleteCount, ...items) removes elements and inserts new ones in a single operation. Here you always remove 2 and insert exactly two specific strings.",
+        "Key method(s): `splice`."
+      ]
+    },
+    {
+      "id": 61,
+      "title": "reverseValues",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "loops",
+        "filtering",
+        "advanced"
+      ],
+      "description": "Collect non-skipped values in reverse, skipping 3 items whenever an even is encountered.",
+      "instructions": "Write a function called `reverseValues` that accepts an array of numbers. Iterate through it — whenever you encounter an even number, skip it and the next two numbers. Collect everything else into a new array, returned in reverse order of the original.\n\nExamples:\n  reverseValues([1, 1, 3, 3, 2])        // [3, 3, 1, 1]\n  reverseValues([1, 3, 5, 7])            // [7, 5, 3, 1]\n  reverseValues([1, 3, 4, 7])            // [3, 1]\n  reverseValues([11, 13, 15, 20, 1, 1]) // [15, 13, 11]\n  reverseValues([4, 5, 1, 1, 2, 1, 1]) // [1]\n  reverseValues([2, 2, 2])               // []",
+      "starterCode": "function reverseValues(arr) {\n  // Your code here\n\n}",
+      "solution": "function reverseValues(arr) {\n  const kept = [];\n  let i = 0;\n  while (i < arr.length) {\n    if (arr[i] % 2 === 0) {\n      i += 3; // skip even + next 2\n    } else {\n      kept.push(arr[i]);\n      i++;\n    }\n  }\n  return kept.reverse();\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return reverseValues;')();\n  return [\n    { pass: JSON.stringify(fn([1,1,3,3,2])) === '[3,3,1,1]', description: '[1,1,3,3,2] → [3,3,1,1]', got: JSON.stringify(fn([1,1,3,3,2])) },\n    { pass: JSON.stringify(fn([1,3,5,7])) === '[7,5,3,1]', description: 'all odd → reversed', got: JSON.stringify(fn([1,3,5,7])) },\n    { pass: JSON.stringify(fn([1,3,4,7])) === '[3,1]', description: '[1,3,4,7] → 4 skips itself and 7', got: JSON.stringify(fn([1,3,4,7])) },\n    { pass: JSON.stringify(fn([11,13,15,20,1,1])) === '[15,13,11]', description: '20 skips 20,1,1 → [15,13,11]', got: JSON.stringify(fn([11,13,15,20,1,1])) },\n    { pass: JSON.stringify(fn([4,5,1,1,2,1,1])) === '[1]', description: 'complex skip pattern → [1]', got: JSON.stringify(fn([4,5,1,1,2,1,1])) },\n    { pass: JSON.stringify(fn([2,2,2])) === '[]', description: 'all evens → []', got: JSON.stringify(fn([2,2,2])) },\n  ];\n}",
+      "hint": "A while loop with manual index control (rather than a for loop) lets you jump the index forward by 3 when needed. Collect elements that aren't skipped, then reverse the collected array at the end.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Array.prototype.filter()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter",
+          "description": "The filter method"
+        }
+      ],
+      "hints": [
+        "When you encounter an even number, you skip it and the next two — how do you control your loop index to jump ahead by 3?",
+        "A while loop with manual index control (rather than a for loop) lets you jump the index forward by 3 when needed. Collect elements that aren't skipped, then reverse the collected array at the end.",
+        "Key method(s): `reverse`."
+      ]
+    },
+    {
+      "id": 62,
+      "title": "robotInstructions",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "objects",
+        "frequency-counter",
+        "beginner"
+      ],
+      "description": "Count occurrences of each move direction in an array.",
+      "instructions": "Write a function called `robotInstructions` which accepts an array of moves (\"U\", \"D\", \"L\", \"R\") and returns an object with the total count of each move type.\n\nExamples:\n  robotInstructions([\"U\",\"D\",\"L\",\"R\"])\n  // { U:1, D:1, L:1, R:1 }\n\n  robotInstructions([\"U\",\"D\",\"L\",\"R\",\"U\",\"D\",\"L\",\"R\",\"U\",\"D\",\"L\",\"R\"])\n  // { U:3, D:3, L:3, R:3 }",
+      "starterCode": "function robotInstructions(moves) {\n  // Your code here\n\n}",
+      "solution": "function robotInstructions(moves) {\n  const counts = { U: 0, D: 0, L: 0, R: 0 };\n  for (let i = 0; i < moves.length; i++) {\n    counts[moves[i]]++;\n  }\n  return counts;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return robotInstructions;')();\n  const r1 = fn([\"U\",\"D\",\"L\",\"R\"]);\n  const r2 = fn([\"U\",\"D\",\"L\",\"R\",\"U\",\"D\",\"L\",\"R\",\"U\",\"D\",\"L\",\"R\"]);\n  const r3 = fn([\"U\",\"U\",\"U\"]);\n  return [\n    { pass: r1.U===1 && r1.D===1 && r1.L===1 && r1.R===1, description: 'one of each → all 1s', got: JSON.stringify(r1) },\n    { pass: r2.U===3 && r2.D===3 && r2.L===3 && r2.R===3, description: 'three of each → all 3s', got: JSON.stringify(r2) },\n    { pass: r3.U===3 && r3.D===0 && r3.L===0 && r3.R===0, description: 'only U → { U:3, D:0, L:0, R:0 }', got: JSON.stringify(r3) },\n  ];\n}",
+      "hint": "This is a frequency counter pattern. Start with an object where all four directions are initialized to 0. Loop through the moves and use bracket notation to increment the matching key.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Object",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+          "description": "JavaScript Object reference"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "You need to count how many times each move appears — what data structure is a natural fit for tallying occurrences?",
+        "This is a frequency counter pattern. Start with an object where all four directions are initialized to 0. Loop through the moves and use bracket notation to increment the matching key.",
+        "Use a loop to iterate, then return the accumulated result."
+      ]
+    },
+    {
+      "id": 63,
+      "title": "scheduleCheck",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "loops",
+        "comparison",
+        "beginner"
+      ],
+      "description": "Count the number of days both schedules are free.",
+      "instructions": "Write a function called `scheduleCheck` which accepts two objects, each with day-of-week keys and boolean values. Return the count of days where both objects have a value of `true`.\n\nExamples:\n  scheduleCheck(\n    { Monday:true, Tuesday:true, ...all true },\n    { Monday:true, Tuesday:true, ...all true }\n  ) // 7\n\n  scheduleCheck(\n    { Monday:true, ..., Sunday:true },\n    { Monday:true, ..., Saturday:false, Sunday:true }\n  ) // 6",
+      "starterCode": "function scheduleCheck(schedule1, schedule2) {\n  // Your code here\n\n}",
+      "solution": "function scheduleCheck(schedule1, schedule2) {\n  let count = 0;\n  for (let day in schedule1) {\n    if (schedule1[day] === true && schedule2[day] === true) count++;\n  }\n  return count;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return scheduleCheck;')();\n  const days = { Monday:true, Tuesday:true, Wednesday:true, Thursday:true, Friday:true, Saturday:true, Sunday:true };\n  const oneLess = { ...days, Saturday:false };\n  const allFalse = { Monday:false, Tuesday:false, Wednesday:false, Thursday:false, Friday:false, Saturday:false, Sunday:false };\n  return [\n    { pass: fn(days, days) === 7, description: 'both all-true → 7', got: fn(days, days) },\n    { pass: fn(days, oneLess) === 6, description: 'one false → 6', got: fn(days, oneLess) },\n    { pass: fn(days, allFalse) === 0, description: 'second all-false → 0', got: fn(days, allFalse) },\n  ];\n}",
+      "hint": "Loop over the keys of the first schedule. For each day, check if both schedule1[day] AND schedule2[day] are true. Increment a counter when both are.",
+      "resources": [
+        {
+          "label": "MDN: Spread syntax",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax",
+          "description": "The spread syntax (...)"
+        },
+        {
+          "label": "MDN: Object",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+          "description": "JavaScript Object reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        }
+      ],
+      "hints": [
+        "Two schedules overlap on days where both have `true` — how do you iterate through one object's keys and check the other?",
+        "Loop over the keys of the first schedule. For each day, check if both schedule1[day] AND schedule2[day] are true. Increment a counter when both are.",
+        "Use a loop to iterate, then return the accumulated result. The function should return a number."
+      ]
+    },
+    {
+      "id": 64,
+      "title": "separateLanguages",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "objects",
+        "loops",
+        "categorization",
+        "intermediate"
+      ],
+      "description": "Partition a language array into python count, javascript count, and an \"other\" array.",
+      "instructions": "Write a function called `separateLanguages` which accepts an array of strings and returns an object with keys \"python\", \"javascript\", and \"other\". The first two are counts; \"other\" is an array of everything else.\n\nExamples:\n  separateLanguages([\"python\",\"python\",\"python\",\"javascript\",\"c++\"])\n  // { python:3, javascript:1, other:[\"c++\"] }\n\n  separateLanguages([\"greek\",\"french\",\"yoruba\",\"python\"])\n  // { python:1, javascript:0, other:[\"greek\",\"french\",\"yoruba\"] }",
+      "starterCode": "function separateLanguages(arr) {\n  // Your code here\n\n}",
+      "solution": "function separateLanguages(arr) {\n  const result = { python: 0, javascript: 0, other: [] };\n  for (let i = 0; i < arr.length; i++) {\n    if (arr[i] === 'python') result.python++;\n    else if (arr[i] === 'javascript') result.javascript++;\n    else result.other.push(arr[i]);\n  }\n  return result;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return separateLanguages;')();\n  const r1 = fn([\"python\",\"python\",\"python\",\"javascript\",\"c++\"]);\n  const r2 = fn([\"python\",\"python\",\"spanish\",\"javascript\"]);\n  const r3 = fn([\"greek\",\"french\",\"yoruba\",\"python\"]);\n  return [\n    { pass: r1.python===3 && r1.javascript===1 && JSON.stringify(r1.other)==='[\"c++\"]', description: 'python:3, js:1, other:[\"c++\"]', got: JSON.stringify(r1) },\n    { pass: r2.python===2 && r2.javascript===1 && JSON.stringify(r2.other)==='[\"spanish\"]', description: 'python:2, js:1, other:[\"spanish\"]', got: JSON.stringify(r2) },\n    { pass: r3.python===1 && r3.javascript===0 && r3.other.length===3, description: 'python:1, js:0, other has 3 items', got: JSON.stringify(r3) },\n    { pass: fn([]).javascript === 0, description: 'empty array → all zeros/empty', got: JSON.stringify(fn([])) },\n  ];\n}",
+      "hint": "Initialize the result object with python:0, javascript:0, and other:[] before looping. Use if/else if/else to route each item to the right bucket.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Object",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+          "description": "JavaScript Object reference"
+        }
+      ],
+      "hints": [
+        "Start by thinking about array methods and object manipulation.",
+        "Initialize the result object with python:0, javascript:0, and other:[] before looping. Use if/else if/else to route each item to the right bucket.",
+        "Use a loop to iterate, then return the accumulated result."
+      ]
+    },
+    {
+      "id": 65,
+      "title": "skipVowels",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "arrays",
+        "loops",
+        "advanced"
+      ],
+      "description": "Build an array from a string, skipping a character after each vowel encountered.",
+      "instructions": "Write a function called `skipVowels` that accepts a string and returns an array. Iterate through the string: if you encounter a vowel, skip that character AND the next one. Otherwise, add the character to the array.\n\nExamples:\n  skipVowels(\"hello\")    // [\"h\", \"l\"]\n  skipVowels(\"much fun\") // [\"m\", \"h\", \" \", \"f\"]\n  skipVowels(\"aaaa\")     // []",
+      "starterCode": "function skipVowels(str) {\n  // Your code here\n\n}",
+      "solution": "function skipVowels(str) {\n  const vowels = 'aeiouAEIOU';\n  const result = [];\n  let i = 0;\n  while (i < str.length) {\n    if (vowels.includes(str[i])) {\n      i += 2; // skip vowel + next char\n    } else {\n      result.push(str[i]);\n      i++;\n    }\n  }\n  return result;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return skipVowels;')();\n  return [\n    { pass: JSON.stringify(fn(\"hello\")) === '[\"h\",\"l\"]', description: 'skipVowels(\"hello\") → [\"h\",\"l\"]', got: JSON.stringify(fn(\"hello\")) },\n    { pass: JSON.stringify(fn(\"much fun\")) === '[\"m\",\"h\",\" \",\"f\"]', description: 'skipVowels(\"much fun\") → [\"m\",\"h\",\" \",\"f\"]', got: JSON.stringify(fn(\"much fun\")) },\n    { pass: JSON.stringify(fn(\"aaaa\")) === '[]', description: 'all vowels → []', got: JSON.stringify(fn(\"aaaa\")) },\n    { pass: JSON.stringify(fn(\"xyz\")) === '[\"x\",\"y\",\"z\"]', description: 'no vowels → all chars', got: JSON.stringify(fn(\"xyz\")) },\n  ];\n}",
+      "hint": "Like reverseValues, this problem needs a while loop with manual index control. When you hit a vowel, jump the index by 2 (skip the vowel and the character after it). Otherwise collect the character and move forward by 1.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        }
+      ],
+      "hints": [
+        "The `includes` method will be helpful here.",
+        "Like reverseValues, this problem needs a while loop with manual index control. When you hit a vowel, jump the index by 2 (skip the vowel and the character after it). Otherwise collect the character and move forward by 1.",
+        "Key method(s): `includes`. The function should return a boolean."
+      ]
+    }
+  ]
+}

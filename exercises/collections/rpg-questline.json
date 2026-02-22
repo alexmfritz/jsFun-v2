@@ -1,0 +1,2574 @@
+{
+  "id": "rpg-questline",
+  "name": "RPG Questline: Swords & Sorcery",
+  "description": "Build a complete fantasy RPG from scratch across 45 exercises. Start as a novice adventurer naming heroes and forging weapons, then advance through character stats, health bars, inventory grids, spell systems, 2D dungeon maps, and a full quest engine.",
+  "color": "#dc2626",
+  "exerciseIds": [
+    575,
+    576,
+    577,
+    578,
+    579,
+    580,
+    581,
+    582,
+    583,
+    584,
+    585,
+    586,
+    587,
+    588,
+    589,
+    590,
+    591,
+    592,
+    593,
+    594,
+    595,
+    596,
+    597,
+    598,
+    599,
+    600,
+    601,
+    602,
+    603,
+    604,
+    605,
+    606,
+    607,
+    608,
+    609,
+    610,
+    611,
+    612,
+    613,
+    614,
+    615,
+    616,
+    617,
+    618,
+    619
+  ],
+  "exercises": [
+    {
+      "id": 575,
+      "title": "Hero Name",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "js-fundamentals",
+        "variables"
+      ],
+      "tags": [
+        "strings",
+        "concatenation",
+        "rpg",
+        "beginner"
+      ],
+      "description": "Every hero needs a title. Combine a first name and a title into a proper hero name.",
+      "instructions": "Write a function called `heroName` that takes two parameters: `first` (a string) and `title` (a string). Return the string in the format `\"[first] the [title]\"`.\n\nExample:\n  heroName(\"Thorin\", \"Brave\")  →  \"Thorin the Brave\"\n  heroName(\"Elara\", \"Wise\")   →  \"Elara the Wise\"",
+      "starterCode": "function heroName(first, title) {\n  // Your code here\n\n}",
+      "solution": "function heroName(first, title) {\n  return first + \" the \" + title;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return heroName;')(); return [ { pass: fn('Thorin', 'Brave') === 'Thorin the Brave', description: 'heroName(\"Thorin\", \"Brave\") → \"Thorin the Brave\"', got: fn('Thorin', 'Brave') }, { pass: fn('Elara', 'Wise') === 'Elara the Wise', description: 'heroName(\"Elara\", \"Wise\") → \"Elara the Wise\"', got: fn('Elara', 'Wise') }, { pass: fn('Kael', 'Undying') === 'Kael the Undying', description: 'heroName(\"Kael\", \"Undying\") → \"Kael the Undying\"', got: fn('Kael', 'Undying') } ]; }",
+      "hints": [
+        "You need to combine three strings: the first name, the word \" the \", and the title.",
+        "Use the + operator to concatenate (join) strings together.",
+        "Make sure to include spaces around the word \"the\"."
+      ],
+      "resources": [
+        {
+          "label": "MDN: String concatenation",
+          "url": "/docs/mdn/string-concat.html",
+          "description": "Combining strings with + or template literals"
+        }
+      ]
+    },
+    {
+      "id": 576,
+      "title": "Weapon Damage",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "js-fundamentals",
+        "operators"
+      ],
+      "tags": [
+        "arithmetic",
+        "math",
+        "rpg",
+        "beginner"
+      ],
+      "description": "Calculate a weapon's total damage from its base power and a modifier, but damage can never go below zero.",
+      "instructions": "Write a function called `weaponDamage` that takes `base` (a number) and `modifier` (a number, can be negative). Return the total damage (`base + modifier`), but it should never be less than `0`.\n\nExample:\n  weaponDamage(10, 5)   →  15\n  weaponDamage(10, -3)  →  7\n  weaponDamage(3, -10)  →  0",
+      "starterCode": "function weaponDamage(base, modifier) {\n  // Your code here\n\n}",
+      "solution": "function weaponDamage(base, modifier) {\n  return Math.max(0, base + modifier);\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return weaponDamage;')(); return [ { pass: fn(10, 5) === 15, description: 'weaponDamage(10, 5) → 15', got: fn(10, 5) }, { pass: fn(10, -3) === 7, description: 'weaponDamage(10, -3) → 7', got: fn(10, -3) }, { pass: fn(3, -10) === 0, description: 'weaponDamage(3, -10) → 0 (never below zero)', got: fn(3, -10) }, { pass: fn(0, 0) === 0, description: 'weaponDamage(0, 0) → 0', got: fn(0, 0) } ]; }",
+      "hints": [
+        "First add base and modifier together to get the raw damage.",
+        "Math.max(a, b) returns whichever value is larger. How can you use this to enforce a minimum of 0?",
+        "Math.max(0, base + modifier) ensures the result is never negative."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Math.max()",
+          "url": "/docs/mdn/math-max.html",
+          "description": "Returns the largest of the given numbers"
+        },
+        {
+          "label": "MDN: Arithmetic operators",
+          "url": "/docs/mdn/arithmetic.html",
+          "description": "All math operators including +, -, *, /"
+        }
+      ]
+    },
+    {
+      "id": 577,
+      "title": "Is It Magic?",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "strings",
+        "includes",
+        "conditionals",
+        "rpg",
+        "beginner"
+      ],
+      "description": "Determine whether a weapon is magical based on its name.",
+      "instructions": "Write a function called `classifyWeapon` that takes a `name` string and returns `\"magic\"` if the name contains the word \"Enchanted\" or \"Arcane\"` (case-sensitive), otherwise returns `\"mundane\"`.\n\nExample:\n  classifyWeapon(\"Enchanted Sword\")  →  \"magic\"\n  classifyWeapon(\"Iron Axe\")         →  \"mundane\"\n  classifyWeapon(\"Arcane Staff\")     →  \"magic\"",
+      "starterCode": "function classifyWeapon(name) {\n  // Your code here\n\n}",
+      "solution": "function classifyWeapon(name) {\n  if (name.includes('Enchanted') || name.includes('Arcane')) {\n    return 'magic';\n  }\n  return 'mundane';\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return classifyWeapon;')(); return [ { pass: fn('Enchanted Sword') === 'magic', description: 'classifyWeapon(\"Enchanted Sword\") → \"magic\"', got: fn('Enchanted Sword') }, { pass: fn('Iron Axe') === 'mundane', description: 'classifyWeapon(\"Iron Axe\") → \"mundane\"', got: fn('Iron Axe') }, { pass: fn('Arcane Staff') === 'magic', description: 'classifyWeapon(\"Arcane Staff\") → \"magic\"', got: fn('Arcane Staff') }, { pass: fn('Wooden Shield') === 'mundane', description: 'classifyWeapon(\"Wooden Shield\") → \"mundane\"', got: fn('Wooden Shield') } ]; }",
+      "hints": [
+        "The String.includes() method checks if a string contains a specific substring.",
+        "You need to check for two keywords: \"Enchanted\" and \"Arcane\". Use the || (or) operator.",
+        "Remember: includes() is case-sensitive, so \"enchanted\" would NOT match \"Enchanted\"."
+      ],
+      "resources": [
+        {
+          "label": "MDN: String.includes()",
+          "url": "/docs/mdn/string-includes.html",
+          "description": "Check if a string contains a substring"
+        },
+        {
+          "label": "MDN: if...else",
+          "url": "/docs/mdn/if-else.html",
+          "description": "Conditional branching logic"
+        }
+      ]
+    },
+    {
+      "id": 578,
+      "title": "Potion Strength",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "conditionals",
+        "if-else",
+        "rpg",
+        "beginner"
+      ],
+      "description": "Rate a healing potion based on how many hit points it restores.",
+      "instructions": "Write a function called `potionStrength` that takes `hp` (a number) and returns a rating string:\n- `hp` < 10 → `\"weak\"`\n- `hp` < 30 → `\"moderate\"`\n- `hp` < 60 → `\"strong\"`\n- `hp` >= 60 → `\"legendary\"`\n\nExample:\n  potionStrength(5)   →  \"weak\"\n  potionStrength(25)  →  \"moderate\"\n  potionStrength(50)  →  \"strong\"\n  potionStrength(100) →  \"legendary\"",
+      "starterCode": "function potionStrength(hp) {\n  // Your code here\n\n}",
+      "solution": "function potionStrength(hp) {\n  if (hp < 10) return 'weak';\n  if (hp < 30) return 'moderate';\n  if (hp < 60) return 'strong';\n  return 'legendary';\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return potionStrength;')(); return [ { pass: fn(5) === 'weak', description: 'potionStrength(5) → \"weak\"', got: fn(5) }, { pass: fn(9) === 'weak', description: 'potionStrength(9) → \"weak\"', got: fn(9) }, { pass: fn(10) === 'moderate', description: 'potionStrength(10) → \"moderate\" (boundary)', got: fn(10) }, { pass: fn(25) === 'moderate', description: 'potionStrength(25) → \"moderate\"', got: fn(25) }, { pass: fn(50) === 'strong', description: 'potionStrength(50) → \"strong\"', got: fn(50) }, { pass: fn(100) === 'legendary', description: 'potionStrength(100) → \"legendary\"', got: fn(100) } ]; }",
+      "hints": [
+        "Use a chain of if/else if statements, checking from smallest to largest.",
+        "Order matters: check hp < 10 first, then hp < 30, then hp < 60. If none match, it's legendary.",
+        "Each condition naturally excludes the previous ones when checked in order."
+      ],
+      "resources": [
+        {
+          "label": "MDN: if...else",
+          "url": "/docs/mdn/if-else.html",
+          "description": "Conditional branching logic"
+        }
+      ]
+    },
+    {
+      "id": 579,
+      "title": "Gold Purse",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "js-fundamentals",
+        "loops"
+      ],
+      "tags": [
+        "loops",
+        "arrays",
+        "arithmetic",
+        "rpg",
+        "beginner"
+      ],
+      "description": "Spend gold at the shop by looping through a list of prices.",
+      "instructions": "Write a function called `goldAfterShop` that takes `gold` (a number) and `prices` (an array of numbers). Loop through the prices, subtracting each from your gold. If you can't afford an item, skip it. Return the gold remaining.\n\nExample:\n  goldAfterShop(50, [10, 20, 5])   →  15\n  goldAfterShop(20, [10, 15, 5])   →  5  (can't afford 15 after buying 10)\n  goldAfterShop(5, [10, 20])       →  5  (can't afford anything)",
+      "starterCode": "function goldAfterShop(gold, prices) {\n  // Your code here\n\n}",
+      "solution": "function goldAfterShop(gold, prices) {\n  for (let i = 0; i < prices.length; i++) {\n    if (gold >= prices[i]) {\n      gold -= prices[i];\n    }\n  }\n  return gold;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return goldAfterShop;')(); return [ { pass: fn(50, [10, 20, 5]) === 15, description: 'goldAfterShop(50, [10, 20, 5]) → 15', got: fn(50, [10, 20, 5]) }, { pass: fn(20, [10, 15, 5]) === 5, description: 'goldAfterShop(20, [10, 15, 5]) → 5', got: fn(20, [10, 15, 5]) }, { pass: fn(5, [10, 20]) === 5, description: 'goldAfterShop(5, [10, 20]) → 5 (can\\'t afford anything)', got: fn(5, [10, 20]) }, { pass: fn(100, []) === 100, description: 'goldAfterShop(100, []) → 100 (empty shop)', got: fn(100, []) } ]; }",
+      "hints": [
+        "Use a for loop to go through each price in the prices array.",
+        "Inside the loop, check if your gold is greater than or equal to the price before subtracting.",
+        "gold -= prices[i] is shorthand for gold = gold - prices[i]."
+      ],
+      "resources": [
+        {
+          "label": "MDN: for loop",
+          "url": "/docs/mdn/for-loop.html",
+          "description": "Repeat code with a counting loop"
+        },
+        {
+          "label": "MDN: Comparison operators",
+          "url": "/docs/mdn/comparison.html",
+          "description": ">=, <=, ===, and other comparisons"
+        }
+      ]
+    },
+    {
+      "id": 580,
+      "title": "Tavern Menu",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "property-access",
+        "rpg",
+        "beginner"
+      ],
+      "description": "Look up a meal's price from the tavern menu object.",
+      "instructions": "Write a function called `tavernOrder` that takes `menu` (an object where keys are item names and values are prices) and `item` (a string). Return the price of the item. If the item is not on the menu, return `\"Not available\"`.\n\nExample:\n  tavernOrder({ale: 2, stew: 5, bread: 1}, \"stew\")   →  5\n  tavernOrder({ale: 2, stew: 5, bread: 1}, \"wine\")   →  \"Not available\"",
+      "starterCode": "function tavernOrder(menu, item) {\n  // Your code here\n\n}",
+      "solution": "function tavernOrder(menu, item) {\n  if (menu[item] !== undefined) {\n    return menu[item];\n  }\n  return 'Not available';\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return tavernOrder;')(); const menu = {ale: 2, stew: 5, bread: 1, roast: 8}; return [ { pass: fn(menu, 'stew') === 5, description: 'tavernOrder(menu, \"stew\") → 5', got: fn(menu, 'stew') }, { pass: fn(menu, 'ale') === 2, description: 'tavernOrder(menu, \"ale\") → 2', got: fn(menu, 'ale') }, { pass: fn(menu, 'wine') === 'Not available', description: 'tavernOrder(menu, \"wine\") → \"Not available\"', got: fn(menu, 'wine') }, { pass: fn({}, 'stew') === 'Not available', description: 'tavernOrder({}, \"stew\") → \"Not available\" (empty menu)', got: fn({}, 'stew') } ]; }",
+      "hints": [
+        "Access an object property with bracket notation: menu[item].",
+        "If a property doesn't exist on an object, accessing it returns undefined.",
+        "Check if menu[item] is undefined to decide whether to return the price or \"Not available\"."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Objects",
+          "url": "/docs/mdn/objects.html",
+          "description": "Working with JavaScript objects"
+        },
+        {
+          "label": "MDN: Property accessors",
+          "url": "/docs/mdn/property-access.html",
+          "description": "Dot notation vs bracket notation"
+        }
+      ]
+    },
+    {
+      "id": 581,
+      "title": "Health Bar (Basic)",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "visual"
+      ],
+      "tags": [
+        "css",
+        "width",
+        "box-model",
+        "rpg",
+        "beginner",
+        "health-bar"
+      ],
+      "description": "Build a basic RPG health bar using CSS width percentages and background colors.",
+      "instructions": "Style a health bar where the outer container shows the track and the inner element shows current health.\n\n1. `.health-bar` — the outer track:\n   - `width: 200px`\n   - `height: 24px`\n   - `background-color: #1e293b` (dark slate)\n   - `border-radius: 4px`\n   - `overflow: hidden`\n\n2. `.health-fill` — the green fill inside:\n   - `width: 75%`\n   - `height: 100%`\n   - `background-color: #22c55e` (green)",
+      "starterCode": "/* Style the health bar */\n",
+      "solution": ".health-bar {\n  width: 200px;\n  height: 24px;\n  background-color: #1e293b;\n  border-radius: 4px;\n  overflow: hidden;\n}\n\n.health-fill {\n  width: 75%;\n  height: 100%;\n  background-color: #22c55e;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"health-bar\"><div class=\"health-fill\"></div></div>",
+      "testCases": [
+        {
+          "query": ".health-bar",
+          "assertion": "equals",
+          "property": "width",
+          "value": "200px",
+          "description": ".health-bar width is 200px"
+        },
+        {
+          "query": ".health-bar",
+          "assertion": "equals",
+          "property": "height",
+          "value": "24px",
+          "description": ".health-bar height is 24px"
+        },
+        {
+          "query": ".health-bar",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(30, 41, 59)",
+          "description": ".health-bar background is dark slate"
+        },
+        {
+          "query": ".health-bar",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "4px",
+          "description": ".health-bar border-radius is 4px"
+        },
+        {
+          "query": ".health-bar",
+          "assertion": "equals",
+          "property": "overflow",
+          "value": "hidden",
+          "description": ".health-bar overflow is hidden"
+        },
+        {
+          "query": ".health-fill",
+          "assertion": "equals",
+          "property": "width",
+          "value": "150px",
+          "description": ".health-fill width is 75% of 200px = 150px"
+        },
+        {
+          "query": ".health-fill",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(34, 197, 94)",
+          "description": ".health-fill background is green"
+        }
+      ],
+      "hints": [
+        "The outer .health-bar acts as a track — it has a dark background and fixed size.",
+        "The inner .health-fill sits inside and uses width: 75% to show current health.",
+        "overflow: hidden on the track ensures the fill bar's corners are clipped inside the rounded container."
+      ],
+      "resources": [
+        {
+          "label": "MDN: width",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/width",
+          "description": "Setting element width"
+        },
+        {
+          "label": "MDN: overflow",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/overflow",
+          "description": "Controlling content overflow"
+        }
+      ]
+    },
+    {
+      "id": 582,
+      "title": "Adventurer Title Card",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "visual"
+      ],
+      "tags": [
+        "css",
+        "borders",
+        "backgrounds",
+        "typography",
+        "rpg",
+        "beginner"
+      ],
+      "description": "Style a dark fantasy title card with a gold border for your adventurer.",
+      "instructions": "Style an adventurer's title card with a dark theme and gold accent.\n\n1. `.title-card`:\n   - `background-color: #0f172a` (very dark blue)\n   - `border: 2px solid #d97706` (amber/gold)\n   - `border-radius: 8px`\n   - `padding: 16px`\n   - `color: #f8fafc` (near white)\n   - `text-align: center`\n   - `max-width: 240px`\n\n2. `.card-name`:\n   - `font-size: 20px`\n   - `color: #d97706` (gold, matching border)\n\n3. `.card-class`:\n   - `font-size: 14px`\n   - `color: #94a3b8` (slate grey)",
+      "starterCode": "/* Style the adventurer title card */\n",
+      "solution": ".title-card {\n  background-color: #0f172a;\n  border: 2px solid #d97706;\n  border-radius: 8px;\n  padding: 16px;\n  color: #f8fafc;\n  text-align: center;\n  max-width: 240px;\n}\n\n.card-name {\n  font-size: 20px;\n  color: #d97706;\n}\n\n.card-class {\n  font-size: 14px;\n  color: #94a3b8;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"title-card\"><div class=\"card-name\">Thorin the Brave</div><div class=\"card-class\">Warrior • Level 5</div></div>",
+      "testCases": [
+        {
+          "query": ".title-card",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(15, 23, 42)",
+          "description": ".title-card background is dark blue"
+        },
+        {
+          "query": ".title-card",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "8px",
+          "description": ".title-card border-radius is 8px"
+        },
+        {
+          "query": ".title-card",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "16px",
+          "description": ".title-card padding is 16px"
+        },
+        {
+          "query": ".title-card",
+          "assertion": "equals",
+          "property": "text-align",
+          "value": "center",
+          "description": ".title-card text is centered"
+        },
+        {
+          "query": ".card-name",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "20px",
+          "description": ".card-name font-size is 20px"
+        },
+        {
+          "query": ".card-name",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(217, 119, 6)",
+          "description": ".card-name color is gold"
+        },
+        {
+          "query": ".card-class",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "14px",
+          "description": ".card-class font-size is 14px"
+        },
+        {
+          "query": ".card-class",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(148, 163, 184)",
+          "description": ".card-class color is slate grey"
+        }
+      ],
+      "hints": [
+        "Use background-color for the dark backdrop and border for the gold outline.",
+        "The gold color #d97706 is used on both the border and the .card-name text.",
+        "text-align: center on the parent card centers all text inside it."
+      ],
+      "resources": [
+        {
+          "label": "MDN: border",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/border",
+          "description": "Setting border width, style, and color"
+        },
+        {
+          "label": "MDN: background-color",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/background-color",
+          "description": "Setting element backgrounds"
+        }
+      ]
+    },
+    {
+      "id": 583,
+      "title": "Repeat Battle Cry",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "js-fundamentals",
+        "loops"
+      ],
+      "tags": [
+        "loops",
+        "strings",
+        "rpg",
+        "beginner"
+      ],
+      "description": "Repeat a warrior's battle cry a given number of times using a loop.",
+      "instructions": "Write a function called `battleCry` that takes `word` (a string) and `times` (a number). Return the word repeated `times` times, separated by spaces.\n\nExample:\n  battleCry(\"Charge\", 3)   →  \"Charge Charge Charge\"\n  battleCry(\"Attack\", 1)   →  \"Attack\"\n  battleCry(\"Huzzah\", 2)   →  \"Huzzah Huzzah\"",
+      "starterCode": "function battleCry(word, times) {\n  // Your code here\n\n}",
+      "solution": "function battleCry(word, times) {\n  let result = '';\n  for (let i = 0; i < times; i++) {\n    if (i > 0) result += ' ';\n    result += word;\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return battleCry;')(); return [ { pass: fn('Charge', 3) === 'Charge Charge Charge', description: 'battleCry(\"Charge\", 3) → \"Charge Charge Charge\"', got: fn('Charge', 3) }, { pass: fn('Attack', 1) === 'Attack', description: 'battleCry(\"Attack\", 1) → \"Attack\"', got: fn('Attack', 1) }, { pass: fn('Huzzah', 2) === 'Huzzah Huzzah', description: 'battleCry(\"Huzzah\", 2) → \"Huzzah Huzzah\"', got: fn('Huzzah', 2) }, { pass: fn('For Glory', 4) === 'For Glory For Glory For Glory For Glory', description: 'battleCry(\"For Glory\", 4) repeats 4 times', got: fn('For Glory', 4) } ]; }",
+      "hints": [
+        "Start with an empty string and build it up inside a loop.",
+        "You need to add a space between words, but not before the first one.",
+        "Check if i > 0 before adding a space, then always add the word."
+      ],
+      "resources": [
+        {
+          "label": "MDN: for loop",
+          "url": "/docs/mdn/for-loop.html",
+          "description": "Repeat code with a counting loop"
+        },
+        {
+          "label": "MDN: String concatenation",
+          "url": "/docs/mdn/string-concat.html",
+          "description": "Combining strings with + or template literals"
+        }
+      ]
+    },
+    {
+      "id": 584,
+      "title": "Party Roll Call",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "map",
+        "objects",
+        "rpg",
+        "intermediate"
+      ],
+      "description": "Use .map() to create a roll call from an array of party member objects.",
+      "instructions": "Write a function called `rollCall` that takes `party` (an array of objects, each with `name` and `role` properties). Use `.map()` to return a new array of strings in the format `\"[name] - [role]\"`.\n\nExample:\n  rollCall([{name: 'Thorin', role: 'Warrior'}, {name: 'Elara', role: 'Mage'}])\n  →  [\"Thorin - Warrior\", \"Elara - Mage\"]",
+      "starterCode": "function rollCall(party) {\n  // Your code here\n\n}",
+      "solution": "function rollCall(party) {\n  return party.map(member => member.name + ' - ' + member.role);\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return rollCall;')(); const p1 = [{name:'Thorin',role:'Warrior'},{name:'Elara',role:'Mage'}]; const p2 = [{name:'Kael',role:'Rogue'},{name:'Lyra',role:'Cleric'},{name:'Dorn',role:'Paladin'}]; const r1 = fn(p1); const r2 = fn(p2); return [ { pass: JSON.stringify(r1) === JSON.stringify(['Thorin - Warrior','Elara - Mage']), description: 'Maps 2-member party to roll call strings', got: JSON.stringify(r1) }, { pass: r2.length === 3, description: '3-member party returns 3 strings', got: r2.length }, { pass: r2[2] === 'Dorn - Paladin', description: 'Third member is \"Dorn - Paladin\"', got: r2[2] }, { pass: JSON.stringify(fn([])) === '[]', description: 'Empty party returns empty array', got: JSON.stringify(fn([])) } ]; }",
+      "hints": [
+        ".map() creates a new array by transforming each element with a callback function.",
+        "Each element in the party array is an object with .name and .role properties.",
+        "Return member.name + ' - ' + member.role inside the .map() callback."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.map()",
+          "url": "/docs/mdn/array-map.html",
+          "description": "Transform each element in an array"
+        }
+      ]
+    },
+    {
+      "id": 585,
+      "title": "Loot Filter",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "filter",
+        "objects",
+        "rpg",
+        "intermediate"
+      ],
+      "description": "Filter a loot pile to keep only items worth at least a minimum gold value.",
+      "instructions": "Write a function called `filterLoot` that takes `items` (an array of objects with `name` and `value` properties) and `minValue` (a number). Use `.filter()` to return only items whose `value` is greater than or equal to `minValue`.\n\nExample:\n  filterLoot([{name: 'Gem', value: 50}, {name: 'Rock', value: 1}, {name: 'Ring', value: 30}], 20)\n  →  [{name: 'Gem', value: 50}, {name: 'Ring', value: 30}]",
+      "starterCode": "function filterLoot(items, minValue) {\n  // Your code here\n\n}",
+      "solution": "function filterLoot(items, minValue) {\n  return items.filter(item => item.value >= minValue);\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return filterLoot;')(); const loot = [{name:'Gem',value:50},{name:'Rock',value:1},{name:'Ring',value:30},{name:'Coin',value:10}]; const r1 = fn(loot, 20); const r2 = fn(loot, 50); const r3 = fn(loot, 0); return [ { pass: r1.length === 2 && r1[0].name === 'Gem' && r1[1].name === 'Ring', description: 'Filters items worth >= 20: Gem and Ring', got: JSON.stringify(r1.map(i=>i.name)) }, { pass: r2.length === 1 && r2[0].name === 'Gem', description: 'Filters items worth >= 50: only Gem', got: JSON.stringify(r2.map(i=>i.name)) }, { pass: r3.length === 4, description: 'minValue 0 keeps all items', got: r3.length }, { pass: fn([], 10).length === 0, description: 'Empty loot returns empty array', got: fn([], 10).length } ]; }",
+      "hints": [
+        ".filter() creates a new array containing only elements that pass a test.",
+        "The callback should return true when item.value >= minValue.",
+        "Remember: filter returns a new array, it doesn't modify the original."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.filter()",
+          "url": "/docs/mdn/array-filter.html",
+          "description": "Keep elements that pass a test"
+        }
+      ]
+    },
+    {
+      "id": 586,
+      "title": "Stat Block",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "math",
+        "rpg",
+        "intermediate"
+      ],
+      "description": "Build a character stat block and find the strongest attribute.",
+      "instructions": "Write a function called `statBlock` that takes four numbers: `str`, `dex`, `int`, `wis`. Return an object with:\n- `stats`: an object with properties `STR`, `DEX`, `INT`, `WIS` holding the values\n- `strongest`: the name of the highest stat (e.g. `\"STR\"`). If there's a tie, return the first one alphabetically.\n\nExample:\n  statBlock(14, 10, 16, 12)\n  →  { stats: { STR: 14, DEX: 10, INT: 16, WIS: 12 }, strongest: \"INT\" }",
+      "starterCode": "function statBlock(str, dex, int, wis) {\n  // Your code here\n\n}",
+      "solution": "function statBlock(str, dex, int, wis) {\n  const stats = { STR: str, DEX: dex, INT: int, WIS: wis };\n  let strongest = 'DEX';\n  for (const key in stats) {\n    if (stats[key] > stats[strongest] || (stats[key] === stats[strongest] && key < strongest)) {\n      strongest = key;\n    }\n  }\n  return { stats, strongest };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return statBlock;')(); const r1 = fn(14,10,16,12); const r2 = fn(10,10,10,10); const r3 = fn(18,12,8,14); return [ { pass: r1.stats.STR === 14 && r1.stats.DEX === 10 && r1.stats.INT === 16 && r1.stats.WIS === 12, description: 'stats object has correct values', got: JSON.stringify(r1.stats) }, { pass: r1.strongest === 'INT', description: 'strongest is \"INT\" when INT is highest', got: r1.strongest }, { pass: r2.strongest === 'DEX', description: 'Tie: returns first alphabetically (\"DEX\")', got: r2.strongest }, { pass: r3.strongest === 'STR', description: 'strongest is \"STR\" when STR is highest', got: r3.strongest } ]; }",
+      "hints": [
+        "Create an object with keys STR, DEX, INT, WIS and the provided values.",
+        "Loop through the object keys with a for...in loop to find the highest value.",
+        "For tie-breaking alphabetically, compare the key strings with < (string comparison)."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Objects",
+          "url": "/docs/mdn/objects.html",
+          "description": "Working with JavaScript objects"
+        },
+        {
+          "label": "MDN: for...in",
+          "url": "/docs/mdn/for-in.html",
+          "description": "Loop over object keys"
+        }
+      ]
+    },
+    {
+      "id": 587,
+      "title": "Health Bar (Dynamic)",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "visual"
+      ],
+      "tags": [
+        "css",
+        "transitions",
+        "hover",
+        "rpg",
+        "intermediate",
+        "health-bar"
+      ],
+      "description": "Create an animated health bar that transitions its width and color, with a hover effect to show full health.",
+      "instructions": "Build on the basic health bar with animations and a hover effect.\n\n1. `.health-bar`:\n   - `width: 240px`, `height: 28px`\n   - `background-color: #1e293b`\n   - `border-radius: 6px`\n   - `overflow: hidden`\n\n2. `.health-fill`:\n   - `width: 40%` (low health)\n   - `height: 100%`\n   - `background-color: #ef4444` (red for low HP)\n   - `border-radius: 6px`\n   - `transition: width 0.5s ease, background-color 0.5s ease`\n\n3. `.health-bar:hover .health-fill`:\n   - `width: 100%`\n   - `background-color: #22c55e` (green for full HP)",
+      "starterCode": "/* Animated health bar with hover */\n",
+      "solution": ".health-bar {\n  width: 240px;\n  height: 28px;\n  background-color: #1e293b;\n  border-radius: 6px;\n  overflow: hidden;\n}\n\n.health-fill {\n  width: 40%;\n  height: 100%;\n  background-color: #ef4444;\n  border-radius: 6px;\n  transition: width 0.5s ease, background-color 0.5s ease;\n}\n\n.health-bar:hover .health-fill {\n  width: 100%;\n  background-color: #22c55e;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"health-bar\"><div class=\"health-fill\"></div></div>",
+      "testCases": [
+        {
+          "query": ".health-bar",
+          "assertion": "equals",
+          "property": "width",
+          "value": "240px",
+          "description": ".health-bar width is 240px"
+        },
+        {
+          "query": ".health-bar",
+          "assertion": "equals",
+          "property": "height",
+          "value": "28px",
+          "description": ".health-bar height is 28px"
+        },
+        {
+          "query": ".health-bar",
+          "assertion": "equals",
+          "property": "overflow",
+          "value": "hidden",
+          "description": ".health-bar overflow is hidden"
+        },
+        {
+          "query": ".health-fill",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(239, 68, 68)",
+          "description": ".health-fill background is red (low HP)"
+        },
+        {
+          "query": ".health-fill",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "6px",
+          "description": ".health-fill border-radius is 6px"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "transition",
+          "description": "CSS uses transition property"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": ":hover",
+          "description": "CSS includes a :hover rule"
+        }
+      ],
+      "hints": [
+        "The transition shorthand lets you animate multiple properties: transition: width 0.5s ease, background-color 0.5s ease",
+        "Use the descendant hover pattern: .health-bar:hover .health-fill targets the fill when the bar is hovered.",
+        "The fill starts red (low HP) and transitions to green (full HP) on hover, simulating healing."
+      ],
+      "resources": [
+        {
+          "label": "MDN: transition",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/transition",
+          "description": "Animate CSS property changes"
+        },
+        {
+          "label": "MDN: :hover",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:hover",
+          "description": "Style elements on mouse hover"
+        }
+      ]
+    },
+    {
+      "id": 588,
+      "title": "Treasure Chest Counter",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "frequency-count",
+        "loops",
+        "rpg",
+        "intermediate"
+      ],
+      "description": "Count how many of each treasure type is in a loot array.",
+      "instructions": "Write a function called `countTreasure` that takes `loot` (an array of strings) and returns an object where each key is a loot type and each value is its count.\n\nExample:\n  countTreasure([\"gold\", \"gem\", \"gold\", \"potion\", \"gold\", \"gem\"])\n  →  { gold: 3, gem: 2, potion: 1 }",
+      "starterCode": "function countTreasure(loot) {\n  // Your code here\n\n}",
+      "solution": "function countTreasure(loot) {\n  const counts = {};\n  for (const item of loot) {\n    counts[item] = (counts[item] || 0) + 1;\n  }\n  return counts;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return countTreasure;')(); const r1 = fn(['gold','gem','gold','potion','gold','gem']); const r2 = fn(['sword']); const r3 = fn([]); return [ { pass: r1.gold === 3 && r1.gem === 2 && r1.potion === 1, description: 'Counts gold:3, gem:2, potion:1', got: JSON.stringify(r1) }, { pass: Object.keys(r1).length === 3, description: 'Result has exactly 3 keys', got: Object.keys(r1).length }, { pass: r2.sword === 1, description: 'Single item: sword:1', got: JSON.stringify(r2) }, { pass: Object.keys(r3).length === 0, description: 'Empty loot returns empty object', got: JSON.stringify(r3) } ]; }",
+      "hints": [
+        "Create an empty object to store counts, then loop through the array.",
+        "For each item, check if it already exists in the object. If so, increment; if not, set to 1.",
+        "The pattern counts[item] = (counts[item] || 0) + 1 handles both cases in one line."
+      ],
+      "resources": [
+        {
+          "label": "MDN: for...of",
+          "url": "/docs/mdn/for-of.html",
+          "description": "Loop over array values"
+        },
+        {
+          "label": "MDN: Objects",
+          "url": "/docs/mdn/objects.html",
+          "description": "Working with JavaScript objects"
+        }
+      ]
+    },
+    {
+      "id": 589,
+      "title": "Damage Calculator",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "conditionals",
+        "objects",
+        "rpg",
+        "intermediate"
+      ],
+      "description": "Calculate elemental combat damage with bonus multipliers for opposing elements.",
+      "instructions": "Write a function called `calcDamage` that takes `baseDamage` (number), `attackElement` (string), and `defenseElement` (string). Apply these elemental rules:\n- Fire beats Ice (double damage)\n- Ice beats Lightning (double damage)\n- Lightning beats Fire (double damage)\n- Same element: half damage\n- All other combinations: normal damage\n\nReturn the final damage as a whole number (use `Math.floor`).\n\nExample:\n  calcDamage(20, \"fire\", \"ice\")        →  40  (fire beats ice)\n  calcDamage(20, \"fire\", \"fire\")       →  10  (same element)\n  calcDamage(20, \"fire\", \"lightning\")   →  20  (neutral)",
+      "starterCode": "function calcDamage(baseDamage, attackElement, defenseElement) {\n  // Your code here\n\n}",
+      "solution": "function calcDamage(baseDamage, attackElement, defenseElement) {\n  if (attackElement === defenseElement) return Math.floor(baseDamage / 2);\n  const strong = { fire: 'ice', ice: 'lightning', lightning: 'fire' };\n  if (strong[attackElement] === defenseElement) return baseDamage * 2;\n  return baseDamage;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return calcDamage;')(); return [ { pass: fn(20, 'fire', 'ice') === 40, description: 'Fire vs Ice: 20 → 40 (double)', got: fn(20, 'fire', 'ice') }, { pass: fn(20, 'ice', 'lightning') === 40, description: 'Ice vs Lightning: 20 → 40 (double)', got: fn(20, 'ice', 'lightning') }, { pass: fn(20, 'lightning', 'fire') === 40, description: 'Lightning vs Fire: 20 → 40 (double)', got: fn(20, 'lightning', 'fire') }, { pass: fn(20, 'fire', 'fire') === 10, description: 'Fire vs Fire: 20 → 10 (half)', got: fn(20, 'fire', 'fire') }, { pass: fn(20, 'fire', 'lightning') === 20, description: 'Fire vs Lightning: 20 → 20 (neutral)', got: fn(20, 'fire', 'lightning') }, { pass: fn(15, 'ice', 'ice') === 7, description: 'Ice vs Ice: 15 → 7 (half, floored)', got: fn(15, 'ice', 'ice') } ]; }",
+      "hints": [
+        "Check for the same-element case first — if attack and defense match, halve the damage.",
+        "Use an object to map each element to the element it beats: { fire: 'ice', ice: 'lightning', lightning: 'fire' }.",
+        "If the attacked element is the one your attack beats, double; otherwise return normal damage."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Objects",
+          "url": "/docs/mdn/objects.html",
+          "description": "Working with JavaScript objects"
+        },
+        {
+          "label": "MDN: Math.floor()",
+          "url": "/docs/mdn/math-floor.html",
+          "description": "Round down to nearest integer"
+        }
+      ]
+    },
+    {
+      "id": 590,
+      "title": "Stat Card",
+      "type": "html-css",
+      "tier": 2,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "html",
+        "css",
+        "flexbox",
+        "rpg",
+        "intermediate",
+        "stat-card"
+      ],
+      "description": "Build a character stat card using flexbox to display four RPG stats in a row.",
+      "instructions": "Build a character stat card with a row of RPG stats using flexbox.\n\n**Required HTML:**\n- A `.stat-card` container\n- Inside: an `<h2>` with class `hero-name` containing any hero name\n- A `.stats-row` div containing exactly 4 `.stat` divs\n- Each `.stat` has a `.stat-value` (the number) and `.stat-label` (e.g. STR, DEX, INT, WIS)\n\n**Required CSS:**\n1. `.stat-card`: `background-color: #0f172a`, `border: 2px solid #d97706`, `border-radius: 8px`, `padding: 16px`, `max-width: 320px`, `color: #f8fafc`\n2. `.stats-row`: `display: flex`, `justify-content: space-around`\n3. `.stat`: `text-align: center`\n4. `.stat-value`: `font-size: 24px`, `color: #d97706`\n5. `.stat-label`: `font-size: 12px`, `color: #94a3b8`",
+      "starterCode": "",
+      "solution": "<div class=\"stat-card\">\n  <h2 class=\"hero-name\">Thorin the Brave</h2>\n  <div class=\"stats-row\">\n    <div class=\"stat\">\n      <div class=\"stat-value\">16</div>\n      <div class=\"stat-label\">STR</div>\n    </div>\n    <div class=\"stat\">\n      <div class=\"stat-value\">12</div>\n      <div class=\"stat-label\">DEX</div>\n    </div>\n    <div class=\"stat\">\n      <div class=\"stat-value\">8</div>\n      <div class=\"stat-label\">INT</div>\n    </div>\n    <div class=\"stat\">\n      <div class=\"stat-value\">14</div>\n      <div class=\"stat-label\">WIS</div>\n    </div>\n  </div>\n</div>\n\n<style>\n.stat-card {\n  background-color: #0f172a;\n  border: 2px solid #d97706;\n  border-radius: 8px;\n  padding: 16px;\n  max-width: 320px;\n  color: #f8fafc;\n}\n\n.stats-row {\n  display: flex;\n  justify-content: space-around;\n}\n\n.stat {\n  text-align: center;\n}\n\n.stat-value {\n  font-size: 24px;\n  color: #d97706;\n}\n\n.stat-label {\n  font-size: 12px;\n  color: #94a3b8;\n}\n</style>",
+      "testRunner": "",
+      "testCases": [
+        {
+          "query": ".stat-card",
+          "assertion": "exists",
+          "description": ".stat-card container exists"
+        },
+        {
+          "query": ".stat-card h2.hero-name",
+          "assertion": "exists",
+          "description": "h2.hero-name exists inside stat-card"
+        },
+        {
+          "query": ".stats-row",
+          "assertion": "exists",
+          "description": ".stats-row exists"
+        },
+        {
+          "query": ".stat",
+          "assertion": "countAtLeast",
+          "value": 4,
+          "description": "At least 4 .stat elements"
+        },
+        {
+          "query": ".stat-value",
+          "assertion": "countAtLeast",
+          "value": 4,
+          "description": "At least 4 .stat-value elements"
+        },
+        {
+          "query": ".stat-label",
+          "assertion": "countAtLeast",
+          "value": 4,
+          "description": "At least 4 .stat-label elements"
+        },
+        {
+          "query": ".stat-card",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(15, 23, 42)",
+          "description": ".stat-card background is dark blue"
+        },
+        {
+          "query": ".stat-card",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "8px",
+          "description": ".stat-card border-radius is 8px"
+        },
+        {
+          "query": ".stats-row",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": ".stats-row uses flexbox"
+        },
+        {
+          "query": ".stats-row",
+          "assertion": "equals",
+          "property": "justify-content",
+          "value": "space-around",
+          "description": ".stats-row justify-content is space-around"
+        },
+        {
+          "query": ".stat",
+          "assertion": "equals",
+          "property": "text-align",
+          "value": "center",
+          "description": ".stat text is centered"
+        },
+        {
+          "query": ".stat-value",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "24px",
+          "description": ".stat-value font-size is 24px"
+        },
+        {
+          "query": ".stat-value",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(217, 119, 6)",
+          "description": ".stat-value color is gold"
+        },
+        {
+          "query": ".stat-label",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "12px",
+          "description": ".stat-label font-size is 12px"
+        }
+      ],
+      "hints": [
+        "Build the HTML structure first: a card with a hero name, then a row of 4 stat items.",
+        "Each stat item has two children: a .stat-value for the number and a .stat-label for the abbreviation.",
+        "Flexbox with justify-content: space-around evenly distributes the 4 stats with spacing."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Flexbox",
+          "url": "/docs/mdn/flexbox.html",
+          "description": "Controlling layout with Flexbox"
+        },
+        {
+          "label": "MDN: justify-content",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content",
+          "description": "Distribute space between flex items"
+        }
+      ]
+    },
+    {
+      "id": 591,
+      "title": "Sort the Armory",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "sort",
+        "objects",
+        "rpg",
+        "intermediate"
+      ],
+      "description": "Sort weapons by damage (highest first), breaking ties by weight (lightest first).",
+      "instructions": "Write a function called `sortArmory` that takes `weapons` (an array of objects with `name`, `damage`, and `weight` properties). Sort them by `damage` descending. If two weapons have the same damage, sort by `weight` ascending (lighter first). Return the sorted array.\n\nExample:\n  sortArmory([\n    {name: 'Dagger', damage: 5, weight: 1},\n    {name: 'Sword', damage: 10, weight: 5},\n    {name: 'Mace', damage: 10, weight: 8}\n  ])\n  →  [{name:'Sword',damage:10,weight:5}, {name:'Mace',damage:10,weight:8}, {name:'Dagger',damage:5,weight:1}]",
+      "starterCode": "function sortArmory(weapons) {\n  // Your code here\n\n}",
+      "solution": "function sortArmory(weapons) {\n  return weapons.sort((a, b) => {\n    if (b.damage !== a.damage) return b.damage - a.damage;\n    return a.weight - b.weight;\n  });\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return sortArmory;')(); const w = [{name:'Dagger',damage:5,weight:1},{name:'Sword',damage:10,weight:5},{name:'Mace',damage:10,weight:8},{name:'Staff',damage:7,weight:3}]; const r = fn(w); return [ { pass: r[0].name === 'Sword', description: 'First: Sword (damage 10, weight 5)', got: r[0].name }, { pass: r[1].name === 'Mace', description: 'Second: Mace (damage 10, weight 8 — heavier)', got: r[1].name }, { pass: r[2].name === 'Staff', description: 'Third: Staff (damage 7)', got: r[2].name }, { pass: r[3].name === 'Dagger', description: 'Last: Dagger (damage 5)', got: r[3].name } ]; }",
+      "hints": [
+        "Array.sort() takes a comparator function. Return negative to sort a before b, positive for b before a.",
+        "For descending damage: b.damage - a.damage. This puts higher damage first.",
+        "If damage is equal, use a.weight - b.weight as a tiebreaker (lighter first)."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.sort()",
+          "url": "/docs/mdn/array-sort.html",
+          "description": "Sort array elements with a custom comparator"
+        }
+      ]
+    },
+    {
+      "id": 592,
+      "title": "XP to Level",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "loops"
+      ],
+      "tags": [
+        "while-loop",
+        "arithmetic",
+        "rpg",
+        "intermediate"
+      ],
+      "description": "Calculate how many levels a character gains from their XP, where each level costs more than the last.",
+      "instructions": "Write a function called `xpToLevel` that takes `xp` (a number). Each level costs `level × 100` XP to earn (level 1 costs 100, level 2 costs 200, level 3 costs 300, etc.). Start at level 0 and keep leveling up as long as you have enough XP. Return the final level.\n\nExample:\n  xpToLevel(100)   →  1  (100 XP buys level 1)\n  xpToLevel(350)   →  2  (100 for lvl 1 + 200 for lvl 2 = 300 spent, 50 left)\n  xpToLevel(0)     →  0\n  xpToLevel(600)   →  3  (100+200+300 = 600 exactly)",
+      "starterCode": "function xpToLevel(xp) {\n  // Your code here\n\n}",
+      "solution": "function xpToLevel(xp) {\n  let level = 0;\n  while (xp >= (level + 1) * 100) {\n    level++;\n    xp -= level * 100;\n  }\n  return level;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return xpToLevel;')(); return [ { pass: fn(100) === 1, description: 'xpToLevel(100) → 1', got: fn(100) }, { pass: fn(350) === 2, description: 'xpToLevel(350) → 2 (100+200=300, 50 left over)', got: fn(350) }, { pass: fn(0) === 0, description: 'xpToLevel(0) → 0', got: fn(0) }, { pass: fn(600) === 3, description: 'xpToLevel(600) → 3 (100+200+300=600)', got: fn(600) }, { pass: fn(99) === 0, description: 'xpToLevel(99) → 0 (not enough for level 1)', got: fn(99) }, { pass: fn(1000) === 4, description: 'xpToLevel(1000) → 4 (100+200+300+400=1000)', got: fn(1000) } ]; }",
+      "hints": [
+        "Use a while loop that keeps running as long as you have enough XP for the next level.",
+        "The cost of the next level is (currentLevel + 1) * 100.",
+        "Subtract the cost from xp each time you level up, then increment the level."
+      ],
+      "resources": [
+        {
+          "label": "MDN: while loop",
+          "url": "/docs/mdn/while-loop.html",
+          "description": "Loop while a condition is true"
+        }
+      ]
+    },
+    {
+      "id": 593,
+      "title": "Guild Roster",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "functions",
+        "higher-order"
+      ],
+      "tags": [
+        "reduce",
+        "objects",
+        "arrays",
+        "rpg",
+        "intermediate"
+      ],
+      "description": "Group guild members by their role using .reduce().",
+      "instructions": "Write a function called `guildRoster` that takes `members` (an array of objects with `name` and `role` properties). Use `.reduce()` to return an object where each key is a role and each value is an array of names with that role.\n\nExample:\n  guildRoster([\n    {name: 'Thorin', role: 'Warrior'},\n    {name: 'Elara', role: 'Mage'},\n    {name: 'Kael', role: 'Warrior'},\n    {name: 'Lyra', role: 'Mage'}\n  ])\n  →  { Warrior: ['Thorin', 'Kael'], Mage: ['Elara', 'Lyra'] }",
+      "starterCode": "function guildRoster(members) {\n  // Your code here\n\n}",
+      "solution": "function guildRoster(members) {\n  return members.reduce((roster, member) => {\n    if (!roster[member.role]) {\n      roster[member.role] = [];\n    }\n    roster[member.role].push(member.name);\n    return roster;\n  }, {});\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return guildRoster;')(); const m = [{name:'Thorin',role:'Warrior'},{name:'Elara',role:'Mage'},{name:'Kael',role:'Warrior'},{name:'Lyra',role:'Mage'},{name:'Dorn',role:'Cleric'}]; const r = fn(m); return [ { pass: JSON.stringify(r.Warrior) === JSON.stringify(['Thorin','Kael']), description: 'Warrior: [\"Thorin\", \"Kael\"]', got: JSON.stringify(r.Warrior) }, { pass: JSON.stringify(r.Mage) === JSON.stringify(['Elara','Lyra']), description: 'Mage: [\"Elara\", \"Lyra\"]', got: JSON.stringify(r.Mage) }, { pass: JSON.stringify(r.Cleric) === JSON.stringify(['Dorn']), description: 'Cleric: [\"Dorn\"]', got: JSON.stringify(r.Cleric) }, { pass: Object.keys(r).length === 3, description: 'Result has 3 role groups', got: Object.keys(r).length } ]; }",
+      "hints": [
+        ".reduce() accumulates a single value by processing each array element. Start with an empty object {}.",
+        "For each member, check if roster[member.role] exists. If not, create it as an empty array.",
+        "Push member.name into roster[member.role], then return the roster for the next iteration."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.reduce()",
+          "url": "/docs/mdn/array-reduce.html",
+          "description": "Reduce an array to a single value"
+        }
+      ]
+    },
+    {
+      "id": 594,
+      "title": "Dungeon Key",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "objects",
+        "frequency-count",
+        "rpg",
+        "intermediate",
+        "dungeon-map"
+      ],
+      "description": "Parse a dungeon row string and count how many of each tile type appears.",
+      "instructions": "Write a function called `dungeonKey` that takes a `row` string where each character represents a tile: `#` = wall, `.` = floor, `P` = player, `G` = gold, `M` = monster, `D` = door. Return an object counting how many of each character appears.\n\nExample:\n  dungeonKey(\"#.PG.M.#\")\n  →  { '#': 2, '.': 3, 'P': 1, 'G': 1, 'M': 1 }\n  dungeonKey(\"##DDD##\")\n  →  { '#': 4, 'D': 3 }",
+      "starterCode": "function dungeonKey(row) {\n  // Your code here\n\n}",
+      "solution": "function dungeonKey(row) {\n  const counts = {};\n  for (const ch of row) {\n    counts[ch] = (counts[ch] || 0) + 1;\n  }\n  return counts;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return dungeonKey;')(); const r1 = fn('#.PG.M.#'); const r2 = fn('##DDD##'); const r3 = fn('....'); return [ { pass: r1['#'] === 2 && r1['.'] === 3 && r1['P'] === 1 && r1['G'] === 1 && r1['M'] === 1, description: '\"#.PG.M.#\" → #:2, .:3, P:1, G:1, M:1', got: JSON.stringify(r1) }, { pass: r2['#'] === 4 && r2['D'] === 3, description: '\"##DDD##\" → #:4, D:3', got: JSON.stringify(r2) }, { pass: r3['.'] === 4 && Object.keys(r3).length === 1, description: '\"....\" → only floor tiles', got: JSON.stringify(r3) }, { pass: Object.keys(fn('')).length === 0, description: 'Empty string returns empty object', got: JSON.stringify(fn('')) } ]; }",
+      "hints": [
+        "Strings are iterable: you can use a for...of loop to go through each character.",
+        "Use the same frequency counting pattern as the Treasure Chest Counter exercise.",
+        "counts[ch] = (counts[ch] || 0) + 1 increments the count for each character."
+      ],
+      "resources": [
+        {
+          "label": "MDN: for...of",
+          "url": "/docs/mdn/for-of.html",
+          "description": "Loop over iterable values (strings, arrays)"
+        },
+        {
+          "label": "MDN: Objects",
+          "url": "/docs/mdn/objects.html",
+          "description": "Working with JavaScript objects"
+        }
+      ]
+    },
+    {
+      "id": 595,
+      "title": "Forge an Item",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "classes",
+        "methods",
+        "rpg",
+        "intermediate"
+      ],
+      "description": "Create an Item class with methods to describe the item and check its category.",
+      "instructions": "Create a class called `Item` with:\n- Constructor takes `name` (string), `type` (string: \"weapon\", \"armor\", \"potion\", or \"scroll\"), and `power` (number)\n- `describe()` method returns `\"[name] ([type]) - power: [power]\"`\n- `isWeapon()` returns true if type is `\"weapon\"`\n- `isConsumable()` returns true if type is `\"potion\"` or `\"scroll\"`\n\nExample:\n  const sword = new Item(\"Iron Sword\", \"weapon\", 12);\n  sword.describe()      →  \"Iron Sword (weapon) - power: 12\"\n  sword.isWeapon()      →  true\n  sword.isConsumable()  →  false",
+      "starterCode": "class Item {\n  constructor(name, type, power) {\n    // Your code here\n  }\n\n  describe() {\n    // Your code here\n  }\n\n  isWeapon() {\n    // Your code here\n  }\n\n  isConsumable() {\n    // Your code here\n  }\n}",
+      "solution": "class Item {\n  constructor(name, type, power) {\n    this.name = name;\n    this.type = type;\n    this.power = power;\n  }\n\n  describe() {\n    return this.name + ' (' + this.type + ') - power: ' + this.power;\n  }\n\n  isWeapon() {\n    return this.type === 'weapon';\n  }\n\n  isConsumable() {\n    return this.type === 'potion' || this.type === 'scroll';\n  }\n}",
+      "testRunner": "(code) => { const cls = new Function(code + '; return Item;')(); const sword = new cls('Iron Sword','weapon',12); const potion = new cls('Health Potion','potion',25); const scroll = new cls('Fire Scroll','scroll',30); const armor = new cls('Shield','armor',8); return [ { pass: sword.describe() === 'Iron Sword (weapon) - power: 12', description: 'sword.describe() returns formatted string', got: sword.describe() }, { pass: sword.isWeapon() === true, description: 'sword.isWeapon() → true', got: sword.isWeapon() }, { pass: sword.isConsumable() === false, description: 'sword.isConsumable() → false', got: sword.isConsumable() }, { pass: potion.isConsumable() === true, description: 'potion.isConsumable() → true', got: potion.isConsumable() }, { pass: scroll.isConsumable() === true, description: 'scroll.isConsumable() → true', got: scroll.isConsumable() }, { pass: armor.isWeapon() === false, description: 'armor.isWeapon() → false', got: armor.isWeapon() } ]; }",
+      "hints": [
+        "In the constructor, assign parameters to this.name, this.type, and this.power.",
+        "Methods defined inside a class can access the instance with 'this'.",
+        "isConsumable() should check for both 'potion' and 'scroll' types using ||."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Classes",
+          "url": "/docs/mdn/classes.html",
+          "description": "JavaScript class syntax"
+        },
+        {
+          "label": "MDN: this keyword",
+          "url": "/docs/mdn/this.html",
+          "description": "How 'this' works in methods"
+        }
+      ]
+    },
+    {
+      "id": 596,
+      "title": "The Spellbook",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "functions",
+        "higher-order"
+      ],
+      "tags": [
+        "filter",
+        "find",
+        "objects",
+        "rpg",
+        "intermediate"
+      ],
+      "description": "Filter affordable spells and find the best one matching an enemy's weakness.",
+      "instructions": "Write a function called `bestSpell` that takes `spells` (array of objects with `name`, `element`, `damage`, `manaCost`), `mana` (number), and `enemyWeakness` (string). Do two things:\n1. Filter to only spells the caster can afford (manaCost <= mana)\n2. Among affordable spells, find the one that matches the `enemyWeakness` element with the highest damage. If no matching spell is affordable, return `null`.\n\nReturn the spell object (or null).\n\nExample:\n  bestSpell([\n    {name:'Fireball', element:'fire', damage:30, manaCost:20},\n    {name:'Ember', element:'fire', damage:10, manaCost:5},\n    {name:'Blizzard', element:'ice', damage:25, manaCost:15}\n  ], 20, 'fire')\n  →  {name:'Fireball', element:'fire', damage:30, manaCost:20}",
+      "starterCode": "function bestSpell(spells, mana, enemyWeakness) {\n  // Your code here\n\n}",
+      "solution": "function bestSpell(spells, mana, enemyWeakness) {\n  const affordable = spells.filter(s => s.manaCost <= mana);\n  const matching = affordable.filter(s => s.element === enemyWeakness);\n  if (matching.length === 0) return null;\n  return matching.reduce((best, s) => s.damage > best.damage ? s : best);\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return bestSpell;')(); const spells = [{name:'Fireball',element:'fire',damage:30,manaCost:20},{name:'Ember',element:'fire',damage:10,manaCost:5},{name:'Blizzard',element:'ice',damage:25,manaCost:15},{name:'Inferno',element:'fire',damage:50,manaCost:40}]; return [ { pass: fn(spells, 20, 'fire').name === 'Fireball', description: 'With 20 mana, best fire spell is Fireball', got: fn(spells, 20, 'fire')?.name }, { pass: fn(spells, 5, 'fire').name === 'Ember', description: 'With 5 mana, only Ember is affordable', got: fn(spells, 5, 'fire')?.name }, { pass: fn(spells, 50, 'fire').name === 'Inferno', description: 'With 50 mana, Inferno has highest fire damage', got: fn(spells, 50, 'fire')?.name }, { pass: fn(spells, 20, 'lightning') === null, description: 'No lightning spells → null', got: fn(spells, 20, 'lightning') }, { pass: fn(spells, 1, 'fire') === null, description: 'Can\\'t afford any fire spells → null', got: fn(spells, 1, 'fire') } ]; }",
+      "hints": [
+        "First, filter spells where manaCost <= mana to get affordable ones.",
+        "Then filter those affordable spells to ones matching the enemy's weakness element.",
+        "Finally, find the spell with the highest damage from the matching set. .reduce() works well here."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.filter()",
+          "url": "/docs/mdn/array-filter.html",
+          "description": "Keep elements that pass a test"
+        },
+        {
+          "label": "MDN: Array.reduce()",
+          "url": "/docs/mdn/array-reduce.html",
+          "description": "Reduce an array to a single value"
+        }
+      ]
+    },
+    {
+      "id": 597,
+      "title": "Dungeon Map: Row Renderer",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "objects",
+        "strings",
+        "rpg",
+        "intermediate",
+        "dungeon-map"
+      ],
+      "description": "Parse a dungeon row string into an array of tile objects using a legend.",
+      "instructions": "Write a function called `renderRow` that takes a `row` string. Each character maps to a tile type using this legend:\n- `#` → `\"wall\"`\n- `.` → `\"floor\"`\n- `P` → `\"player\"`\n- `G` → `\"gold\"`\n- `M` → `\"monster\"`\n- `D` → `\"door\"`\n- anything else → `\"unknown\"`\n\nReturn an array of objects: `{ char, tile }`.\n\nExample:\n  renderRow(\"#.PG#\")\n  →  [\n    { char: '#', tile: 'wall' },\n    { char: '.', tile: 'floor' },\n    { char: 'P', tile: 'player' },\n    { char: 'G', tile: 'gold' },\n    { char: '#', tile: 'wall' }\n  ]",
+      "starterCode": "function renderRow(row) {\n  // Your code here\n\n}",
+      "solution": "function renderRow(row) {\n  const legend = { '#': 'wall', '.': 'floor', 'P': 'player', 'G': 'gold', 'M': 'monster', 'D': 'door' };\n  return row.split('').map(ch => ({ char: ch, tile: legend[ch] || 'unknown' }));\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return renderRow;')(); const r1 = fn('#.PG#'); const r2 = fn('DMD'); return [ { pass: r1.length === 5, description: '\"#.PG#\" produces 5 tiles', got: r1.length }, { pass: r1[0].char === '#' && r1[0].tile === 'wall', description: 'First tile: {char:\"#\", tile:\"wall\"}', got: JSON.stringify(r1[0]) }, { pass: r1[2].char === 'P' && r1[2].tile === 'player', description: 'Player tile: {char:\"P\", tile:\"player\"}', got: JSON.stringify(r1[2]) }, { pass: r1[3].tile === 'gold', description: 'G maps to \"gold\"', got: r1[3].tile }, { pass: r2[0].tile === 'door' && r2[1].tile === 'monster', description: 'D=door, M=monster', got: JSON.stringify(r2.map(t=>t.tile)) }, { pass: fn('X')[0].tile === 'unknown', description: 'Unknown char maps to \"unknown\"', got: fn('X')[0].tile } ]; }",
+      "hints": [
+        "Create a legend object mapping characters to tile names: { '#': 'wall', '.': 'floor', ... }.",
+        "Split the string into an array of characters with .split('').",
+        "Use .map() to transform each character into a { char, tile } object, looking up the tile in the legend."
+      ],
+      "resources": [
+        {
+          "label": "MDN: String.split()",
+          "url": "/docs/mdn/string-split.html",
+          "description": "Split a string into an array"
+        },
+        {
+          "label": "MDN: Array.map()",
+          "url": "/docs/mdn/array-map.html",
+          "description": "Transform each element in an array"
+        }
+      ]
+    },
+    {
+      "id": 598,
+      "title": "Health Bar Trio",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "css",
+        "flexbox",
+        "rpg",
+        "intermediate",
+        "health-bar"
+      ],
+      "description": "Display a party of three characters with color-coded health bars in a flex column layout.",
+      "instructions": "Style a party health display showing 3 health bars stacked vertically.\n\n1. `.party-health`:\n   - `display: flex`\n   - `flex-direction: column`\n   - `gap: 8px`\n   - `max-width: 260px`\n\n2. `.hp-track`:\n   - `height: 20px`\n   - `background-color: #1e293b`\n   - `border-radius: 4px`\n   - `overflow: hidden`\n\n3. `.hp-fill`:\n   - `height: 100%`\n   - `border-radius: 4px`\n\n4. Color classes:\n   - `.hp-high`: `background-color: #22c55e` (green), `width: 90%`\n   - `.hp-mid`: `background-color: #eab308` (yellow), `width: 50%`\n   - `.hp-low`: `background-color: #ef4444` (red), `width: 20%`",
+      "starterCode": "/* Party health bar trio */\n",
+      "solution": ".party-health {\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n  max-width: 260px;\n}\n\n.hp-track {\n  height: 20px;\n  background-color: #1e293b;\n  border-radius: 4px;\n  overflow: hidden;\n}\n\n.hp-fill {\n  height: 100%;\n  border-radius: 4px;\n}\n\n.hp-high {\n  background-color: #22c55e;\n  width: 90%;\n}\n\n.hp-mid {\n  background-color: #eab308;\n  width: 50%;\n}\n\n.hp-low {\n  background-color: #ef4444;\n  width: 20%;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"party-health\"><div class=\"hp-track\"><div class=\"hp-fill hp-high\"></div></div><div class=\"hp-track\"><div class=\"hp-fill hp-mid\"></div></div><div class=\"hp-track\"><div class=\"hp-fill hp-low\"></div></div></div>",
+      "testCases": [
+        {
+          "query": ".party-health",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": ".party-health uses flexbox"
+        },
+        {
+          "query": ".party-health",
+          "assertion": "equals",
+          "property": "flex-direction",
+          "value": "column",
+          "description": ".party-health is column direction"
+        },
+        {
+          "query": ".party-health",
+          "assertion": "equals",
+          "property": "gap",
+          "value": "8px",
+          "description": ".party-health gap is 8px"
+        },
+        {
+          "query": ".hp-track",
+          "assertion": "equals",
+          "property": "height",
+          "value": "20px",
+          "description": ".hp-track height is 20px"
+        },
+        {
+          "query": ".hp-track",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(30, 41, 59)",
+          "description": ".hp-track background is dark slate"
+        },
+        {
+          "query": ".hp-track",
+          "assertion": "equals",
+          "property": "overflow",
+          "value": "hidden",
+          "description": ".hp-track overflow is hidden"
+        },
+        {
+          "query": ".hp-high",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(34, 197, 94)",
+          "description": ".hp-high is green"
+        },
+        {
+          "query": ".hp-mid",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(234, 179, 8)",
+          "description": ".hp-mid is yellow"
+        },
+        {
+          "query": ".hp-low",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(239, 68, 68)",
+          "description": ".hp-low is red"
+        }
+      ],
+      "hints": [
+        "Use flex-direction: column on .party-health to stack the bars vertically.",
+        "Each bar has a .hp-track (dark background) containing a .hp-fill (colored fill).",
+        "The color classes (.hp-high, .hp-mid, .hp-low) set both the color and width."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Flexbox",
+          "url": "/docs/mdn/flexbox.html",
+          "description": "Controlling layout with Flexbox"
+        },
+        {
+          "label": "MDN: CSS colors",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/color_value",
+          "description": "Color values in CSS"
+        }
+      ]
+    },
+    {
+      "id": 599,
+      "title": "Inventory Grid",
+      "type": "html-css",
+      "tier": 3,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "html",
+        "css",
+        "grid",
+        "rpg",
+        "intermediate",
+        "inventory"
+      ],
+      "description": "Build a 4-column inventory grid using CSS Grid with square item slots.",
+      "instructions": "Build a 4-column inventory grid for an RPG character.\n\n**Required HTML:**\n- An `.inventory-grid` container\n- Inside: 8 `.inv-slot` divs (some with item text, some empty)\n\n**Required CSS:**\n1. `.inventory-grid`: `display: grid`, `grid-template-columns: repeat(4, 1fr)`, `gap: 4px`, `max-width: 320px`\n2. `.inv-slot`: `aspect-ratio: 1`, `background-color: #1e293b`, `border: 1px solid #334155`, `border-radius: 4px`, `display: flex`, `align-items: center`, `justify-content: center`, `font-size: 12px`, `color: #94a3b8`",
+      "starterCode": "",
+      "solution": "<div class=\"inventory-grid\">\n  <div class=\"inv-slot\">Sword</div>\n  <div class=\"inv-slot\">Shield</div>\n  <div class=\"inv-slot\">Potion</div>\n  <div class=\"inv-slot\"></div>\n  <div class=\"inv-slot\">Ring</div>\n  <div class=\"inv-slot\"></div>\n  <div class=\"inv-slot\">Scroll</div>\n  <div class=\"inv-slot\"></div>\n</div>\n\n<style>\n.inventory-grid {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 4px;\n  max-width: 320px;\n}\n\n.inv-slot {\n  aspect-ratio: 1;\n  background-color: #1e293b;\n  border: 1px solid #334155;\n  border-radius: 4px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 12px;\n  color: #94a3b8;\n}\n</style>",
+      "testRunner": "",
+      "testCases": [
+        {
+          "query": ".inventory-grid",
+          "assertion": "exists",
+          "description": ".inventory-grid container exists"
+        },
+        {
+          "query": ".inv-slot",
+          "assertion": "countAtLeast",
+          "value": 8,
+          "description": "At least 8 .inv-slot elements"
+        },
+        {
+          "query": ".inventory-grid",
+          "assertion": "equals",
+          "property": "display",
+          "value": "grid",
+          "description": ".inventory-grid uses CSS Grid"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "repeat(4",
+          "description": "Grid uses repeat(4, ...) for 4 columns"
+        },
+        {
+          "query": ".inventory-grid",
+          "assertion": "equals",
+          "property": "gap",
+          "value": "4px",
+          "description": ".inventory-grid gap is 4px"
+        },
+        {
+          "query": ".inv-slot",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(30, 41, 59)",
+          "description": ".inv-slot background is dark slate"
+        },
+        {
+          "query": ".inv-slot",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "4px",
+          "description": ".inv-slot border-radius is 4px"
+        },
+        {
+          "query": ".inv-slot",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": ".inv-slot uses flex for centering"
+        },
+        {
+          "query": ".inv-slot",
+          "assertion": "equals",
+          "property": "align-items",
+          "value": "center",
+          "description": ".inv-slot vertically centers content"
+        },
+        {
+          "query": ".inv-slot",
+          "assertion": "equals",
+          "property": "justify-content",
+          "value": "center",
+          "description": ".inv-slot horizontally centers content"
+        }
+      ],
+      "hints": [
+        "CSS Grid with repeat(4, 1fr) creates 4 equal-width columns.",
+        "aspect-ratio: 1 makes each slot a perfect square.",
+        "Use flexbox inside each slot to center its text content both vertically and horizontally."
+      ],
+      "resources": [
+        {
+          "label": "MDN: CSS Grid",
+          "url": "/docs/mdn/css-grid.html",
+          "description": "Two-dimensional grid layout"
+        },
+        {
+          "label": "MDN: aspect-ratio",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio",
+          "description": "Control element proportions"
+        }
+      ]
+    },
+    {
+      "id": 600,
+      "title": "Dungeon Map: Full Grid",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "strings",
+        "2d-arrays",
+        "rpg",
+        "intermediate",
+        "dungeon-map"
+      ],
+      "description": "Parse a multi-line dungeon string into a 2D array and find specific characters on the map.",
+      "instructions": "Write two functions:\n\n1. `parseMap(mapStr)` — takes a multi-line string (rows separated by `\\n`). Return a 2D array where each row is an array of single characters.\n\n2. `findOnMap(grid, target)` — takes the 2D array from `parseMap` and a target character. Return `{ row, col }` for the first occurrence (scanning left-to-right, top-to-bottom), or `null` if not found.\n\nExample:\n  const grid = parseMap(\"#.P\\n#G.\\n###\");\n  // grid = [['#','.','P'],['#','G','.'],['#','#','#']]\n  findOnMap(grid, 'P')  →  { row: 0, col: 2 }\n  findOnMap(grid, 'G')  →  { row: 1, col: 1 }\n  findOnMap(grid, 'X')  →  null",
+      "starterCode": "function parseMap(mapStr) {\n  // Your code here\n\n}\n\nfunction findOnMap(grid, target) {\n  // Your code here\n\n}",
+      "solution": "function parseMap(mapStr) {\n  return mapStr.split('\\n').map(row => row.split(''));\n}\n\nfunction findOnMap(grid, target) {\n  for (let r = 0; r < grid.length; r++) {\n    for (let c = 0; c < grid[r].length; c++) {\n      if (grid[r][c] === target) return { row: r, col: c };\n    }\n  }\n  return null;\n}",
+      "testRunner": "(code) => { const fns = new Function(code + '; return { parseMap, findOnMap };')(); const { parseMap, findOnMap } = fns; const grid = parseMap('#.P\\n#G.\\n###'); return [ { pass: grid.length === 3, description: 'parseMap creates 3 rows', got: grid.length }, { pass: grid[0].length === 3, description: 'Each row has 3 columns', got: grid[0].length }, { pass: grid[0][2] === 'P', description: 'grid[0][2] is \"P\"', got: grid[0][2] }, { pass: JSON.stringify(findOnMap(grid,'P')) === JSON.stringify({row:0,col:2}), description: 'findOnMap(grid,\"P\") → {row:0,col:2}', got: JSON.stringify(findOnMap(grid,'P')) }, { pass: JSON.stringify(findOnMap(grid,'G')) === JSON.stringify({row:1,col:1}), description: 'findOnMap(grid,\"G\") → {row:1,col:1}', got: JSON.stringify(findOnMap(grid,'G')) }, { pass: findOnMap(grid,'X') === null, description: 'findOnMap(grid,\"X\") → null', got: findOnMap(grid,'X') } ]; }",
+      "hints": [
+        "Split the multi-line string by '\\n' to get rows, then split each row by '' to get characters.",
+        "For findOnMap, use nested loops: outer for rows, inner for columns.",
+        "Return { row: r, col: c } as soon as you find the target. Return null after both loops finish."
+      ],
+      "resources": [
+        {
+          "label": "MDN: String.split()",
+          "url": "/docs/mdn/string-split.html",
+          "description": "Split a string into an array"
+        },
+        {
+          "label": "MDN: Array.map()",
+          "url": "/docs/mdn/array-map.html",
+          "description": "Transform each element in an array"
+        }
+      ]
+    },
+    {
+      "id": 601,
+      "title": "Character Builder",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "classes",
+        "getters",
+        "rpg",
+        "intermediate"
+      ],
+      "description": "Build a Hero class with HP, mana, XP tracking, and automatic leveling.",
+      "instructions": "Create a class called `Hero` with:\n- Constructor takes `name` (string) and `heroClass` (string)\n- Properties: `hp: 100`, `maxHp: 100`, `mana: 50`, `maxMana: 50`, `xp: 0`, `level: 1`\n- `gainXP(amount)`: adds XP. Every 100 XP triggers a level up: level += 1, maxHp += 20, maxMana += 10, hp = maxHp (full heal), mana = maxMana. Leftover XP carries over.\n- `get power()`: a getter that returns `level * 10 + maxHp`\n\nExample:\n  const h = new Hero(\"Kael\", \"Mage\");\n  h.gainXP(250);  // gains 2 levels (250 / 100 = 2, 50 leftover)\n  h.level   → 3\n  h.maxHp   → 140\n  h.xp      → 50\n  h.power   → 170  (3*10 + 140)",
+      "starterCode": "class Hero {\n  constructor(name, heroClass) {\n    // Your code here\n  }\n\n  gainXP(amount) {\n    // Your code here\n  }\n\n  get power() {\n    // Your code here\n  }\n}",
+      "solution": "class Hero {\n  constructor(name, heroClass) {\n    this.name = name;\n    this.heroClass = heroClass;\n    this.hp = 100;\n    this.maxHp = 100;\n    this.mana = 50;\n    this.maxMana = 50;\n    this.xp = 0;\n    this.level = 1;\n  }\n\n  gainXP(amount) {\n    this.xp += amount;\n    while (this.xp >= 100) {\n      this.xp -= 100;\n      this.level += 1;\n      this.maxHp += 20;\n      this.maxMana += 10;\n      this.hp = this.maxHp;\n      this.mana = this.maxMana;\n    }\n  }\n\n  get power() {\n    return this.level * 10 + this.maxHp;\n  }\n}",
+      "testRunner": "(code) => { const cls = new Function(code + '; return Hero;')(); const h = new cls('Kael','Mage'); return [ { pass: h.name === 'Kael' && h.heroClass === 'Mage', description: 'Constructor sets name and heroClass', got: h.name + ' ' + h.heroClass }, { pass: h.hp === 100 && h.level === 1, description: 'Starts at 100 HP, level 1', got: 'hp:'+h.hp+' level:'+h.level }, { pass: (h.gainXP(250), h.level === 3), description: 'gainXP(250) → level 3 (2 level-ups)', got: h.level }, { pass: h.maxHp === 140, description: 'maxHp is 140 after 2 level-ups', got: h.maxHp }, { pass: h.xp === 50, description: 'Leftover XP is 50', got: h.xp }, { pass: h.hp === 140, description: 'HP fully restored on level-up', got: h.hp }, { pass: h.power === 170, description: 'power getter: 3*10 + 140 = 170', got: h.power } ]; }",
+      "hints": [
+        "Use a while loop in gainXP: as long as xp >= 100, subtract 100 and level up.",
+        "On each level-up, increase maxHp by 20, maxMana by 10, then restore hp and mana to max.",
+        "A getter is defined with 'get power()' and accessed like a property: hero.power (no parentheses)."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Classes",
+          "url": "/docs/mdn/classes.html",
+          "description": "JavaScript class syntax"
+        },
+        {
+          "label": "MDN: Getters",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get",
+          "description": "Define computed properties with getters"
+        }
+      ]
+    },
+    {
+      "id": 602,
+      "title": "Enchantment Table",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "functions",
+        "scope"
+      ],
+      "tags": [
+        "closures",
+        "factory",
+        "rpg",
+        "intermediate"
+      ],
+      "description": "Use a closure factory to create enchanter functions that add elemental bonuses to weapons.",
+      "instructions": "Write a function called `createEnchanter` that takes `element` (string) and `bonusDamage` (number). It returns a new function that takes a `weapon` object with `name` and `damage` properties and returns a new object with:\n- `name`: `\"[element] [original name]\"` (e.g. \"Fire Iron Sword\")\n- `damage`: `original damage + bonusDamage`\n- `element`: the element string\n\nThe returned function \"remembers\" its element and bonus via closure.\n\nExample:\n  const fireEnchant = createEnchanter(\"Fire\", 10);\n  fireEnchant({name: 'Iron Sword', damage: 12})\n  →  { name: 'Fire Iron Sword', damage: 22, element: 'Fire' }\n\n  const iceEnchant = createEnchanter(\"Ice\", 5);\n  iceEnchant({name: 'Dagger', damage: 8})\n  →  { name: 'Ice Dagger', damage: 13, element: 'Ice' }",
+      "starterCode": "function createEnchanter(element, bonusDamage) {\n  // Your code here\n\n}",
+      "solution": "function createEnchanter(element, bonusDamage) {\n  return function(weapon) {\n    return {\n      name: element + ' ' + weapon.name,\n      damage: weapon.damage + bonusDamage,\n      element: element\n    };\n  };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return createEnchanter;')(); const fire = fn('Fire', 10); const ice = fn('Ice', 5); const r1 = fire({name:'Iron Sword',damage:12}); const r2 = ice({name:'Dagger',damage:8}); const r3 = fire({name:'Mace',damage:15}); return [ { pass: r1.name === 'Fire Iron Sword' && r1.damage === 22 && r1.element === 'Fire', description: 'Fire enchant: Iron Sword → Fire Iron Sword, damage 22', got: JSON.stringify(r1) }, { pass: r2.name === 'Ice Dagger' && r2.damage === 13 && r2.element === 'Ice', description: 'Ice enchant: Dagger → Ice Dagger, damage 13', got: JSON.stringify(r2) }, { pass: r3.damage === 25, description: 'Same Fire enchant reusable: Mace → damage 25', got: r3.damage }, { pass: typeof fire === 'function', description: 'createEnchanter returns a function', got: typeof fire } ]; }",
+      "hints": [
+        "createEnchanter should return a function. That inner function has access to element and bonusDamage via closure.",
+        "The returned function takes a weapon object and creates a new object with modified name and damage.",
+        "Closures remember the variables from their outer scope, even after the outer function has returned."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Closures",
+          "url": "/docs/mdn/closures.html",
+          "description": "Functions that remember their scope"
+        },
+        {
+          "label": "MDN: Factory functions",
+          "url": "/docs/mdn/factory-functions.html",
+          "description": "Functions that create and return objects or functions"
+        }
+      ]
+    },
+    {
+      "id": 603,
+      "title": "Dungeon Map: CSS Grid",
+      "type": "html-css",
+      "tier": 3,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "html",
+        "css",
+        "grid",
+        "rpg",
+        "intermediate",
+        "dungeon-map"
+      ],
+      "description": "Build a visual 5×5 dungeon map using CSS Grid with color-coded tiles.",
+      "instructions": "Build a visual 5×5 dungeon map using CSS Grid.\n\n**Required HTML:**\n- A `.dungeon-grid` container\n- 25 `.tile` divs inside (5 rows × 5 columns)\n- Some tiles should have additional classes: `.wall`, `.floor`, `.player`, `.gold`\n\n**Required CSS:**\n1. `.dungeon-grid`: `display: grid`, `grid-template-columns: repeat(5, 1fr)`, `gap: 2px`, `max-width: 250px`\n2. `.tile`: `aspect-ratio: 1`, `border-radius: 2px`\n3. `.wall`: `background-color: #334155` (dark grey)\n4. `.floor`: `background-color: #1e293b` (darker)\n5. `.player`: `background-color: #3b82f6` (blue)\n6. `.gold`: `background-color: #eab308` (yellow)",
+      "starterCode": "",
+      "solution": "<div class=\"dungeon-grid\">\n  <div class=\"tile wall\"></div><div class=\"tile wall\"></div><div class=\"tile wall\"></div><div class=\"tile wall\"></div><div class=\"tile wall\"></div>\n  <div class=\"tile wall\"></div><div class=\"tile floor\"></div><div class=\"tile player\"></div><div class=\"tile floor\"></div><div class=\"tile wall\"></div>\n  <div class=\"tile wall\"></div><div class=\"tile floor\"></div><div class=\"tile wall\"></div><div class=\"tile floor\"></div><div class=\"tile wall\"></div>\n  <div class=\"tile wall\"></div><div class=\"tile floor\"></div><div class=\"tile floor\"></div><div class=\"tile gold\"></div><div class=\"tile wall\"></div>\n  <div class=\"tile wall\"></div><div class=\"tile wall\"></div><div class=\"tile wall\"></div><div class=\"tile wall\"></div><div class=\"tile wall\"></div>\n</div>\n\n<style>\n.dungeon-grid {\n  display: grid;\n  grid-template-columns: repeat(5, 1fr);\n  gap: 2px;\n  max-width: 250px;\n}\n\n.tile {\n  aspect-ratio: 1;\n  border-radius: 2px;\n}\n\n.wall {\n  background-color: #334155;\n}\n\n.floor {\n  background-color: #1e293b;\n}\n\n.player {\n  background-color: #3b82f6;\n}\n\n.gold {\n  background-color: #eab308;\n}\n</style>",
+      "testRunner": "",
+      "testCases": [
+        {
+          "query": ".dungeon-grid",
+          "assertion": "exists",
+          "description": ".dungeon-grid container exists"
+        },
+        {
+          "query": ".tile",
+          "assertion": "countAtLeast",
+          "value": 25,
+          "description": "At least 25 .tile elements (5×5 grid)"
+        },
+        {
+          "query": ".dungeon-grid",
+          "assertion": "equals",
+          "property": "display",
+          "value": "grid",
+          "description": ".dungeon-grid uses CSS Grid"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "repeat(5",
+          "description": "Grid uses repeat(5, ...) for 5 columns"
+        },
+        {
+          "query": ".dungeon-grid",
+          "assertion": "equals",
+          "property": "gap",
+          "value": "2px",
+          "description": ".dungeon-grid gap is 2px"
+        },
+        {
+          "query": ".wall",
+          "assertion": "exists",
+          "description": ".wall tiles exist"
+        },
+        {
+          "query": ".floor",
+          "assertion": "exists",
+          "description": ".floor tiles exist"
+        },
+        {
+          "query": ".player",
+          "assertion": "exists",
+          "description": ".player tile exists"
+        },
+        {
+          "query": ".gold",
+          "assertion": "exists",
+          "description": ".gold tile exists"
+        },
+        {
+          "query": ".wall",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(51, 65, 85)",
+          "description": ".wall is dark grey"
+        },
+        {
+          "query": ".floor",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(30, 41, 59)",
+          "description": ".floor is darker"
+        },
+        {
+          "query": ".player",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(59, 130, 246)",
+          "description": ".player is blue"
+        },
+        {
+          "query": ".gold",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(234, 179, 8)",
+          "description": ".gold is yellow"
+        }
+      ],
+      "hints": [
+        "Create 25 div elements inside .dungeon-grid. Each gets the .tile class plus a type class (.wall, .floor, .player, .gold).",
+        "CSS Grid with repeat(5, 1fr) automatically wraps tiles into 5 columns.",
+        "aspect-ratio: 1 ensures each tile is a perfect square."
+      ],
+      "resources": [
+        {
+          "label": "MDN: CSS Grid",
+          "url": "/docs/mdn/css-grid.html",
+          "description": "Two-dimensional grid layout"
+        },
+        {
+          "label": "MDN: aspect-ratio",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio",
+          "description": "Control element proportions"
+        }
+      ]
+    },
+    {
+      "id": 604,
+      "title": "Merchant Trade",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "arrays",
+        "mutation",
+        "rpg",
+        "intermediate"
+      ],
+      "description": "Build a buy/sell system that mutates an inventory array and tracks gold.",
+      "instructions": "Write two functions that work with a `player` object having `gold` (number) and `inventory` (array of strings).\n\n1. `buyItem(player, itemName, price)` — If the player has enough gold, subtract the price, add the item to inventory, and return `true`. Otherwise return `false`.\n\n2. `sellItem(player, itemName, price)` — If the item is in inventory, remove it (the first occurrence), add the price to gold, and return `true`. Otherwise return `false`.\n\nExample:\n  const p = { gold: 50, inventory: ['Sword'] };\n  buyItem(p, 'Shield', 30)   → true   // gold: 20, inventory: ['Sword','Shield']\n  sellItem(p, 'Sword', 15)   → true   // gold: 35, inventory: ['Shield']\n  buyItem(p, 'Armor', 100)   → false  // can't afford",
+      "starterCode": "function buyItem(player, itemName, price) {\n  // Your code here\n\n}\n\nfunction sellItem(player, itemName, price) {\n  // Your code here\n\n}",
+      "solution": "function buyItem(player, itemName, price) {\n  if (player.gold >= price) {\n    player.gold -= price;\n    player.inventory.push(itemName);\n    return true;\n  }\n  return false;\n}\n\nfunction sellItem(player, itemName, price) {\n  const idx = player.inventory.indexOf(itemName);\n  if (idx !== -1) {\n    player.inventory.splice(idx, 1);\n    player.gold += price;\n    return true;\n  }\n  return false;\n}",
+      "testRunner": "(code) => { const fns = new Function(code + '; return { buyItem, sellItem };')(); const { buyItem, sellItem } = fns; const p = { gold: 50, inventory: ['Sword'] }; const b1 = buyItem(p, 'Shield', 30); const s1 = sellItem(p, 'Sword', 15); const b2 = buyItem(p, 'Armor', 100); const s2 = sellItem(p, 'Axe', 10); return [ { pass: b1 === true && p.gold === 35, description: 'buyItem Shield for 30: gold 50→20, then sell Sword for 15: gold →35', got: 'gold:'+p.gold }, { pass: p.inventory.includes('Shield') && !p.inventory.includes('Sword'), description: 'Inventory has Shield, Sword was sold', got: JSON.stringify(p.inventory) }, { pass: b2 === false, description: 'Can\\'t buy Armor for 100 with 35 gold', got: b2 }, { pass: s2 === false, description: 'Can\\'t sell Axe (not in inventory)', got: s2 }, { pass: p.gold === 35, description: 'Gold unchanged after failed transactions', got: p.gold } ]; }",
+      "hints": [
+        "buyItem: check if player.gold >= price before buying. Use .push() to add to inventory.",
+        "sellItem: use .indexOf() to find the item. If found (index !== -1), use .splice(index, 1) to remove it.",
+        "Both functions mutate the player object directly and return true/false to indicate success."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.splice()",
+          "url": "/docs/mdn/array-splice.html",
+          "description": "Remove or replace array elements"
+        },
+        {
+          "label": "MDN: Array.indexOf()",
+          "url": "/docs/mdn/array-indexof.html",
+          "description": "Find the index of an element"
+        }
+      ]
+    },
+    {
+      "id": 605,
+      "title": "Monster Manual",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "reduce",
+        "filter",
+        "arrays",
+        "objects",
+        "rpg",
+        "intermediate"
+      ],
+      "description": "Aggregate monster data: group by type, find the strongest, sum XP values, count unique types.",
+      "instructions": "Write a function called `monsterManual` that takes `monsters` (an array of objects with `name`, `type`, `hp`, and `xp` properties). Return an object with:\n- `byType`: object grouping monster names by type (like guildRoster)\n- `strongest`: the monster object with the highest `hp`\n- `totalXP`: sum of all monster `xp` values\n- `uniqueTypes`: number of unique types\n\nExample:\n  monsterManual([\n    {name:'Goblin', type:'beast', hp:20, xp:10},\n    {name:'Dragon', type:'dragon', hp:200, xp:100},\n    {name:'Wolf', type:'beast', hp:30, xp:15}\n  ])\n  → {\n    byType: { beast: ['Goblin','Wolf'], dragon: ['Dragon'] },\n    strongest: {name:'Dragon', type:'dragon', hp:200, xp:100},\n    totalXP: 125,\n    uniqueTypes: 2\n  }",
+      "starterCode": "function monsterManual(monsters) {\n  // Your code here\n\n}",
+      "solution": "function monsterManual(monsters) {\n  const byType = {};\n  let strongest = monsters[0];\n  let totalXP = 0;\n\n  for (const m of monsters) {\n    if (!byType[m.type]) byType[m.type] = [];\n    byType[m.type].push(m.name);\n    if (m.hp > strongest.hp) strongest = m;\n    totalXP += m.xp;\n  }\n\n  return { byType, strongest, totalXP, uniqueTypes: Object.keys(byType).length };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return monsterManual;')(); const mons = [{name:'Goblin',type:'beast',hp:20,xp:10},{name:'Dragon',type:'dragon',hp:200,xp:100},{name:'Wolf',type:'beast',hp:30,xp:15},{name:'Skeleton',type:'undead',hp:25,xp:12}]; const r = fn(mons); return [ { pass: JSON.stringify(r.byType.beast) === JSON.stringify(['Goblin','Wolf']), description: 'byType.beast: [\"Goblin\", \"Wolf\"]', got: JSON.stringify(r.byType.beast) }, { pass: r.strongest.name === 'Dragon', description: 'strongest is Dragon (hp:200)', got: r.strongest.name }, { pass: r.totalXP === 137, description: 'totalXP: 10+100+15+12 = 137', got: r.totalXP }, { pass: r.uniqueTypes === 3, description: 'uniqueTypes: 3 (beast, dragon, undead)', got: r.uniqueTypes } ]; }",
+      "hints": [
+        "You can compute all four results in a single loop through the monsters array.",
+        "Group by type the same way as guildRoster: build an object with arrays of names.",
+        "Track the strongest by comparing each monster's hp. Use Object.keys(byType).length for unique types."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Object.keys()",
+          "url": "/docs/mdn/object-keys.html",
+          "description": "Get an array of an object's keys"
+        },
+        {
+          "label": "MDN: for...of",
+          "url": "/docs/mdn/for-of.html",
+          "description": "Loop over array values"
+        }
+      ]
+    },
+    {
+      "id": 606,
+      "title": "Side-Scroller: Terrain String",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "arrays",
+        "algorithms",
+        "rpg",
+        "intermediate",
+        "side-scroller"
+      ],
+      "description": "Parse a side-scroller terrain string to detect contiguous platforms and hazards.",
+      "instructions": "Write a function called `parseTerrain` that takes a `terrain` string where:\n- `_` = platform\n- `^` = spike (hazard)\n- `.` = empty air\n- `C` = coin\n\nReturn an object with:\n- `platforms`: array of objects `{ start, length }` for each contiguous run of `_`\n- `hazards`: array of indexes where `^` appears\n- `coins`: count of `C` characters\n\nExample:\n  parseTerrain(\"___..^^._C_.\")\n  → {\n    platforms: [{ start: 0, length: 3 }, { start: 8, length: 1 }, { start: 10, length: 1 }],\n    hazards: [5, 6],\n    coins: 1\n  }",
+      "starterCode": "function parseTerrain(terrain) {\n  // Your code here\n\n}",
+      "solution": "function parseTerrain(terrain) {\n  const platforms = [];\n  const hazards = [];\n  let coins = 0;\n  let i = 0;\n\n  while (i < terrain.length) {\n    if (terrain[i] === '_') {\n      const start = i;\n      while (i < terrain.length && terrain[i] === '_') i++;\n      platforms.push({ start, length: i - start });\n    } else {\n      if (terrain[i] === '^') hazards.push(i);\n      if (terrain[i] === 'C') coins++;\n      i++;\n    }\n  }\n\n  return { platforms, hazards, coins };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return parseTerrain;')(); const r1 = fn('___..^^._C_.'); const r2 = fn('....'); const r3 = fn('_____'); return [ { pass: r1.platforms.length === 3, description: '\"___..^^._C_.\" has 3 platforms', got: r1.platforms.length }, { pass: r1.platforms[0].start === 0 && r1.platforms[0].length === 3, description: 'First platform: start:0, length:3', got: JSON.stringify(r1.platforms[0]) }, { pass: JSON.stringify(r1.hazards) === JSON.stringify([5,6]), description: 'Hazards at indexes 5 and 6', got: JSON.stringify(r1.hazards) }, { pass: r1.coins === 1, description: '1 coin found', got: r1.coins }, { pass: r2.platforms.length === 0 && r2.hazards.length === 0 && r2.coins === 0, description: 'All air: no platforms, hazards, or coins', got: JSON.stringify(r2) }, { pass: r3.platforms.length === 1 && r3.platforms[0].length === 5, description: 'One long platform of length 5', got: JSON.stringify(r3.platforms) } ]; }",
+      "hints": [
+        "Use a while loop with an index. When you hit a '_', start counting consecutive platforms.",
+        "For contiguous run detection: when terrain[i] === '_', record the start, then advance i while still '_'.",
+        "Hazards and coins are simpler: just record their index or increment a counter."
+      ],
+      "resources": [
+        {
+          "label": "MDN: while loop",
+          "url": "/docs/mdn/while-loop.html",
+          "description": "Loop while a condition is true"
+        },
+        {
+          "label": "MDN: Array.push()",
+          "url": "/docs/mdn/array-push.html",
+          "description": "Add elements to the end of an array"
+        }
+      ]
+    },
+    {
+      "id": 607,
+      "title": "Spell System",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "classes",
+        "rpg",
+        "advanced"
+      ],
+      "description": "Build Spell and SpellBook classes with cooldowns and mana management.",
+      "instructions": "Create two classes:\n\n**`Spell`** class:\n- Constructor takes `name`, `element`, `damage`, `manaCost`, `cooldown` (in turns)\n- `ready` property starts at `true`\n- `turnsLeft` property starts at `0`\n- `cast(casterMana)`: if ready and casterMana >= manaCost, set `ready = false`, `turnsLeft = cooldown`, return `{ success: true, damage: this.damage, manaCost: this.manaCost }`. Otherwise return `{ success: false, reason: 'not ready' }` or `{ success: false, reason: 'not enough mana' }`.\n- `tick()`: if not ready, decrement turnsLeft. If turnsLeft reaches 0, set ready = true.\n\n**`SpellBook`** class:\n- Constructor takes no args, initializes an empty `spells` array\n- `add(spell)`: pushes a Spell to the array\n- `castByName(name, casterMana)`: finds spell by name and calls cast(). Returns the result, or `{ success: false, reason: 'unknown spell' }`.\n- `tickAll()`: calls tick() on every spell\n- `available(mana)`: returns array of spell names that are ready AND affordable (manaCost <= mana)",
+      "starterCode": "class Spell {\n  constructor(name, element, damage, manaCost, cooldown) {\n    // Your code here\n  }\n\n  cast(casterMana) {\n    // Your code here\n  }\n\n  tick() {\n    // Your code here\n  }\n}\n\nclass SpellBook {\n  constructor() {\n    // Your code here\n  }\n\n  add(spell) {\n    // Your code here\n  }\n\n  castByName(name, casterMana) {\n    // Your code here\n  }\n\n  tickAll() {\n    // Your code here\n  }\n\n  available(mana) {\n    // Your code here\n  }\n}",
+      "solution": "class Spell {\n  constructor(name, element, damage, manaCost, cooldown) {\n    this.name = name;\n    this.element = element;\n    this.damage = damage;\n    this.manaCost = manaCost;\n    this.cooldown = cooldown;\n    this.ready = true;\n    this.turnsLeft = 0;\n  }\n\n  cast(casterMana) {\n    if (!this.ready) return { success: false, reason: 'not ready' };\n    if (casterMana < this.manaCost) return { success: false, reason: 'not enough mana' };\n    this.ready = false;\n    this.turnsLeft = this.cooldown;\n    return { success: true, damage: this.damage, manaCost: this.manaCost };\n  }\n\n  tick() {\n    if (!this.ready) {\n      this.turnsLeft--;\n      if (this.turnsLeft <= 0) this.ready = true;\n    }\n  }\n}\n\nclass SpellBook {\n  constructor() {\n    this.spells = [];\n  }\n\n  add(spell) {\n    this.spells.push(spell);\n  }\n\n  castByName(name, casterMana) {\n    const spell = this.spells.find(s => s.name === name);\n    if (!spell) return { success: false, reason: 'unknown spell' };\n    return spell.cast(casterMana);\n  }\n\n  tickAll() {\n    this.spells.forEach(s => s.tick());\n  }\n\n  available(mana) {\n    return this.spells.filter(s => s.ready && s.manaCost <= mana).map(s => s.name);\n  }\n}",
+      "testRunner": "(code) => { const fns = new Function(code + '; return { Spell, SpellBook };')(); const { Spell, SpellBook } = fns; const book = new SpellBook(); book.add(new Spell('Fireball','fire',30,20,2)); book.add(new Spell('Heal','light',0,10,1)); const c1 = book.castByName('Fireball', 25); const c2 = book.castByName('Fireball', 25); const c3 = book.castByName('Heal', 5); const c4 = book.castByName('Heal', 15); const a1 = book.available(25); book.tickAll(); const a2 = book.available(25); book.tickAll(); const a3 = book.available(25); return [ { pass: c1.success === true && c1.damage === 30, description: 'Cast Fireball: success, damage 30', got: JSON.stringify(c1) }, { pass: c2.success === false && c2.reason === 'not ready', description: 'Fireball on cooldown: not ready', got: JSON.stringify(c2) }, { pass: c3.success === false && c3.reason === 'not enough mana', description: 'Heal with 5 mana: not enough mana', got: JSON.stringify(c3) }, { pass: a1.length === 0, description: 'No spells available after casting both', got: JSON.stringify(a1) }, { pass: a2.includes('Heal') && a2.length === 1, description: 'After 1 tick: Heal ready (cd:1), Fireball still cooling (cd:2)', got: JSON.stringify(a2) }, { pass: a3.includes('Fireball') && a3.includes('Heal'), description: 'After 2 ticks: both ready', got: JSON.stringify(a3) }, { pass: book.castByName('Blizzard',50).reason === 'unknown spell', description: 'Unknown spell returns reason', got: book.castByName('Blizzard',50).reason } ]; }",
+      "hints": [
+        "Spell.cast() needs two checks: is it ready, and does the caster have enough mana?",
+        "Spell.tick() decrements turnsLeft and resets ready when it hits 0.",
+        "SpellBook.available() filters spells that are both ready AND affordable."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Classes",
+          "url": "/docs/mdn/classes.html",
+          "description": "JavaScript class syntax"
+        },
+        {
+          "label": "MDN: Array.find()",
+          "url": "/docs/mdn/array-find.html",
+          "description": "Find the first element matching a condition"
+        }
+      ]
+    },
+    {
+      "id": 608,
+      "title": "Combat Engine",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "functions",
+        "scope"
+      ],
+      "tags": [
+        "closures",
+        "factory",
+        "rpg",
+        "advanced"
+      ],
+      "description": "Build a combat engine factory using closures to encapsulate element bonuses and critical hit rules.",
+      "instructions": "Write a function `createCombatEngine(config)` that takes a config object:\n- `config.elementChart`: object mapping attacker element to array of elements it's strong against (e.g. `{ fire: ['ice','nature'], ice: ['lightning'] }`)\n- `config.critMultiplier`: number (e.g. 1.5)\n- `config.critChance`: number 0–1 representing probability\n\nReturn an object with:\n- `calcDamage(baseDamage, attackEl, defenseEl)`: applies 2x if attackEl is strong vs defenseEl, 0.5x if defenseEl is strong vs attackEl, 1x otherwise\n- `calcCrit(damage, roll)`: if `roll` < `critChance`, multiply damage by `critMultiplier` and floor it. Otherwise return damage unchanged.\n- `fullAttack(baseDamage, attackEl, defenseEl, roll)`: applies calcDamage then calcCrit in sequence.\n\nAll numbers should be Math.floor'd.\n\nExample:\n  const engine = createCombatEngine({\n    elementChart: { fire: ['ice'], ice: ['lightning'], lightning: ['fire'] },\n    critMultiplier: 1.5,\n    critChance: 0.25\n  });\n  engine.calcDamage(20, 'fire', 'ice')       → 40\n  engine.calcCrit(40, 0.1)                    → 60  (crit!)\n  engine.fullAttack(20, 'fire', 'ice', 0.1)  → 60",
+      "starterCode": "function createCombatEngine(config) {\n  // Your code here\n\n}",
+      "solution": "function createCombatEngine(config) {\n  const { elementChart, critMultiplier, critChance } = config;\n\n  function calcDamage(baseDamage, attackEl, defenseEl) {\n    if (elementChart[attackEl] && elementChart[attackEl].includes(defenseEl)) {\n      return Math.floor(baseDamage * 2);\n    }\n    if (elementChart[defenseEl] && elementChart[defenseEl].includes(attackEl)) {\n      return Math.floor(baseDamage * 0.5);\n    }\n    return baseDamage;\n  }\n\n  function calcCrit(damage, roll) {\n    if (roll < critChance) {\n      return Math.floor(damage * critMultiplier);\n    }\n    return damage;\n  }\n\n  function fullAttack(baseDamage, attackEl, defenseEl, roll) {\n    return calcCrit(calcDamage(baseDamage, attackEl, defenseEl), roll);\n  }\n\n  return { calcDamage, calcCrit, fullAttack };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return createCombatEngine;')(); const engine = fn({ elementChart: { fire: ['ice'], ice: ['lightning'], lightning: ['fire'] }, critMultiplier: 1.5, critChance: 0.25 }); return [ { pass: engine.calcDamage(20, 'fire', 'ice') === 40, description: 'Fire vs Ice: 20 → 40 (strong)', got: engine.calcDamage(20, 'fire', 'ice') }, { pass: engine.calcDamage(20, 'ice', 'fire') === 10, description: 'Ice vs Fire: 20 → 10 (weak)', got: engine.calcDamage(20, 'ice', 'fire') }, { pass: engine.calcDamage(20, 'fire', 'lightning') === 10, description: 'Fire vs Lightning: 20 → 10 (weak)', got: engine.calcDamage(20, 'fire', 'lightning') }, { pass: engine.calcCrit(40, 0.1) === 60, description: 'Crit roll 0.1 < 0.25: 40 → 60', got: engine.calcCrit(40, 0.1) }, { pass: engine.calcCrit(40, 0.5) === 40, description: 'No crit roll 0.5 > 0.25: 40 unchanged', got: engine.calcCrit(40, 0.5) }, { pass: engine.fullAttack(20, 'fire', 'ice', 0.1) === 60, description: 'Full attack: 20 → 40 (strong) → 60 (crit)', got: engine.fullAttack(20, 'fire', 'ice', 0.1) } ]; }",
+      "hints": [
+        "Destructure config to get elementChart, critMultiplier, critChance. These are captured by closure.",
+        "For calcDamage, check if the attacker's element array includes the defender's element (strong) or vice versa (weak).",
+        "fullAttack is just calcCrit(calcDamage(...)) — pipe the result of one into the other."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Closures",
+          "url": "/docs/mdn/closures.html",
+          "description": "Functions that remember their scope"
+        },
+        {
+          "label": "MDN: Destructuring",
+          "url": "/docs/mdn/destructuring.html",
+          "description": "Unpack values from objects and arrays"
+        }
+      ]
+    },
+    {
+      "id": 609,
+      "title": "Inventory Grid (Advanced)",
+      "type": "html-css",
+      "tier": 4,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "html",
+        "css",
+        "grid",
+        "hover",
+        "rpg",
+        "advanced",
+        "inventory"
+      ],
+      "description": "Build an advanced inventory grid with rarity-colored items and hover tooltips.",
+      "instructions": "Build an advanced RPG inventory grid with rarity colors and hover tooltips.\n\n**Required HTML:**\n- An `.inventory` container with at least 8 `.slot` divs\n- Some slots have a `.item` div inside with a rarity class: `.common`, `.rare`, `.epic`, or `.legendary`\n- Each `.item` has a `.tooltip` child that's hidden by default and shows on hover\n\n**Required CSS:**\n1. `.inventory`: `display: grid`, `grid-template-columns: repeat(4, 1fr)`, `gap: 4px`, `max-width: 320px`\n2. `.slot`: `aspect-ratio: 1`, `background-color: #1e293b`, `border: 1px solid #334155`, `border-radius: 4px`\n3. `.item`: `width: 100%`, `height: 100%`, `border-radius: 4px`, `position: relative`\n4. Rarity borders (2px solid): `.common` = `#94a3b8`, `.rare` = `#3b82f6`, `.epic` = `#a855f7`, `.legendary` = `#f59e0b`\n5. `.tooltip`: `display: none`, `position: absolute`, `bottom: 100%`, `left: 50%`, `background-color: #0f172a`, `padding: 8px`, `border-radius: 4px`, `font-size: 12px`, `color: #f8fafc`, `white-space: nowrap`\n6. `.item:hover .tooltip`: `display: block`",
+      "starterCode": "",
+      "solution": "<div class=\"inventory\">\n  <div class=\"slot\"><div class=\"item common\"><div class=\"tooltip\">Iron Sword</div></div></div>\n  <div class=\"slot\"><div class=\"item rare\"><div class=\"tooltip\">Frost Blade</div></div></div>\n  <div class=\"slot\"><div class=\"item epic\"><div class=\"tooltip\">Dragon Staff</div></div></div>\n  <div class=\"slot\"><div class=\"item legendary\"><div class=\"tooltip\">Excalibur</div></div></div>\n  <div class=\"slot\"></div>\n  <div class=\"slot\"><div class=\"item common\"><div class=\"tooltip\">Health Potion</div></div></div>\n  <div class=\"slot\"></div>\n  <div class=\"slot\"></div>\n</div>\n\n<style>\n.inventory {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 4px;\n  max-width: 320px;\n}\n\n.slot {\n  aspect-ratio: 1;\n  background-color: #1e293b;\n  border: 1px solid #334155;\n  border-radius: 4px;\n}\n\n.item {\n  width: 100%;\n  height: 100%;\n  border-radius: 4px;\n  position: relative;\n}\n\n.common { border: 2px solid #94a3b8; }\n.rare { border: 2px solid #3b82f6; }\n.epic { border: 2px solid #a855f7; }\n.legendary { border: 2px solid #f59e0b; }\n\n.tooltip {\n  display: none;\n  position: absolute;\n  bottom: 100%;\n  left: 50%;\n  background-color: #0f172a;\n  padding: 8px;\n  border-radius: 4px;\n  font-size: 12px;\n  color: #f8fafc;\n  white-space: nowrap;\n}\n\n.item:hover .tooltip {\n  display: block;\n}\n</style>",
+      "testRunner": "",
+      "testCases": [
+        {
+          "query": ".inventory",
+          "assertion": "exists",
+          "description": ".inventory container exists"
+        },
+        {
+          "query": ".slot",
+          "assertion": "countAtLeast",
+          "value": 8,
+          "description": "At least 8 .slot elements"
+        },
+        {
+          "query": ".inventory",
+          "assertion": "equals",
+          "property": "display",
+          "value": "grid",
+          "description": ".inventory uses CSS Grid"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "repeat(4",
+          "description": "Grid uses repeat(4, ...) for 4 columns"
+        },
+        {
+          "query": ".item",
+          "assertion": "equals",
+          "property": "position",
+          "value": "relative",
+          "description": ".item has position: relative"
+        },
+        {
+          "query": ".common",
+          "assertion": "exists",
+          "description": ".common rarity item exists"
+        },
+        {
+          "query": ".rare",
+          "assertion": "exists",
+          "description": ".rare rarity item exists"
+        },
+        {
+          "query": ".epic",
+          "assertion": "exists",
+          "description": ".epic rarity item exists"
+        },
+        {
+          "query": ".legendary",
+          "assertion": "exists",
+          "description": ".legendary rarity item exists"
+        },
+        {
+          "query": ".tooltip",
+          "assertion": "equals",
+          "property": "position",
+          "value": "absolute",
+          "description": ".tooltip has position: absolute"
+        },
+        {
+          "query": ".tooltip",
+          "assertion": "equals",
+          "property": "display",
+          "value": "none",
+          "description": ".tooltip is hidden by default"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": ":hover",
+          "description": "CSS includes a :hover rule"
+        }
+      ],
+      "hints": [
+        "Each .item needs position: relative so the .tooltip can be absolutely positioned relative to it.",
+        "The tooltip uses bottom: 100% to appear above the item, and left: 50% to center horizontally.",
+        "Use .item:hover .tooltip { display: block } to show the tooltip on hover."
+      ],
+      "resources": [
+        {
+          "label": "MDN: position",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/position",
+          "description": "CSS positioning: relative, absolute, fixed"
+        },
+        {
+          "label": "MDN: :hover",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:hover",
+          "description": "Style elements on mouse hover"
+        }
+      ]
+    },
+    {
+      "id": 610,
+      "title": "Dungeon Pathfinder",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "algorithms",
+        "bfs",
+        "2d-arrays",
+        "rpg",
+        "advanced",
+        "dungeon-map"
+      ],
+      "description": "Find the shortest path through a dungeon map using BFS on a string-parsed 2D grid.",
+      "instructions": "Write a function `findPath(mapStr)` that takes a multi-line dungeon string (rows separated by `\\n`). Characters: `#` = wall (impassable), `.` = floor, `S` = start, `E` = end.\n\nUse BFS (breadth-first search) to find the shortest path from `S` to `E`. Return the number of steps in the shortest path, or `-1` if no path exists.\n\nMovement is 4-directional (up, down, left, right).\n\nExample:\n  findPath(\"S..\\n.#.\\n..E\")  →  4\n  // Grid:\n  // S . .\n  // . # .\n  // . . E\n  // Path: S→right→right→down→down = but blocked, so S→down→down→right→right = 4 steps",
+      "starterCode": "function findPath(mapStr) {\n  // Your code here\n\n}",
+      "solution": "function findPath(mapStr) {\n  const grid = mapStr.split('\\n').map(r => r.split(''));\n  const rows = grid.length;\n  const cols = grid[0].length;\n  let start, end;\n\n  for (let r = 0; r < rows; r++) {\n    for (let c = 0; c < cols; c++) {\n      if (grid[r][c] === 'S') start = [r, c];\n      if (grid[r][c] === 'E') end = [r, c];\n    }\n  }\n\n  const visited = Array.from({ length: rows }, () => Array(cols).fill(false));\n  const queue = [[start[0], start[1], 0]];\n  visited[start[0]][start[1]] = true;\n  const dirs = [[0,1],[0,-1],[1,0],[-1,0]];\n\n  while (queue.length > 0) {\n    const [r, c, steps] = queue.shift();\n    if (r === end[0] && c === end[1]) return steps;\n\n    for (const [dr, dc] of dirs) {\n      const nr = r + dr;\n      const nc = c + dc;\n      if (nr >= 0 && nr < rows && nc >= 0 && nc < cols && !visited[nr][nc] && grid[nr][nc] !== '#') {\n        visited[nr][nc] = true;\n        queue.push([nr, nc, steps + 1]);\n      }\n    }\n  }\n\n  return -1;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return findPath;')(); return [ { pass: fn('S..\\n.#.\\n..E') === 4, description: '3x3 grid with wall: shortest path is 4', got: fn('S..\\n.#.\\n..E') }, { pass: fn('S.E') === 2, description: 'Simple row S.E: 2 steps', got: fn('S.E') }, { pass: fn('S#E') === -1, description: 'Wall blocks path: -1', got: fn('S#E') }, { pass: fn('S...\\n....\\n...E') === 5, description: '3x4 grid: shortest path is 5', got: fn('S...\\n....\\n...E') }, { pass: fn('S.\\n.E') === 2, description: '2x2 grid: 2 steps', got: fn('S.\\n.E') } ]; }",
+      "hints": [
+        "BFS uses a queue: start with the S position, explore neighbors level by level.",
+        "Parse the map into a 2D array first, then find the S and E positions.",
+        "Track visited cells to avoid revisiting. Return the step count when you reach E."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.shift()",
+          "url": "/docs/mdn/array-shift.html",
+          "description": "Remove and return the first element (queue behavior)"
+        },
+        {
+          "label": "Wikipedia: BFS",
+          "url": "https://en.wikipedia.org/wiki/Breadth-first_search",
+          "description": "Breadth-first search algorithm"
+        }
+      ]
+    },
+    {
+      "id": 611,
+      "title": "Quest Log",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "classes",
+        "objects",
+        "arrays",
+        "rpg",
+        "advanced"
+      ],
+      "description": "Build Quest and QuestLog classes with objectives, progress tracking, and completion.",
+      "instructions": "Create two classes:\n\n**`Quest`**:\n- Constructor takes `name` (string) and `objectives` (array of strings)\n- `progress` array starts as all `false` (same length as objectives)\n- `complete(index)`: marks `progress[index]` as `true`\n- `get isComplete()`: returns true if ALL progress entries are true\n- `get percentComplete()`: returns the percentage (0–100) of completed objectives, floored\n\n**`QuestLog`**:\n- Constructor initializes empty `quests` array\n- `add(quest)`: pushes a Quest\n- `active()`: returns array of quest names that are NOT complete\n- `completed()`: returns array of quest names that ARE complete\n- `summary()`: returns `{ total, completed, active }` with counts\n\nExample:\n  const q = new Quest('Save Village', ['Find sword', 'Defeat dragon', 'Return home']);\n  q.complete(0);\n  q.percentComplete  →  33\n  q.isComplete        →  false",
+      "starterCode": "class Quest {\n  constructor(name, objectives) {\n    // Your code here\n  }\n\n  complete(index) {\n    // Your code here\n  }\n\n  get isComplete() {\n    // Your code here\n  }\n\n  get percentComplete() {\n    // Your code here\n  }\n}\n\nclass QuestLog {\n  constructor() {\n    // Your code here\n  }\n\n  add(quest) {\n    // Your code here\n  }\n\n  active() {\n    // Your code here\n  }\n\n  completed() {\n    // Your code here\n  }\n\n  summary() {\n    // Your code here\n  }\n}",
+      "solution": "class Quest {\n  constructor(name, objectives) {\n    this.name = name;\n    this.objectives = objectives;\n    this.progress = objectives.map(() => false);\n  }\n\n  complete(index) {\n    this.progress[index] = true;\n  }\n\n  get isComplete() {\n    return this.progress.every(p => p);\n  }\n\n  get percentComplete() {\n    const done = this.progress.filter(p => p).length;\n    return Math.floor((done / this.progress.length) * 100);\n  }\n}\n\nclass QuestLog {\n  constructor() {\n    this.quests = [];\n  }\n\n  add(quest) {\n    this.quests.push(quest);\n  }\n\n  active() {\n    return this.quests.filter(q => !q.isComplete).map(q => q.name);\n  }\n\n  completed() {\n    return this.quests.filter(q => q.isComplete).map(q => q.name);\n  }\n\n  summary() {\n    const comp = this.quests.filter(q => q.isComplete).length;\n    return { total: this.quests.length, completed: comp, active: this.quests.length - comp };\n  }\n}",
+      "testRunner": "(code) => { const fns = new Function(code + '; return { Quest, QuestLog };')(); const { Quest, QuestLog } = fns; const q1 = new Quest('Save Village', ['Find sword','Defeat dragon','Return home']); q1.complete(0); const q2 = new Quest('Fetch Potion', ['Go to shop']); q2.complete(0); const log = new QuestLog(); log.add(q1); log.add(q2); return [ { pass: q1.percentComplete === 33, description: 'Quest 1/3 complete: 33%', got: q1.percentComplete }, { pass: q1.isComplete === false, description: 'Quest not fully complete', got: q1.isComplete }, { pass: q2.isComplete === true, description: 'Single-objective quest complete', got: q2.isComplete }, { pass: JSON.stringify(log.active()) === JSON.stringify(['Save Village']), description: 'Active quests: [\"Save Village\"]', got: JSON.stringify(log.active()) }, { pass: JSON.stringify(log.completed()) === JSON.stringify(['Fetch Potion']), description: 'Completed quests: [\"Fetch Potion\"]', got: JSON.stringify(log.completed()) }, { pass: log.summary().total === 2 && log.summary().completed === 1 && log.summary().active === 1, description: 'Summary: total:2, completed:1, active:1', got: JSON.stringify(log.summary()) } ]; }",
+      "hints": [
+        "Initialize progress as an array of false values: objectives.map(() => false).",
+        "Use .every() to check if all progress entries are true for isComplete.",
+        "percentComplete: count the true values, divide by total, multiply by 100, Math.floor."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.every()",
+          "url": "/docs/mdn/array-every.html",
+          "description": "Test if all elements pass a condition"
+        },
+        {
+          "label": "MDN: Getters",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get",
+          "description": "Define computed properties with getters"
+        }
+      ]
+    },
+    {
+      "id": 612,
+      "title": "Party Health Panel",
+      "type": "css",
+      "tier": 4,
+      "category": [
+        "css",
+        "visual"
+      ],
+      "tags": [
+        "css",
+        "flexbox",
+        "gradients",
+        "rpg",
+        "advanced",
+        "health-bar"
+      ],
+      "description": "Build a full party health panel with avatar frames and stacked HP/MP bars using gradients.",
+      "instructions": "Style a party health panel with character entries showing avatar frames and dual bars.\n\n1. `.party-panel`: `display: flex`, `flex-direction: column`, `gap: 12px`, `max-width: 300px`, `background-color: #0f172a`, `padding: 12px`, `border-radius: 8px`\n\n2. `.char-entry`: `display: flex`, `align-items: center`, `gap: 10px`\n\n3. `.avatar-frame`: `width: 40px`, `height: 40px`, `border-radius: 50%`, `border: 2px solid #d97706`, `background-color: #334155`\n\n4. `.bars`: `flex: 1`, `display: flex`, `flex-direction: column`, `gap: 4px`\n\n5. `.hp-bar` and `.mp-bar`:\n   - Both: `height: 10px`, `border-radius: 5px`, `overflow: hidden`\n   - `.hp-bar`: `background: linear-gradient(90deg, #22c55e, #16a34a)`\n   - `.mp-bar`: `background: linear-gradient(90deg, #3b82f6, #2563eb)`",
+      "starterCode": "/* Party health panel with gradients */\n",
+      "solution": ".party-panel {\n  display: flex;\n  flex-direction: column;\n  gap: 12px;\n  max-width: 300px;\n  background-color: #0f172a;\n  padding: 12px;\n  border-radius: 8px;\n}\n\n.char-entry {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.avatar-frame {\n  width: 40px;\n  height: 40px;\n  border-radius: 50%;\n  border: 2px solid #d97706;\n  background-color: #334155;\n}\n\n.bars {\n  flex: 1;\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n}\n\n.hp-bar {\n  height: 10px;\n  border-radius: 5px;\n  overflow: hidden;\n  background: linear-gradient(90deg, #22c55e, #16a34a);\n}\n\n.mp-bar {\n  height: 10px;\n  border-radius: 5px;\n  overflow: hidden;\n  background: linear-gradient(90deg, #3b82f6, #2563eb);\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"party-panel\"><div class=\"char-entry\"><div class=\"avatar-frame\"></div><div class=\"bars\"><div class=\"hp-bar\" style=\"width:80%\"></div><div class=\"mp-bar\" style=\"width:60%\"></div></div></div><div class=\"char-entry\"><div class=\"avatar-frame\"></div><div class=\"bars\"><div class=\"hp-bar\" style=\"width:45%\"></div><div class=\"mp-bar\" style=\"width:90%\"></div></div></div><div class=\"char-entry\"><div class=\"avatar-frame\"></div><div class=\"bars\"><div class=\"hp-bar\" style=\"width:20%\"></div><div class=\"mp-bar\" style=\"width:30%\"></div></div></div></div>",
+      "testCases": [
+        {
+          "query": ".party-panel",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": ".party-panel uses flexbox"
+        },
+        {
+          "query": ".party-panel",
+          "assertion": "equals",
+          "property": "flex-direction",
+          "value": "column",
+          "description": ".party-panel is column"
+        },
+        {
+          "query": ".party-panel",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(15, 23, 42)",
+          "description": ".party-panel background is dark blue"
+        },
+        {
+          "query": ".char-entry",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": ".char-entry uses flexbox"
+        },
+        {
+          "query": ".char-entry",
+          "assertion": "equals",
+          "property": "align-items",
+          "value": "center",
+          "description": ".char-entry vertically centers"
+        },
+        {
+          "query": ".avatar-frame",
+          "assertion": "equals",
+          "property": "width",
+          "value": "40px",
+          "description": ".avatar-frame width is 40px"
+        },
+        {
+          "query": ".avatar-frame",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "50%",
+          "description": ".avatar-frame is circular"
+        },
+        {
+          "query": ".bars",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": ".bars uses flexbox"
+        },
+        {
+          "query": ".bars",
+          "assertion": "equals",
+          "property": "flex-direction",
+          "value": "column",
+          "description": ".bars is column"
+        },
+        {
+          "query": ".hp-bar",
+          "assertion": "equals",
+          "property": "height",
+          "value": "10px",
+          "description": ".hp-bar height is 10px"
+        },
+        {
+          "query": ".mp-bar",
+          "assertion": "equals",
+          "property": "height",
+          "value": "10px",
+          "description": ".mp-bar height is 10px"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "linear-gradient",
+          "description": "CSS uses linear-gradient"
+        }
+      ],
+      "hints": [
+        "The party panel is a flex column of character entries. Each entry is a flex row with avatar and bars.",
+        ".bars uses flex: 1 to take up remaining space after the avatar, and flex-direction: column for stacking HP/MP.",
+        "linear-gradient(90deg, color1, color2) creates a left-to-right gradient."
+      ],
+      "resources": [
+        {
+          "label": "MDN: linear-gradient",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient",
+          "description": "Create gradient backgrounds"
+        },
+        {
+          "label": "MDN: flex",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/flex",
+          "description": "Flex shorthand property"
+        }
+      ]
+    },
+    {
+      "id": 613,
+      "title": "Crafting System",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "arrays",
+        "rpg",
+        "advanced"
+      ],
+      "description": "Validate crafting recipes and consume ingredients from an inventory to produce items.",
+      "instructions": "Write a function `craft(inventory, recipe)` where:\n- `inventory` is an object mapping item names to quantities: `{ 'Iron': 3, 'Wood': 5, 'Gem': 1 }`\n- `recipe` is an object with `ingredients` (object mapping item to required count) and `result` (string)\n\nIf the inventory has enough of every ingredient:\n1. Subtract the ingredient quantities from inventory (mutate it)\n2. Add 1 of the result item to inventory (or create it)\n3. Return `{ success: true, crafted: recipe.result }`\n\nIf not enough ingredients, return `{ success: false, missing: [...] }` where `missing` is an array of strings like `\"Need 2 more Iron\"`.\n\nExample:\n  const inv = { Iron: 3, Wood: 5 };\n  craft(inv, { ingredients: { Iron: 2, Wood: 3 }, result: 'Iron Sword' })\n  → { success: true, crafted: 'Iron Sword' }\n  // inv is now { Iron: 1, Wood: 2, 'Iron Sword': 1 }",
+      "starterCode": "function craft(inventory, recipe) {\n  // Your code here\n\n}",
+      "solution": "function craft(inventory, recipe) {\n  const missing = [];\n  for (const item in recipe.ingredients) {\n    const need = recipe.ingredients[item];\n    const have = inventory[item] || 0;\n    if (have < need) {\n      missing.push('Need ' + (need - have) + ' more ' + item);\n    }\n  }\n\n  if (missing.length > 0) return { success: false, missing };\n\n  for (const item in recipe.ingredients) {\n    inventory[item] -= recipe.ingredients[item];\n  }\n  inventory[recipe.result] = (inventory[recipe.result] || 0) + 1;\n\n  return { success: true, crafted: recipe.result };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return craft;')(); const inv = { Iron: 3, Wood: 5, Gem: 1 }; const r1 = fn(inv, { ingredients: { Iron: 2, Wood: 3 }, result: 'Iron Sword' }); const r2 = fn(inv, { ingredients: { Iron: 5, Gem: 2 }, result: 'Magic Staff' }); return [ { pass: r1.success === true && r1.crafted === 'Iron Sword', description: 'Successfully crafts Iron Sword', got: JSON.stringify(r1) }, { pass: inv.Iron === 1 && inv.Wood === 2, description: 'Ingredients consumed: Iron:1, Wood:2', got: 'Iron:'+inv.Iron+' Wood:'+inv.Wood }, { pass: inv['Iron Sword'] === 1, description: 'Iron Sword added to inventory', got: inv['Iron Sword'] }, { pass: r2.success === false && r2.missing.length === 2, description: 'Fails with 2 missing items', got: JSON.stringify(r2) }, { pass: r2.missing[0].includes('Iron') && r2.missing[1].includes('Gem'), description: 'Missing list mentions Iron and Gem', got: JSON.stringify(r2.missing) } ]; }",
+      "hints": [
+        "First pass: check every ingredient. Compare inventory[item] (or 0 if missing) against the required amount.",
+        "Build the missing array during the first pass. If it's non-empty, return failure.",
+        "Second pass (only if all ingredients available): subtract quantities and add the result item."
+      ],
+      "resources": [
+        {
+          "label": "MDN: for...in",
+          "url": "/docs/mdn/for-in.html",
+          "description": "Loop over object keys"
+        },
+        {
+          "label": "MDN: Objects",
+          "url": "/docs/mdn/objects.html",
+          "description": "Working with JavaScript objects"
+        }
+      ]
+    },
+    {
+      "id": 614,
+      "title": "Side-Scroller World Builder",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "strings",
+        "arrays",
+        "algorithms",
+        "rpg",
+        "advanced",
+        "side-scroller"
+      ],
+      "description": "Analyze a complex side-scroller map to identify floating platforms, collectibles, enemies, and gaps.",
+      "instructions": "Write a function `analyzeWorld(mapStr)` that takes a multi-line side-scroller map (rows separated by `\\n`). Characters:\n- `_` = solid ground/platform\n- `.` = empty air\n- `C` = coin\n- `E` = enemy\n- `P` = player start\n- `G` = goal\n\nReturn an object with:\n- `platforms`: array of `{ row, start, length }` for each contiguous run of `_` in any row\n- `coins`: array of `{ row, col }` positions\n- `enemies`: array of `{ row, col }` positions\n- `playerStart`: `{ row, col }` or null\n- `goal`: `{ row, col }` or null\n- `gaps`: array of `{ row, start, length }` for contiguous runs of `.` in the bottom row only\n\nExample:\n  analyzeWorld(\".C..E.\\n______\")\n  → {\n    platforms: [{ row: 1, start: 0, length: 6 }],\n    coins: [{ row: 0, col: 1 }],\n    enemies: [{ row: 0, col: 4 }],\n    playerStart: null,\n    goal: null,\n    gaps: []\n  }",
+      "starterCode": "function analyzeWorld(mapStr) {\n  // Your code here\n\n}",
+      "solution": "function analyzeWorld(mapStr) {\n  const rows = mapStr.split('\\n');\n  const platforms = [];\n  const coins = [];\n  const enemies = [];\n  let playerStart = null;\n  let goal = null;\n\n  for (let r = 0; r < rows.length; r++) {\n    let c = 0;\n    while (c < rows[r].length) {\n      const ch = rows[r][c];\n      if (ch === '_') {\n        const start = c;\n        while (c < rows[r].length && rows[r][c] === '_') c++;\n        platforms.push({ row: r, start, length: c - start });\n      } else {\n        if (ch === 'C') coins.push({ row: r, col: c });\n        if (ch === 'E') enemies.push({ row: r, col: c });\n        if (ch === 'P') playerStart = { row: r, col: c };\n        if (ch === 'G') goal = { row: r, col: c };\n        c++;\n      }\n    }\n  }\n\n  const gaps = [];\n  const bottom = rows[rows.length - 1];\n  let bc = 0;\n  while (bc < bottom.length) {\n    if (bottom[bc] === '.') {\n      const start = bc;\n      while (bc < bottom.length && bottom[bc] === '.') bc++;\n      gaps.push({ row: rows.length - 1, start, length: bc - start });\n    } else {\n      bc++;\n    }\n  }\n\n  return { platforms, coins, enemies, playerStart, goal, gaps };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return analyzeWorld;')(); const r1 = fn('.C..E.\\n______'); const r2 = fn('P..C.G\\n___.__'); return [ { pass: r1.platforms.length === 1 && r1.platforms[0].row === 1 && r1.platforms[0].length === 6, description: 'Single platform: row 1, length 6', got: JSON.stringify(r1.platforms) }, { pass: r1.coins.length === 1 && r1.coins[0].row === 0 && r1.coins[0].col === 1, description: 'Coin at row 0, col 1', got: JSON.stringify(r1.coins) }, { pass: r1.enemies.length === 1 && r1.enemies[0].col === 4, description: 'Enemy at col 4', got: JSON.stringify(r1.enemies) }, { pass: r1.playerStart === null, description: 'No player start', got: r1.playerStart }, { pass: r1.gaps.length === 0, description: 'No gaps (full bottom row)', got: r1.gaps.length }, { pass: r2.playerStart !== null && r2.playerStart.col === 0, description: 'Player at row 0, col 0', got: JSON.stringify(r2.playerStart) }, { pass: r2.goal !== null && r2.goal.col === 5, description: 'Goal at row 0, col 5', got: JSON.stringify(r2.goal) }, { pass: r2.gaps.length === 1 && r2.gaps[0].start === 3 && r2.gaps[0].length === 1, description: 'Gap in bottom row at col 3, length 1', got: JSON.stringify(r2.gaps) } ]; }",
+      "hints": [
+        "Process each row character by character. For '_', detect contiguous runs (same as parseTerrain).",
+        "For gaps, only process the last row and detect contiguous runs of '.'.",
+        "Use separate arrays for coins and enemies, and simple variables for playerStart and goal."
+      ],
+      "resources": [
+        {
+          "label": "MDN: String.split()",
+          "url": "/docs/mdn/string-split.html",
+          "description": "Split a string into an array"
+        },
+        {
+          "label": "MDN: while loop",
+          "url": "/docs/mdn/while-loop.html",
+          "description": "Loop while a condition is true"
+        }
+      ]
+    },
+    {
+      "id": 615,
+      "title": "Tooltip Card",
+      "type": "html-css",
+      "tier": 4,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "html",
+        "css",
+        "position",
+        "hover",
+        "grid",
+        "rpg",
+        "advanced"
+      ],
+      "description": "Build a hover-reveal tooltip card with absolute positioning and a stat grid inside.",
+      "instructions": "Build an item tooltip that appears when hovering over an item icon.\n\n**Required HTML:**\n- A `.tooltip-anchor` container with `position: relative`\n- Inside: a `.item-icon` div (the hoverable element)\n- A `.tooltip-card` sibling with:\n  - An `<h3>` with class `item-name`\n  - A `.item-rarity` div\n  - A `.stat-grid` containing at least 4 `.stat-entry` divs (each with `.stat-key` and `.stat-val`)\n\n**Required CSS:**\n1. `.tooltip-anchor`: `position: relative`, `display: inline-block`\n2. `.item-icon`: `width: 48px`, `height: 48px`, `background-color: #334155`, `border-radius: 4px`\n3. `.tooltip-card`: `display: none`, `position: absolute`, `bottom: 100%`, `left: 0`, `min-width: 200px`, `background-color: #0f172a`, `border: 1px solid #d97706`, `border-radius: 8px`, `padding: 12px`, `color: #f8fafc`\n4. `.tooltip-anchor:hover .tooltip-card`: `display: block`\n5. `.stat-grid`: `display: grid`, `grid-template-columns: repeat(2, 1fr)`, `gap: 4px`\n6. `.stat-key`: `color: #94a3b8`, `font-size: 12px`\n7. `.stat-val`: `color: #d97706`, `font-size: 12px`, `text-align: right`",
+      "starterCode": "",
+      "solution": "<div class=\"tooltip-anchor\">\n  <div class=\"item-icon\"></div>\n  <div class=\"tooltip-card\">\n    <h3 class=\"item-name\">Enchanted Blade</h3>\n    <div class=\"item-rarity\">Legendary</div>\n    <div class=\"stat-grid\">\n      <div class=\"stat-entry\"><span class=\"stat-key\">Damage</span><span class=\"stat-val\">45</span></div>\n      <div class=\"stat-entry\"><span class=\"stat-key\">Speed</span><span class=\"stat-val\">1.4</span></div>\n      <div class=\"stat-entry\"><span class=\"stat-key\">Crit</span><span class=\"stat-val\">15%</span></div>\n      <div class=\"stat-entry\"><span class=\"stat-key\">Element</span><span class=\"stat-val\">Fire</span></div>\n    </div>\n  </div>\n</div>\n\n<style>\n.tooltip-anchor {\n  position: relative;\n  display: inline-block;\n}\n\n.item-icon {\n  width: 48px;\n  height: 48px;\n  background-color: #334155;\n  border-radius: 4px;\n}\n\n.tooltip-card {\n  display: none;\n  position: absolute;\n  bottom: 100%;\n  left: 0;\n  min-width: 200px;\n  background-color: #0f172a;\n  border: 1px solid #d97706;\n  border-radius: 8px;\n  padding: 12px;\n  color: #f8fafc;\n}\n\n.tooltip-anchor:hover .tooltip-card {\n  display: block;\n}\n\n.stat-grid {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  gap: 4px;\n}\n\n.stat-key {\n  color: #94a3b8;\n  font-size: 12px;\n}\n\n.stat-val {\n  color: #d97706;\n  font-size: 12px;\n  text-align: right;\n}\n</style>",
+      "testRunner": "",
+      "testCases": [
+        {
+          "query": ".tooltip-anchor",
+          "assertion": "equals",
+          "property": "position",
+          "value": "relative",
+          "description": ".tooltip-anchor has position: relative"
+        },
+        {
+          "query": ".item-icon",
+          "assertion": "equals",
+          "property": "width",
+          "value": "48px",
+          "description": ".item-icon width is 48px"
+        },
+        {
+          "query": ".tooltip-card",
+          "assertion": "equals",
+          "property": "display",
+          "value": "none",
+          "description": ".tooltip-card is hidden by default"
+        },
+        {
+          "query": ".tooltip-card",
+          "assertion": "equals",
+          "property": "position",
+          "value": "absolute",
+          "description": ".tooltip-card has position: absolute"
+        },
+        {
+          "query": ".tooltip-card",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "8px",
+          "description": ".tooltip-card border-radius is 8px"
+        },
+        {
+          "query": ".item-name",
+          "assertion": "exists",
+          "description": ".item-name (h3) exists"
+        },
+        {
+          "query": ".item-rarity",
+          "assertion": "exists",
+          "description": ".item-rarity exists"
+        },
+        {
+          "query": ".stat-grid",
+          "assertion": "equals",
+          "property": "display",
+          "value": "grid",
+          "description": ".stat-grid uses CSS Grid"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "repeat(2",
+          "description": "Stat grid uses repeat(2, ...) for 2 columns"
+        },
+        {
+          "query": ".stat-entry",
+          "assertion": "countAtLeast",
+          "value": 4,
+          "description": "At least 4 .stat-entry elements"
+        },
+        {
+          "query": ".stat-key",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "12px",
+          "description": ".stat-key font-size is 12px"
+        },
+        {
+          "query": ".stat-val",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(217, 119, 6)",
+          "description": ".stat-val color is gold"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": ":hover",
+          "description": "CSS includes a :hover rule"
+        }
+      ],
+      "hints": [
+        "The anchor needs position: relative so the tooltip-card can be absolutely positioned relative to it.",
+        "Use bottom: 100% on .tooltip-card to place it directly above the icon.",
+        "The stat-grid uses a 2-column grid: stat-key on the left, stat-val on the right."
+      ],
+      "resources": [
+        {
+          "label": "MDN: position",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/position",
+          "description": "CSS positioning: relative, absolute, fixed"
+        },
+        {
+          "label": "MDN: CSS Grid",
+          "url": "/docs/mdn/css-grid.html",
+          "description": "Two-dimensional grid layout"
+        }
+      ]
+    },
+    {
+      "id": 616,
+      "title": "Dungeon Engine",
+      "type": "js",
+      "tier": 5,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "closures",
+        "classes",
+        "algorithms",
+        "rpg",
+        "advanced",
+        "dungeon-map"
+      ],
+      "description": "Build a complete closure-based dungeon engine with movement, traps, keys, doors, and combat.",
+      "instructions": "Write a function `createDungeon(mapStr)` that takes a multi-line dungeon string and returns a dungeon engine object. Characters:\n- `#` = wall, `.` = floor, `P` = player start, `K` = key, `D` = door, `T` = trap (-10 HP), `G` = goal, `M` = monster (20 HP, 5 damage)\n\nThe returned engine object has:\n- `getState()`: returns `{ player: {row, col, hp, keys}, map, won, lost, log }`. `log` is an array of event strings. Player starts with `hp: 100, keys: 0`.\n- `move(direction)`: moves player ('up','down','left','right'). Rules:\n  - Can't move into `#` walls\n  - Can't move into `D` doors unless `keys > 0` (consumes a key, door becomes `.`)\n  - `K`: collect key (keys++), tile becomes `.`\n  - `T`: lose 10 HP, tile becomes `.` (trap springs once)\n  - `M`: lose 5 HP, monster is defeated, tile becomes `.`\n  - `G`: player wins\n  - If HP <= 0: player loses\n  - Log each event: \"Moved up\", \"Collected key\", \"Hit trap! -10 HP\", \"Defeated monster! -5 HP\", \"Opened door\", \"Reached the goal!\", \"Blocked by wall\", \"Door is locked\", \"You have fallen!\"\n  - Returns the result of `getState()`\n\nExample:\n  const d = createDungeon(\"P.K\\n..D\\n..G\");\n  d.move('right');  // Moved right\n  d.move('right');  // Collected key\n  d.move('down');   // Moved down\n  // Now at door with a key\n  d.move('right');  // \"Opened door\" (key consumed)\n  d.move('down');   // \"Reached the goal!\"",
+      "starterCode": "function createDungeon(mapStr) {\n  // Your code here\n\n}",
+      "solution": "function createDungeon(mapStr) {\n  const map = mapStr.split('\\n').map(r => r.split(''));\n  let player = { row: 0, col: 0, hp: 100, keys: 0 };\n  let won = false;\n  let lost = false;\n  const log = [];\n\n  for (let r = 0; r < map.length; r++) {\n    for (let c = 0; c < map[r].length; c++) {\n      if (map[r][c] === 'P') {\n        player.row = r;\n        player.col = c;\n        map[r][c] = '.';\n      }\n    }\n  }\n\n  const dirs = { up: [-1,0], down: [1,0], left: [0,-1], right: [0,1] };\n\n  function getState() {\n    return { player: { ...player }, map: map.map(r => [...r]), won, lost, log: [...log] };\n  }\n\n  function move(direction) {\n    if (won || lost) return getState();\n    const [dr, dc] = dirs[direction];\n    const nr = player.row + dr;\n    const nc = player.col + dc;\n\n    if (nr < 0 || nr >= map.length || nc < 0 || nc >= map[0].length) {\n      log.push('Blocked by wall');\n      return getState();\n    }\n\n    const tile = map[nr][nc];\n\n    if (tile === '#') {\n      log.push('Blocked by wall');\n      return getState();\n    }\n\n    if (tile === 'D') {\n      if (player.keys > 0) {\n        player.keys--;\n        map[nr][nc] = '.';\n        log.push('Opened door');\n      } else {\n        log.push('Door is locked');\n        return getState();\n      }\n    }\n\n    player.row = nr;\n    player.col = nc;\n    log.push('Moved ' + direction);\n\n    if (tile === 'K') {\n      player.keys++;\n      map[nr][nc] = '.';\n      log.push('Collected key');\n    } else if (tile === 'T') {\n      player.hp -= 10;\n      map[nr][nc] = '.';\n      log.push('Hit trap! -10 HP');\n    } else if (tile === 'M') {\n      player.hp -= 5;\n      map[nr][nc] = '.';\n      log.push('Defeated monster! -5 HP');\n    } else if (tile === 'G') {\n      won = true;\n      log.push('Reached the goal!');\n    }\n\n    if (player.hp <= 0) {\n      lost = true;\n      log.push('You have fallen!');\n    }\n\n    return getState();\n  }\n\n  return { getState, move };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return createDungeon;')(); const d = fn('P.K\\n..D\\n..G'); const s0 = d.getState(); d.move('right'); const s1 = d.move('right'); d.move('down'); const s3 = d.move('right'); const s4 = d.move('down'); const d2 = fn('PTT\\nTTT\\nTTG'); d2.move('right'); d2.move('right'); d2.move('down'); d2.move('down'); const hp = d2.getState(); const d3 = fn('P.\\nD.'); const locked = d3.move('down'); return [ { pass: s0.player.hp === 100 && s0.player.keys === 0, description: 'Initial state: 100 HP, 0 keys', got: 'hp:'+s0.player.hp+' keys:'+s0.player.keys }, { pass: s1.player.keys === 1, description: 'Collected key: keys = 1', got: s1.player.keys }, { pass: s3.player.keys === 0, description: 'Opened door: keys consumed', got: s3.player.keys }, { pass: s4.won === true, description: 'Reached goal: won!', got: s4.won }, { pass: s4.log.includes('Reached the goal!'), description: 'Log contains \"Reached the goal!\"', got: s4.log.filter(l=>l.includes('goal')).join() }, { pass: hp.player.hp === 70, description: 'Trap path: 3 traps = -30 HP, hp=70', got: hp.player.hp }, { pass: locked.log.includes('Door is locked'), description: 'Door without key: \"Door is locked\"', got: locked.log.join(', ') } ]; }",
+      "hints": [
+        "Parse the map into a 2D array and find the player's start position. Replace 'P' with '.' on the map.",
+        "The move function checks the target tile before moving: walls block, doors need keys, traps/monsters deal damage.",
+        "Use a closure to encapsulate all state (map, player, won, lost, log). getState returns copies to prevent external mutation."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Closures",
+          "url": "/docs/mdn/closures.html",
+          "description": "Functions that remember their scope"
+        },
+        {
+          "label": "MDN: Spread syntax",
+          "url": "/docs/mdn/spread.html",
+          "description": "Copy arrays and objects with ..."
+        }
+      ]
+    },
+    {
+      "id": 617,
+      "title": "RPG Battle Board",
+      "type": "html-css",
+      "tier": 5,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "html",
+        "css",
+        "grid",
+        "flexbox",
+        "rpg",
+        "advanced"
+      ],
+      "description": "Build a full RPG battle UI with CSS Grid areas, a nested tile grid, and health/mana bars.",
+      "instructions": "Build a complete RPG battle interface using CSS Grid for the overall layout and nested grids for the battlefield.\n\n**Required HTML structure:**\n- `.battle-board` container with 4 children:\n  - `.battlefield` — a 4×4 grid of `.battle-tile` divs (some with `.ally` or `.enemy` class)\n  - `.player-hud` — player info with `.hud-name`, `.hud-hp` bar, `.hud-mp` bar\n  - `.enemy-hud` — enemy info with `.hud-name`, `.hud-hp` bar\n  - `.action-bar` — at least 3 `<button>` elements with class `.action-btn`\n\n**Required CSS:**\n1. `.battle-board`: `display: grid`, `grid-template-areas` with layout:\n   - `\"enemy-hud battlefield\"`\n   - `\"player-hud battlefield\"`\n   - `\"action-bar action-bar\"`\n2. `.battle-board`: `gap: 8px`, `max-width: 500px`, `background-color: #0f172a`, `padding: 12px`, `border-radius: 8px`\n3. `.battlefield`: `grid-area: battlefield`, `display: grid`, `grid-template-columns: repeat(4, 1fr)`, `gap: 2px`\n4. `.battle-tile`: `aspect-ratio: 1`, `background-color: #1e293b`, `border-radius: 2px`\n5. `.ally`: `background-color: #3b82f6`\n6. `.enemy`: `background-color: #ef4444`\n7. `.player-hud`: `grid-area: player-hud`\n8. `.enemy-hud`: `grid-area: enemy-hud`\n9. `.action-bar`: `grid-area: action-bar`, `display: flex`, `gap: 8px`\n10. `.action-btn`: `padding: 8px 16px`, `border-radius: 4px`, `border: 1px solid #d97706`, `background-color: #1e293b`, `color: #f8fafc`\n11. `.hud-hp`: `height: 8px`, `background-color: #22c55e`, `border-radius: 4px`\n12. `.hud-mp`: `height: 8px`, `background-color: #3b82f6`, `border-radius: 4px`",
+      "starterCode": "",
+      "solution": "<div class=\"battle-board\">\n  <div class=\"enemy-hud\">\n    <div class=\"hud-name\" style=\"color:#ef4444\">Dark Knight</div>\n    <div class=\"hud-hp\" style=\"width:70%\"></div>\n  </div>\n  <div class=\"battlefield\">\n    <div class=\"battle-tile\"></div><div class=\"battle-tile\"></div><div class=\"battle-tile enemy\"></div><div class=\"battle-tile\"></div>\n    <div class=\"battle-tile\"></div><div class=\"battle-tile\"></div><div class=\"battle-tile\"></div><div class=\"battle-tile\"></div>\n    <div class=\"battle-tile\"></div><div class=\"battle-tile\"></div><div class=\"battle-tile\"></div><div class=\"battle-tile\"></div>\n    <div class=\"battle-tile ally\"></div><div class=\"battle-tile\"></div><div class=\"battle-tile\"></div><div class=\"battle-tile\"></div>\n  </div>\n  <div class=\"player-hud\">\n    <div class=\"hud-name\" style=\"color:#3b82f6\">Hero</div>\n    <div class=\"hud-hp\" style=\"width:90%\"></div>\n    <div class=\"hud-mp\" style=\"width:60%\"></div>\n  </div>\n  <div class=\"action-bar\">\n    <button class=\"action-btn\">Attack</button>\n    <button class=\"action-btn\">Defend</button>\n    <button class=\"action-btn\">Magic</button>\n  </div>\n</div>\n\n<style>\n.battle-board {\n  display: grid;\n  grid-template-areas:\n    \"enemy-hud battlefield\"\n    \"player-hud battlefield\"\n    \"action-bar action-bar\";\n  gap: 8px;\n  max-width: 500px;\n  background-color: #0f172a;\n  padding: 12px;\n  border-radius: 8px;\n}\n\n.battlefield {\n  grid-area: battlefield;\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 2px;\n}\n\n.battle-tile {\n  aspect-ratio: 1;\n  background-color: #1e293b;\n  border-radius: 2px;\n}\n\n.ally { background-color: #3b82f6; }\n.enemy { background-color: #ef4444; }\n\n.player-hud { grid-area: player-hud; }\n.enemy-hud { grid-area: enemy-hud; }\n\n.action-bar {\n  grid-area: action-bar;\n  display: flex;\n  gap: 8px;\n}\n\n.action-btn {\n  padding: 8px 16px;\n  border-radius: 4px;\n  border: 1px solid #d97706;\n  background-color: #1e293b;\n  color: #f8fafc;\n}\n\n.hud-hp {\n  height: 8px;\n  background-color: #22c55e;\n  border-radius: 4px;\n}\n\n.hud-mp {\n  height: 8px;\n  background-color: #3b82f6;\n  border-radius: 4px;\n}\n</style>",
+      "testRunner": "",
+      "testCases": [
+        {
+          "query": ".battle-board",
+          "assertion": "exists",
+          "description": ".battle-board container exists"
+        },
+        {
+          "query": ".battle-board",
+          "assertion": "equals",
+          "property": "display",
+          "value": "grid",
+          "description": ".battle-board uses CSS Grid"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "grid-template-areas",
+          "description": "Uses grid-template-areas for layout"
+        },
+        {
+          "query": ".battlefield",
+          "assertion": "exists",
+          "description": ".battlefield exists"
+        },
+        {
+          "query": ".battlefield",
+          "assertion": "equals",
+          "property": "display",
+          "value": "grid",
+          "description": ".battlefield uses nested CSS Grid"
+        },
+        {
+          "query": ".battle-tile",
+          "assertion": "countAtLeast",
+          "value": 16,
+          "description": "At least 16 battle tiles (4×4)"
+        },
+        {
+          "query": ".ally",
+          "assertion": "exists",
+          "description": ".ally tile exists"
+        },
+        {
+          "query": ".enemy",
+          "assertion": "exists",
+          "description": ".enemy tile exists"
+        },
+        {
+          "query": ".player-hud",
+          "assertion": "exists",
+          "description": ".player-hud exists"
+        },
+        {
+          "query": ".enemy-hud",
+          "assertion": "exists",
+          "description": ".enemy-hud exists"
+        },
+        {
+          "query": ".action-bar",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": ".action-bar uses flexbox"
+        },
+        {
+          "query": ".action-btn",
+          "assertion": "countAtLeast",
+          "value": 3,
+          "description": "At least 3 action buttons"
+        },
+        {
+          "query": ".hud-hp",
+          "assertion": "equals",
+          "property": "height",
+          "value": "8px",
+          "description": ".hud-hp height is 8px"
+        },
+        {
+          "query": ".hud-hp",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(34, 197, 94)",
+          "description": ".hud-hp is green"
+        },
+        {
+          "query": ".action-btn",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(248, 250, 252)",
+          "description": ".action-btn text is near-white"
+        }
+      ],
+      "hints": [
+        "grid-template-areas creates named regions. Use quotes for each row: '\"enemy-hud battlefield\"'.",
+        "The battlefield is a grid-within-a-grid: the outer grid positions it, the inner grid arranges tiles.",
+        "Assign each child to its area with grid-area: battlefield, grid-area: player-hud, etc."
+      ],
+      "resources": [
+        {
+          "label": "MDN: grid-template-areas",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas",
+          "description": "Name grid regions for layout"
+        },
+        {
+          "label": "MDN: CSS Grid",
+          "url": "/docs/mdn/css-grid.html",
+          "description": "Two-dimensional grid layout"
+        }
+      ]
+    },
+    {
+      "id": 618,
+      "title": "Side-Scroller Level Engine",
+      "type": "js",
+      "tier": 5,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "classes",
+        "algorithms",
+        "physics",
+        "rpg",
+        "advanced",
+        "side-scroller"
+      ],
+      "description": "Build a side-scroller game tick engine with gravity, jumping, collision detection, and camera scrolling.",
+      "instructions": "Write a function `createLevel(mapStr)` that takes a multi-line side-scroller map. Characters: `_` = platform, `.` = air, `P` = player start, `C` = coin, `G` = goal.\n\nReturn a level engine with:\n- `getState()`: returns `{ player: {x, y, vy, grounded, coins}, cameraX, won, ticks }`\n  - Player starts with `vy: 0, grounded: false, coins: 0`\n  - `cameraX` starts at 0\n\n- `tick(input)`: advances one frame. `input` is an object `{ left, right, jump }` (all booleans).\n  1. **Horizontal movement**: if `right`, `x += 1`; if `left`, `x -= 1`. Clamp x to [0, mapWidth-1].\n  2. **Jump**: if `jump` AND `grounded`, set `vy = -2` (upward)\n  3. **Gravity**: `vy += 1` (gravity pulls down each tick)\n  4. **Vertical movement**: `y += vy`. If y goes below a platform tile or map bottom, clamp to surface, set `vy = 0, grounded = true`. If no platform below, `grounded = false`.\n  5. **Collision**: check tile at (x, y). If `C`, collect it (coins++, tile becomes `.`). If `G`, `won = true`.\n  6. **Camera**: `cameraX = Math.max(0, player.x - 3)` (follows player with 3-tile buffer)\n  7. Increment `ticks`.\n  8. Return `getState()`\n\nCoordinate system: row 0 is top, higher y is lower on screen. Map is accessed as `map[y][x]`.\n\nExample:\n  const lvl = createLevel(\".P..C.G\\n_______\");\n  // Player starts at x:1, y:0. Platform at y:1\n  lvl.tick({right:true});  // x:2, falls to y:0 (platform at y:1 below)",
+      "starterCode": "function createLevel(mapStr) {\n  // Your code here\n\n}",
+      "solution": "function createLevel(mapStr) {\n  const map = mapStr.split('\\n').map(r => r.split(''));\n  const mapHeight = map.length;\n  const mapWidth = map[0].length;\n  let player = { x: 0, y: 0, vy: 0, grounded: false, coins: 0 };\n  let cameraX = 0;\n  let won = false;\n  let ticks = 0;\n\n  for (let r = 0; r < mapHeight; r++) {\n    for (let c = 0; c < mapWidth; c++) {\n      if (map[r][c] === 'P') {\n        player.x = c;\n        player.y = r;\n        map[r][c] = '.';\n      }\n    }\n  }\n\n  function isSolid(x, y) {\n    if (y >= mapHeight) return true;\n    if (x < 0 || x >= mapWidth || y < 0) return false;\n    return map[y][x] === '_';\n  }\n\n  function getState() {\n    return { player: { ...player }, cameraX, won, ticks };\n  }\n\n  function tick(input) {\n    if (won) return getState();\n\n    if (input.right) player.x += 1;\n    if (input.left) player.x -= 1;\n    player.x = Math.max(0, Math.min(mapWidth - 1, player.x));\n\n    if (input.jump && player.grounded) {\n      player.vy = -2;\n      player.grounded = false;\n    }\n\n    player.vy += 1;\n    player.y += player.vy;\n\n    if (player.y >= mapHeight) {\n      player.y = mapHeight - 1;\n      player.vy = 0;\n      player.grounded = true;\n    } else if (isSolid(player.x, player.y)) {\n      if (player.vy > 0) {\n        while (isSolid(player.x, player.y)) player.y--;\n      } else {\n        while (isSolid(player.x, player.y)) player.y++;\n      }\n      player.vy = 0;\n      player.grounded = true;\n    } else if (isSolid(player.x, player.y + 1)) {\n      player.grounded = true;\n    } else {\n      player.grounded = false;\n    }\n\n    if (player.y >= 0 && player.y < mapHeight && player.x >= 0 && player.x < mapWidth) {\n      const tile = map[player.y][player.x];\n      if (tile === 'C') {\n        player.coins++;\n        map[player.y][player.x] = '.';\n      } else if (tile === 'G') {\n        won = true;\n      }\n    }\n\n    cameraX = Math.max(0, player.x - 3);\n    ticks++;\n\n    return getState();\n  }\n\n  return { getState, tick };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return createLevel;')(); const lvl = fn('.P..C.G\\n_______'); const s0 = lvl.getState(); const s1 = lvl.tick({right:true,left:false,jump:false}); const s2 = lvl.tick({right:true,left:false,jump:false}); const s3 = lvl.tick({right:true,left:false,jump:false}); return [ { pass: s0.player.x === 1 && s0.player.y === 0, description: 'Player starts at x:1, y:0', got: 'x:'+s0.player.x+' y:'+s0.player.y }, { pass: s1.player.x === 2, description: 'After move right: x:2', got: 'x:'+s1.player.x }, { pass: s3.player.coins === 1, description: 'Collected coin after reaching x:4', got: 'coins:'+s3.player.coins }, { pass: s3.ticks === 3, description: '3 ticks elapsed', got: s3.ticks }, { pass: s3.cameraX >= 0, description: 'Camera follows player', got: 'cameraX:'+s3.cameraX }, { pass: lvl.tick({right:true,left:false,jump:false}).player.x === 5, description: 'Continues moving right to x:5', got: lvl.getState().player.x }, { pass: lvl.tick({right:true,left:false,jump:false}).won === true, description: 'Reached goal: won!', got: lvl.getState().won } ]; }",
+      "hints": [
+        "Process input in order: horizontal movement, jump, gravity, vertical movement, collision, items, camera.",
+        "Gravity is simple: add 1 to vy each tick. Jumping sets vy to -2 (upward means lower y value).",
+        "For collision, check if the tile at the new position is solid ('_'). If so, push the player back up."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Math.max()",
+          "url": "/docs/mdn/math-max.html",
+          "description": "Returns the largest of the given numbers"
+        },
+        {
+          "label": "MDN: Math.min()",
+          "url": "/docs/mdn/math-min.html",
+          "description": "Returns the smallest of the given numbers"
+        }
+      ]
+    },
+    {
+      "id": 619,
+      "title": "The Grand Quest Engine",
+      "type": "js",
+      "tier": 5,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "classes",
+        "systems",
+        "rpg",
+        "advanced"
+      ],
+      "description": "Build the ultimate RPG engine integrating a Hero, inventory, spells, dungeon exploration, and quest tracking.",
+      "instructions": "Write a function `createQuestEngine(config)` that ties together all the RPG systems. Config:\n- `heroName` (string), `heroClass` (string)\n- `startingGold` (number)\n- `mapStr` (multi-line dungeon string with `P`, `#`, `.`, `G`, `M`, `K`, `D`, `T`)\n\nReturn an engine with:\n\n- `hero()`: returns `{ name, heroClass, hp, maxHp, level, xp, gold, inventory }`. Hero starts with 100 HP, level 1, 0 XP, the given gold, and inventory `['Wooden Sword']`.\n\n- `explore(direction)`: moves through the dungeon (up/down/left/right). Returns an event object:\n  - On `M` (monster): auto-combat — hero loses 5 HP, gains 25 XP, gains 10 gold, `{ event: 'combat', enemy: 'Monster', hpLost: 5, xpGained: 25, goldGained: 10 }`\n  - On `K` (key): gains a key item in inventory, `{ event: 'key', message: 'Found a dungeon key!' }`\n  - On `T` (trap): loses 10 HP, `{ event: 'trap', hpLost: 10 }`\n  - On `G` (goal): `{ event: 'victory', message: 'Quest complete!' }`\n  - On `#` or out of bounds: `{ event: 'blocked' }`\n  - On `.` or `D` (with key): `{ event: 'move' }`\n  - Doors need a 'Dungeon Key' in inventory (consumed on use)\n  - If HP drops to 0 or below: `{ event: 'defeat', message: 'You have fallen!' }`\n\n- `buy(itemName, price)`: if gold >= price, subtracts gold, adds item to inventory, returns true. Otherwise false.\n\n- `status()`: returns `{ hero: hero(), questComplete: boolean, alive: boolean }`\n\nXP leveling: every 100 XP, level up (maxHp += 20, full heal). Same rules as Character Builder (#601).",
+      "starterCode": "function createQuestEngine(config) {\n  // Your code here\n\n}",
+      "solution": "function createQuestEngine(config) {\n  const map = config.mapStr.split('\\n').map(r => r.split(''));\n  const state = {\n    name: config.heroName,\n    heroClass: config.heroClass,\n    hp: 100,\n    maxHp: 100,\n    level: 1,\n    xp: 0,\n    gold: config.startingGold,\n    inventory: ['Wooden Sword'],\n    row: 0,\n    col: 0,\n    questComplete: false,\n    alive: true\n  };\n\n  for (let r = 0; r < map.length; r++) {\n    for (let c = 0; c < map[r].length; c++) {\n      if (map[r][c] === 'P') { state.row = r; state.col = c; map[r][c] = '.'; }\n    }\n  }\n\n  function gainXP(amount) {\n    state.xp += amount;\n    while (state.xp >= 100) {\n      state.xp -= 100;\n      state.level++;\n      state.maxHp += 20;\n      state.hp = state.maxHp;\n    }\n  }\n\n  function hero() {\n    return {\n      name: state.name,\n      heroClass: state.heroClass,\n      hp: state.hp,\n      maxHp: state.maxHp,\n      level: state.level,\n      xp: state.xp,\n      gold: state.gold,\n      inventory: [...state.inventory]\n    };\n  }\n\n  const dirs = { up: [-1,0], down: [1,0], left: [0,-1], right: [0,1] };\n\n  function explore(direction) {\n    if (!state.alive || state.questComplete) return { event: 'blocked' };\n    const [dr, dc] = dirs[direction];\n    const nr = state.row + dr;\n    const nc = state.col + dc;\n\n    if (nr < 0 || nr >= map.length || nc < 0 || nc >= map[0].length || map[nr][nc] === '#') {\n      return { event: 'blocked' };\n    }\n\n    const tile = map[nr][nc];\n\n    if (tile === 'D') {\n      const keyIdx = state.inventory.indexOf('Dungeon Key');\n      if (keyIdx === -1) return { event: 'blocked' };\n      state.inventory.splice(keyIdx, 1);\n      map[nr][nc] = '.';\n    }\n\n    state.row = nr;\n    state.col = nc;\n\n    if (tile === 'M') {\n      state.hp -= 5;\n      state.gold += 10;\n      gainXP(25);\n      map[nr][nc] = '.';\n      if (state.hp <= 0) { state.alive = false; return { event: 'defeat', message: 'You have fallen!' }; }\n      return { event: 'combat', enemy: 'Monster', hpLost: 5, xpGained: 25, goldGained: 10 };\n    }\n\n    if (tile === 'K') {\n      state.inventory.push('Dungeon Key');\n      map[nr][nc] = '.';\n      return { event: 'key', message: 'Found a dungeon key!' };\n    }\n\n    if (tile === 'T') {\n      state.hp -= 10;\n      map[nr][nc] = '.';\n      if (state.hp <= 0) { state.alive = false; return { event: 'defeat', message: 'You have fallen!' }; }\n      return { event: 'trap', hpLost: 10 };\n    }\n\n    if (tile === 'G') {\n      state.questComplete = true;\n      return { event: 'victory', message: 'Quest complete!' };\n    }\n\n    return { event: 'move' };\n  }\n\n  function buy(itemName, price) {\n    if (state.gold >= price) {\n      state.gold -= price;\n      state.inventory.push(itemName);\n      return true;\n    }\n    return false;\n  }\n\n  function status() {\n    return { hero: hero(), questComplete: state.questComplete, alive: state.alive };\n  }\n\n  return { hero, explore, buy, status };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return createQuestEngine;')(); const e = fn({ heroName: 'Kael', heroClass: 'Mage', startingGold: 50, mapStr: 'P.MK\\n...D\\n...G' }); const h0 = e.hero(); const r1 = e.explore('right'); const r2 = e.explore('right'); const r3 = e.explore('right'); const r4 = e.explore('down'); const r5 = e.explore('down'); return [ { pass: h0.name === 'Kael' && h0.hp === 100 && h0.gold === 50, description: 'Hero starts: Kael, 100 HP, 50 gold', got: h0.name+' hp:'+h0.hp+' gold:'+h0.gold }, { pass: h0.inventory[0] === 'Wooden Sword', description: 'Starts with Wooden Sword', got: h0.inventory[0] }, { pass: r1.event === 'move', description: 'Move right to empty tile', got: r1.event }, { pass: r2.event === 'combat' && r2.xpGained === 25, description: 'Fight monster: +25 XP', got: JSON.stringify(r2) }, { pass: r3.event === 'key', description: 'Found key', got: r3.event }, { pass: r4.event === 'move', description: 'Opened door with key', got: r4.event }, { pass: e.hero().inventory.indexOf('Dungeon Key') === -1, description: 'Key consumed after opening door', got: JSON.stringify(e.hero().inventory) }, { pass: r5.event === 'victory', description: 'Reached goal: victory!', got: r5.event }, { pass: e.status().questComplete === true, description: 'Quest is complete', got: e.status().questComplete }, { pass: e.hero().gold === 60, description: 'Gold: 50 start + 10 from monster = 60', got: e.hero().gold } ]; }",
+      "hints": [
+        "This exercise ties together patterns from earlier exercises: dungeon movement (#616), XP leveling (#601), and inventory (#604).",
+        "Keep all state in a single closure. The hero() function returns a snapshot (copy) of the current state.",
+        "Process each tile type after moving: M for combat, K for key, T for trap, G for goal, D for door (check inventory)."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Closures",
+          "url": "/docs/mdn/closures.html",
+          "description": "Functions that remember their scope"
+        },
+        {
+          "label": "MDN: Classes",
+          "url": "/docs/mdn/classes.html",
+          "description": "JavaScript class syntax"
+        }
+      ]
+    }
+  ]
+}
