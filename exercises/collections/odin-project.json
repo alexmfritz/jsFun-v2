@@ -1,0 +1,1887 @@
+{
+  "id": "odin-project",
+  "name": "The Odin Project",
+  "description": "JavaScript and CSS exercises from The Odin Project curriculum. JS exercises target real-world skills like filtering arrays, objects, and recursion. CSS exercises cover selectors, box model, flexbox, grid layouts, and animations.",
+  "color": "#f59e0b",
+  "source": "The Odin Project",
+  "license": "MIT",
+  "attribution": "JavaScript and CSS exercises from [The Odin Project](https://theodinproject.com). JS exercises target real-world skills like arrays, objects, and recursion. CSS exercises adapted from the [css-exercises](https://github.com/TheOdinProject/css-exercises) repository covering selectors, box model, flexbox, grid, and animations. Used under the MIT License.",
+  "exerciseIds": [
+    506,
+    507,
+    508,
+    509,
+    510,
+    511,
+    512,
+    513,
+    554,
+    555,
+    556,
+    557,
+    558,
+    559,
+    560,
+    561,
+    562,
+    563,
+    564,
+    565,
+    566,
+    567,
+    568,
+    569,
+    570,
+    571,
+    572,
+    573,
+    574
+  ],
+  "exercises": [
+    {
+      "id": 506,
+      "title": "Remove From Array",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "rest-params",
+        "filter"
+      ],
+      "description": "Remove specified values from an array and return a new array without them.",
+      "instructions": "Write a function `removeFromArray(arr, ...items)` that takes an array and one or more additional arguments, then returns a new array with all matching items removed.\n\n```js\nremoveFromArray([1, 2, 3, 4], 3)       // => [1, 2, 4]\nremoveFromArray([1, 2, 3, 4], 3, 2)    // => [1, 4]\nremoveFromArray([1, 2, 3, 4], 7)       // => [1, 2, 3, 4]\nremoveFromArray([\"a\", \"b\", \"c\"], \"b\") // => [\"a\", \"c\"]\n```",
+      "starterCode": "function removeFromArray(arr, ...items) {\n  // your code here\n}",
+      "solution": "function removeFromArray(arr, ...items) {\n  return arr.filter(el => !items.includes(el));\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return removeFromArray;')();\n  const r1 = fn([1, 2, 3, 4], 3);\n  const r2 = fn([1, 2, 3, 4], 3, 2);\n  const r3 = fn([1, 2, 3, 4], 7);\n  const r4 = fn([\"a\", \"b\", \"c\"], \"b\");\n  const r5 = fn([1, 2, 3, 4, 5], 1, 5);\n  const orig = [1, 2, 3];\n  const r6 = fn(orig, 2);\n  return [\n    { pass: JSON.stringify(r1) === '[1,2,4]', description: 'Removes a single item from the array', got: JSON.stringify(r1) },\n    { pass: JSON.stringify(r2) === '[1,4]', description: 'Removes multiple items from the array', got: JSON.stringify(r2) },\n    { pass: JSON.stringify(r3) === '[1,2,3,4]', description: 'Returns original elements when no match is found', got: JSON.stringify(r3) },\n    { pass: JSON.stringify(r4) === '[\"a\",\"c\"]', description: 'Works with string values', got: JSON.stringify(r4) },\n    { pass: JSON.stringify(r5) === '[2,3,4]', description: 'Removes first and last items', got: JSON.stringify(r5) },\n    { pass: JSON.stringify(orig) === '[1,2,3]', description: 'Does not mutate the original array', got: JSON.stringify(orig) }\n  ];\n}",
+      "hints": [
+        "How can you collect an unknown number of arguments after the first one?",
+        "Use rest parameters (...items) to gather extra arguments, then filter the array to exclude those items.",
+        "Use `arr.filter(el => !items.includes(el))` to return only elements not found in the items list."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Rest parameters",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters",
+          "description": "How rest parameters collect arguments into an array"
+        },
+        {
+          "label": "MDN: Array.prototype.filter()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter",
+          "description": "The filter method creates a new array with matching elements"
+        }
+      ]
+    },
+    {
+      "id": 507,
+      "title": "Sum a Range",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "loops"
+      ],
+      "tags": [
+        "loops",
+        "math",
+        "error-handling"
+      ],
+      "description": "Sum all integers between two numbers, handling reversed arguments and invalid input.",
+      "instructions": "Write a function `sumAll(range)` that takes a two-element array of numbers and returns the sum of all integers between them (inclusive). The arguments can be in any order. Return the string `\"ERROR\"` if either argument is negative or not a number.\n\n```js\nsumAll([1, 4])    // => 10 (1+2+3+4)\nsumAll([4, 1])    // => 10 (works reversed)\nsumAll([1, 1])    // => 1\nsumAll([-1, 4])   // => \"ERROR\"\nsumAll([1, \"a\"])  // => \"ERROR\"\n```",
+      "starterCode": "function sumAll(range) {\n  // your code here\n}",
+      "solution": "function sumAll(range) {\n  const [a, b] = range;\n  if (typeof a !== \"number\" || typeof b !== \"number\" || a < 0 || b < 0) return \"ERROR\";\n  const lo = Math.min(a, b);\n  const hi = Math.max(a, b);\n  let sum = 0;\n  for (let i = lo; i <= hi; i++) sum += i;\n  return sum;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return sumAll;')();\n  const r1 = fn([1, 4]);\n  const r2 = fn([4, 1]);\n  const r3 = fn([1, 1]);\n  const r4 = fn([5, 10]);\n  const r5 = fn([-1, 4]);\n  const r6 = fn([1, \"a\"]);\n  return [\n    { pass: r1 === 10, description: 'Sums 1 through 4 to get 10', got: String(r1) },\n    { pass: r2 === 10, description: 'Works when arguments are reversed', got: String(r2) },\n    { pass: r3 === 1, description: 'Returns the number itself when both values are equal', got: String(r3) },\n    { pass: r4 === 45, description: 'Sums 5 through 10 to get 45', got: String(r4) },\n    { pass: r5 === \"ERROR\", description: 'Returns ERROR for negative numbers', got: String(r5) },\n    { pass: r6 === \"ERROR\", description: 'Returns ERROR for non-number inputs', got: String(r6) }\n  ];\n}",
+      "hints": [
+        "What should you check before starting the summation loop?",
+        "Validate inputs first (typeof check and negative check). Then find the lower and upper bounds with Math.min/Math.max and loop between them.",
+        "Destructure the array, return \"ERROR\" if either is not a number or is negative. Use a for loop from Math.min to Math.max, accumulating the sum."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Math.min()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/min",
+          "description": "Returns the smallest of the given numbers"
+        },
+        {
+          "label": "MDN: typeof",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof",
+          "description": "The typeof operator returns a string indicating the type"
+        }
+      ]
+    },
+    {
+      "id": 508,
+      "title": "Temperature Conversion",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "es6-plus",
+        "modules"
+      ],
+      "tags": [
+        "objects",
+        "functions",
+        "module-pattern"
+      ],
+      "description": "Convert temperatures between Fahrenheit and Celsius, rounded to one decimal place.",
+      "instructions": "Write two functions:\n\n- `ftoc(f)` converts Fahrenheit to Celsius\n- `ctof(c)` converts Celsius to Fahrenheit\n\nRound results to 1 decimal place.\n\nFormulas:\n- C = (F - 32) * 5/9\n- F = C * 9/5 + 32\n\n```js\nftoc(32)   // => 0\nftoc(212)  // => 100\nftoc(-40)  // => -40\nctof(0)    // => 32\nctof(100)  // => 212\nctof(-40)  // => -40\n```",
+      "starterCode": "function ftoc(f) {\n  // your code here\n}\n\nfunction ctof(c) {\n  // your code here\n}",
+      "solution": "function ftoc(f) {\n  return Math.round(((f - 32) * 5 / 9) * 10) / 10;\n}\n\nfunction ctof(c) {\n  return Math.round((c * 9 / 5 + 32) * 10) / 10;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return { ftoc, ctof };')();\n  const r1 = fn.ftoc(32);\n  const r2 = fn.ftoc(212);\n  const r3 = fn.ftoc(-40);\n  const r4 = fn.ctof(0);\n  const r5 = fn.ctof(100);\n  const r6 = fn.ctof(-40);\n  const r7 = fn.ftoc(77);\n  return [\n    { pass: r1 === 0, description: 'ftoc: 32F equals 0C', got: String(r1) },\n    { pass: r2 === 100, description: 'ftoc: 212F equals 100C', got: String(r2) },\n    { pass: r3 === -40, description: 'ftoc: -40F equals -40C', got: String(r3) },\n    { pass: r4 === 32, description: 'ctof: 0C equals 32F', got: String(r4) },\n    { pass: r5 === 212, description: 'ctof: 100C equals 212F', got: String(r5) },\n    { pass: r6 === -40, description: 'ctof: -40C equals -40F', got: String(r6) },\n    { pass: r7 === 25, description: 'ftoc: 77F equals 25C', got: String(r7) }\n  ];\n}",
+      "hints": [
+        "What are the formulas for converting between Fahrenheit and Celsius?",
+        "C = (F - 32) * 5/9 and F = C * 9/5 + 32. Use Math.round() with a multiplier to round to 1 decimal.",
+        "Compute the conversion, multiply by 10, round with Math.round(), then divide by 10 to get 1 decimal place."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Math.round()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round",
+          "description": "Rounds a number to the nearest integer"
+        },
+        {
+          "label": "MDN: Arithmetic operators",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#arithmetic_operators",
+          "description": "JavaScript arithmetic operators for math operations"
+        }
+      ]
+    },
+    {
+      "id": 509,
+      "title": "Get the Titles",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "arrays",
+        "map"
+      ],
+      "description": "Extract an array of title strings from an array of book objects.",
+      "instructions": "Write a function `getTheTitles(books)` that takes an array of book objects (each with a `title` property) and returns an array of just the title strings.\n\n```js\ngetTheTitles([\n  { title: \"1984\", author: \"George Orwell\" },\n  { title: \"Dune\", author: \"Frank Herbert\" }\n])\n// => [\"1984\", \"Dune\"]\n\ngetTheTitles([]) // => []\n```",
+      "starterCode": "function getTheTitles(books) {\n  // your code here\n}",
+      "solution": "function getTheTitles(books) {\n  return books.map(book => book.title);\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return getTheTitles;')();\n  const r1 = fn([{ title: \"1984\" }, { title: \"Dune\" }]);\n  const r2 = fn([]);\n  const r3 = fn([{ title: \"The Hobbit\", author: \"Tolkien\" }]);\n  const r4 = fn([{ title: \"A\" }, { title: \"B\" }, { title: \"C\" }]);\n  return [\n    { pass: JSON.stringify(r1) === '[\"1984\",\"Dune\"]', description: 'Extracts titles from two books', got: JSON.stringify(r1) },\n    { pass: JSON.stringify(r2) === '[]', description: 'Returns empty array for empty input', got: JSON.stringify(r2) },\n    { pass: JSON.stringify(r3) === '[\"The Hobbit\"]', description: 'Works with a single book', got: JSON.stringify(r3) },\n    { pass: JSON.stringify(r4) === '[\"A\",\"B\",\"C\"]', description: 'Works with three books', got: JSON.stringify(r4) },\n    { pass: Array.isArray(r1), description: 'Returns an array', got: typeof r1 }\n  ];\n}",
+      "hints": [
+        "What array method lets you transform each element into something else?",
+        "Array.map() creates a new array by applying a function to each element. You want to extract just the title property.",
+        "Use `books.map(book => book.title)` to pluck out the title from each book object."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.map()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map",
+          "description": "Creates a new array by transforming each element"
+        },
+        {
+          "label": "MDN: Property accessors",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors",
+          "description": "How to access object properties with dot or bracket notation"
+        }
+      ]
+    },
+    {
+      "id": 510,
+      "title": "Find the Oldest",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "reduce",
+        "derived-values"
+      ],
+      "description": "Find the person who has lived the longest from an array of people objects.",
+      "instructions": "Write a function `findTheOldest(people)` that takes an array of person objects. Each person has `name`, `yearOfBirth`, and an optional `yearOfDeath`. If `yearOfDeath` is missing, the person is still alive -- use the current year.\n\nReturn the person object who has lived (or has been living) the longest.\n\n```js\nfindTheOldest([\n  { name: \"Carly\", yearOfBirth: 1942, yearOfDeath: 1970 },\n  { name: \"Ray\", yearOfBirth: 1962, yearOfDeath: 2011 },\n  { name: \"Jane\", yearOfBirth: 1912, yearOfDeath: 1941 }\n])\n// => { name: \"Ray\", yearOfBirth: 1962, yearOfDeath: 2011 }\n// Ray lived 49 years, Carly 28, Jane 29\n```",
+      "starterCode": "function findTheOldest(people) {\n  // your code here\n}",
+      "solution": "function findTheOldest(people) {\n  return people.reduce((oldest, person) => {\n    const currentYear = new Date().getFullYear();\n    const age = (person.yearOfDeath || currentYear) - person.yearOfBirth;\n    const oldestAge = (oldest.yearOfDeath || currentYear) - oldest.yearOfBirth;\n    return age > oldestAge ? person : oldest;\n  });\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return findTheOldest;')();\n  const r1 = fn([\n    { name: \"Carly\", yearOfBirth: 1942, yearOfDeath: 1970 },\n    { name: \"Ray\", yearOfBirth: 1962, yearOfDeath: 2011 },\n    { name: \"Jane\", yearOfBirth: 1912, yearOfDeath: 1941 }\n  ]);\n  const r2 = fn([\n    { name: \"Alpha\", yearOfBirth: 2000, yearOfDeath: 2050 },\n    { name: \"Beta\", yearOfBirth: 1990, yearOfDeath: 2060 }\n  ]);\n  const r3 = fn([\n    { name: \"Solo\", yearOfBirth: 1980, yearOfDeath: 2020 }\n  ]);\n  const r4 = fn([\n    { name: \"Old\", yearOfBirth: 1900, yearOfDeath: 2000 },\n    { name: \"Young\", yearOfBirth: 1990, yearOfDeath: 2010 }\n  ]);\n  const r5 = fn([\n    { name: \"Deceased\", yearOfBirth: 2000, yearOfDeath: 2020 },\n    { name: \"Alive\", yearOfBirth: 1920 }\n  ]);\n  return [\n    { pass: r1.name === \"Ray\", description: 'Finds Ray who lived 49 years (the longest)', got: r1.name },\n    { pass: r2.name === \"Beta\", description: 'Finds Beta who lived 70 years over Alpha at 50', got: r2.name },\n    { pass: r3.name === \"Solo\", description: 'Works with a single person', got: r3.name },\n    { pass: r4.name === \"Old\", description: 'Finds Old who lived 100 years over Young at 20', got: r4.name },\n    { pass: r5.name === \"Alive\", description: 'Treats missing yearOfDeath as still alive (uses current year)', got: r5.name }\n  ];\n}",
+      "hints": [
+        "How do you calculate someone's age if they might still be alive?",
+        "If yearOfDeath is missing, use the current year from new Date().getFullYear(). Then subtract yearOfBirth to get total years lived.",
+        "Use reduce to compare each person. For each, compute age = (yearOfDeath || currentYear) - yearOfBirth, and keep the one with the highest age."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.reduce()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce",
+          "description": "Reduces an array to a single value by accumulating results"
+        },
+        {
+          "label": "MDN: Date.prototype.getFullYear()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getFullYear",
+          "description": "Returns the year of a Date object"
+        }
+      ]
+    },
+    {
+      "id": 511,
+      "title": "Recursive Contains",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "algorithms",
+        "recursion"
+      ],
+      "tags": [
+        "recursion",
+        "arrays",
+        "searching"
+      ],
+      "description": "Recursively search a nested array structure to find if it contains a given value.",
+      "instructions": "Write a function `contains(arr, target)` that recursively searches through a nested array to determine if it contains the given target value. No loops allowed -- use only recursion.\n\nThe array can contain numbers, strings, or other arrays (nested arbitrarily deep).\n\n```js\ncontains([1, [2, [3]]], 3)        // => true\ncontains([1, [2, [3]]], 4)        // => false\ncontains([], 1)                   // => false\ncontains([[[[5]]]], 5)            // => true\ncontains([1, \"hello\", [2]], \"hello\") // => true\n```",
+      "starterCode": "function contains(arr, target) {\n  // your code here — no loops!\n}",
+      "solution": "function contains(arr, target) {\n  if (arr.length === 0) return false;\n  const [first, ...rest] = arr;\n  if (Array.isArray(first)) {\n    return contains(first, target) || contains(rest, target);\n  }\n  if (first === target) return true;\n  return contains(rest, target);\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return contains;')();\n  const r1 = fn([1, [2, [3]]], 3);\n  const r2 = fn([1, [2, [3]]], 4);\n  const r3 = fn([], 1);\n  const r4 = fn([[[[5]]]], 5);\n  const r5 = fn([1, \"hello\", [2]], \"hello\");\n  const r6 = fn([1, 2, 3], 2);\n  const fnStr = fn.toString();\n  const usesLoop = /\\b(for|while|do)\\b/.test(fnStr);\n  return [\n    { pass: r1 === true, description: 'Finds 3 nested two levels deep', got: String(r1) },\n    { pass: r2 === false, description: 'Returns false when value is not present', got: String(r2) },\n    { pass: r3 === false, description: 'Returns false for empty array', got: String(r3) },\n    { pass: r4 === true, description: 'Finds value nested four levels deep', got: String(r4) },\n    { pass: r5 === true, description: 'Works with string values', got: String(r5) },\n    { pass: r6 === true, description: 'Finds value in a flat array', got: String(r6) },\n    { pass: !usesLoop, description: 'Does not use for/while/do loops', got: usesLoop ? 'Uses loops' : 'Recursion only' }\n  ];\n}",
+      "hints": [
+        "What are the base cases for a recursive search through a nested array?",
+        "Base cases: empty array returns false, matching element returns true. Recursive case: if the element is an array, recurse into it; otherwise check the rest.",
+        "Destructure [first, ...rest]. If first is an array, return contains(first, target) || contains(rest, target). If first === target, return true. Otherwise return contains(rest, target)."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.isArray()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray",
+          "description": "Determines whether a value is an array"
+        },
+        {
+          "label": "MDN: Destructuring assignment",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment",
+          "description": "Unpack values from arrays into variables"
+        }
+      ]
+    },
+    {
+      "id": 512,
+      "title": "Total Integers (Recursive)",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "algorithms",
+        "recursion"
+      ],
+      "tags": [
+        "recursion",
+        "arrays",
+        "counting"
+      ],
+      "description": "Recursively count how many integers exist in a nested array structure.",
+      "instructions": "Write a function `totalIntegers(arr)` that recursively counts how many integers appear in a nested array. Only count whole integers (not floats or other types). No loops allowed.\n\n```js\ntotalIntegers([1, [2], 3])          // => 3\ntotalIntegers([[1, [2, 3]], [4]])    // => 4\ntotalIntegers([])                    // => 0\ntotalIntegers([1.5, \"hello\", 3])    // => 1 (only 3 is a whole integer)\ntotalIntegers([[[[7]]]])             // => 1\n```",
+      "starterCode": "function totalIntegers(arr) {\n  // your code here — no loops!\n}",
+      "solution": "function totalIntegers(arr) {\n  if (arr.length === 0) return 0;\n  const [first, ...rest] = arr;\n  if (Array.isArray(first)) {\n    return totalIntegers(first) + totalIntegers(rest);\n  }\n  const isInt = Number.isInteger(first) ? 1 : 0;\n  return isInt + totalIntegers(rest);\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return totalIntegers;')();\n  const r1 = fn([1, [2], 3]);\n  const r2 = fn([[1, [2, 3]], [4]]);\n  const r3 = fn([]);\n  const r4 = fn([1.5, \"hello\", 3]);\n  const r5 = fn([[[[7]]]]);\n  const r6 = fn([0, -1, 2.5, true, null, 4]);\n  const fnStr = fn.toString();\n  const usesLoop = /\\b(for|while|do)\\b/.test(fnStr);\n  return [\n    { pass: r1 === 3, description: 'Counts 3 integers in [1, [2], 3]', got: String(r1) },\n    { pass: r2 === 4, description: 'Counts 4 integers in deeply nested structure', got: String(r2) },\n    { pass: r3 === 0, description: 'Returns 0 for empty array', got: String(r3) },\n    { pass: r4 === 1, description: 'Only counts whole integers, not floats or strings', got: String(r4) },\n    { pass: r5 === 1, description: 'Finds integer nested four levels deep', got: String(r5) },\n    { pass: r6 === 3, description: 'Counts 0, -1, and 4 but not 2.5, true, or null', got: String(r6) },\n    { pass: !usesLoop, description: 'Does not use for/while/do loops', got: usesLoop ? 'Uses loops' : 'Recursion only' }\n  ];\n}",
+      "hints": [
+        "How do you determine if a value is a whole integer versus a float or other type?",
+        "Use Number.isInteger() to check for whole integers. Recurse into sub-arrays and add up counts from each branch.",
+        "Destructure [first, ...rest]. If first is an array, return totalIntegers(first) + totalIntegers(rest). If Number.isInteger(first), add 1 + totalIntegers(rest). Otherwise 0 + totalIntegers(rest)."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Number.isInteger()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger",
+          "description": "Determines whether a value is an integer"
+        },
+        {
+          "label": "MDN: Array.isArray()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray",
+          "description": "Determines whether a value is an array"
+        }
+      ]
+    },
+    {
+      "id": 513,
+      "title": "Permutations",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "algorithms",
+        "recursion"
+      ],
+      "tags": [
+        "recursion",
+        "arrays",
+        "backtracking"
+      ],
+      "description": "Generate all permutations of a given string using recursion.",
+      "instructions": "Write a function `permutations(str)` that returns an array of all permutations of the given string. The order of permutations in the result does not matter.\n\n```js\npermutations(\"\")     // => [\"\"]\npermutations(\"a\")    // => [\"a\"]\npermutations(\"ab\")   // => [\"ab\", \"ba\"]\npermutations(\"abc\")  // => [\"abc\",\"acb\",\"bac\",\"bca\",\"cab\",\"cba\"]\n```\n\nHint: For each character in the string, fix it in the first position and recursively permute the remaining characters.",
+      "starterCode": "function permutations(str) {\n  // your code here\n}",
+      "solution": "function permutations(str) {\n  if (str.length <= 1) return [str];\n  const result = [];\n  for (let i = 0; i < str.length; i++) {\n    const char = str[i];\n    const remaining = str.slice(0, i) + str.slice(i + 1);\n    const perms = permutations(remaining);\n    for (const perm of perms) {\n      result.push(char + perm);\n    }\n  }\n  return result;\n}",
+      "testRunner": "(code) => {\n  const fn = new Function(code + '; return permutations;')();\n  const r1 = fn(\"\");\n  const r2 = fn(\"a\");\n  const r3 = fn(\"ab\");\n  const r4 = fn(\"abc\");\n  const sorted3 = r3.slice().sort();\n  const sorted4 = r4.slice().sort();\n  const expected3 = [\"ab\",\"ba\"];\n  const expected4 = [\"abc\",\"acb\",\"bac\",\"bca\",\"cab\",\"cba\"];\n  return [\n    { pass: JSON.stringify(r1) === '[\"\"]', description: 'Empty string returns array with empty string', got: JSON.stringify(r1) },\n    { pass: JSON.stringify(r2) === '[\"a\"]', description: 'Single character returns array with that character', got: JSON.stringify(r2) },\n    { pass: JSON.stringify(sorted3) === JSON.stringify(expected3), description: 'Two characters produce 2 permutations', got: JSON.stringify(sorted3) },\n    { pass: JSON.stringify(sorted4) === JSON.stringify(expected4), description: 'Three characters produce 6 permutations', got: JSON.stringify(sorted4) },\n    { pass: r4.length === 6, description: 'abc produces exactly 6 results', got: String(r4.length) },\n    { pass: fn(\"abcd\").length === 24, description: 'Four characters produce 24 permutations', got: String(fn(\"abcd\").length) }\n  ];\n}",
+      "hints": [
+        "What is the base case for generating permutations of a string?",
+        "For each character, remove it from the string and recursively find all permutations of the remaining characters. Prepend the removed character to each result.",
+        "Base case: strings of length 0 or 1 return [str]. Loop through each index i, take str[i] as the first char, recursively permute the rest, and prepend str[i] to each sub-permutation."
+      ],
+      "resources": [
+        {
+          "label": "MDN: String.prototype.slice()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice",
+          "description": "Extracts a section of a string"
+        },
+        {
+          "label": "MDN: Array.prototype.push()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push",
+          "description": "Adds elements to the end of an array"
+        }
+      ]
+    },
+    {
+      "id": 554,
+      "title": "CSS Methods",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "selectors"
+      ],
+      "tags": [
+        "css",
+        "selectors",
+        "background",
+        "color",
+        "font-size",
+        "beginner",
+        "odin-project"
+      ],
+      "description": "Practice applying CSS styles using class selectors. Based on The Odin Project.",
+      "instructions": "Style three elements to practice basic CSS properties.\n\n1. Style `.external` with:\n   - `background-color: red`\n   - `color: white`\n   - `font-size: 32px`\n   - `text-align: center`\n   - `font-weight: bold`\n2. Style `.internal` with:\n   - `background-color: green`\n   - `color: white`\n   - `font-size: 18px`\n3. Style `.inline-style` with:\n   - `background-color: orange`\n   - `font-size: 18px`",
+      "starterCode": "/* Style the three elements */\n",
+      "solution": ".external {\n  background-color: red;\n  color: white;\n  font-size: 32px;\n  text-align: center;\n  font-weight: bold;\n}\n\n.internal {\n  background-color: green;\n  color: white;\n  font-size: 18px;\n}\n\n.inline-style {\n  background-color: orange;\n  font-size: 18px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"external\">External Style</div><p class=\"internal\">Internal Style</p><button class=\"inline-style\">Inline Style</button>",
+      "testCases": [
+        {
+          "query": ".external",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(255, 0, 0)",
+          "description": ".external background is red"
+        },
+        {
+          "query": ".external",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(255, 255, 255)",
+          "description": ".external text is white"
+        },
+        {
+          "query": ".external",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "32px",
+          "description": ".external font-size is 32px"
+        },
+        {
+          "query": ".external",
+          "assertion": "equals",
+          "property": "font-weight",
+          "value": "700",
+          "description": ".external font-weight is bold"
+        },
+        {
+          "query": ".internal",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(0, 128, 0)",
+          "description": ".internal background is green"
+        },
+        {
+          "query": ".inline-style",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(255, 165, 0)",
+          "description": ".inline-style background is orange"
+        }
+      ],
+      "hints": [
+        "Each selector targets a class: .external { ... }",
+        "CSS color keywords like red, white, green, orange are valid values",
+        "font-weight: bold is equivalent to font-weight: 700"
+      ],
+      "resources": [
+        {
+          "label": "MDN: CSS Basics",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics",
+          "description": "Introduction to CSS"
+        }
+      ]
+    },
+    {
+      "id": 555,
+      "title": "Class & ID Selectors",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "selectors"
+      ],
+      "tags": [
+        "css",
+        "selectors",
+        "class",
+        "id",
+        "beginner",
+        "odin-project"
+      ],
+      "description": "Practice using class and ID selectors to style elements. Based on The Odin Project.",
+      "instructions": "Use class and ID selectors to apply styles.\n\n1. Style `.odd` with `background-color: rgba(255, 167, 167, 0.5)` (light red/pink)\n2. Style `#second` with `color: blue` and `font-size: 36px`\n3. Style `#fourth` with `background-color: rgba(144, 238, 144, 0.5)` (light green) and `font-size: 24px`\n4. Style `.bold-text` with `font-weight: bold`",
+      "starterCode": "/* Use class and ID selectors */\n",
+      "solution": ".odd {\n  background-color: rgba(255, 167, 167, 0.5);\n}\n\n#second {\n  color: blue;\n  font-size: 36px;\n}\n\n#fourth {\n  background-color: rgba(144, 238, 144, 0.5);\n  font-size: 24px;\n}\n\n.bold-text {\n  font-weight: bold;\n}",
+      "testRunner": "",
+      "providedHtml": "<p class=\"odd\">Item 1</p><p id=\"second\">Item 2</p><p class=\"odd bold-text\">Item 3</p><p id=\"fourth\">Item 4</p><p class=\"odd\">Item 5</p>",
+      "testCases": [
+        {
+          "query": ".odd",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgba(255, 167, 167, 0.5)",
+          "description": ".odd has light pink background"
+        },
+        {
+          "query": "#second",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(0, 0, 255)",
+          "description": "#second color is blue"
+        },
+        {
+          "query": "#second",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "36px",
+          "description": "#second font-size is 36px"
+        },
+        {
+          "query": "#fourth",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgba(144, 238, 144, 0.5)",
+          "description": "#fourth has light green background"
+        },
+        {
+          "query": ".bold-text",
+          "assertion": "equals",
+          "property": "font-weight",
+          "value": "700",
+          "description": ".bold-text is bold"
+        }
+      ],
+      "hints": [
+        "Classes use a dot: .odd { ... }. IDs use a hash: #second { ... }",
+        "An element can have multiple classes: class='odd bold-text'",
+        "Use rgba() for semi-transparent colors"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Class Selectors",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors",
+          "description": "How CSS class selectors work"
+        }
+      ]
+    },
+    {
+      "id": 556,
+      "title": "Grouping Selectors",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "selectors"
+      ],
+      "tags": [
+        "css",
+        "selectors",
+        "grouping",
+        "beginner",
+        "odin-project"
+      ],
+      "description": "Use grouping selectors to share styles between elements. Based on The Odin Project.",
+      "instructions": "Two elements share some styles but differ in others. Use a grouping selector for shared styles.\n\n1. Use a grouped selector `.heading, .subheading` to set:\n   - `font-family: Helvetica, 'Times New Roman', sans-serif`\n   - `font-size: 28px`\n2. Style `.heading` individually with `background-color: black` and `color: white`\n3. Style `.subheading` individually with `background-color: yellow`",
+      "starterCode": "/* Group shared styles, then add unique styles */\n",
+      "solution": ".heading, .subheading {\n  font-family: Helvetica, 'Times New Roman', sans-serif;\n  font-size: 28px;\n}\n\n.heading {\n  background-color: black;\n  color: white;\n}\n\n.subheading {\n  background-color: yellow;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"heading\">Main Heading</div><div class=\"subheading\">Subheading</div>",
+      "testCases": [
+        {
+          "query": ".heading",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "28px",
+          "description": ".heading font-size is 28px"
+        },
+        {
+          "query": ".subheading",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "28px",
+          "description": ".subheading font-size is 28px"
+        },
+        {
+          "query": ".heading",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(0, 0, 0)",
+          "description": ".heading background is black"
+        },
+        {
+          "query": ".heading",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(255, 255, 255)",
+          "description": ".heading color is white"
+        },
+        {
+          "query": ".subheading",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(255, 255, 0)",
+          "description": ".subheading background is yellow"
+        }
+      ],
+      "hints": [
+        "Group selectors with a comma: .heading, .subheading { shared styles }",
+        "Then write separate rules for unique styles per element",
+        "Grouping reduces code duplication"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Selector List",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Selector_list",
+          "description": "Grouping selectors with commas"
+        }
+      ]
+    },
+    {
+      "id": 557,
+      "title": "Chaining Selectors",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "selectors"
+      ],
+      "tags": [
+        "css",
+        "selectors",
+        "chaining",
+        "specificity",
+        "beginner",
+        "odin-project"
+      ],
+      "description": "Chain CSS class selectors to target elements with multiple classes. Based on The Odin Project.",
+      "instructions": "Two images share the `.avatar` class but have different second classes. Use chaining to style each differently.\n\n1. Style `.avatar` (shared) with `border-radius: 50%`\n2. Style `.avatar.proportioned` (chained) with `width: 300px` and `height: 300px`\n3. Style `.avatar.distorted` (chained) with `width: 200px` and `height: 400px`",
+      "starterCode": "/* Chain selectors to target specific elements */\n",
+      "solution": ".avatar {\n  border-radius: 50%;\n}\n\n.avatar.proportioned {\n  width: 300px;\n  height: 300px;\n}\n\n.avatar.distorted {\n  width: 200px;\n  height: 400px;\n}",
+      "testRunner": "",
+      "providedHtml": "<img class=\"avatar proportioned\" src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' fill='%233b82f6'%3E%3Crect width='300' height='300'/%3E%3C/svg%3E\" alt=\"proportioned\"><img class=\"avatar distorted\" src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' fill='%23ef4444'%3E%3Crect width='200' height='200'/%3E%3C/svg%3E\" alt=\"distorted\">",
+      "testCases": [
+        {
+          "query": ".avatar.proportioned",
+          "assertion": "equals",
+          "property": "width",
+          "value": "300px",
+          "description": ".avatar.proportioned width is 300px"
+        },
+        {
+          "query": ".avatar.proportioned",
+          "assertion": "equals",
+          "property": "height",
+          "value": "300px",
+          "description": ".avatar.proportioned height is 300px"
+        },
+        {
+          "query": ".avatar.distorted",
+          "assertion": "equals",
+          "property": "width",
+          "value": "200px",
+          "description": ".avatar.distorted width is 200px"
+        },
+        {
+          "query": ".avatar.distorted",
+          "assertion": "equals",
+          "property": "height",
+          "value": "400px",
+          "description": ".avatar.distorted height is 400px"
+        },
+        {
+          "query": ".avatar",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "50%",
+          "description": ".avatar border-radius is 50%"
+        }
+      ],
+      "hints": [
+        "Chaining means no space between selectors: .avatar.proportioned targets elements with BOTH classes",
+        "This is different from .avatar .proportioned (descendant) — chaining has no space",
+        ".avatar { shared } .avatar.proportioned { unique } .avatar.distorted { unique }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Class Selectors",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors",
+          "description": "Chaining class selectors for higher specificity"
+        }
+      ]
+    },
+    {
+      "id": 558,
+      "title": "Descendant Combinator",
+      "type": "css",
+      "tier": 1,
+      "category": [
+        "css",
+        "selectors"
+      ],
+      "tags": [
+        "css",
+        "selectors",
+        "descendant",
+        "combinator",
+        "beginner",
+        "odin-project"
+      ],
+      "description": "Use the descendant combinator to style only elements inside a specific parent. Based on The Odin Project.",
+      "instructions": "Style only the `<p>` elements that are inside a `<div>`, leaving other paragraphs unstyled.\n\n1. Use the descendant combinator `div p` to set:\n   - `background-color: yellow`\n   - `color: red`\n   - `font-size: 20px`\n   - `text-align: center`",
+      "starterCode": "/* Style only paragraphs inside divs */\n",
+      "solution": "div p {\n  background-color: yellow;\n  color: red;\n  font-size: 20px;\n  text-align: center;\n}",
+      "testRunner": "",
+      "providedHtml": "<div><p id=\"inside-div\">Inside a div</p></div><p id=\"outside-div\">Outside any div</p>",
+      "testCases": [
+        {
+          "query": "#inside-div",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(255, 255, 0)",
+          "description": "p inside div has yellow background"
+        },
+        {
+          "query": "#inside-div",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(255, 0, 0)",
+          "description": "p inside div has red text"
+        },
+        {
+          "query": "#inside-div",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "20px",
+          "description": "p inside div has 20px font"
+        },
+        {
+          "query": "#inside-div",
+          "assertion": "equals",
+          "property": "text-align",
+          "value": "center",
+          "description": "p inside div is centered"
+        }
+      ],
+      "hints": [
+        "The descendant combinator uses a space: div p targets all p elements inside any div",
+        "This only affects paragraphs nested inside divs — other paragraphs stay unstyled",
+        "div p { background-color: yellow; color: red; font-size: 20px; text-align: center; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Descendant Combinator",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Descendant_combinator",
+          "description": "Select elements based on ancestry"
+        }
+      ]
+    },
+    {
+      "id": 559,
+      "title": "Margin & Padding 1",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "box-model"
+      ],
+      "tags": [
+        "css",
+        "margin",
+        "padding",
+        "box-model",
+        "beginner",
+        "odin-project"
+      ],
+      "description": "Practice setting margin and padding values on elements. Based on The Odin Project.",
+      "instructions": "Adjust margin and padding to create proper spacing between elements.\n\n1. Style `.box-1` with `padding` of `32px` and `margin-bottom` of `12px`\n2. Style `.box-2` with `padding` of `16px` and `margin-bottom` of `48px`\n3. Style `.box-3` with `padding` of `32px` and `margin-left` of `auto` (pushes it right)",
+      "starterCode": "/* Adjust margin and padding */\n",
+      "solution": ".box-1 {\n  padding: 32px;\n  margin-bottom: 12px;\n}\n\n.box-2 {\n  padding: 16px;\n  margin-bottom: 48px;\n}\n\n.box-3 {\n  padding: 32px;\n  margin-left: auto;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"box-1\" style=\"background:#1e293b;color:#e2e8f0;\">Box 1</div><div class=\"box-2\" style=\"background:#334155;color:#e2e8f0;\">Box 2</div><div class=\"box-3\" style=\"background:#475569;color:#e2e8f0;width:200px;\">Box 3</div>",
+      "testCases": [
+        {
+          "query": ".box-1",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "32px",
+          "description": ".box-1 padding is 32px"
+        },
+        {
+          "query": ".box-1",
+          "assertion": "equals",
+          "property": "margin-bottom",
+          "value": "12px",
+          "description": ".box-1 margin-bottom is 12px"
+        },
+        {
+          "query": ".box-2",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "16px",
+          "description": ".box-2 padding is 16px"
+        },
+        {
+          "query": ".box-2",
+          "assertion": "equals",
+          "property": "margin-bottom",
+          "value": "48px",
+          "description": ".box-2 margin-bottom is 48px"
+        },
+        {
+          "query": ".box-3",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "32px",
+          "description": ".box-3 padding is 32px"
+        }
+      ],
+      "hints": [
+        "padding adds space inside the element; margin adds space outside",
+        "margin-left: auto pushes a block element to the right",
+        ".box-1 { padding: 32px; margin-bottom: 12px; } .box-2 { padding: 16px; margin-bottom: 48px; } .box-3 { padding: 32px; margin-left: auto; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Box Model",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model",
+          "description": "Understanding the CSS box model"
+        }
+      ]
+    },
+    {
+      "id": 560,
+      "title": "Margin & Padding 2",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "box-model"
+      ],
+      "tags": [
+        "css",
+        "margin",
+        "padding",
+        "box-model",
+        "intermediate",
+        "odin-project"
+      ],
+      "description": "Apply margin and padding to create a polished card layout. Based on The Odin Project.",
+      "instructions": "Create a well-spaced card layout using margin and padding.\n\n1. Style `.card` with `padding` of `24px`, `margin` of `16px`, and `font-size` of `16px`\n2. Style `.card-header` with `margin-bottom` of `16px` and `padding-bottom` of `12px` and `border-bottom` of `1px solid #334155`\n3. Style `.card-body` with `padding` of `8px 0`",
+      "starterCode": "/* Create a well-spaced card layout */\n",
+      "solution": ".card {\n  padding: 24px;\n  margin: 16px;\n  font-size: 16px;\n}\n\n.card-header {\n  margin-bottom: 16px;\n  padding-bottom: 12px;\n  border-bottom: 1px solid #334155;\n}\n\n.card-body {\n  padding: 8px 0;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"card\" style=\"background:#1e293b;color:#e2e8f0;max-width:400px;\"><div class=\"card-header\"><h2>Card Title</h2></div><div class=\"card-body\"><p>Card content goes here with proper spacing.</p></div></div>",
+      "testCases": [
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "24px",
+          "description": ".card padding is 24px"
+        },
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "margin",
+          "value": "16px",
+          "description": ".card margin is 16px"
+        },
+        {
+          "query": ".card",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "16px",
+          "description": ".card font-size is 16px"
+        },
+        {
+          "query": ".card-header",
+          "assertion": "equals",
+          "property": "margin-bottom",
+          "value": "16px",
+          "description": ".card-header margin-bottom is 16px"
+        },
+        {
+          "query": ".card-header",
+          "assertion": "equals",
+          "property": "padding-bottom",
+          "value": "12px",
+          "description": ".card-header padding-bottom is 12px"
+        }
+      ],
+      "hints": [
+        "The card needs padding for inner spacing and margin for outer spacing",
+        "border-bottom on the header creates a visual separator",
+        ".card { padding: 24px; margin: 16px; font-size: 16px; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Margin",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/margin",
+          "description": "Setting margins on elements"
+        }
+      ]
+    },
+    {
+      "id": 561,
+      "title": "Cascade Fix",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "cascade"
+      ],
+      "tags": [
+        "css",
+        "cascade",
+        "specificity",
+        "debugging",
+        "intermediate",
+        "odin-project"
+      ],
+      "description": "Fix CSS cascade specificity issues so styles apply correctly. Based on The Odin Project.",
+      "instructions": "The CSS below has cascade/specificity issues. Fix the selectors so the correct styles win.\n\n1. Style `.alert` with `color: #94a3b8` (gray default text)\n2. Style `.alert.success` with `color: #22c55e` (green) — must override .alert\n3. Style `.alert.error` with `color: #ef4444` (red) — must override .alert\n4. Style `.title` with `font-size: 18px`\n5. Style `h1.title` with `font-size: 28px` — must override .title via higher specificity",
+      "starterCode": "/* Fix the cascade so each style applies correctly */\n",
+      "solution": ".alert {\n  color: #94a3b8;\n}\n\n.alert.success {\n  color: #22c55e;\n}\n\n.alert.error {\n  color: #ef4444;\n}\n\n.title {\n  font-size: 18px;\n}\n\nh1.title {\n  font-size: 28px;\n}",
+      "testRunner": "",
+      "providedHtml": "<p class=\"alert\">Default alert</p><p class=\"alert success\">Success alert</p><p class=\"alert error\">Error alert</p><p class=\"title\">Regular title</p><h1 class=\"title\">Main title</h1>",
+      "testCases": [
+        {
+          "query": ".alert:not(.success):not(.error)",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(148, 163, 184)",
+          "description": "Default .alert color is gray"
+        },
+        {
+          "query": ".alert.success",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(34, 197, 94)",
+          "description": ".alert.success color is green"
+        },
+        {
+          "query": ".alert.error",
+          "assertion": "equals",
+          "property": "color",
+          "value": "rgb(239, 68, 68)",
+          "description": ".alert.error color is red"
+        },
+        {
+          "query": "p.title",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "18px",
+          "description": "p.title font-size is 18px"
+        },
+        {
+          "query": "h1.title",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "28px",
+          "description": "h1.title font-size is 28px"
+        }
+      ],
+      "hints": [
+        "Higher specificity wins: .alert.success (2 classes) beats .alert (1 class)",
+        "h1.title (element + class) has higher specificity than .title (class only)",
+        "Chained selectors increase specificity: .alert.success > .alert"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Specificity",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity",
+          "description": "How CSS specificity determines which rules apply"
+        }
+      ]
+    },
+    {
+      "id": 562,
+      "title": "Flex Center",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "flexbox"
+      ],
+      "tags": [
+        "css",
+        "flexbox",
+        "centering",
+        "layout",
+        "beginner",
+        "odin-project"
+      ],
+      "description": "Center an element inside a container using flexbox. Based on The Odin Project.",
+      "instructions": "Use flexbox to center the inner box both horizontally and vertically within the container.\n\n1. Set `.container` to `display: flex`\n2. Set `.container` `justify-content` to `center`\n3. Set `.container` `align-items` to `center`\n4. Set `.container` `height` to `300px`",
+      "starterCode": "/* Center the box using flexbox */\n",
+      "solution": ".container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 300px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"container\" style=\"background:#1e3a5f;\"><div style=\"width:100px;height:100px;background:#ef4444;\"></div></div>",
+      "testCases": [
+        {
+          "query": ".container",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": "display is flex"
+        },
+        {
+          "query": ".container",
+          "assertion": "equals",
+          "property": "justify-content",
+          "value": "center",
+          "description": "justify-content is center"
+        },
+        {
+          "query": ".container",
+          "assertion": "equals",
+          "property": "align-items",
+          "value": "center",
+          "description": "align-items is center"
+        },
+        {
+          "query": ".container",
+          "assertion": "equals",
+          "property": "height",
+          "value": "300px",
+          "description": "height is 300px"
+        }
+      ],
+      "hints": [
+        "Flexbox centering needs three properties on the parent: display, justify-content, align-items",
+        "justify-content: center for horizontal, align-items: center for vertical",
+        ".container { display: flex; justify-content: center; align-items: center; height: 300px; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Flexbox",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout",
+          "description": "Complete guide to CSS Flexbox"
+        }
+      ]
+    },
+    {
+      "id": 563,
+      "title": "Flex Header",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "flexbox"
+      ],
+      "tags": [
+        "css",
+        "flexbox",
+        "header",
+        "navigation",
+        "layout",
+        "odin-project"
+      ],
+      "description": "Build a flexible header with space-between alignment. Based on The Odin Project.",
+      "instructions": "Create a header where the logo is on the left and links are on the right.\n\n1. Set `.header` to `display: flex`, `justify-content: space-between`, `align-items: center`\n2. Set `.header` `padding` to `0 16px` and `height` to `60px`\n3. Set `.header ul` to `display: flex`, `list-style: none`, `margin: 0`, `padding: 0`, `gap: 16px`",
+      "starterCode": "/* Build a flex header */\n",
+      "solution": ".header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0 16px;\n  height: 60px;\n}\n\n.header ul {\n  display: flex;\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  gap: 16px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"header\" style=\"background:#1e293b;color:#e2e8f0;\"><div class=\"logo\">Logo</div><ul><li>Home</li><li>About</li><li>Contact</li></ul></div>",
+      "testCases": [
+        {
+          "query": ".header",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": ".header display is flex"
+        },
+        {
+          "query": ".header",
+          "assertion": "equals",
+          "property": "justify-content",
+          "value": "space-between",
+          "description": ".header justify-content is space-between"
+        },
+        {
+          "query": ".header",
+          "assertion": "equals",
+          "property": "align-items",
+          "value": "center",
+          "description": ".header align-items is center"
+        },
+        {
+          "query": ".header",
+          "assertion": "equals",
+          "property": "height",
+          "value": "60px",
+          "description": ".header height is 60px"
+        },
+        {
+          "query": ".header ul",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": "ul is also flex"
+        },
+        {
+          "query": ".header ul",
+          "assertion": "equals",
+          "property": "list-style-type",
+          "value": "none",
+          "description": "ul has no list bullets"
+        }
+      ],
+      "hints": [
+        "space-between pushes the logo and nav to opposite edges",
+        "The ul also needs display: flex to lay items out horizontally",
+        "Reset the ul's default margin and padding to avoid extra spacing"
+      ],
+      "resources": [
+        {
+          "label": "MDN: justify-content",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content",
+          "description": "Distribute space between flex items"
+        }
+      ]
+    },
+    {
+      "id": 564,
+      "title": "Flex Header 2",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "flexbox"
+      ],
+      "tags": [
+        "css",
+        "flexbox",
+        "header",
+        "nested-flex",
+        "layout",
+        "odin-project"
+      ],
+      "description": "Build a header with nested flex containers and spacing. Based on The Odin Project.",
+      "instructions": "Create a header with left and right sections using nested flexbox.\n\n1. Set `.header` to `display: flex`, `justify-content: space-between`, `align-items: center`, `padding: 8px`\n2. Set `.header-left` to `display: flex`, `align-items: center`, `gap: 16px`\n3. Set `.header-right` to `display: flex`, `align-items: center`, `gap: 16px`",
+      "starterCode": "/* Build a header with nested flex */\n",
+      "solution": ".header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 8px;\n}\n\n.header-left {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n}\n\n.header-right {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"header\" style=\"background:#1e293b;color:#e2e8f0;\"><div class=\"header-left\"><span>Logo</span><span>Home</span><span>About</span></div><div class=\"header-right\"><span>Profile</span><span>Settings</span></div></div>",
+      "testCases": [
+        {
+          "query": ".header",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": ".header is flex"
+        },
+        {
+          "query": ".header",
+          "assertion": "equals",
+          "property": "justify-content",
+          "value": "space-between",
+          "description": "space-between layout"
+        },
+        {
+          "query": ".header-left",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": ".header-left is flex"
+        },
+        {
+          "query": ".header-left",
+          "assertion": "equals",
+          "property": "gap",
+          "value": "16px",
+          "description": ".header-left gap is 16px"
+        },
+        {
+          "query": ".header-right",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": ".header-right is flex"
+        },
+        {
+          "query": ".header-right",
+          "assertion": "equals",
+          "property": "gap",
+          "value": "16px",
+          "description": ".header-right gap is 16px"
+        }
+      ],
+      "hints": [
+        "Three flex containers: the header itself, and two inner groups (left and right)",
+        "gap: 16px adds uniform spacing between items within each group",
+        "Nested flex is a common pattern: the outer flex handles the two groups, inner flex handles items within groups"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Flexbox",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout",
+          "description": "Nested flex containers"
+        }
+      ]
+    },
+    {
+      "id": 565,
+      "title": "Flex Information Section",
+      "type": "css",
+      "tier": 2,
+      "category": [
+        "css",
+        "flexbox"
+      ],
+      "tags": [
+        "css",
+        "flexbox",
+        "layout",
+        "centering",
+        "gap",
+        "odin-project"
+      ],
+      "description": "Create a centered information section with evenly spaced items. Based on The Odin Project.",
+      "instructions": "Build an info section with centered items in a row.\n\n1. Set `.info-section` to `display: flex`, `justify-content: center`, `gap: 52px`\n2. Set `.info-item` to `width: 200px` and `text-align: center`\n3. Set `.info-title` to `margin-bottom: 32px`, `font-size: 24px`, `text-align: center`",
+      "starterCode": "/* Create a centered info section */\n",
+      "solution": ".info-title {\n  margin-bottom: 32px;\n  font-size: 24px;\n  text-align: center;\n}\n\n.info-section {\n  display: flex;\n  justify-content: center;\n  gap: 52px;\n}\n\n.info-item {\n  width: 200px;\n  text-align: center;\n}",
+      "testRunner": "",
+      "providedHtml": "<div><h2 class=\"info-title\">Our Features</h2><div class=\"info-section\"><div class=\"info-item\"><h3>Fast</h3><p>Lightning speed performance</p></div><div class=\"info-item\"><h3>Secure</h3><p>Top-notch security</p></div><div class=\"info-item\"><h3>Simple</h3><p>Easy to use interface</p></div></div></div>",
+      "testCases": [
+        {
+          "query": ".info-section",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": ".info-section is flex"
+        },
+        {
+          "query": ".info-section",
+          "assertion": "equals",
+          "property": "justify-content",
+          "value": "center",
+          "description": "items are centered"
+        },
+        {
+          "query": ".info-section",
+          "assertion": "equals",
+          "property": "gap",
+          "value": "52px",
+          "description": "gap is 52px"
+        },
+        {
+          "query": ".info-item",
+          "assertion": "equals",
+          "property": "width",
+          "value": "200px",
+          "description": "items are 200px wide"
+        },
+        {
+          "query": ".info-item",
+          "assertion": "equals",
+          "property": "text-align",
+          "value": "center",
+          "description": "text is centered"
+        },
+        {
+          "query": ".info-title",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "24px",
+          "description": "title is 24px"
+        }
+      ],
+      "hints": [
+        "justify-content: center centers the flex items, gap adds space between them",
+        "Each item has a fixed width of 200px with centered text",
+        "The title is outside the flex container, styled separately"
+      ],
+      "resources": [
+        {
+          "label": "MDN: gap",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/gap",
+          "description": "Space between flex items"
+        }
+      ]
+    },
+    {
+      "id": 566,
+      "title": "Flex Modal",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "flexbox"
+      ],
+      "tags": [
+        "css",
+        "flexbox",
+        "modal",
+        "layout",
+        "intermediate",
+        "odin-project"
+      ],
+      "description": "Create a modal dialog layout using flexbox. Based on The Odin Project.",
+      "instructions": "Build a modal with flexbox for proper internal layout.\n\n1. Set `.modal` to `display: flex`, `flex-direction: column`, `padding: 24px`, `gap: 16px`, `max-width: 400px`\n2. Set `.modal-header` to `display: flex`, `justify-content: space-between`, `align-items: center`\n3. Set `.modal-header h2` to `font-size: 20px` and `font-weight: bold`\n4. Set `.modal-footer` to `display: flex`, `justify-content: flex-end`, `gap: 8px`",
+      "starterCode": "/* Build a modal dialog layout */\n",
+      "solution": ".modal {\n  display: flex;\n  flex-direction: column;\n  padding: 24px;\n  gap: 16px;\n  max-width: 400px;\n}\n\n.modal-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.modal-header h2 {\n  font-size: 20px;\n  font-weight: bold;\n}\n\n.modal-footer {\n  display: flex;\n  justify-content: flex-end;\n  gap: 8px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"modal\" style=\"background:#1e293b;color:#e2e8f0;border-radius:8px;\"><div class=\"modal-header\"><h2>Confirm Action</h2><button>✕</button></div><div class=\"modal-body\"><p>Are you sure you want to proceed?</p></div><div class=\"modal-footer\"><button>Cancel</button><button>Continue</button></div></div>",
+      "testCases": [
+        {
+          "query": ".modal",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": ".modal is flex"
+        },
+        {
+          "query": ".modal",
+          "assertion": "equals",
+          "property": "flex-direction",
+          "value": "column",
+          "description": "flex-direction is column"
+        },
+        {
+          "query": ".modal-header",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": ".modal-header is flex"
+        },
+        {
+          "query": ".modal-header",
+          "assertion": "equals",
+          "property": "justify-content",
+          "value": "space-between",
+          "description": "header is space-between"
+        },
+        {
+          "query": ".modal-footer",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": ".modal-footer is flex"
+        },
+        {
+          "query": ".modal-footer",
+          "assertion": "equals",
+          "property": "justify-content",
+          "value": "flex-end",
+          "description": "footer buttons are right-aligned"
+        }
+      ],
+      "hints": [
+        "The modal itself uses flex-direction: column to stack header, body, footer vertically",
+        "The header uses flex with space-between to push title and close button apart",
+        "The footer uses flex-end to right-align the action buttons"
+      ],
+      "resources": [
+        {
+          "label": "MDN: flex-direction",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction",
+          "description": "Control the direction of flex items"
+        }
+      ]
+    },
+    {
+      "id": 567,
+      "title": "Flex Page Layout",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "flexbox"
+      ],
+      "tags": [
+        "css",
+        "flexbox",
+        "layout",
+        "full-page",
+        "intermediate",
+        "odin-project"
+      ],
+      "description": "Create a full-page layout with header, content, and footer using flexbox. Based on The Odin Project.",
+      "instructions": "Build a full-page layout where the footer sticks to the bottom.\n\n1. Set `.page` to `display: flex`, `flex-direction: column`, `min-height: 100vh`\n2. Set `.page-header` to `padding: 16px` and `background-color: #1e293b`\n3. Set `.page-content` to `flex: 1` and `padding: 24px` — this makes it expand to fill space\n4. Set `.page-footer` to `padding: 16px` and `background-color: #334155`",
+      "starterCode": "/* Build a full-page flex layout */\n",
+      "solution": ".page {\n  display: flex;\n  flex-direction: column;\n  min-height: 100vh;\n}\n\n.page-header {\n  padding: 16px;\n  background-color: #1e293b;\n}\n\n.page-content {\n  flex: 1;\n  padding: 24px;\n}\n\n.page-footer {\n  padding: 16px;\n  background-color: #334155;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"page\" style=\"color:#e2e8f0;\"><div class=\"page-header\">Header</div><div class=\"page-content\">Main Content</div><div class=\"page-footer\">Footer</div></div>",
+      "testCases": [
+        {
+          "query": ".page",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": ".page is flex"
+        },
+        {
+          "query": ".page",
+          "assertion": "equals",
+          "property": "flex-direction",
+          "value": "column",
+          "description": "flex-direction is column"
+        },
+        {
+          "query": ".page-content",
+          "assertion": "equals",
+          "property": "flex-grow",
+          "value": "1",
+          "description": ".page-content grows to fill space"
+        },
+        {
+          "query": ".page-header",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(30, 41, 59)",
+          "description": "header bg is #1e293b"
+        },
+        {
+          "query": ".page-footer",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(51, 65, 85)",
+          "description": "footer bg is #334155"
+        }
+      ],
+      "hints": [
+        "flex-direction: column stacks elements vertically. min-height: 100vh takes full viewport.",
+        "flex: 1 on the content area makes it expand to fill remaining space",
+        "This pushes the footer to the bottom when content is short"
+      ],
+      "resources": [
+        {
+          "label": "MDN: flex",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/flex",
+          "description": "The flex shorthand property"
+        }
+      ]
+    },
+    {
+      "id": 568,
+      "title": "Flex Holy Grail Layout",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "flexbox"
+      ],
+      "tags": [
+        "css",
+        "flexbox",
+        "holy-grail",
+        "layout",
+        "intermediate",
+        "odin-project"
+      ],
+      "description": "Build the classic Holy Grail layout with header, sidebar, content, and footer. Based on The Odin Project.",
+      "instructions": "Create the Holy Grail layout using flexbox.\n\n1. Set `.holy-grail` to `display: flex`, `flex-direction: column`, `min-height: 400px`\n2. Set `.hg-header` to `padding: 16px`, `font-size: 24px`, `font-weight: 900`\n3. Set `.hg-body` to `display: flex`, `flex: 1`\n4. Set `.hg-sidebar` to `width: 200px`, `padding: 16px`\n5. Set `.hg-content` to `flex: 1`, `padding: 24px`\n6. Set `.hg-footer` to `padding: 16px`, `text-align: center`",
+      "starterCode": "/* Build the Holy Grail layout */\n",
+      "solution": ".holy-grail {\n  display: flex;\n  flex-direction: column;\n  min-height: 400px;\n}\n\n.hg-header {\n  padding: 16px;\n  font-size: 24px;\n  font-weight: 900;\n}\n\n.hg-body {\n  display: flex;\n  flex: 1;\n}\n\n.hg-sidebar {\n  width: 200px;\n  padding: 16px;\n}\n\n.hg-content {\n  flex: 1;\n  padding: 24px;\n}\n\n.hg-footer {\n  padding: 16px;\n  text-align: center;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"holy-grail\" style=\"background:#0f172a;color:#e2e8f0;\"><div class=\"hg-header\" style=\"background:#1e293b;\">Header</div><div class=\"hg-body\"><div class=\"hg-sidebar\" style=\"background:#1e293b;\">Sidebar</div><div class=\"hg-content\">Main Content Area</div></div><div class=\"hg-footer\" style=\"background:#1e293b;\">Footer</div></div>",
+      "testCases": [
+        {
+          "query": ".holy-grail",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": ".holy-grail is flex"
+        },
+        {
+          "query": ".holy-grail",
+          "assertion": "equals",
+          "property": "flex-direction",
+          "value": "column",
+          "description": "column direction"
+        },
+        {
+          "query": ".hg-body",
+          "assertion": "equals",
+          "property": "display",
+          "value": "flex",
+          "description": ".hg-body is flex (horizontal)"
+        },
+        {
+          "query": ".hg-sidebar",
+          "assertion": "equals",
+          "property": "width",
+          "value": "200px",
+          "description": "sidebar is 200px wide"
+        },
+        {
+          "query": ".hg-content",
+          "assertion": "equals",
+          "property": "flex-grow",
+          "value": "1",
+          "description": "content grows to fill space"
+        },
+        {
+          "query": ".hg-header",
+          "assertion": "equals",
+          "property": "font-weight",
+          "value": "900",
+          "description": "header font-weight is 900"
+        }
+      ],
+      "hints": [
+        "Outer container: column flex for header/body/footer stack. Inner body: row flex for sidebar/content.",
+        "flex: 1 on both the body and content makes them expand to fill available space",
+        "The sidebar has a fixed width; the content area takes the remaining space"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Flexbox",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout",
+          "description": "Building complex layouts with flexbox"
+        }
+      ]
+    },
+    {
+      "id": 569,
+      "title": "Grid Holy Grail",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "css",
+        "grid",
+        "holy-grail",
+        "layout",
+        "intermediate",
+        "odin-project"
+      ],
+      "description": "Build the Holy Grail layout using CSS Grid. Based on The Odin Project.",
+      "instructions": "Recreate the Holy Grail layout using only CSS Grid (no flexbox).\n\n1. Set `.grid-layout` to `display: grid`\n2. Set `grid-template-columns` to `200px 1fr` (sidebar + content)\n3. Set `grid-template-rows` to `60px 1fr 60px` (header, main, footer)\n4. Set `gap` to `8px`\n5. Set `min-height` to `400px`\n6. Set `.gl-header` to `grid-column: 1 / -1` (span full width)\n7. Set `.gl-footer` to `grid-column: 1 / -1` (span full width)",
+      "starterCode": "/* Build Holy Grail with CSS Grid */\n",
+      "solution": ".grid-layout {\n  display: grid;\n  grid-template-columns: 200px 1fr;\n  grid-template-rows: 60px 1fr 60px;\n  gap: 8px;\n  min-height: 400px;\n}\n\n.gl-header {\n  grid-column: 1 / -1;\n}\n\n.gl-footer {\n  grid-column: 1 / -1;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"grid-layout\" style=\"color:#e2e8f0;\"><div class=\"gl-header\" style=\"background:#1e293b;padding:16px;\">Header</div><div class=\"gl-sidebar\" style=\"background:#334155;padding:16px;\">Sidebar</div><div class=\"gl-content\" style=\"background:#0f172a;padding:16px;\">Content</div><div class=\"gl-footer\" style=\"background:#1e293b;padding:16px;\">Footer</div></div>",
+      "testCases": [
+        {
+          "query": ".grid-layout",
+          "assertion": "equals",
+          "property": "display",
+          "value": "grid",
+          "description": "display is grid"
+        },
+        {
+          "query": ".grid-layout",
+          "assertion": "equals",
+          "property": "gap",
+          "value": "8px",
+          "description": "gap is 8px"
+        },
+        {
+          "query": ".grid-layout",
+          "assertion": "equals",
+          "property": "min-height",
+          "value": "400px",
+          "description": "min-height is 400px"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "grid-template-columns",
+          "description": "CSS defines grid-template-columns"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "grid-template-rows",
+          "description": "CSS defines grid-template-rows"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "grid-column",
+          "description": "CSS uses grid-column spanning"
+        }
+      ],
+      "hints": [
+        "grid-template-columns: 200px 1fr creates a fixed sidebar + flexible content column",
+        "grid-template-rows: 60px 1fr 60px creates fixed header/footer + flexible middle",
+        "grid-column: 1 / -1 makes an element span from the first to the last column"
+      ],
+      "resources": [
+        {
+          "label": "MDN: CSS Grid Layout",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout",
+          "description": "Complete guide to CSS Grid"
+        }
+      ]
+    },
+    {
+      "id": 570,
+      "title": "Responsive Grid Layout",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "css",
+        "grid",
+        "fr-units",
+        "responsive",
+        "layout",
+        "intermediate",
+        "odin-project"
+      ],
+      "description": "Convert a fixed grid layout to responsive using fr units. Based on The Odin Project.",
+      "instructions": "Make the Holy Grail layout responsive by using `fr` units instead of fixed pixels.\n\n1. Set `.responsive-grid` to `display: grid`\n2. Set `grid-template-columns` to `1fr 3fr` (sidebar is 1/4, content is 3/4)\n3. Set `grid-template-rows` to `1fr 5fr 1fr` (middle row is 5× taller)\n4. Set `gap` to `15px`\n5. Set `min-height` to `400px`\n6. Set `.rg-header` and `.rg-footer` to `grid-column: 1 / -1`",
+      "starterCode": "/* Make the grid responsive with fr units */\n",
+      "solution": ".responsive-grid {\n  display: grid;\n  grid-template-columns: 1fr 3fr;\n  grid-template-rows: 1fr 5fr 1fr;\n  gap: 15px;\n  min-height: 400px;\n}\n\n.rg-header {\n  grid-column: 1 / -1;\n}\n\n.rg-footer {\n  grid-column: 1 / -1;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"responsive-grid\" style=\"color:#e2e8f0;\"><div class=\"rg-header\" style=\"background:#1e293b;padding:8px;\">Header</div><div class=\"rg-sidebar\" style=\"background:#334155;padding:8px;\">Sidebar</div><div class=\"rg-content\" style=\"background:#0f172a;padding:8px;\">Content</div><div class=\"rg-footer\" style=\"background:#1e293b;padding:8px;\">Footer</div></div>",
+      "testCases": [
+        {
+          "query": ".responsive-grid",
+          "assertion": "equals",
+          "property": "display",
+          "value": "grid",
+          "description": "display is grid"
+        },
+        {
+          "query": ".responsive-grid",
+          "assertion": "equals",
+          "property": "gap",
+          "value": "15px",
+          "description": "gap is 15px"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "1fr 3fr",
+          "description": "Uses 1fr 3fr column ratio"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "1fr 5fr 1fr",
+          "description": "Uses 1fr 5fr 1fr row ratio"
+        }
+      ],
+      "hints": [
+        "fr units are fractional — 1fr 3fr means the second column is 3x wider than the first",
+        "1fr 5fr 1fr for rows makes the middle row 5x taller than header and footer",
+        "fr units make the layout flexible and responsive without media queries"
+      ],
+      "resources": [
+        {
+          "label": "MDN: fr unit",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Basic_concepts_of_grid_layout#the_fr_unit",
+          "description": "The fractional unit for grid layouts"
+        }
+      ]
+    },
+    {
+      "id": 571,
+      "title": "Grid with Auto-fit Cards",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "layout"
+      ],
+      "tags": [
+        "css",
+        "grid",
+        "auto-fit",
+        "minmax",
+        "responsive",
+        "cards",
+        "odin-project"
+      ],
+      "description": "Create a responsive card grid using auto-fit and minmax(). Based on The Odin Project.",
+      "instructions": "Build a grid layout with an auto-adjusting card section.\n\n1. Set `.card-grid` to `display: grid`\n2. Set `grid-template-columns` to `repeat(auto-fit, minmax(250px, 1fr))` — cards auto-adjust\n3. Set `gap` to `16px`\n4. Set `.grid-card` `height` to `200px`, `padding` to `16px`, and `border-radius` to `8px`",
+      "starterCode": "/* Create an auto-fitting card grid */\n",
+      "solution": ".card-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n  gap: 16px;\n}\n\n.grid-card {\n  height: 200px;\n  padding: 16px;\n  border-radius: 8px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"card-grid\"><div class=\"grid-card\" style=\"background:#1e293b;color:#e2e8f0;\">Card 1</div><div class=\"grid-card\" style=\"background:#334155;color:#e2e8f0;\">Card 2</div><div class=\"grid-card\" style=\"background:#475569;color:#e2e8f0;\">Card 3</div><div class=\"grid-card\" style=\"background:#1e293b;color:#e2e8f0;\">Card 4</div></div>",
+      "testCases": [
+        {
+          "query": ".card-grid",
+          "assertion": "equals",
+          "property": "display",
+          "value": "grid",
+          "description": "display is grid"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "auto-fit",
+          "description": "Uses auto-fit"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "minmax(",
+          "description": "Uses minmax()"
+        },
+        {
+          "query": ".card-grid",
+          "assertion": "equals",
+          "property": "gap",
+          "value": "16px",
+          "description": "gap is 16px"
+        },
+        {
+          "query": ".grid-card",
+          "assertion": "equals",
+          "property": "height",
+          "value": "200px",
+          "description": "card height is 200px"
+        },
+        {
+          "query": ".grid-card",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "8px",
+          "description": "card border-radius is 8px"
+        }
+      ],
+      "hints": [
+        "repeat(auto-fit, minmax(250px, 1fr)) creates as many columns as fit, each at least 250px",
+        "auto-fit collapses empty tracks, so cards stretch to fill available space",
+        "This creates a fully responsive grid without any media queries"
+      ],
+      "resources": [
+        {
+          "label": "MDN: auto-fit",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/repeat#auto-fit",
+          "description": "Auto-fitting grid tracks"
+        }
+      ]
+    },
+    {
+      "id": 572,
+      "title": "Button Hover Transition",
+      "type": "css",
+      "tier": 3,
+      "category": [
+        "css",
+        "transitions"
+      ],
+      "tags": [
+        "css",
+        "transition",
+        "hover",
+        "transform",
+        "animation",
+        "odin-project"
+      ],
+      "description": "Create a smooth button hover animation using transitions. Based on The Odin Project.",
+      "instructions": "Make a button that smoothly enlarges when hovered.\n\n1. Set `.hover-btn` to `padding: 12px 24px`, `border: none`, `border-radius: 6px`, `background-color: #3b82f6`, `color: white`, `font-size: 16px`\n2. Add `transition: transform 0.3s ease` for smooth animation\n3. On `.hover-btn:hover`, set `transform: scale(1.1)` to enlarge by 10%",
+      "starterCode": "/* Create a hover transition */\n",
+      "solution": ".hover-btn {\n  padding: 12px 24px;\n  border: none;\n  border-radius: 6px;\n  background-color: #3b82f6;\n  color: white;\n  font-size: 16px;\n  transition: transform 0.3s ease;\n}\n\n.hover-btn:hover {\n  transform: scale(1.1);\n}",
+      "testRunner": "",
+      "providedHtml": "<button class=\"hover-btn\">Hover Me</button>",
+      "testCases": [
+        {
+          "query": ".hover-btn",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "12px 24px",
+          "description": "padding is 12px 24px"
+        },
+        {
+          "query": ".hover-btn",
+          "assertion": "equals",
+          "property": "background-color",
+          "value": "rgb(59, 130, 246)",
+          "description": "background is blue"
+        },
+        {
+          "query": ".hover-btn",
+          "assertion": "equals",
+          "property": "font-size",
+          "value": "16px",
+          "description": "font-size is 16px"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "transition",
+          "description": "CSS uses transition"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "scale(",
+          "description": "CSS uses scale() transform"
+        }
+      ],
+      "hints": [
+        "transition goes on the base state (not :hover) so it animates both in and out",
+        "transform: scale(1.1) enlarges the element by 10%",
+        "transition: transform 0.3s ease makes the scale change smooth"
+      ],
+      "resources": [
+        {
+          "label": "MDN: CSS Transitions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transitions",
+          "description": "Animate CSS property changes"
+        }
+      ]
+    },
+    {
+      "id": 573,
+      "title": "Pop-up Animation",
+      "type": "css",
+      "tier": 4,
+      "category": [
+        "css",
+        "transitions"
+      ],
+      "tags": [
+        "css",
+        "transition",
+        "transform",
+        "opacity",
+        "animation",
+        "advanced",
+        "odin-project"
+      ],
+      "description": "Animate a pop-up dialog with slide and fade transitions. Based on The Odin Project.",
+      "instructions": "Create a pop-up that slides down and fades in.\n\n1. Set `.popup` base state: `opacity: 0`, `transform: translateY(-30px)`, and `transition: opacity 0.3s ease, transform 0.3s ease`\n2. Set `.popup.visible`: `opacity: 1` and `transform: translateY(0)`\n3. Set `.popup` `padding: 24px`, `border-radius: 8px`, `max-width: 400px`",
+      "starterCode": "/* Create a pop-up animation */\n",
+      "solution": ".popup {\n  opacity: 0;\n  transform: translateY(-30px);\n  transition: opacity 0.3s ease, transform 0.3s ease;\n  padding: 24px;\n  border-radius: 8px;\n  max-width: 400px;\n}\n\n.popup.visible {\n  opacity: 1;\n  transform: translateY(0);\n}",
+      "testRunner": "",
+      "providedHtml": "<div class=\"popup visible\" style=\"background:#1e293b;color:#e2e8f0;\"><h2>Pop-up Title</h2><p>This slides down and fades in.</p></div>",
+      "testCases": [
+        {
+          "query": ".popup.visible",
+          "assertion": "equals",
+          "property": "opacity",
+          "value": "1",
+          "description": ".popup.visible opacity is 1"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "transition",
+          "description": "CSS uses transition"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "translateY(",
+          "description": "CSS uses translateY()"
+        },
+        {
+          "query": ".popup",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "24px",
+          "description": "padding is 24px"
+        },
+        {
+          "query": ".popup",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "8px",
+          "description": "border-radius is 8px"
+        }
+      ],
+      "hints": [
+        "The hidden state uses opacity: 0 and transform: translateY(-30px) to be invisible and above",
+        "The visible state uses opacity: 1 and transform: translateY(0) for full visibility at normal position",
+        "transition on both properties creates a smooth slide-and-fade effect"
+      ],
+      "resources": [
+        {
+          "label": "MDN: transform",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/transform",
+          "description": "CSS transform functions including translate"
+        }
+      ]
+    },
+    {
+      "id": 574,
+      "title": "Dropdown Menu Animation",
+      "type": "css",
+      "tier": 4,
+      "category": [
+        "css",
+        "transitions"
+      ],
+      "tags": [
+        "css",
+        "keyframes",
+        "animation",
+        "transform-origin",
+        "dropdown",
+        "advanced",
+        "odin-project"
+      ],
+      "description": "Create a dropdown menu with a bounce animation using @keyframes. Based on The Odin Project.",
+      "instructions": "Build a dropdown menu that expands downward with a bounce effect.\n\n1. Set `.dropdown` to `transform-origin: top` — makes it expand from the top\n2. Set `.dropdown` `animation: dropDown 0.4s ease forwards`\n3. Set `.dropdown` `padding: 8px 0` and `border-radius: 0 0 8px 8px`\n4. Define `@keyframes dropDown`:\n   - `0%`: `transform: scaleY(0)`, `opacity: 0`\n   - `80%`: `transform: scaleY(1.05)` (slight overshoot for bounce)\n   - `100%`: `transform: scaleY(1)`, `opacity: 1`\n5. Set `.dropdown-item` `padding: 8px 16px`",
+      "starterCode": "/* Create a bouncing dropdown animation */\n",
+      "solution": ".dropdown {\n  transform-origin: top;\n  animation: dropDown 0.4s ease forwards;\n  padding: 8px 0;\n  border-radius: 0 0 8px 8px;\n}\n\n@keyframes dropDown {\n  0% {\n    transform: scaleY(0);\n    opacity: 0;\n  }\n  80% {\n    transform: scaleY(1.05);\n  }\n  100% {\n    transform: scaleY(1);\n    opacity: 1;\n  }\n}\n\n.dropdown-item {\n  padding: 8px 16px;\n}",
+      "testRunner": "",
+      "providedHtml": "<div style=\"position:relative;\"><button style=\"padding:8px 16px;background:#3b82f6;color:white;border:none;border-radius:8px 8px 0 0;\">Menu</button><div class=\"dropdown\" style=\"background:#1e293b;color:#e2e8f0;min-width:150px;\"><div class=\"dropdown-item\">Option 1</div><div class=\"dropdown-item\">Option 2</div><div class=\"dropdown-item\">Option 3</div></div></div>",
+      "testCases": [
+        {
+          "assertion": "sourceMatch",
+          "value": "transform-origin:\\s*top",
+          "description": "transform-origin is set to top"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "@keyframes",
+          "description": "CSS defines @keyframes"
+        },
+        {
+          "assertion": "sourceContains",
+          "value": "scaleY(",
+          "description": "Uses scaleY() transform"
+        },
+        {
+          "query": ".dropdown-item",
+          "assertion": "equals",
+          "property": "padding",
+          "value": "8px 16px",
+          "description": "dropdown-item padding is 8px 16px"
+        },
+        {
+          "query": ".dropdown",
+          "assertion": "equals",
+          "property": "border-radius",
+          "value": "0px 0px 8px 8px",
+          "description": "dropdown has bottom border-radius"
+        }
+      ],
+      "hints": [
+        "transform-origin: top makes scaleY expand downward from the top edge",
+        "@keyframes define animation steps: 0% (start), 80% (overshoot), 100% (end)",
+        "The bounce comes from scaleY(1.05) at 80% — slightly larger than final, then settling"
+      ],
+      "resources": [
+        {
+          "label": "MDN: @keyframes",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes",
+          "description": "Define animation keyframes"
+        },
+        {
+          "label": "MDN: transform-origin",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin",
+          "description": "Set the origin for transformations"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "js-fundamentals": {
+    "label": "JS Fundamentals",
+    "color": "#34d399",
+    "children": {
+      "variables": { "label": "Variables & Types" },
+      "operators": { "label": "Operators" },
+      "conditionals": { "label": "Conditionals" },
+      "loops": { "label": "Loops" },
+      "classes": { "label": "Classes & OOP" }
+    }
+  },
+  "data-structures": {
+    "label": "Data Structures",
+    "color": "#60a5fa",
+    "children": {
+      "arrays": { "label": "Arrays" },
+      "objects": { "label": "Objects" },
+      "strings": { "label": "Strings" }
+    }
+  },
+  "functions": {
+    "label": "Functions",
+    "color": "#c084fc",
+    "children": {
+      "scope": { "label": "Scope & Closures" },
+      "higher-order": { "label": "Higher-Order Functions" },
+      "callbacks": { "label": "Callbacks" }
+    }
+  },
+  "es6-plus": {
+    "label": "ES6+",
+    "color": "#fb923c",
+    "children": {
+      "destructuring": { "label": "Destructuring & Spread" },
+      "async": { "label": "Promises & Async" },
+      "template-literals": { "label": "Template Literals" },
+      "modules": { "label": "Module Patterns" }
+    }
+  },
+  "html": {
+    "label": "HTML",
+    "color": "#f472b6",
+    "children": {
+      "structure": { "label": "Page Structure" },
+      "semantics": { "label": "Semantic Elements" },
+      "forms": { "label": "Forms & Inputs" }
+    }
+  },
+  "css": {
+    "label": "CSS",
+    "color": "#22d3ee",
+    "children": {
+      "selectors": { "label": "Selectors" },
+      "box-model": { "label": "Box Model" },
+      "layout": { "label": "Layout" },
+      "flexbox": { "label": "Flexbox" },
+      "typography": { "label": "Typography" },
+      "positioning": { "label": "Positioning" },
+      "transitions": { "label": "Transitions & Animation" },
+      "custom-properties": { "label": "Custom Properties" },
+      "functions": { "label": "CSS Functions" },
+      "modern-selectors": { "label": "Modern Selectors" },
+      "visual": { "label": "Visual Effects" },
+      "container-queries": { "label": "Container Queries" },
+      "nesting": { "label": "CSS Nesting" },
+      "cascade": { "label": "Cascade & Specificity" }
+    }
+  },
+  "syntax-translation": {
+    "label": "Syntax Translation",
+    "color": "#f97316",
+    "children": {
+      "es5-to-es6": { "label": "ES5 → ES6" },
+      "es6-to-es5": { "label": "ES6 → ES5" },
+      "refactoring": { "label": "Refactoring Patterns" }
+    }
+  },
+  "algorithms": {
+    "label": "Algorithms",
+    "color": "#f43f5e",
+    "children": {
+      "sorting": { "label": "Sorting" },
+      "searching": { "label": "Searching" },
+      "recursion": { "label": "Recursion" },
+      "patterns": { "label": "Patterns" },
+      "performance": { "label": "Performance & Big O" }
+    }
+  },
+  "regex": {
+    "label": "Regex",
+    "color": "#a3e635",
+    "children": {
+      "basics": { "label": "Basics" },
+      "patterns": { "label": "Patterns" },
+      "extraction": { "label": "Extraction" }
+    }
+  },
+  "dom-manipulation": {
+    "label": "DOM Manipulation",
+    "color": "#e879f9",
+    "children": {
+      "selection": { "label": "Selection" },
+      "events": { "label": "Events" },
+      "manipulation": { "label": "Manipulation" }
+    }
+  },
+  "testing": {
+    "label": "Testing",
+    "color": "#06b6d4",
+    "children": {
+      "assertions": { "label": "Assertions" },
+      "fundamentals": { "label": "Test Fundamentals" }
+    }
+  },
+  "web-apis": {
+    "label": "Web APIs",
+    "color": "#8b5cf6",
+    "children": {
+      "storage": { "label": "Storage" },
+      "data": { "label": "Data & Patterns" }
+    }
+  }
+}

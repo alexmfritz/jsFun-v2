@@ -1,0 +1,307 @@
+[
+  {
+    "id": "rhythm-interview-prep",
+    "name": "Rhythm Interview Prep",
+    "description": "Quarter 2 midterm benchmark — gauge where students are at",
+    "exerciseIds": [
+      3,
+      6,
+      7,
+      8,
+      10,
+      14,
+      15
+    ],
+    "color": "#f472b6",
+    "hidden": true
+  },
+  {
+    "id": "array-bootcamp",
+    "name": "Array Bootcamp",
+    "description": "Intensive practice on array methods and manipulation",
+    "exerciseIds": [
+      3,
+      6,
+      7,
+      8,
+      10,
+      15
+    ],
+    "color": "#60a5fa",
+    "hidden": true
+  },
+  {
+    "id": "html-css-foundations",
+    "name": "HTML & CSS Foundations",
+    "description": "Complete HTML & CSS curriculum from beginner to advanced, covering page structure, forms, selectors, layout, positioning, typography, animations, and responsive design.",
+    "exerciseIds": [
+      16,
+      17,
+      18,
+      19,
+      20,
+      111,
+      112,
+      113,
+      114,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      288,
+      295,
+      345,
+      346,
+      347,
+      348,
+      349,
+      350,
+      351,
+      352,
+      353,
+      354,
+      355,
+      356,
+      357,
+      358,
+      359,
+      360,
+      361,
+      362,
+      363,
+      364,
+      365,
+      366,
+      367,
+      368,
+      369,
+      370,
+      371,
+      372,
+      373,
+      374,
+      375,
+      376,
+      377
+    ],
+    "color": "#22d3ee",
+    "hidden": true
+  },
+  {
+    "id": "rithm-interview-prep-part2",
+    "name": "Rithm Interview Prep — Part 2",
+    "description": "Slightly more challenging Rithm School interview problems covering objects, arrays, matrices, and simulation",
+    "exerciseIds": [
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65
+    ],
+    "color": "#a78bfa",
+    "hidden": true,
+    "license": "MIT",
+    "attribution": "Advanced interview-style JavaScript exercises covering objects, arrays, matrices, and simulation. Sourced from [Rithm School](https://rithmschool.com). Used under the MIT License.",
+    "source": "Rithm School"
+  },
+  {
+    "id": "classes-intro",
+    "name": "Intro to Classes",
+    "description": "Six foundational exercises that introduce class syntax, constructors, methods, default params, and constraints — building from a simple Dog up to a BankAccount.",
+    "exerciseIds": [
+      189,
+      190,
+      191,
+      192,
+      193,
+      194
+    ],
+    "color": "#a78bfa",
+    "hidden": true
+  },
+  {
+    "id": "real-world-classes",
+    "name": "Real World Classes",
+    "description": "Eight practical class exercises — ShoppingCart, TodoList, Gradebook, Playlist, VendingMachine, Library, Timer, and Garage. Each one mirrors a real-world object with meaningful state and constraints.",
+    "exerciseIds": [
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211
+    ],
+    "color": "#f59e0b",
+    "hidden": true
+  },
+  {
+    "id": "inheritance-oop",
+    "name": "Inheritance & OOP Patterns",
+    "description": "Six exercises covering extends, super, method overriding, polymorphism, and the EventEmitter pattern — the full inheritance toolkit used in professional JavaScript.",
+    "exerciseIds": [
+      212,
+      213,
+      214,
+      215,
+      216,
+      217
+    ],
+    "color": "#f87171",
+    "hidden": true
+  },
+  {
+    "id": "oop-complete",
+    "name": "OOP Complete Track",
+    "description": "The full 30-exercise object-oriented programming arc: from basic class syntax through Turing-style mythical creatures, real-world applications, and professional inheritance patterns.",
+    "exerciseIds": [
+      189,
+      190,
+      191,
+      192,
+      193,
+      194,
+      195,
+      196,
+      197,
+      198,
+      199,
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217
+    ],
+    "color": "#8b5cf6",
+    "hidden": true
+  },
+  {
+    "id": "tier5-rpg-system",
+    "name": "Tier 5: RPG Full System",
+    "description": "Five interacting classes — Item, Inventory, Character, Quest, Party. Composition within composition: Party methods traverse three class boundaries to compute aggregated stats.",
+    "color": "#dc2626",
+    "exerciseIds": [
+      230
+    ],
+    "hidden": true
+  },
+  {
+    "id": "tier3-functions",
+    "name": "Tier 3: Functions — Factories, Closures & Composition",
+    "description": "Scaffold from makeMultiplier to pipe to memoize and curry. Every exercise builds on the last, from returning simple functions to full higher-order composition patterns.",
+    "color": "#7c3aed",
+    "exerciseIds": [
+      231,
+      232,
+      233,
+      234,
+      235,
+      236,
+      237,
+      238,
+      239,
+      240,
+      241,
+      242
+    ],
+    "hidden": true
+  },
+  {
+    "id": "tier3-loops",
+    "name": "Tier 3: Loops — Patterns, Nesting & Problem Solving",
+    "description": "From loop-built strings to nested 2D arrays to pair-finding. Each step adds one concept: tracking multiple variables, using the index as output, nesting loops, combining loops with conditions.",
+    "color": "#0369a1",
+    "exerciseIds": [
+      243,
+      244,
+      245,
+      246,
+      247,
+      248
+    ],
+    "hidden": true
+  },
+  {
+    "id": "tier3-conditionals",
+    "name": "Tier 3: Conditionals — Multi-Variable & Guard Clauses",
+    "description": "Move beyond single-range branching. Combine two variables, layer three overlapping rules, refactor to guard-clause style, and model state transitions.",
+    "color": "#b45309",
+    "exerciseIds": [
+      249,
+      250,
+      251,
+      252
+    ],
+    "hidden": true
+  },
+  {
+    "id": "tier3-strings",
+    "name": "Tier 3: Strings — Combining, Searching & Encoding",
+    "description": "titleCase through Caesar cipher — each exercise combines two or more string skills you already have, then introduces one new idea like charCode math or wrapping arithmetic.",
+    "color": "#047857",
+    "exerciseIds": [
+      253,
+      254,
+      255,
+      256,
+      257
+    ],
+    "hidden": true
+  },
+  {
+    "id": "tier3-objects",
+    "name": "Tier 3: Objects — Transform, Group & Traverse",
+    "description": "From transforming every value to grouping arrays, accessing nested paths, and deep merging — each exercise extends the object patterns from Tier 2 one step further.",
+    "color": "#be185d",
+    "exerciseIds": [
+      258,
+      259,
+      260,
+      261,
+      262
+    ],
+    "hidden": true
+  },
+  {
+    "id": "tier3-implementations",
+    "name": "Tier 3: Implement It Yourself — flatMap, zip, groupBy",
+    "description": "You built myMap, myFilter, myReduce in Tier 2. Now implement flatMap (map + flatten), zip (pair two arrays), and groupBy (reduce into an object). Each extends a pattern you already know.",
+    "color": "#6d28d9",
+    "exerciseIds": [
+      263,
+      264,
+      265
+    ],
+    "hidden": true
+  }
+]

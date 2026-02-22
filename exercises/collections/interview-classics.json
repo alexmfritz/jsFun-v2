@@ -1,0 +1,885 @@
+{
+  "id": "interview-classics",
+  "name": "Interview Classics",
+  "description": "The most commonly asked JavaScript interview problems: data structures, algorithms, and pattern recognition. Spanning Tiers 2-4.",
+  "color": "#fbbf24",
+  "exerciseIds": [
+    4,
+    11,
+    42,
+    47,
+    127,
+    128,
+    146,
+    147,
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    192,
+    237,
+    238,
+    248,
+    257,
+    263,
+    264,
+    265,
+    284,
+    285,
+    289,
+    297,
+    298,
+    299,
+    300,
+    301,
+    302,
+    303,
+    304,
+    305,
+    306,
+    307,
+    308,
+    309,
+    310,
+    311,
+    312,
+    313,
+    314,
+    315,
+    316,
+    317,
+    318,
+    319,
+    320,
+    321,
+    322,
+    323,
+    324,
+    325
+  ],
+  "exercises": [
+    {
+      "id": 127,
+      "title": "Reverse an Array (no .reverse())",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "loops"
+      ],
+      "tags": [
+        "loops",
+        "arrays",
+        "no-built-ins"
+      ],
+      "description": "Return a reversed copy of an array without using Array.reverse().",
+      "instructions": "Write a function called `reverseArray` that accepts an array and returns a NEW array with the elements in reverse order. Do not use the built-in .reverse().\n\nExamples:\n  reverseArray([1, 2, 3])     → [3, 2, 1]\n  reverseArray([\"a\",\"b\",\"c\"]) → [\"c\",\"b\",\"a\"]\n  reverseArray([1])            → [1]\n\nThe original array must not be modified.",
+      "starterCode": "function reverseArray(arr) {\n\n}",
+      "solution": "function reverseArray(arr) {\n  const result = [];\n  for (let i = arr.length - 1; i >= 0; i--) {\n    result.push(arr[i]);\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return reverseArray;')(); const orig = [1,2,3]; const r = fn(orig); return [ { pass: JSON.stringify(r)==='[3,2,1]', description: 'reverseArray([1,2,3]) → [3,2,1]', got: JSON.stringify(r) }, { pass: JSON.stringify(orig)==='[1,2,3]', description: 'original array NOT mutated', got: JSON.stringify(orig) }, { pass: JSON.stringify(fn([\"a\",\"b\",\"c\"]))==='[\"c\",\"b\",\"a\"]', description: 'works with strings', got: JSON.stringify(fn([\"a\",\"b\",\"c\"])) } ]; }",
+      "hint": "Iterate from the last index down to 0, pushing each element into a new result array. Return the result — do not touch the original.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        }
+      ],
+      "hints": [
+        "How do you build a new string character by character starting from the end of the original?",
+        "Iterate from the last index down to 0, pushing each element into a new result array. Return the result — do not touch the original.",
+        "Use a loop to iterate, then return the accumulated result. The function should return an array."
+      ]
+    },
+    {
+      "id": 128,
+      "title": "Is Palindrome?",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "loops"
+      ],
+      "tags": [
+        "loops",
+        "strings"
+      ],
+      "description": "Return true if a string reads the same forwards and backwards.",
+      "instructions": "Write a function called `isPalindrome` that accepts a string and returns `true` if it is a palindrome, ignoring case.\n\nExamples:\n  isPalindrome(\"racecar\") → true\n  isPalindrome(\"Racecar\") → true   (case-insensitive)\n  isPalindrome(\"hello\")   → false\n  isPalindrome(\"a\")       → true",
+      "starterCode": "function isPalindrome(str) {\n\n}",
+      "solution": "function isPalindrome(str) {\n  const s = str.toLowerCase();\n  for (let i = 0; i < Math.floor(s.length / 2); i++) {\n    if (s[i] !== s[s.length - 1 - i]) return false;\n  }\n  return true;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return isPalindrome;')(); return [ { pass: fn(\"racecar\")===true, description: '\"racecar\" → true', got: fn(\"racecar\") }, { pass: fn(\"Racecar\")===true, description: '\"Racecar\" → true (case-insensitive)', got: fn(\"Racecar\") }, { pass: fn(\"hello\")===false, description: '\"hello\" → false', got: fn(\"hello\") }, { pass: fn(\"a\")===true, description: 'single char → true', got: fn(\"a\") }, { pass: fn(\"madam\")===true, description: '\"madam\" → true', got: fn(\"madam\") } ]; }",
+      "hint": "Compare characters from the outside in: index 0 vs last, index 1 vs second-to-last. Only go halfway. Lowercase first.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "`Math.floor` is a key tool for this exercise.",
+        "Compare characters from the outside in: index 0 vs last, index 1 vs second-to-last. Only go halfway. Lowercase first.",
+        "Key method(s): `toLowerCase`, `floor`, `Math.floor`. Use a loop to iterate, then return the accumulated result. The function should return a boolean."
+      ]
+    },
+    {
+      "id": 146,
+      "title": "Frequency Counter",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "reduce",
+        "objects",
+        "frequency-counter"
+      ],
+      "description": "Build a frequency map of values in an array using .reduce().",
+      "instructions": "Write a function called `frequencyCounter` that accepts an array and returns an object where each key is a unique value from the array and its value is the count of occurrences.\n\nExamples:\n  frequencyCounter([\"a\",\"b\",\"a\",\"c\",\"b\",\"a\"]) → { a: 3, b: 2, c: 1 }\n  frequencyCounter([1, 1, 2, 3])              → { 1: 2, 2: 1, 3: 1 }",
+      "starterCode": "function frequencyCounter(arr) {\n\n}",
+      "solution": "function frequencyCounter(arr) {\n  return arr.reduce((acc, val) => {\n    acc[val] = (acc[val] || 0) + 1;\n    return acc;\n  }, {});\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return frequencyCounter;')(); const r1 = fn([\"a\",\"b\",\"a\",\"c\",\"b\",\"a\"]); const r2 = fn([1,1,2,3]); return [ { pass: r1.a===3&&r1.b===2&&r1.c===1, description: 'a:3, b:2, c:1', got: JSON.stringify(r1) }, { pass: r2[1]===2&&r2[2]===1&&r2[3]===1, description: '1:2, 2:1, 3:1', got: JSON.stringify(r2) }, { pass: JSON.stringify(fn([]))==='{}', description: 'empty → {}', got: JSON.stringify(fn([])) } ]; }",
+      "hint": "Accumulator starts as {}. For each value, increment acc[val] — use (acc[val] || 0) + 1 so missing keys start at 0. Always return acc.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Array.prototype.map()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map",
+          "description": "The map method"
+        },
+        {
+          "label": "MDN: Array.prototype.reduce()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce",
+          "description": "The reduce method"
+        }
+      ],
+      "hints": [
+        "Consider how `reduce` works.",
+        "Accumulator starts as {}. For each value, increment acc[val] — use (acc[val] || 0) + 1 so missing keys start at 0. Always return acc.",
+        "Key method(s): `reduce`. The accumulator should track the running result through each iteration."
+      ]
+    },
+    {
+      "id": 147,
+      "title": "Group By Property",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "reduce",
+        "objects",
+        "grouping"
+      ],
+      "description": "Group an array of objects by a given property using .reduce().",
+      "instructions": "Write a function called `groupBy` that accepts an array of objects and a property name, and returns an object grouping items by that property's value.\n\nExamples:\n  groupBy([\n    {name:\"Alice\",dept:\"Eng\"},\n    {name:\"Bob\",dept:\"HR\"},\n    {name:\"Eve\",dept:\"Eng\"}\n  ], \"dept\")\n  → { Eng: [{name:\"Alice\",...},{name:\"Eve\",...}], HR: [{name:\"Bob\",...}] }",
+      "starterCode": "function groupBy(arr, key) {\n\n}",
+      "solution": "function groupBy(arr, key) {\n  return arr.reduce((acc, item) => {\n    const group = item[key];\n    if (!acc[group]) acc[group] = [];\n    acc[group].push(item);\n    return acc;\n  }, {});\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return groupBy;')(); const data = [{name:\"Alice\",dept:\"Eng\"},{name:\"Bob\",dept:\"HR\"},{name:\"Eve\",dept:\"Eng\"}]; const r = fn(data,\"dept\"); return [ { pass: r.Eng&&r.Eng.length===2, description: 'Eng group has 2 items', got: r.Eng&&r.Eng.length }, { pass: r.HR&&r.HR.length===1, description: 'HR group has 1 item', got: r.HR&&r.HR.length }, { pass: r.Eng[0].name===\"Alice\"&&r.Eng[1].name===\"Eve\", description: 'Eng contains Alice and Eve', got: r.Eng.map(x=>x.name).join(\",\") } ]; }",
+      "hint": "Accumulator starts as {}. For each item get the group key value, create that array if it doesn't exist, then push the item. Always return acc.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Array.prototype.reduce()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce",
+          "description": "The reduce method"
+        },
+        {
+          "label": "MDN: Spread syntax",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax",
+          "description": "The spread syntax (...)"
+        }
+      ],
+      "hints": [
+        "What does the input array contain, and what shape should the output be — a new array, a single value, or something else?",
+        "Accumulator starts as {}. For each item get the group key value, create that array if it doesn't exist, then push the item. Always return acc.",
+        "Key method(s): `reduce`. The accumulator should track the running result through each iteration."
+      ]
+    },
+    {
+      "id": 152,
+      "title": "Implement myForEach",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "syntax-translation",
+        "refactoring"
+      ],
+      "tags": [
+        "higher-order",
+        "callbacks",
+        "no-built-ins"
+      ],
+      "description": "Build your own version of Array.forEach from scratch.",
+      "instructions": "Write a function called `myForEach` that accepts an array and a callback, and calls the callback once per element passing (element, index). It should not return anything.\n\nExamples:\n  const result = [];\n  myForEach([1, 2, 3], (el, i) => result.push(el * i));\n  result → [0, 2, 6]  (1×0, 2×1, 3×2)",
+      "starterCode": "function myForEach(arr, callback) {\n\n}",
+      "solution": "function myForEach(arr, callback) {\n  for (let i = 0; i < arr.length; i++) {\n    callback(arr[i], i);\n  }\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return myForEach;')(); const r1 = []; fn([1,2,3], el => r1.push(el * 2)); const r2 = []; fn([10,20,30], (el,i) => r2.push(i)); return [ { pass: JSON.stringify(r1)==='[2,4,6]', description: 'doubles each element via callback', got: JSON.stringify(r1) }, { pass: JSON.stringify(r2)==='[0,1,2]', description: 'passes index as second argument', got: JSON.stringify(r2) }, { pass: fn([],(el)=>null)===undefined, description: 'returns undefined', got: fn([],(el)=>null) } ]; }",
+      "hint": "A loop that calls callback(arr[i], i) on each iteration is all forEach does. It never collects return values — just calls the function.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Array.prototype.forEach()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach",
+          "description": "The forEach method"
+        },
+        {
+          "label": "MDN: Array.prototype.push()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push",
+          "description": "The push method"
+        }
+      ],
+      "hints": [
+        "What is the modern equivalent of this pattern, and how does it change what the code communicates?",
+        "A loop that calls callback(arr[i], i) on each iteration is all forEach does. It never collects return values — just calls the function.",
+        "Build the logic step by step without relying on built-in methods."
+      ]
+    },
+    {
+      "id": 153,
+      "title": "Implement myMap",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "syntax-translation",
+        "refactoring"
+      ],
+      "tags": [
+        "higher-order",
+        "callbacks",
+        "no-built-ins"
+      ],
+      "description": "Build your own version of Array.map from scratch.",
+      "instructions": "Write a function called `myMap` that accepts an array and a callback, and returns a NEW array where each element is the result of calling the callback on the original element.\n\nExamples:\n  myMap([1,2,3], n => n * 2)           → [2, 4, 6]\n  myMap([\"a\",\"b\"], s => s.toUpperCase()) → [\"A\",\"B\"]",
+      "starterCode": "function myMap(arr, callback) {\n\n}",
+      "solution": "function myMap(arr, callback) {\n  const result = [];\n  for (let i = 0; i < arr.length; i++) {\n    result.push(callback(arr[i], i));\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return myMap;')(); return [ { pass: JSON.stringify(fn([1,2,3],n=>n*2))==='[2,4,6]', description: 'myMap([1,2,3], double) → [2,4,6]', got: JSON.stringify(fn([1,2,3],n=>n*2)) }, { pass: JSON.stringify(fn([\"a\",\"b\"],s=>s.toUpperCase()))==='[\"A\",\"B\"]', description: 'uppercase each string', got: JSON.stringify(fn([\"a\",\"b\"],s=>s.toUpperCase())) }, { pass: JSON.stringify(fn([],n=>n))==='[]', description: 'empty → []', got: JSON.stringify(fn([],n=>n)) } ]; }",
+      "hint": "Unlike forEach, collect each callback return value into a result array, then return that array at the end.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Array.prototype.map()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map",
+          "description": "The map method"
+        }
+      ],
+      "hints": [
+        "What is the modern equivalent of this pattern, and how does it change what the code communicates?",
+        "Unlike forEach, collect each callback return value into a result array, then return that array at the end.",
+        "Use a loop to iterate, then return the accumulated result. The function should return an array."
+      ]
+    },
+    {
+      "id": 154,
+      "title": "Implement myFilter",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "syntax-translation",
+        "refactoring"
+      ],
+      "tags": [
+        "higher-order",
+        "callbacks",
+        "no-built-ins"
+      ],
+      "description": "Build your own version of Array.filter from scratch.",
+      "instructions": "Write a function called `myFilter` that accepts an array and a callback (predicate), and returns a new array containing only the elements for which the callback returns truthy.\n\nExamples:\n  myFilter([1,2,3,4,5], n => n % 2 === 0)   → [2, 4]\n  myFilter([\"hi\",\"hello\",\"hey\"], s => s.length > 2) → [\"hello\",\"hey\"]",
+      "starterCode": "function myFilter(arr, callback) {\n\n}",
+      "solution": "function myFilter(arr, callback) {\n  const result = [];\n  for (let i = 0; i < arr.length; i++) {\n    if (callback(arr[i], i)) result.push(arr[i]);\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return myFilter;')(); return [ { pass: JSON.stringify(fn([1,2,3,4,5],n=>n%2===0))==='[2,4]', description: 'myFilter(evens) → [2,4]', got: JSON.stringify(fn([1,2,3,4,5],n=>n%2===0)) }, { pass: JSON.stringify(fn([\"hi\",\"hello\",\"hey\"],s=>s.length>2))==='[\"hello\",\"hey\"]', description: 'filter by string length', got: JSON.stringify(fn([\"hi\",\"hello\",\"hey\"],s=>s.length>2)) }, { pass: JSON.stringify(fn([],n=>n))==='[]', description: 'empty → []', got: JSON.stringify(fn([],n=>n)) } ]; }",
+      "hint": "Like myMap, but only push if the callback returns truthy. The callback acts as a gate.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Array.prototype.filter()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter",
+          "description": "The filter method"
+        },
+        {
+          "label": "MDN: Callback function",
+          "url": "https://developer.mozilla.org/en-US/docs/Glossary/Callback_function",
+          "description": "Callback functions explained"
+        }
+      ],
+      "hints": [
+        "Start by thinking about higher-order functions and callback functions.",
+        "Like myMap, but only push if the callback returns truthy. The callback acts as a gate.",
+        "Use a loop to iterate, then return the accumulated result. The function should return an array."
+      ]
+    },
+    {
+      "id": 155,
+      "title": "Implement myFind",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "syntax-translation",
+        "refactoring"
+      ],
+      "tags": [
+        "higher-order",
+        "callbacks",
+        "no-built-ins"
+      ],
+      "description": "Build your own version of Array.find from scratch.",
+      "instructions": "Write a function called `myFind` that accepts an array and a callback, and returns the FIRST element for which the callback returns truthy. Return `undefined` if nothing matches.\n\nExamples:\n  myFind([1,3,4,6], n => n % 2 === 0)  → 4\n  myFind([1,3,5], n => n % 2 === 0)    → undefined",
+      "starterCode": "function myFind(arr, callback) {\n\n}",
+      "solution": "function myFind(arr, callback) {\n  for (let i = 0; i < arr.length; i++) {\n    if (callback(arr[i], i)) return arr[i];\n  }\n  return undefined;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return myFind;')(); return [ { pass: fn([1,3,4,6],n=>n%2===0)===4, description: 'myFind first even → 4', got: fn([1,3,4,6],n=>n%2===0) }, { pass: fn([1,3,5],n=>n%2===0)===undefined, description: 'no match → undefined', got: fn([1,3,5],n=>n%2===0) }, { pass: fn([5,10,15],n=>n>8)===10, description: 'returns first match only', got: fn([5,10,15],n=>n>8) } ]; }",
+      "hint": "The moment the callback returns truthy, return that element immediately. If the loop ends with no match, return undefined.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Array.prototype.find()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find",
+          "description": "The find method"
+        },
+        {
+          "label": "MDN: Callback function",
+          "url": "https://developer.mozilla.org/en-US/docs/Glossary/Callback_function",
+          "description": "Callback functions explained"
+        }
+      ],
+      "hints": [
+        "What is the modern equivalent of this pattern, and how does it change what the code communicates?",
+        "The moment the callback returns truthy, return that element immediately. If the loop ends with no match, return undefined.",
+        "Use a loop to iterate, then return the accumulated result."
+      ]
+    },
+    {
+      "id": 156,
+      "title": "Implement myEvery",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "syntax-translation",
+        "refactoring"
+      ],
+      "tags": [
+        "higher-order",
+        "callbacks",
+        "no-built-ins"
+      ],
+      "description": "Build your own version of Array.every from scratch.",
+      "instructions": "Write a function called `myEvery` that accepts an array and a callback, and returns `true` if the callback returns truthy for EVERY element. Returns true for an empty array.\n\nExamples:\n  myEvery([2,4,6], n => n % 2 === 0) → true\n  myEvery([2,3,6], n => n % 2 === 0) → false",
+      "starterCode": "function myEvery(arr, callback) {\n\n}",
+      "solution": "function myEvery(arr, callback) {\n  for (let i = 0; i < arr.length; i++) {\n    if (!callback(arr[i], i)) return false;\n  }\n  return true;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return myEvery;')(); return [ { pass: fn([2,4,6],n=>n%2===0)===true, description: 'all even → true', got: fn([2,4,6],n=>n%2===0) }, { pass: fn([2,3,6],n=>n%2===0)===false, description: 'one odd → false', got: fn([2,3,6],n=>n%2===0) }, { pass: fn([],n=>false)===true, description: 'empty → true', got: fn([],n=>false) } ]; }",
+      "hint": "As soon as one element fails (callback returns falsy), return false immediately. If the loop completes without failing, return true.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Array.prototype.every()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every",
+          "description": "The every method"
+        },
+        {
+          "label": "MDN: Callback function",
+          "url": "https://developer.mozilla.org/en-US/docs/Glossary/Callback_function",
+          "description": "Callback functions explained"
+        }
+      ],
+      "hints": [
+        "What is the modern equivalent of this pattern, and how does it change what the code communicates?",
+        "As soon as one element fails (callback returns falsy), return false immediately. If the loop completes without failing, return true.",
+        "Use a loop to iterate, then return the accumulated result. The function should return a boolean."
+      ]
+    },
+    {
+      "id": 157,
+      "title": "Implement mySome",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "syntax-translation",
+        "refactoring"
+      ],
+      "tags": [
+        "higher-order",
+        "callbacks",
+        "no-built-ins"
+      ],
+      "description": "Build your own version of Array.some from scratch.",
+      "instructions": "Write a function called `mySome` that accepts an array and a callback, and returns `true` if the callback returns truthy for AT LEAST ONE element. Returns false for an empty array.\n\nExamples:\n  mySome([1,3,4], n => n % 2 === 0) → true   (4 is even)\n  mySome([1,3,5], n => n % 2 === 0) → false",
+      "starterCode": "function mySome(arr, callback) {\n\n}",
+      "solution": "function mySome(arr, callback) {\n  for (let i = 0; i < arr.length; i++) {\n    if (callback(arr[i], i)) return true;\n  }\n  return false;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return mySome;')(); return [ { pass: fn([1,3,4],n=>n%2===0)===true, description: '4 is even → true', got: fn([1,3,4],n=>n%2===0) }, { pass: fn([1,3,5],n=>n%2===0)===false, description: 'no evens → false', got: fn([1,3,5],n=>n%2===0) }, { pass: fn([],n=>true)===false, description: 'empty → false', got: fn([],n=>true) } ]; }",
+      "hint": "The mirror of myEvery — the moment the callback returns truthy, return true immediately. If the loop ends with no match, return false.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Array.prototype.some()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some",
+          "description": "The some method"
+        },
+        {
+          "label": "MDN: Callback function",
+          "url": "https://developer.mozilla.org/en-US/docs/Glossary/Callback_function",
+          "description": "Callback functions explained"
+        }
+      ],
+      "hints": [
+        "What is the modern equivalent of this pattern, and how does it change what the code communicates?",
+        "The mirror of myEvery — the moment the callback returns truthy, return true immediately. If the loop ends with no match, return false.",
+        "Use a loop to iterate, then return the accumulated result. The function should return a boolean."
+      ]
+    },
+    {
+      "id": 158,
+      "title": "Implement myReduce",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "syntax-translation",
+        "refactoring"
+      ],
+      "tags": [
+        "higher-order",
+        "callbacks",
+        "no-built-ins",
+        "reduce"
+      ],
+      "description": "Build your own version of Array.reduce from scratch.",
+      "instructions": "Write a function called `myReduce` that accepts an array, a callback, and an initial value, and reduces the array to a single value by applying the callback to an accumulator and each element.\n\nThe callback receives (accumulator, currentValue, index).\n\nExamples:\n  myReduce([1,2,3,4], (acc, n) => acc + n, 0) → 10\n  myReduce([\"a\",\"b\",\"c\"], (acc, s) => acc + s, \"\") → \"abc\"",
+      "starterCode": "function myReduce(arr, callback, initialValue) {\n\n}",
+      "solution": "function myReduce(arr, callback, initialValue) {\n  let acc = initialValue;\n  for (let i = 0; i < arr.length; i++) {\n    acc = callback(acc, arr[i], i);\n  }\n  return acc;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return myReduce;')(); return [ { pass: fn([1,2,3,4],(acc,n)=>acc+n,0)===10, description: 'myReduce sum → 10', got: fn([1,2,3,4],(acc,n)=>acc+n,0) }, { pass: fn([\"a\",\"b\",\"c\"],(acc,s)=>acc+s,\"\")===\"abc\", description: 'myReduce concat → \"abc\"', got: fn([\"a\",\"b\",\"c\"],(acc,s)=>acc+s,\"\") }, { pass: fn([],()=>0,42)===42, description: 'empty array → initialValue', got: fn([],()=>0,42) } ]; }",
+      "hint": "Start with acc = initialValue. On each iteration call callback(acc, arr[i], i) and reassign acc to the return value. Return acc after the loop.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Array.prototype.reduce()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce",
+          "description": "The reduce method"
+        },
+        {
+          "label": "MDN: Callback function",
+          "url": "https://developer.mozilla.org/en-US/docs/Glossary/Callback_function",
+          "description": "Callback functions explained"
+        }
+      ],
+      "hints": [
+        "What is the modern equivalent of this pattern, and how does it change what the code communicates?",
+        "Start with acc = initialValue. On each iteration call callback(acc, arr[i], i) and reassign acc to the return value. Return acc after the loop.",
+        "Use a loop to iterate, then return the accumulated result."
+      ]
+    },
+    {
+      "id": 192,
+      "title": "Data Structure Class: Stack",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "classes"
+      ],
+      "tags": [
+        "class",
+        "data-structure",
+        "arrays",
+        "stack",
+        "oop"
+      ],
+      "description": "Implement a Stack class — a Last-In-First-Out data structure.",
+      "instructions": "A **Stack** is a Last-In-First-Out (LIFO) data structure — like a stack of plates. You add to the top, and remove from the top.\n\nCreate a `Stack` class with the following:\n\n**Constructor:**\n  - No parameters\n  - Initializes `this.items` as an empty array\n\n**Methods:**\n  - `push(value)` — adds a value to the top of the stack, returns the instance\n  - `pop()` — removes and returns the top value. Returns `undefined` if empty\n  - `peek()` — returns the top value WITHOUT removing it. Returns `undefined` if empty\n  - `isEmpty()` — returns `true` if the stack has no items\n  - `size()` — returns the number of items\n\nExamples:\n```js\nconst s = new Stack();\ns.isEmpty();   // true\ns.push(1).push(2).push(3);\ns.size();      // 3\ns.peek();      // 3  (top item)\ns.pop();       // 3  (removes and returns)\ns.size();      // 2\ns.peek();      // 2\n```",
+      "starterCode": "class Stack {\n  constructor() {\n    this.items = [];\n  }\n\n  push(value) {\n\n  }\n\n  pop() {\n\n  }\n\n  peek() {\n\n  }\n\n  isEmpty() {\n\n  }\n\n  size() {\n\n  }\n}",
+      "solution": "class Stack {\n  constructor() {\n    this.items = [];\n  }\n\n  push(value) {\n    this.items.push(value);\n    return this;\n  }\n\n  pop() {\n    return this.items.pop();\n  }\n\n  peek() {\n    return this.items[this.items.length - 1];\n  }\n\n  isEmpty() {\n    return this.items.length === 0;\n  }\n\n  size() {\n    return this.items.length;\n  }\n}",
+      "testRunner": "(code) => { const Stack = new Function(code + \"; return Stack;\")(); const s = new Stack(); const emptyCheck = s.isEmpty(); const emptyPeek = s.peek(); s.push(1); s.push(2); s.push(3); const sz = s.size(); const pk = s.peek(); const popped = s.pop(); const szAfter = s.size(); const emptyPop = new Stack().pop(); return [ { pass: emptyCheck === true, description: 'new Stack() is empty', got: emptyCheck }, { pass: emptyPeek === undefined, description: 'peek() on empty → undefined', got: emptyPeek }, { pass: sz === 3, description: 'after push(1,2,3) size() → 3', got: sz }, { pass: pk === 3, description: 'peek() → 3 (top without removing)', got: pk }, { pass: popped === 3, description: 'pop() → 3 (removes top)', got: popped }, { pass: szAfter === 2, description: 'size() after pop → 2', got: szAfter }, { pass: emptyPop === undefined, description: 'pop() on empty → undefined', got: emptyPop }, ]; }",
+      "hint": "The \"top\" of the stack is the last element of the array — index `this.items.length - 1`. `Array.pop()` already removes and returns the last element, which is exactly what Stack.pop() should do.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Array.prototype.push()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push",
+          "description": "The push method"
+        },
+        {
+          "label": "MDN: Array.prototype.pop()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop",
+          "description": "The pop method"
+        }
+      ],
+      "hints": [
+        "A stack is Last-In-First-Out — which end of an array behaves that way, and what two methods add and remove from that end?",
+        "The \"top\" of the stack is the last element of the array — index `this.items.length - 1`. `Array.pop()` already removes and returns the last element, which is exactly what Stack.pop() should do.",
+        "Break the problem into smaller steps and handle edge cases."
+      ]
+    },
+    {
+      "id": 237,
+      "title": "memoize",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "functions",
+        "higher-order"
+      ],
+      "tags": [
+        "functions",
+        "higher-order",
+        "memoize",
+        "cache",
+        "map",
+        "tier4"
+      ],
+      "description": "Write a memoize function that caches the results of expensive function calls.",
+      "instructions": "Write a function `memoize(fn)` that returns a **new version of `fn`** that remembers its results.\n\nThe first time the returned function is called with a given argument, it runs `fn` and **stores the result**.\nEvery subsequent call with that same argument **returns the cached result** without calling `fn` again.\n\n```js\nlet callCount = 0;\nconst expensiveDouble = memoize(n => {\n  callCount++;\n  return n * 2;\n});\n\nexpensiveDouble(5);  // 10, callCount is now 1\nexpensiveDouble(5);  // 10, callCount is still 1 (used cache)\nexpensiveDouble(6);  // 12, callCount is now 2\nexpensiveDouble(6);  // 12, callCount is still 2\n```\n\nUse a `Map` to store results. The key is the argument, the value is the result.",
+      "starterCode": "function memoize(fn) {\n  // create a Map to store cached results\n  // return a new function that checks the cache before calling fn\n}",
+      "solution": "function memoize(fn) {\n  const cache = new Map();\n  return function(arg) {\n    if (cache.has(arg)) {\n      return cache.get(arg);\n    }\n    const result = fn(arg);\n    cache.set(arg, result);\n    return result;\n  };\n}",
+      "testRunner": "(code) => {\n  const memoize = new Function(code + '; return memoize;')();\n\n  let calls = 0;\n  const tracked = memoize(n => { calls++; return n * n; });\n\n  const r1 = tracked(4);\n  const callsAfterFirst = calls;\n  const r2 = tracked(4);\n  const callsAfterSecond = calls;\n  const r3 = tracked(5);\n  const callsAfterThird = calls;\n  const r4 = tracked(5);\n  const callsAfterFourth = calls;\n\n  const pure = memoize(x => x + 10);\n\n  return [\n    { pass: r1 === 16,              description: 'First call returns correct result (4*4=16)', got: r1 },\n    { pass: r2 === 16,              description: 'Second call with same arg returns 16', got: r2 },\n    { pass: callsAfterFirst === 1,  description: 'fn called once after first call', got: callsAfterFirst },\n    { pass: callsAfterSecond === 1, description: 'fn NOT called again on cache hit', got: callsAfterSecond },\n    { pass: r3 === 25,              description: 'New arg (5) returns correct result (25)', got: r3 },\n    { pass: callsAfterThird === 2,  description: 'fn called again for new arg', got: callsAfterThird },\n    { pass: callsAfterFourth === 2, description: 'fn NOT called again on second cache hit for 5', got: callsAfterFourth },\n    { pass: pure(7) === 17,         description: 'Works for basic addition too', got: pure(7) },\n  ];\n}",
+      "hint": "The cache lives inside the closure — it's created once when memoize(fn) is called, and every call to the returned function shares the same Map. Check cache.has(arg) first. If cached, return cache.get(arg). Otherwise call fn(arg), store it with cache.set(arg, result), and return it.",
+      "resources": [
+        {
+          "label": "MDN: Array.prototype.map()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map",
+          "description": "The map method"
+        },
+        {
+          "label": "MDN: Callback function",
+          "url": "https://developer.mozilla.org/en-US/docs/Glossary/Callback_function",
+          "description": "Callback functions explained"
+        },
+        {
+          "label": "MDN: Functions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+          "description": "JavaScript functions guide"
+        }
+      ],
+      "hints": [
+        "How do you store a function's previous results so you can skip recomputing when the same argument appears again?",
+        "The cache lives inside the closure — it's created once when memoize(fn) is called, and every call to the returned function shares the same Map. Check cache.has(arg) first. If cached, return cache.get(arg). Otherwise call fn(arg), store it with cache.set(arg, result), and return it.",
+        "Key method(s): `has`, `get`, `set`. The function should return a boolean."
+      ]
+    },
+    {
+      "id": 238,
+      "title": "curry",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "functions",
+        "higher-order"
+      ],
+      "tags": [
+        "functions",
+        "higher-order",
+        "curry",
+        "partial-application",
+        "tier4"
+      ],
+      "description": "Write a curry function that converts a two-argument function into a chain of single-argument functions.",
+      "instructions": "Write a function `curry(fn)` that takes a **two-argument function** and returns a **curried version** of it.\n\nThe curried version can be called in two ways:\n1. Both args at once: `curriedFn(a, b)` → same as `fn(a, b)`\n2. One arg at a time: `curriedFn(a)(b)` → same as `fn(a, b)`\n\n```js\nconst add = curry((a, b) => a + b);\nadd(3, 4);     // 7\nadd(3)(4);     // 7\n\nconst multiply = curry((a, b) => a * b);\nconst triple = multiply(3);  // returns a function waiting for b\ntriple(5);     // 15\ntriple(10);    // 30\n```\n\nThis is how libraries like Ramda and lodash work. A curried function lets you partially apply arguments and reuse the result.",
+      "starterCode": "function curry(fn) {\n  // return a function that works both ways:\n  // called with 2 args → run fn immediately\n  // called with 1 arg  → return a function waiting for the second\n}",
+      "solution": "function curry(fn) {\n  return function(a, b) {\n    if (b !== undefined) {\n      return fn(a, b);\n    }\n    return function(b) {\n      return fn(a, b);\n    };\n  };\n}",
+      "testRunner": "(code) => {\n  const curry = new Function(code + '; return curry;')();\n  const add      = curry((a, b) => a + b);\n  const multiply = curry((a, b) => a * b);\n  const greet    = curry((greeting, name) => greeting + ', ' + name + '!');\n\n  const triple  = multiply(3);\n  const add10   = add(10);\n  const sayHi   = greet('Hi');\n\n  return [\n    { pass: add(3, 4) === 7,           description: 'add(3, 4) === 7 (both args at once)', got: add(3, 4) },\n    { pass: add(3)(4) === 7,           description: 'add(3)(4) === 7 (one at a time)',     got: add(3)(4) },\n    { pass: triple(5) === 15,          description: 'multiply(3)(5) === 15',               got: triple(5) },\n    { pass: triple(10) === 30,         description: 'multiply(3)(10) === 30',              got: triple(10) },\n    { pass: add10(7) === 17,           description: 'add(10)(7) === 17',                   got: add10(7) },\n    { pass: multiply(4, 5) === 20,     description: 'multiply(4, 5) === 20 (both args)',   got: multiply(4, 5) },\n    { pass: sayHi('Alex') === 'Hi, Alex!', description: 'greet(\"Hi\")(\"Alex\") === \"Hi, Alex!\"', got: sayHi('Alex') },\n  ];\n}",
+      "hint": "Inside the returned function, check if b was provided. If arguments.length >= 2 (or b !== undefined), call fn(a, b) immediately. Otherwise return a new function that remembers a and waits for b. This is partial application — you're \"locking in\" the first argument.",
+      "resources": [
+        {
+          "label": "MDN: Callback function",
+          "url": "https://developer.mozilla.org/en-US/docs/Glossary/Callback_function",
+          "description": "Callback functions explained"
+        },
+        {
+          "label": "MDN: Functions",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+          "description": "JavaScript functions guide"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "If a function normally takes two arguments at once, how do you let it accept them one at a time instead?",
+        "Inside the returned function, check if b was provided. If arguments.length >= 2 (or b !== undefined), call fn(a, b) immediately. Otherwise return a new function that remembers a and waits for b. This is partial application — you're \"locking in\" the first argument.",
+        "Break the problem into smaller steps and handle edge cases."
+      ]
+    },
+    {
+      "id": 248,
+      "title": "findPairs",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "js-fundamentals",
+        "loops"
+      ],
+      "tags": [
+        "loops",
+        "nested-loops",
+        "arrays",
+        "tier3"
+      ],
+      "description": "Find all pairs of numbers in an array that sum to a target value.",
+      "instructions": "Write a function `findPairs(nums, target)` that returns an array of all pairs `[a, b]` where `a + b === target` and `a` comes before `b` in the array.\n\n```js\nfindPairs([1, 2, 3, 4, 5], 6);\n// [[1,5], [2,4]]\n\nfindPairs([1, 2, 3], 10);\n// []\n\nfindPairs([2, 2, 3], 4);\n// [[2,2]]\n```\n\nEach pair should be in order [`smaller index`, `larger index`]. Don't include the same element paired with itself unless there are two separate elements with that value.",
+      "starterCode": "function findPairs(nums, target) {\n  // use nested loops: outer picks first element, inner picks second\n}",
+      "solution": "function findPairs(nums, target) {\n  const pairs = [];\n  for (let i = 0; i < nums.length; i++) {\n    for (let j = i + 1; j < nums.length; j++) {\n      if (nums[i] + nums[j] === target) {\n        pairs.push([nums[i], nums[j]]);\n      }\n    }\n  }\n  return pairs;\n}",
+      "testRunner": "(code) => {\n  const findPairs = new Function(code + '; return findPairs;')();\n  const r1 = findPairs([1, 2, 3, 4, 5], 6);\n  const r2 = findPairs([1, 2, 3], 10);\n  const r3 = findPairs([2, 2, 3], 4);\n  const r4 = findPairs([1, 1, 1], 2);\n  return [\n    { pass: JSON.stringify(r1) === '[[1,5],[2,4]]', description: '[1,2,3,4,5] target 6 → [[1,5],[2,4]]', got: JSON.stringify(r1) },\n    { pass: JSON.stringify(r2) === '[]',            description: '[1,2,3] target 10 → []',               got: JSON.stringify(r2) },\n    { pass: JSON.stringify(r3) === '[[2,2]]',       description: '[2,2,3] target 4 → [[2,2]]',           got: JSON.stringify(r3) },\n    { pass: r4.length === 3,                        description: '[1,1,1] target 2 → 3 pairs',           got: JSON.stringify(r4) },\n    { pass: findPairs([], 5).length === 0,          description: 'empty array → []',                     got: JSON.stringify(findPairs([], 5)) },\n  ];\n}",
+      "hint": "The outer loop picks the first element (index i). The inner loop starts at i+1 — this ensures you never pair an element with itself, and never repeat a pair in reversed order. If nums[i] + nums[j] equals the target, push [nums[i], nums[j]] to pairs.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+          "description": "JavaScript loops and iteration"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "What should your loop's starting value, condition, and increment look like for this problem?",
+        "The outer loop picks the first element (index i). The inner loop starts at i+1 — this ensures you never pair an element with itself, and never repeat a pair in reversed order. If nums[i] + nums[j] equals the target, push [nums[i], nums[j]] to pairs.",
+        "Use a loop to iterate, then return the accumulated result. The function should return an array."
+      ]
+    },
+    {
+      "id": 257,
+      "title": "caesarCipher",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "charCode",
+        "cipher",
+        "tier3"
+      ],
+      "description": "Encode a string by shifting each letter forward in the alphabet by a given amount.",
+      "instructions": "Write a function `caesarCipher(str, shift)` that shifts every letter in `str` forward by `shift` positions in the alphabet. Non-letter characters are unchanged.\n\n- Wraps around: shifting 'z' by 1 gives 'a', shifting 'Z' by 2 gives 'B'\n- Preserves case: uppercase stays uppercase, lowercase stays lowercase\n\n```js\ncaesarCipher('abc', 1);    // 'bcd'\ncaesarCipher('xyz', 3);    // 'abc'  (wraps around)\ncaesarCipher('Hello!', 1); // 'Ifmmp!'  (! unchanged)\ncaesarCipher('ABC', 25);   // 'ZAB'\n```\n\nHint: `String.fromCharCode()` and `str.charCodeAt(i)` convert between characters and their numeric codes. Lowercase 'a' is 97, 'z' is 122. Uppercase 'A' is 65, 'Z' is 90.",
+      "starterCode": "function caesarCipher(str, shift) {\n  // loop through each character\n  // if it's a letter, shift it (wrapping with modulo)\n  // otherwise leave it unchanged\n}",
+      "solution": "function caesarCipher(str, shift) {\n  let result = '';\n  for (let i = 0; i < str.length; i++) {\n    const code = str.charCodeAt(i);\n    if (code >= 65 && code <= 90) {\n      result += String.fromCharCode(((code - 65 + shift) % 26) + 65);\n    } else if (code >= 97 && code <= 122) {\n      result += String.fromCharCode(((code - 97 + shift) % 26) + 97);\n    } else {\n      result += str[i];\n    }\n  }\n  return result;\n}",
+      "testRunner": "(code) => {\n  const caesarCipher = new Function(code + '; return caesarCipher;')();\n  return [\n    { pass: caesarCipher('abc', 1) === 'bcd',    description: 'caesarCipher(\"abc\", 1) === \"bcd\"',       got: caesarCipher('abc', 1) },\n    { pass: caesarCipher('xyz', 3) === 'abc',    description: 'wrap-around: \"xyz\" shift 3 === \"abc\"',   got: caesarCipher('xyz', 3) },\n    { pass: caesarCipher('Hello!', 1) === 'Ifmmp!', description: 'preserves case and non-letters',      got: caesarCipher('Hello!', 1) },\n    { pass: caesarCipher('ABC', 25) === 'ZAB',   description: 'uppercase wrap: \"ABC\" shift 25 === \"ZAB\"', got: caesarCipher('ABC', 25) },\n    { pass: caesarCipher('a', 26) === 'a',       description: 'shift 26 returns to same letter',        got: caesarCipher('a', 26) },\n    { pass: caesarCipher('Hello World', 13) === 'Uryyb Jbeyq', description: 'ROT13 test',               got: caesarCipher('Hello World', 13) },\n    { pass: caesarCipher('123!', 5) === '123!',  description: 'non-letters unchanged',                  got: caesarCipher('123!', 5) },\n  ];\n}",
+      "hint": "The key is charCodeAt(i) to get the numeric value of each character. For lowercase: subtract 97 (so 'a' becomes 0), add shift, mod 26 to wrap, add 97 back. For uppercase: same but with 65. Modulo (%) is the wrap-around mechanism — (25 + 3) % 26 = 2, which maps 'z'+3 to 'c'.",
+      "resources": [
+        {
+          "label": "MDN: String",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+          "description": "JavaScript String reference"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "What built-in string method converts all characters to uppercase?",
+        "The key is charCodeAt(i) to get the numeric value of each character. For lowercase: subtract 97 (so 'a' becomes 0), add shift, mod 26 to wrap, add 97 back. For uppercase: same but with 65. Modulo (%) is the wrap-around mechanism — (25 + 3) % 26 = 2, which maps 'z'+3 to 'c'.",
+        "Key method(s): `charCodeAt`, `fromCharCode`, `String.fromCharCode`. Use a loop to iterate, then return the accumulated result."
+      ]
+    },
+    {
+      "id": 263,
+      "title": "Implement myFlatMap",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "syntax-translation",
+        "refactoring"
+      ],
+      "tags": [
+        "higher-order",
+        "flatMap",
+        "map",
+        "flatten",
+        "tier3"
+      ],
+      "description": "Implement flatMap from scratch — map each element, then flatten one level.",
+      "instructions": "Write a function `myFlatMap(arr, fn)` that works like `Array.flatMap`: it maps each element through `fn`, then flattens the result by one level.\n\n```js\nmyFlatMap([1, 2, 3], x => [x, x * 2]);\n// [1, 2, 2, 4, 3, 6]\n\nmyFlatMap(['hello world', 'foo bar'], s => s.split(' '));\n// ['hello', 'world', 'foo', 'bar']\n\nmyFlatMap([1, 2, 3], x => x % 2 === 0 ? [x] : []);\n// [2]  — odd numbers mapped to empty arrays, then flattened away\n```\n\nDo not use the built-in `.flatMap()` or `.flat()`. Use your `myMap` and `myReduce` knowledge.",
+      "starterCode": "function myFlatMap(arr, fn) {\n  // map each element through fn, then flatten the results one level\n}",
+      "solution": "function myFlatMap(arr, fn) {\n  const mapped = [];\n  for (let i = 0; i < arr.length; i++) {\n    mapped.push(fn(arr[i], i, arr));\n  }\n  const result = [];\n  for (let i = 0; i < mapped.length; i++) {\n    if (Array.isArray(mapped[i])) {\n      for (let j = 0; j < mapped[i].length; j++) {\n        result.push(mapped[i][j]);\n      }\n    } else {\n      result.push(mapped[i]);\n    }\n  }\n  return result;\n}",
+      "testRunner": "(code) => {\n  const myFlatMap = new Function(code + '; return myFlatMap;')();\n  const r1 = myFlatMap([1, 2, 3], x => [x, x * 2]);\n  const r2 = myFlatMap(['hello world', 'foo bar'], s => s.split(' '));\n  const r3 = myFlatMap([1, 2, 3], x => x % 2 === 0 ? [x] : []);\n  const r4 = myFlatMap([1, 2, 3], x => x * 10);\n  return [\n    { pass: JSON.stringify(r1) === '[1,2,2,4,3,6]',              description: 'each element mapped to pair, flattened',    got: JSON.stringify(r1) },\n    { pass: JSON.stringify(r2) === '[\"hello\",\"world\",\"foo\",\"bar\"]', description: 'strings split and flattened',             got: JSON.stringify(r2) },\n    { pass: JSON.stringify(r3) === '[2]',                         description: 'empty arrays flatten away (filter-like)',   got: JSON.stringify(r3) },\n    { pass: JSON.stringify(r4) === '[10,20,30]',                  description: 'non-array results work too',               got: JSON.stringify(r4) },\n    { pass: myFlatMap([], x => [x]).length === 0,                 description: 'empty array returns empty',                got: myFlatMap([], x => [x]).length },\n  ];\n}",
+      "hint": "Two steps: first map every element through fn to get an array of results. Then flatten — loop through each result; if it's an array, push each element individually; if not, push it as-is. This \"flatten one level\" behavior is the difference between map (keeps nesting) and flatMap (removes one level).",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Array.prototype.map()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map",
+          "description": "The map method"
+        },
+        {
+          "label": "MDN: Array.prototype.reduce()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce",
+          "description": "The reduce method"
+        }
+      ],
+      "hints": [
+        "`isArray` is a key tool for this exercise.",
+        "Two steps: first map every element through fn to get an array of results. Then flatten — loop through each result; if it's an array, push each element individually; if not, push it as-is. This \"flatten one level\" behavior is the difference between map (keeps nesting) and flatMap (removes one level).",
+        "Key method(s): `isArray`, `Array.isArray`. Use a loop to iterate, then return the accumulated result. The function should return an array."
+      ]
+    },
+    {
+      "id": 264,
+      "title": "Implement myZip",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "syntax-translation",
+        "refactoring"
+      ],
+      "tags": [
+        "arrays",
+        "zip",
+        "pair",
+        "tier3"
+      ],
+      "description": "Implement zip — combine two arrays element by element into pairs.",
+      "instructions": "Write a function `myZip(arr1, arr2)` that takes two arrays and returns an array of pairs, where each pair contains the elements at the same index from each array.\n\nStop at the length of the shorter array.\n\n```js\nmyZip([1, 2, 3], ['a', 'b', 'c']);\n// [[1, 'a'], [2, 'b'], [3, 'c']]\n\nmyZip([1, 2], ['a', 'b', 'c', 'd']);\n// [[1, 'a'], [2, 'b']]  — stops at shorter array\n\nmyZip([], [1, 2, 3]);\n// []\n```",
+      "starterCode": "function myZip(arr1, arr2) {\n  // loop up to the shorter array's length, building pairs\n}",
+      "solution": "function myZip(arr1, arr2) {\n  const result = [];\n  const len = Math.min(arr1.length, arr2.length);\n  for (let i = 0; i < len; i++) {\n    result.push([arr1[i], arr2[i]]);\n  }\n  return result;\n}",
+      "testRunner": "(code) => {\n  const myZip = new Function(code + '; return myZip;')();\n  const r1 = myZip([1, 2, 3], ['a', 'b', 'c']);\n  const r2 = myZip([1, 2], ['a', 'b', 'c', 'd']);\n  const r3 = myZip([], [1, 2, 3]);\n  const r4 = myZip([10, 20, 30], [1, 2, 3]);\n  return [\n    { pass: JSON.stringify(r1) === '[[1,\"a\"],[2,\"b\"],[3,\"c\"]]', description: 'equal length arrays zipped correctly',   got: JSON.stringify(r1) },\n    { pass: JSON.stringify(r2) === '[[1,\"a\"],[2,\"b\"]]',         description: 'stops at shorter array length',         got: JSON.stringify(r2) },\n    { pass: r3.length === 0,                                    description: 'empty first array returns []',          got: r3.length },\n    { pass: JSON.stringify(r4[0]) === '[10,1]',                 description: 'first pair correct',                   got: JSON.stringify(r4[0]) },\n    { pass: Array.isArray(r1[0]),                               description: 'each element is an array (pair)',      got: Array.isArray(r1[0]) },\n    { pass: r1[0].length === 2,                                 description: 'each pair has exactly 2 elements',    got: r1[0].length },\n  ];\n}",
+      "hint": "Use Math.min(arr1.length, arr2.length) to find the stopping point. Loop from 0 to that length. Each iteration: push [arr1[i], arr2[i]] — a two-element array — into result. That inner array is the \"pair\" for that index position.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+          "description": "Template literal syntax"
+        }
+      ],
+      "hints": [
+        "What is the modern equivalent of this pattern, and how does it change what the code communicates?",
+        "Use Math.min(arr1.length, arr2.length) to find the stopping point. Loop from 0 to that length. Each iteration: push [arr1[i], arr2[i]] — a two-element array — into result. That inner array is the \"pair\" for that index position.",
+        "Key method(s): `min`, `Math.min`. Use a loop to iterate, then return the accumulated result. The function should return an array."
+      ]
+    },
+    {
+      "id": 265,
+      "title": "Implement myGroupBy",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "syntax-translation",
+        "refactoring"
+      ],
+      "tags": [
+        "arrays",
+        "reduce",
+        "groupBy",
+        "tier3"
+      ],
+      "description": "Implement groupBy from scratch using a loop or reduce.",
+      "instructions": "Write a function `myGroupBy(arr, fn)` that groups the elements of `arr` into an object. The key for each element is determined by calling `fn(element)`.\n\n```js\nmyGroupBy([1, 2, 3, 4, 5, 6], x => x % 2 === 0 ? 'even' : 'odd');\n// { odd: [1, 3, 5], even: [2, 4, 6] }\n\nmyGroupBy(['one', 'two', 'three', 'four'], s => s.length);\n// { 3: ['one', 'two'], 4: ['four'], 5: ['three'] }\n```\n\nThis is similar to the `groupBy` exercise on objects, but here the grouping key comes from a **function** rather than a property name.",
+      "starterCode": "function myGroupBy(arr, fn) {\n  // use a loop or reduce to build the groups object\n}",
+      "solution": "function myGroupBy(arr, fn) {\n  const groups = {};\n  arr.forEach(item => {\n    const key = fn(item);\n    if (!groups[key]) groups[key] = [];\n    groups[key].push(item);\n  });\n  return groups;\n}",
+      "testRunner": "(code) => {\n  const myGroupBy = new Function(code + '; return myGroupBy;')();\n  const r1 = myGroupBy([1, 2, 3, 4, 5, 6], x => x % 2 === 0 ? 'even' : 'odd');\n  const r2 = myGroupBy(['one', 'two', 'three', 'four'], s => s.length);\n  return [\n    { pass: JSON.stringify(r1.odd) === '[1,3,5]',           description: 'odd group is [1,3,5]',             got: JSON.stringify(r1.odd) },\n    { pass: JSON.stringify(r1.even) === '[2,4,6]',          description: 'even group is [2,4,6]',            got: JSON.stringify(r1.even) },\n    { pass: JSON.stringify(r2[3]) === '[\"one\",\"two\"]',      description: 'length-3 words group correctly',   got: JSON.stringify(r2[3]) },\n    { pass: JSON.stringify(r2[5]) === '[\"three\"]',          description: 'length-5 words group correctly',   got: JSON.stringify(r2[5]) },\n    { pass: myGroupBy([], x => x).constructor === Object,   description: 'empty array returns empty object', got: JSON.stringify(myGroupBy([], x => x)) },\n  ];\n}",
+      "hint": "Same structure as the groupBy object exercise, but instead of item[prop] to get the key, you call fn(item). That one change makes it much more flexible — the grouping logic can be anything: remainder, string length, a condition, etc.",
+      "resources": [
+        {
+          "label": "MDN: Array",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+          "description": "JavaScript Array reference"
+        },
+        {
+          "label": "MDN: Array.prototype.reduce()",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce",
+          "description": "The reduce method"
+        },
+        {
+          "label": "MDN: Object",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+          "description": "JavaScript Object reference"
+        }
+      ],
+      "hints": [
+        "The `forEach` method will be helpful here.",
+        "Same structure as the groupBy object exercise, but instead of item[prop] to get the key, you call fn(item). That one change makes it much more flexible — the grouping logic can be anything: remainder, string length, a condition, etc.",
+        "Key method(s): `forEach`."
+      ]
+    }
+  ]
+}
