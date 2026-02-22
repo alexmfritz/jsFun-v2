@@ -214,3 +214,67 @@ function getSolutionExt(exerciseId) {
   return TYPE_TO_EXT[ex?.type] ?? '.js';
 }
 
+app.post('/api/progress/complete', (req, res) => {
+  ensureUserData();
+  const { exerciseId, attempts, completedAt } = req.body;
+  if (!exerciseId)
+    return res.status(400).json({ error: 'exerciseId required' });
+
+  const progress = readJson(PROGRESS_FILE) || {};
+  if (!progress.completedExercises) progress.completedExercises = {};
+  progress.completedExercises[String(exerciseId)] = {
+    completedAt: completedAt || new Date().toISOString(),
+    attempts: attempts || 0,
+  };
+  progress.lastUpdated = new Date().toISOString();
+  writeJson(PROGRESS_FILE, progress);
+
+  res.json({ success: true });
+});
+
+app.post('/api/progress/attempt', (req, res) => {
+  ensureUserData();
+  const { exerciseId } = req.body;
+  if (!exerciseId)
+    return res.status(400).json({ error: 'exerciseId required' });
+
+  const progress = readJson(PROGRESS_FILE) || {};
+  if (!progress.attempts) progress.attempts = {};
+  progress.attempts[String(exerciseId)] =
+    (progress.attempts[String(exerciseId)] || 0) + 1;
+  progress.lastUpdated = new Date().toISOString();
+  writeJson(PROGRESS_FILE, progress);
+
+  res.json({ success: true });
+});
+
+app.post('/api/progress/reset', (req, res) => {
+  ensureUserData();
+  const { exerciseId } = req.body;
+  if (!exerciseId)
+    return res.status(400).json({ error: 'exerciseId required' });
+
+  const progress = readJson(PROGRESS_FILE) || {};
+  const id = String(exerciseId);
+
+  if (progress.savedSolutions) delete progress.savedSolutions[id];
+  if (progress.completedExercises) delete progress.completedExercises[id];
+  if (progress.attempts) delete progress.attempts[id];
+
+  progress.lastUpdated = new Date().toISOString();
+  writeJson(PROGRESS_FILE, progress);
+
+  // Remove individual solution file if it exists
+  for (const ext of [...new Set(Object.values(TYPE_TO_EXT))]) {
+    const solutionFile = path.join(
+      SOLUTIONS_DIR,
+      `exercise-${exerciseId}${ext}`
+    );
+    if (fs.existsSync(solutionFile)) fs.unlinkSync(solutionFile);
+  }
+
+  res.json({ success: true });
+});
+
+// The reset endpoint checks all possible file extensions because the exercise type might have changed since the solution was saved. 
+// Better to clean up all possible files than leave orphans.
