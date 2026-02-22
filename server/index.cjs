@@ -63,3 +63,32 @@ const ADMIN_CONFIG_FILE = path.join(ROOT, 'admin.config.json');
 // A teacher can push new exercises to the Gitea server. Students pull the update. 
 // Their progress is untouched because it lives in a gitignored directory.
 
+const loginAttempts = new Map(); // ip -> { count, resetAt }
+const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
+const RATE_LIMIT_MAX = 10; // max attempts per window
+
+function rateLimit(req, res, next) {
+  const ip = req.ip || req.connection.remoteAddress || 'unknown';
+  const now = Date.now();
+  const entry = loginAttempts.get(ip);
+
+  if (entry && now < entry.resetAt) {
+    if (entry.count >= RATE_LIMIT_MAX) {
+      return res.status(429).json({
+        error: 'Too many attempts. Try again later.',
+      });
+    }
+    entry.count++;
+  } else {
+    loginAttempts.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW });
+  }
+  next();
+}
+
+// An in-memory rate limiter using a Map. No Redis, no external dependency. 
+// Each IP address gets 10 login attempts per 15-minute window. 
+// This is only applied to admin endpoints.
+
+// Why in-memory? The server is single-process and the rate limit state does not need to survive restarts. 
+// If the server restarts, the rate limit resets -- which is fine for a classroom deployment where the admin is the teacher sitting in the same room.
+
