@@ -103,3 +103,45 @@ if (!isDev) {
 
 // In production mode, express.static serves the Vite build output. 
 // In dev mode, Vite handles frontend serving -- Express only needs to handle API routes.
+
+function readJson(filePath) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  } catch {
+    return null;
+  }
+}
+
+function writeJson(filePath, data) {
+  const dir = path.dirname(filePath);
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
+}
+
+function ensureUserData() {
+  if (!fs.existsSync(USER_DATA_DIR))
+    fs.mkdirSync(USER_DATA_DIR, { recursive: true });
+  if (!fs.existsSync(SOLUTIONS_DIR))
+    fs.mkdirSync(SOLUTIONS_DIR, { recursive: true });
+  if (!fs.existsSync(PROGRESS_FILE)) {
+    writeJson(PROGRESS_FILE, {
+      studentName: '',
+      completedExercises: {},
+      savedSolutions: {},
+      attempts: {},
+      createdAt: new Date().toISOString(),
+    });
+  }
+}
+
+// readJson returns null on any error (file missing, invalid JSON, permission denied). 
+// Callers check for null and return a 500 error. 
+// This avoids try/catch boilerplate in every route handler.
+
+// writeJson creates parent directories if they do not exist (recursive: true). 
+// The JSON.stringify with 2-space indentation produces human-readable files -- 
+// students and teachers can inspect user-data/progress.json directly.
+
+// ensureUserData is called before every progress-related route. 
+// It is idempotent -- calling it multiple times has no effect if the directories and files already exist. 
+// On first run, it creates the entire user-data/ structure.
