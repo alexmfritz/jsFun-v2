@@ -145,3 +145,28 @@ function ensureUserData() {
 // ensureUserData is called before every progress-related route. 
 // It is idempotent -- calling it multiple times has no effect if the directories and files already exist. 
 // On first run, it creates the entire user-data/ structure.
+
+app.get('/api/exercises', (req, res) => {
+  const data = readJson(EXERCISES_FILE);
+  if (!data) return res.status(500).json({ error: 'Failed to read exercises' });
+  res.json(data);
+});
+
+// No transformation, no filtering. The entire exercises.json is sent as-is. 
+// At a few hundred exercises this is under 500KB -- small enough that caching and pagination would add complexity without meaningful benefit.
+
+app.get('/api/progress', (req, res) => {
+  ensureUserData();
+  const data = readJson(PROGRESS_FILE) || {
+    studentName: '',
+    completedExercises: {},
+    savedSolutions: {},
+    attempts: {},
+    createdAt: new Date().toISOString(),
+  };
+  res.json(data);
+});
+
+// The fallback object after || handles the edge case where readJson returns null even after ensureUserData created the file 
+// (e.g., a race condition or permission issue).
+
