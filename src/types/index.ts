@@ -134,3 +134,21 @@ export interface ExercisesData {
 // ExercisesData is the shape of the /api/exercises response. 
 // It contains everything the frontend needs in a single request -- no pagination, no lazy loading. 
 // With a few hundred exercises totaling a few hundred KB of JSON, there is no performance reason to complicate the data fetching.
+
+export interface CompletedExercise {
+  completedAt: string;
+  attempts: number;
+}
+
+export interface Progress {
+  studentName: string;
+  completedExercises: Record<string, CompletedExercise>;
+  savedSolutions: Record<string, string>;
+  attempts: Record<string, number>;
+  createdAt: string;
+  lastUpdated?: string;
+}
+
+// Progress is stored as a flat JSON file. Keys are exercise IDs (as strings, since JSON object keys must be strings). 
+// savedSolutions maps exercise IDs to the student's last saved code, enabling auto-save that persists across browser sessions.
+
