@@ -2,7 +2,8 @@ export type ExerciseType = 'js' | 'html' | 'css' | 'html-css';
 export type Tier = 1 | 2 | 3 | 4 | 5;
 
 // The ExerciseType union constrains exercises to four formats. Each format has a different execution strategy:
-// js: Student code is executed in a Web Worker. The testRunner field contains an arrow function string that evaluates the student's code and returns test results. Web Workers provide sandboxing -- a student's infinite loop will not freeze the UI.
+// js: Student code is executed in a Web Worker. The testRunner field contains an arrow function string that evaluates the student's code and returns test results. 
+// Web Workers provide sandboxing -- a student's infinite loop will not freeze the UI.
 // html: Student code is injected into a sandboxed <iframe>. Test cases query the DOM inside the iframe.
 // css: The platform provides fixed HTML (providedHtml), and the student writes CSS. Test cases check computed styles via getComputedStyle().
 // html-css: Combined format -- students write both HTML and CSS. Both DOM assertions and style assertions apply.
@@ -33,5 +34,69 @@ export interface TestCase {
   flags?: string;
 }
 
-// Test cases are JSON-serializable assertion objects, not executable code. This is a deliberate design choice: test logic for HTML/CSS exercises lives in structured data rather than JavaScript strings, which makes them easier to author, validate, and display.
+// Test cases are JSON-serializable assertion objects, not executable code. 
+// This is a deliberate design choice: test logic for HTML/CSS exercises lives in structured data rather than JavaScript strings, 
+// which makes them easier to author, validate, and display.
 
+// The assertion field determines how the test runner evaluates the result:
+
+// Assertion	What it checks
+// exists	Element matching query exists in the DOM
+// textContains	Element's textContent includes value
+// countAtLeast	At least value elements match query
+// equals	Computed style property equals value
+// oneOf	Computed style property matches any item in value array
+// sourceContains	Raw HTML source includes value string
+// sourceMatch	Raw HTML source matches regex value with flags
+// hasId	Element with the given ID exists
+// hasClass	Element matching query has class value
+
+export interface Resource {
+  label: string;
+  url: string;
+  description?: string;
+}
+
+export interface Exercise {
+  id: number;
+  title: string;
+  type: ExerciseType;
+  tier: Tier;
+  /** Hierarchical path: ["js-fundamentals", "operators", "arithmetic"] */
+  category: string[];
+  tags: string[];
+  /** One-liner shown on browse cards */
+  description: string;
+  /** Full problem statement shown in exercise panel */
+  instructions: string;
+  /** Template code (empty string for Tier V) */
+  starterCode: string;
+  /** Reference solution */
+  solution: string;
+  /** JS exercises: function-as-string. HTML/CSS: empty string (use testCases) */
+  testRunner: string;
+  /** HTML/CSS assertion objects */
+  testCases?: TestCase[];
+  /** CSS exercises: the HTML structure to apply styles to */
+  providedHtml?: string;
+  /** @deprecated Use `hints` array instead. Kept for backward compatibility. */
+  hint?: string;
+  /** Progressive hints -- up to 3, unlocked incrementally */
+  hints?: string[];
+  resources: Resource[];
+  /** Override default attempt threshold before solution unlocks */
+  solutionGate?: number;
+}
+
+// Each exercise is a self-contained JSON object. There is no separate "test file" or "solution file" -- everything lives in one structure. This simplifies the authoring workflow for teachers who may not be comfortable with complex file hierarchies.
+
+// The category field is an array representing a hierarchical path. ["js-fundamentals", "operators", "arithmetic"] means this exercise lives under JS Fundamentals > Operators > Arithmetic. The browse UI uses this for drill-down navigation.
+
+// The starterCode field varies by tier:
+
+// Tier	starterCode Example
+// 1 (Spark)	Full function body with // YOUR CODE HERE markers
+// 2 (Foundations)	function add(a, b) {\n  \n} -- signature only
+// 3 (Builder)	Partial implementation with structural hints
+// 4 (Architect)	// Step 1: Parse the input\n// Step 2: Transform\n// Step 3: Return
+// 5 (Mastercraft)	"" (empty string -- blank editor)
