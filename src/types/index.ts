@@ -11,6 +11,7 @@ export interface TestCase {
     | 'countAtLeast'
     | 'equals'
     | 'oneOf'
+    | 'contains'
     | 'sourceContains'
     | 'sourceMatch'
     | 'hasId'
