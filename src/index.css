@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* --- Dark Theme (default) --- */
+/* ─── Fonts — system stacks, no external dependencies ─────────────────────── */
+
+/* ─── Dark Theme (default) ─────────────────────────────────────────────────── */
 :root,
 .dark {
   --bg-root: #090b10;
@@ -30,7 +32,7 @@
   color-scheme: dark;
 }
 
-/* --- Light Theme --- */
+/* ─── Light Theme ──────────────────────────────────────────────────────────── */
 .light {
   --bg-root: #f8fafc;
   --bg-surface: #ffffff;
@@ -57,7 +59,7 @@
   color-scheme: light;
 }
 
-/* --- High Contrast Theme (accessibility) --- */
+/* ─── High Contrast Theme (accessibility) ─────────────────────────────────── */
 .high-contrast {
   --bg-root: #000000;
   --bg-surface: #0a0a0a;
@@ -84,7 +86,7 @@
   color-scheme: dark;
 }
 
-/* --- Base Styles --- */
+/* ─── Base Styles ──────────────────────────────────────────────────────────── */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -100,14 +102,14 @@ body,
 body {
   background-color: var(--bg-root);
   color: var(--text-primary);
-  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro',
-    Menlo, Consolas, monospace;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
   font-size: 14px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ─── Typography Scale ─────────────────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Lexend', sans-serif;
   font-weight: 600;
@@ -115,7 +117,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.3;
 }
 
-/* --- Scrollbar Styles --- */
+/* ─── Scrollbars ───────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -131,7 +133,7 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--text-faint);
 }
 
-/* --- Focus & Accessibility Styles --- */
+/* ─── Focus styles ─────────────────────────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
@@ -142,7 +144,56 @@ h1, h2, h3, h4, h5, h6 {
   outline-offset: 2px;
 }
 
-/* Screen reader only (visible on focus for skip links) */
+/* ─── Utility classes (used with Tailwind) ─────────────────────────────────── */
+.font-heading {
+  font-family: 'Lexend', sans-serif;
+}
+
+.font-code {
+  font-family: 'Source Code Pro', monospace;
+}
+
+/* ─── CodeMirror overrides ─────────────────────────────────────────────────── */
+.cm-editor {
+  height: 100%;
+  font-family: 'Source Code Pro', monospace !important;
+  font-size: 14px !important;
+}
+
+.cm-scroller {
+  font-family: 'Source Code Pro', monospace !important;
+  overflow: auto;
+}
+
+.cm-editor.cm-focused {
+  outline: none !important;
+}
+
+/* ─── Tier badge styles ────────────────────────────────────────────────────── */
+.tier-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: 'Lexend', sans-serif;
+  flex-shrink: 0;
+}
+
+/* ─── Test result animations ───────────────────────────────────────────────── */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.test-result {
+  animation: slideIn 0.15s ease-out;
+}
+
+/* ─── Screen reader only (visible on focus for skip links) ────────────────── */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -176,32 +227,7 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
 }
 
-/* CodeMirror overrides */
-.cm-editor {
-  height: 100%;
-  font-family: 'Source Code Pro', monospace !important;
-  font-size: 14px !important;
-}
-
-.cm-scroller {
-  font-family: 'Source Code Pro', monospace !important;
-  overflow: auto;
-}
-
-.cm-editor.cm-focused {
-  outline: none !important;
-}
-
-/* Animations */
-@keyframes slideIn {
-  from { opacity: 0; transform: translateY(-4px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.test-result {
-  animation: slideIn 0.15s ease-out;
-}
-
+/* ─── Skeleton loading animation ──────────────────────────────────────────── */
 @keyframes skeleton-pulse {
   0%   { opacity: 0.4; }
   50%  { opacity: 1; }
@@ -212,23 +238,21 @@ h1, h2, h3, h4, h5, h6 {
   animation: skeleton-pulse 1.5s ease-in-out infinite;
 }
 
-/* Tier badge */
-.tier-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  font-size: 10px;
-  font-weight: 700;
-  font-family: 'Lexend', sans-serif;
-  flex-shrink: 0;
+/* ─── Save indicator fade out ──────────────────────────────────────────────── */
+@keyframes fadeOut {
+  0%   { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { opacity: 0; }
 }
 
-/* Theme transition */
+/* ─── Tutorial spotlight pulse ─────────────────────────────────────────────── */
+@keyframes spotlightPulse {
+  0%   { box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.6), 0 0 0 2px var(--accent); }
+  50%  { box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.6), 0 0 0 4px var(--accent); }
+  100% { box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.6), 0 0 0 2px var(--accent); }
+}
+
+/* ─── Smooth transitions ───────────────────────────────────────────────────── */
 .transition-theme {
-  transition: background-color 0.2s ease,
-              color 0.2s ease,
-              border-color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
