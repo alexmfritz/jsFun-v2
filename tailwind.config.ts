@@ -6,20 +6,12 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        heading: [
-          'system-ui', '-apple-system', 'BlinkMacSystemFont',
-          '"Segoe UI"', 'sans-serif',
-        ],
-        code: [
-          'ui-monospace', '"Cascadia Code"', '"Source Code Pro"',
-          'Menlo', 'Consolas', 'monospace',
-        ],
-        mono: [
-          'ui-monospace', '"Cascadia Code"', '"Source Code Pro"',
-          'Menlo', 'Consolas', 'monospace',
-        ],
+        heading: ['system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
+        code: ['ui-monospace', '"Cascadia Code"', '"Source Code Pro"', 'Menlo', 'Consolas', 'monospace'],
+        mono: ['ui-monospace', '"Cascadia Code"', '"Source Code Pro"', 'Menlo', 'Consolas', 'monospace'],
       },
       colors: {
+        // Dark theme (default)
         'bg-root': 'var(--bg-root)',
         'bg-surface': 'var(--bg-surface)',
         'bg-raised': 'var(--bg-raised)',
@@ -38,6 +30,7 @@ const config: Config = {
         border: 'var(--border)',
         'border-strong': 'var(--border-strong)',
       },
+      // Tier colors
       backgroundColor: {
         'tier-1': '#34d399',
         'tier-2': '#60a5fa',
