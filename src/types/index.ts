@@ -1,3 +1,9 @@
+/**
+ * Core type definitions for jsFun
+ */
+
+// ─── Exercise Types ────────────────────────────────────────────────────────────
+
 export type ExerciseType = 'js' | 'html' | 'css' | 'html-css';
 export type Tier = 1 | 2 | 3 | 4 | 5;
 
@@ -11,7 +17,6 @@ export interface TestCase {
     | 'countAtLeast'
     | 'equals'
     | 'oneOf'
-    | 'contains'
     | 'sourceContains'
     | 'sourceMatch'
     | 'hasId'
@@ -56,12 +61,14 @@ export interface Exercise {
   providedHtml?: string;
   /** @deprecated Use `hints` array instead. Kept for backward compatibility. */
   hint?: string;
-  /** Progressive hints -- up to 3, unlocked incrementally */
+  /** Progressive hints — up to 3, unlocked incrementally as unique attempts increase */
   hints?: string[];
   resources: Resource[];
   /** Override default attempt threshold before solution unlocks */
   solutionGate?: number;
 }
+
+// ─── Category / Collection ──────────────────────────────────────────────────
 
 export interface Category {
   label: string;
@@ -77,11 +84,11 @@ export interface Collection {
   exerciseIds: number[];
   isDefault?: boolean;
   color?: string;
-  /** Hide from student-facing browse UI */
+  /** Hide from student-facing browse UI (internal/instructor groupings) */
   hidden?: boolean;
-  /** Source attribution */
+  /** Source attribution (e.g. "Rithm School", "Turing School") */
   source?: string;
-  /** SPDX license identifier */
+  /** SPDX license identifier (e.g. "MIT") */
   license?: string;
   /** Full attribution text shown in the collection banner */
   attribution?: string;
@@ -92,6 +99,8 @@ export interface ExercisesData {
   collections: Collection[];
   exercises: Exercise[];
 }
+
+// ─── Progress ──────────────────────────────────────────────────────────────────
 
 export interface CompletedExercise {
   completedAt: string;
@@ -107,11 +116,15 @@ export interface Progress {
   lastUpdated?: string;
 }
 
+// ─── Test Results ──────────────────────────────────────────────────────────────
+
 export interface TestResult {
   pass: boolean;
   description: string;
   got?: unknown;
 }
+
+// ─── Redux State ───────────────────────────────────────────────────────────────
 
 export interface ExercisesState {
   exercises: Exercise[];
@@ -126,9 +139,9 @@ export interface ProgressState {
   completedExercises: Record<string, CompletedExercise>;
   savedSolutions: Record<string, string>;
   attempts: Record<string, number>;
-  /** Client-side only: count of unique (non-duplicate) code submissions */
+  /** Client-side only: count of unique (non-duplicate) code submissions per exercise */
   uniqueAttempts: Record<string, number>;
-  /** Client-side only: set of hashed code strings that failed tests */
+  /** Client-side only: set of hashed code strings that failed tests, per exercise */
   failedCodeHashes: Record<string, string[]>;
   createdAt: string;
   lastUpdated?: string;
@@ -137,6 +150,7 @@ export interface ProgressState {
 }
 
 export type Theme = 'dark' | 'light' | 'high-contrast';
+
 export type StatusSort = 'default' | 'in-progress-first' | 'not-started-first' | 'completed-first';
 
 export interface Toast {
@@ -166,13 +180,16 @@ export interface AdminState {
   error: string | null;
 }
 
+// ─── API Response Types ─────────────────────────────────────────────────────────
+
 export interface ApiResponse<T = unknown> {
   success: boolean;
   data?: T;
   error?: string;
 }
 
-// The colors are not CSS variables because they are tier-specific constants, not theme-dependent.
+// ─── Tier Metadata ──────────────────────────────────────────────────────────────
+
 export const TIER_META: Record<
   Tier,
   { name: string; label: string; color: string; bgColor: string; borderColor: string }
@@ -220,12 +237,15 @@ export const TYPE_META: Record<ExerciseType, { label: string; color: string }> =
   css: { label: 'CSS', color: '#22d3ee' },
   'html-css': { label: 'HTML+CSS', color: '#a78bfa' },
 };
-// Type badges use industry-standard color associations: yellow for JavaScript, pink for HTML, cyan for CSS.
 
+/** Unique attempts needed to unlock each progressive hint */
 export const HINT_GATES = [3, 6, 9] as const;
 
-export const DEFAULT_SOLUTION_GATE = 10;
-
+/**
+ * Resolve progressive hints from an exercise, supporting both legacy `hint`
+ * (single string) and new `hints` (array) formats.
+ * Returns an array of 0-3 hint strings.
+ */
 export function getHints(exercise: Exercise): string[] {
   if (exercise.hints && exercise.hints.length > 0) {
     return exercise.hints.slice(0, 3);
@@ -235,3 +255,5 @@ export function getHints(exercise: Exercise): string[] {
   }
   return [];
 }
+/** Unique attempts needed to unlock the solution */
+export const DEFAULT_SOLUTION_GATE = 10;

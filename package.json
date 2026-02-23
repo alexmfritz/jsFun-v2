@@ -1,7 +1,7 @@
 {
-  "name": "jsfun-v2",
-  "private": true,
-  "version": "0.0.0",
+  "name": "jsfun",
+  "version": "2.0.0",
+  "description": "Interactive coding exercise platform for incarcerated students",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,6 +13,7 @@
     "setup-admin": "node scripts/setup-admin.cjs",
     "build:exercises": "node scripts/build-exercises.cjs",
     "sync-progress": "node scripts/sync-progress.cjs",
+    "push": "node scripts/sync-progress.cjs && git add README.md && git commit -m \"Update progress\" && git push",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
@@ -40,7 +41,6 @@
     "react-router-dom": "^6.28.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.13.0",
     "@playwright/test": "^1.48.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.0",
@@ -50,6 +50,7 @@
     "@types/node": "^22.8.4",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "@eslint/js": "^9.13.0",
     "@vitejs/plugin-react": "^4.3.3",
     "@vitest/coverage-v8": "^2.1.4",
     "autoprefixer": "^10.4.20",
