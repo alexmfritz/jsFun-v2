@@ -1,10 +1,12 @@
 import { TestResult, TestCase } from '../types';
 
+/**
+ * Run HTML exercise tests.
+ * Creates a detached DOM from the student's HTML and runs assertions against it.
+ */
 export function runHtmlTests(htmlCode: string, testCases: TestCase[]): TestResult[] {
   const parser = new DOMParser();
-  const doc = parser.parseFromString(
-    `<!DOCTYPE html><html><body>${htmlCode}</body></html>`, 'text/html'
-  );
+  const doc = parser.parseFromString(`<!DOCTYPE html><html><body>${htmlCode}</body></html>`, 'text/html');
 
   return testCases.map((tc): TestResult => {
     try {
@@ -19,86 +21,90 @@ export function runHtmlTests(htmlCode: string, testCases: TestCase[]): TestResul
   });
 }
 
-function evaluateHtmlAssertion(doc: Document, htmlSource: string, tc: TestCase): TestResult {
-  switch (tc.assertion) {
+function evaluateHtmlAssertion(doc: Document, source: string, tc: TestCase): TestResult {
+  const { assertion, value, description, flags } = tc;
+  // Support both 'query' and 'selector' field names
+  const query = tc.query ?? (tc as Record<string, unknown>).selector as string | undefined;
+
+  switch (assertion) {
     case 'exists': {
-      const el = tc.query ? doc.querySelector(tc.query) : null;
+      const el = query ? doc.querySelector(query) : null;
       return {
         pass: el !== null,
-        description: tc.description,
-        got: el !== null ? 'found' : 'not found',
+        description,
+        got: el !== null ? 'found' : `no element matching "${query}"`,
       };
     }
 
     case 'textContains': {
-      const el = tc.query ? doc.querySelector(tc.query) : null;
-      if (!el) {
-        return { pass: false, description: tc.description, got: `element "${tc.query}" not found` };
-      }
-      const text = el.textContent ?? '';
-      const value = String(tc.value);
+      const el = query ? doc.querySelector(query) : null;
+      const text = el?.textContent ?? '';
+      const expected = String(value ?? '');
       return {
-        pass: text.includes(value),
-        description: tc.description,
-        got: text,
+        pass: text.includes(expected),
+        description,
+        got: text.trim(),
       };
     }
 
     case 'countAtLeast': {
-      const els = tc.query ? doc.querySelectorAll(tc.query) : [];
-      const expected = Number(tc.value);
+      const els = query ? doc.querySelectorAll(query) : [];
+      const count = els.length;
+      const min = Number(value ?? 1);
       return {
-        pass: els.length >= expected,
-        description: tc.description,
-        got: els.length,
+        pass: count >= min,
+        description,
+        got: `found ${count}`,
       };
     }
 
     case 'hasId': {
-      const el = tc.query ? doc.querySelector(tc.query) : null;
-      if (!el) {
-        return { pass: false, description: tc.description, got: `element "${tc.query}" not found` };
-      }
+      const el = query ? doc.querySelector(query) : null;
+      const actualId = el?.id ?? '';
       return {
-        pass: el.id === String(tc.value),
-        description: tc.description,
-        got: el.id || '(no id)',
+        pass: actualId === String(value ?? ''),
+        description,
+        got: actualId || '(no id)',
       };
     }
 
     case 'hasClass': {
-      const el = tc.query ? doc.querySelector(tc.query) : null;
-      if (!el) {
-        return { pass: false, description: tc.description, got: `element "${tc.query}" not found` };
-      }
-      const value = String(tc.value);
+      const el = query ? doc.querySelector(query) : null;
+      const hasIt = el?.classList.contains(String(value ?? '')) ?? false;
       return {
-        pass: el.classList.contains(value),
-        description: tc.description,
-        got: el.className || '(no classes)',
+        pass: hasIt,
+        description,
+        got: hasIt ? 'has class' : `classes: ${el?.className ?? '(none)'}`,
       };
     }
 
     case 'sourceContains': {
-      const value = String(tc.value);
+      const needle = String(value ?? '');
       return {
-        pass: htmlSource.includes(value),
-        description: tc.description,
-        got: htmlSource.includes(value) ? 'found in source' : 'not found in source',
+        pass: source.includes(needle),
+        description,
+        got: source.includes(needle) ? 'found' : `"${needle}" not found in source`,
       };
     }
 
     case 'sourceMatch': {
-      const regex = new RegExp(String(tc.value), tc.flags ?? '');
-      const match = regex.test(htmlSource);
+      const pattern = String(value ?? '');
+      let matched = false;
+      try {
+        const regex = new RegExp(pattern, flags ?? 'i');
+        matched = regex.test(source);
+      } catch {
+        // Invalid regex — fall back to case-insensitive substring match
+        matched = source.toLowerCase().includes(pattern.toLowerCase());
+      }
       return {
-        pass: match,
-        description: tc.description,
-        got: match ? 'pattern matched' : 'pattern not matched',
+        pass: matched,
+        description,
+        got: matched ? 'matched' : `pattern /${pattern}/${flags ?? 'i'} not found`,
       };
     }
 
     default:
-      return { pass: false, description: tc.description, got: `Unknown assertion: ${tc.assertion}` };
+      return { pass: false, description, got: `Unknown assertion: ${assertion}` };
   }
 }

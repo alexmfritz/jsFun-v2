@@ -15,12 +15,18 @@ function needsDOM(testRunnerStr: string): boolean {
   );
 }
 
+/**
+ * Run JS tests in a sandboxed Web Worker with a timeout.
+ * Falls back to a sandboxed iframe for exercises that need real DOM APIs.
+ * Falls back to Function constructor in test environments where Workers
+ * are not available.
+ */
 export async function runJsTests(code: string, testRunnerStr: string): Promise<TestResult[]> {
   if (!testRunnerStr.trim()) {
     return [{ pass: false, description: 'No test runner defined', got: undefined }];
   }
 
-  // In test environments (Vitest/jsdom), Workers aren't available
+  // In test environments (Vitest/jsdom), Workers aren't available — use direct execution
   if (typeof Worker === 'undefined') {
     return runDirect(code, testRunnerStr);
   }
@@ -32,68 +38,48 @@ export async function runJsTests(code: string, testRunnerStr: string): Promise<T
   return runInWorker(code, testRunnerStr);
 }
 
-/** Fallback for Vitest/jsdom where Worker is undefined. */
-function runDirect(code: string, testRunnerStr: string): Promise<TestResult[]> {
-  return new Promise((resolve) => {
-    try {
-      const runner = new Function(`return (${testRunnerStr})`)() as (
-        code: string
-      ) =>
-        | { pass: boolean; description: string; got?: unknown }[]
-        | Promise<{ pass: boolean; description: string; got?: unknown }[]>;
-
-      const result = runner(code);
-      const normalize = (
-        results: { pass: boolean; description: string; got?: unknown }[]
-      ): TestResult[] =>
-        results.map((r) => ({
-          pass: Boolean(r.pass),
-          description: r.description,
-          got: r.got,
-        }));
-
-      if (result instanceof Promise) {
-        result
-          .then((r) => resolve(normalize(r)))
-          .catch((err) =>
-            resolve([
-              {
-                pass: false,
-                description: `Runtime error: ${err instanceof Error ? err.message : String(err)}`,
-                got: undefined,
-              },
-            ])
-          );
-      } else {
-        resolve(normalize(result));
-      }
-    } catch (err) {
-      resolve([
-        {
-          pass: false,
-          description: `Runtime error: ${err instanceof Error ? err.message : String(err)}`,
-          got: undefined,
-        },
-      ]);
-    }
-  });
+/**
+ * Direct execution fallback for test environments.
+ * Uses Function constructor (not eval) for slightly better static analysis.
+ */
+async function runDirect(code: string, testRunnerStr: string): Promise<TestResult[]> {
+  try {
+    const runner = new Function(`return (${testRunnerStr})`)() as (
+      code: string
+    ) => TestResult[] | Promise<TestResult[]>;
+    const results = await runner(code);
+    return results.map((r) => ({
+      pass: Boolean(r.pass),
+      description: r.description,
+      got: r.got,
+    }));
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    return [{ pass: false, description: `Runtime error: ${message}`, got: undefined }];
+  }
 }
 
-/** Primary path: run tests in a sandboxed Web Worker. */
+/**
+ * Primary path: execute tests in an isolated Web Worker.
+ * No DOM, no window, no document — fully sandboxed with timeout.
+ */
 function runInWorker(code: string, testRunnerStr: string): Promise<TestResult[]> {
   return new Promise((resolve) => {
     let settled = false;
 
+    // Dynamically import the worker to avoid issues in non-browser environments
     const worker = new Worker(new URL('./testWorker.ts', import.meta.url), { type: 'module' });
 
     const timer = setTimeout(() => {
       if (!settled) {
         settled = true;
         worker.terminate();
-        resolve([{
-          pass: false,
-          description: `Test timed out after ${TIMEOUT_MS / 1000}s — your code may contain an infinite loop`,
-        }]);
+        resolve([
+          {
+            pass: false,
+            description: `Test timed out after ${TIMEOUT_MS / 1000}s — your code may contain an infinite loop`,
+          },
+        ]);
       }
     }, TIMEOUT_MS);
 
@@ -122,47 +108,57 @@ function runInWorker(code: string, testRunnerStr: string): Promise<TestResult[]>
   });
 }
 
-/** For DOM exercises that need document.createElement, dispatchEvent, etc. */
+/**
+ * Fallback path: execute tests in a sandboxed iframe for exercises
+ * that need real DOM APIs (createElement, dispatchEvent, etc.).
+ * The iframe has sandbox="allow-scripts" — no access to parent origin.
+ */
 function runInIframeSandbox(code: string, testRunnerStr: string): Promise<TestResult[]> {
   return new Promise((resolve) => {
     let settled = false;
+
     const iframe = document.createElement('iframe');
     iframe.sandbox.add('allow-scripts');
     iframe.style.cssText = 'position:absolute;left:-9999px;top:-9999px;width:0;height:0;';
     document.body.appendChild(iframe);
 
+    const cleanup = () => {
+      window.removeEventListener('message', handleMessage);
+      if (document.body.contains(iframe)) {
+        document.body.removeChild(iframe);
+      }
+    };
+
     const timer = setTimeout(() => {
       if (!settled) {
         settled = true;
         cleanup();
-        resolve([{
-          pass: false,
-          description: `Test timed out after ${TIMEOUT_MS / 1000}s — your code may contain an infinite loop`,
-        }]);
+        resolve([
+          {
+            pass: false,
+            description: `Test timed out after ${TIMEOUT_MS / 1000}s — your code may contain an infinite loop`,
+          },
+        ]);
       }
     }, TIMEOUT_MS);
 
-    const onMessage = (e: MessageEvent<{ results?: TestResult[]; error?: string }>) => {
+    const handleMessage = (e: MessageEvent) => {
+      // Only accept messages from our iframe
+      if (e.source !== iframe.contentWindow) return;
       if (settled) return;
       settled = true;
       clearTimeout(timer);
       cleanup();
 
-      if (e.data.error) {
-        resolve([{ pass: false, description: `Runtime error: ${e.data.error}`, got: undefined }]);
+      const data = e.data as { results?: TestResult[]; error?: string };
+      if (data.error) {
+        resolve([{ pass: false, description: `Runtime error: ${data.error}`, got: undefined }]);
       } else {
-        resolve(e.data.results ?? []);
+        resolve(data.results ?? []);
       }
     };
 
-    window.addEventListener('message', onMessage);
-
-    const cleanup = () => {
-      window.removeEventListener('message', onMessage);
-      if (document.body.contains(iframe)) {
-        document.body.removeChild(iframe);
-      }
-    };
+    window.addEventListener('message', handleMessage);
 
     const script = `
       <script>
@@ -170,11 +166,17 @@ function runInIframeSandbox(code: string, testRunnerStr: string): Promise<TestRe
           try {
             const runner = new Function('return (' + ${JSON.stringify(testRunnerStr)} + ')')();
             const results = await runner(${JSON.stringify(code)});
-            parent.postMessage({ results: results.map(r => ({
-              pass: Boolean(r.pass), description: r.description, got: r.got,
-            })) }, '*');
+            parent.postMessage({
+              results: results.map(r => ({
+                pass: Boolean(r.pass),
+                description: r.description,
+                got: r.got,
+              })),
+            }, '*');
           } catch (err) {
-            parent.postMessage({ error: err instanceof Error ? err.message : String(err) }, '*');
+            parent.postMessage({
+              error: err instanceof Error ? err.message : String(err),
+            }, '*');
           }
         })();
       ${'<'}/script>
@@ -185,6 +187,8 @@ function runInIframeSandbox(code: string, testRunnerStr: string): Promise<TestRe
       doc.open();
       doc.write(`<!DOCTYPE html><html><body>${script}</body></html>`);
       doc.close();
+    } else {
+      iframe.srcdoc = `<!DOCTYPE html><html><body>${script}</body></html>`;
     }
   });
 }

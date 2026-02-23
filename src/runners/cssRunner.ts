@@ -1,5 +1,10 @@
 import { TestResult, TestCase } from '../types';
 
+/**
+ * Run CSS exercise tests.
+ * Injects provided HTML + student CSS into a hidden iframe, then checks computed styles.
+ * Returns a cleanup function to remove the iframe.
+ */
 export function runCssTests(
   cssCode: string,
   providedHtml: string,
@@ -21,7 +26,11 @@ export function runCssTests(
         try {
           return evaluateCssAssertion(doc, cssCode, tc);
         } catch (err) {
-          return { pass: false, description: tc.description, got: `Error: ${err instanceof Error ? err.message : String(err)}` };
+          return {
+            pass: false,
+            description: tc.description,
+            got: `Error: ${err instanceof Error ? err.message : String(err)}`,
+          };
         }
       });
 
@@ -36,89 +45,88 @@ export function runCssTests(
   });
 }
 
-function evaluateCssAssertion(doc: Document, cssSource: string, tc: TestCase): TestResult {
-  switch (tc.assertion) {
+function evaluateCssAssertion(doc: Document, source: string, tc: TestCase): TestResult {
+  const { assertion, property, value, description } = tc;
+  // Support both 'query' and 'selector' field names
+  const query = tc.query ?? (tc as Record<string, unknown>).selector as string | undefined;
+
+  // Source-level assertions don't need a DOM element
+  if (assertion === 'sourceContains') {
+    const needle = String(value ?? '');
+    const found = source.includes(needle);
+    return {
+      pass: found,
+      description,
+      got: found ? 'found' : `"${needle}" not found in source`,
+    };
+  }
+
+  if (assertion === 'sourceMatch') {
+    const pattern = String(value ?? '');
+    let matched = false;
+    try {
+      const regex = new RegExp(pattern, tc.flags ?? 'i');
+      matched = regex.test(source);
+    } catch {
+      // Invalid regex — fall back to case-insensitive substring match
+      matched = source.toLowerCase().includes(pattern.toLowerCase());
+    }
+    return {
+      pass: matched,
+      description,
+      got: matched ? 'matched' : `pattern /${pattern}/${tc.flags ?? 'i'} not found`,
+    };
+  }
+
+  const el = query ? doc.querySelector(query) : null;
+
+  if (!el) {
+    return { pass: false, description, got: `element "${query}" not found` };
+  }
+
+  const computed = doc.defaultView?.getComputedStyle(el);
+  if (!computed) {
+    return { pass: false, description, got: 'Could not compute styles' };
+  }
+
+  switch (assertion) {
     case 'equals': {
-      const el = tc.query ? doc.querySelector(tc.query) : null;
-      if (!el) {
-        return { pass: false, description: tc.description, got: `element "${tc.query}" not found` };
-      }
-      const computed = doc.defaultView!.getComputedStyle(el).getPropertyValue(tc.property ?? '');
-      const expected = String(tc.value);
-      return {
-        pass: computed === expected,
-        description: tc.description,
-        got: computed,
-      };
+      const actual = computed.getPropertyValue(property ?? '').trim();
+      const expected = String(value ?? '');
+      return { pass: actual === expected, description, got: actual };
     }
 
     case 'oneOf': {
-      const el = tc.query ? doc.querySelector(tc.query) : null;
-      if (!el) {
-        return { pass: false, description: tc.description, got: `element "${tc.query}" not found` };
-      }
-      const computed = doc.defaultView!.getComputedStyle(el).getPropertyValue(tc.property ?? '');
-      const acceptable = Array.isArray(tc.value) ? tc.value : [String(tc.value)];
+      const actual = computed.getPropertyValue(property ?? '').trim();
+      const options = Array.isArray(value) ? value.map(String) : [String(value ?? '')];
       return {
-        pass: acceptable.includes(computed),
-        description: tc.description,
-        got: computed,
+        pass: options.includes(actual),
+        description,
+        got: actual,
       };
     }
 
     case 'contains': {
-      const el = tc.query ? doc.querySelector(tc.query) : null;
-      if (!el) {
-        return { pass: false, description: tc.description, got: `element "${tc.query}" not found` };
-      }
-      const computed = doc.defaultView!.getComputedStyle(el).getPropertyValue(tc.property ?? '');
-      const value = String(tc.value);
+      const actual = computed.getPropertyValue(property ?? '').trim();
+      const needle = String(value ?? '');
       return {
-        pass: computed.includes(value),
-        description: tc.description,
-        got: computed,
+        pass: actual.includes(needle),
+        description,
+        got: actual,
       };
     }
 
-    case 'exists': {
-      const el = tc.query ? doc.querySelector(tc.query) : null;
-      return {
-        pass: el !== null,
-        description: tc.description,
-        got: el !== null ? 'found' : 'not found',
-      };
-    }
+    case 'exists':
+      return { pass: el !== null, description, got: el !== null ? 'found' : 'not found' };
 
     case 'countAtLeast': {
-      const els = tc.query ? doc.querySelectorAll(tc.query) : [];
-      const expected = Number(tc.value);
-      return {
-        pass: els.length >= expected,
-        description: tc.description,
-        got: els.length,
-      };
-    }
-
-    case 'sourceContains': {
-      const value = String(tc.value);
-      return {
-        pass: cssSource.includes(value),
-        description: tc.description,
-        got: cssSource.includes(value) ? 'found in source' : 'not found in source',
-      };
-    }
-
-    case 'sourceMatch': {
-      const regex = new RegExp(String(tc.value), tc.flags ?? '');
-      const match = regex.test(cssSource);
-      return {
-        pass: match,
-        description: tc.description,
-        got: match ? 'pattern matched' : 'pattern not matched',
-      };
+      const els = query ? doc.querySelectorAll(query) : [];
+      const count = els.length;
+      const min = Number(value ?? 1);
+      return { pass: count >= min, description, got: `found ${count}` };
     }
 
     default:
-      return { pass: false, description: tc.description, got: `Unknown assertion: ${tc.assertion}` };
+      return { pass: false, description, got: `Unknown CSS assertion: ${assertion}` };
   }
 }
