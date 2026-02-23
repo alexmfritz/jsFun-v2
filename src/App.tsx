@@ -14,6 +14,10 @@ import ExerciseView from './components/exercise/ExerciseView';
 import DashboardView from './components/dashboard/DashboardView';
 import AdminView from './components/admin/AdminView';
 
+/**
+ * Root application component.
+ * Handles theme application, initial data loading, and route wiring.
+ */
 export default function App() {
   const dispatch = useAppDispatch();
   const theme = useAppSelector((s) => s.ui.theme);
@@ -36,6 +40,7 @@ export default function App() {
       className="flex flex-col h-full transition-theme"
       style={{ backgroundColor: 'var(--bg-root)', color: 'var(--text-primary)' }}
     >
+      {/* Skip to main content — visible on Tab for keyboard/screen reader users */}
       <a href="#main-content" className="sr-only sr-only-focusable">
         Skip to main content
       </a>
@@ -43,38 +48,10 @@ export default function App() {
       <main id="main-content" className="flex-1 overflow-hidden" data-tutorial="main">
         <Routes>
           <Route path="/" element={<Navigate to="/exercises" replace />} />
-          <Route
-            path="/exercises"
-            element={
-              <ErrorBoundary section="Browse">
-                <BrowseView />
-              </ErrorBoundary>
-            }
-          />
-          <Route
-            path="/exercises/:id"
-            element={
-              <ErrorBoundary section="Exercise">
-                <ExerciseView />
-              </ErrorBoundary>
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              <ErrorBoundary section="Dashboard">
-                <DashboardView />
-              </ErrorBoundary>
-            }
-          />
-          <Route
-            path="/admin"
-            element={
-              <ErrorBoundary section="Admin">
-                <AdminView />
-              </ErrorBoundary>
-            }
-          />
+          <Route path="/exercises" element={<ErrorBoundary section="Browse"><BrowseView /></ErrorBoundary>} />
+          <Route path="/exercises/:id" element={<ErrorBoundary section="Exercise"><ExerciseView /></ErrorBoundary>} />
+          <Route path="/dashboard" element={<ErrorBoundary section="Dashboard"><DashboardView /></ErrorBoundary>} />
+          <Route path="/admin" element={<ErrorBoundary section="Admin"><AdminView /></ErrorBoundary>} />
         </Routes>
       </main>
       <Toast />
