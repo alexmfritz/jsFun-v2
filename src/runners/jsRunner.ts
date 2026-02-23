@@ -15,12 +15,6 @@ function needsDOM(testRunnerStr: string): boolean {
   );
 }
 
-// The needsDOM() function is the routing decision. 
-// Most JS exercises run pure logic -- they do not need document.createElement or window. 
-// Those run in a Web Worker (fastest, most isolated). 
-// The few exercises that test DOM manipulation (creating elements, dispatching events) get routed to an iframe instead, 
-// because Workers have no DOM.
-
 export async function runJsTests(code: string, testRunnerStr: string): Promise<TestResult[]> {
   if (!testRunnerStr.trim()) {
     return [{ pass: false, description: 'No test runner defined', got: undefined }];
@@ -38,11 +32,54 @@ export async function runJsTests(code: string, testRunnerStr: string): Promise<T
   return runInWorker(code, testRunnerStr);
 }
 
-// Three paths:
-// 1. runDirect() -- fallback for Vitest/jsdom where Worker is undefined. Uses new Function() in the main thread. Only used during testing, never in the real app.
-// 2. runInIframeSandbox() -- for DOM exercises. Creates a hidden <iframe sandbox="allow-scripts"> off-screen, writes a <script> that compiles and runs the test, and receives results via parent.postMessage. The sandbox attribute prevents the iframe from accessing the parent origin.
-// 3. runInWorker() -- the primary path. Spawns a Web Worker, sends the code and testRunner string, waits for results.
+/** Fallback for Vitest/jsdom where Worker is undefined. */
+function runDirect(code: string, testRunnerStr: string): Promise<TestResult[]> {
+  return new Promise((resolve) => {
+    try {
+      const runner = new Function(`return (${testRunnerStr})`)() as (
+        code: string
+      ) =>
+        | { pass: boolean; description: string; got?: unknown }[]
+        | Promise<{ pass: boolean; description: string; got?: unknown }[]>;
 
+      const result = runner(code);
+      const normalize = (
+        results: { pass: boolean; description: string; got?: unknown }[]
+      ): TestResult[] =>
+        results.map((r) => ({
+          pass: Boolean(r.pass),
+          description: r.description,
+          got: r.got,
+        }));
+
+      if (result instanceof Promise) {
+        result
+          .then((r) => resolve(normalize(r)))
+          .catch((err) =>
+            resolve([
+              {
+                pass: false,
+                description: `Runtime error: ${err instanceof Error ? err.message : String(err)}`,
+                got: undefined,
+              },
+            ])
+          );
+      } else {
+        resolve(normalize(result));
+      }
+    } catch (err) {
+      resolve([
+        {
+          pass: false,
+          description: `Runtime error: ${err instanceof Error ? err.message : String(err)}`,
+          got: undefined,
+        },
+      ]);
+    }
+  });
+}
+
+/** Primary path: run tests in a sandboxed Web Worker. */
 function runInWorker(code: string, testRunnerStr: string): Promise<TestResult[]> {
   return new Promise((resolve) => {
     let settled = false;
@@ -85,11 +122,7 @@ function runInWorker(code: string, testRunnerStr: string): Promise<TestResult[]>
   });
 }
 
-// Why the settled flag? 
-// A race condition exists: the timeout might fire at the exact moment the worker posts its results. 
-// Without the flag, resolve() would be called twice, which is harmless in JavaScript (second call is ignored) but makes the logic confusing. 
-// The flag makes the mutual exclusion explicit: whichever event fires first wins, and the other is ignored.
-
+/** For DOM exercises that need document.createElement, dispatchEvent, etc. */
 function runInIframeSandbox(code: string, testRunnerStr: string): Promise<TestResult[]> {
   return new Promise((resolve) => {
     let settled = false;
@@ -98,7 +131,38 @@ function runInIframeSandbox(code: string, testRunnerStr: string): Promise<TestRe
     iframe.style.cssText = 'position:absolute;left:-9999px;top:-9999px;width:0;height:0;';
     document.body.appendChild(iframe);
 
-    // ... timeout and message handler with settled flag ...
+    const timer = setTimeout(() => {
+      if (!settled) {
+        settled = true;
+        cleanup();
+        resolve([{
+          pass: false,
+          description: `Test timed out after ${TIMEOUT_MS / 1000}s — your code may contain an infinite loop`,
+        }]);
+      }
+    }, TIMEOUT_MS);
+
+    const onMessage = (e: MessageEvent<{ results?: TestResult[]; error?: string }>) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      cleanup();
+
+      if (e.data.error) {
+        resolve([{ pass: false, description: `Runtime error: ${e.data.error}`, got: undefined }]);
+      } else {
+        resolve(e.data.results ?? []);
+      }
+    };
+
+    window.addEventListener('message', onMessage);
+
+    const cleanup = () => {
+      window.removeEventListener('message', onMessage);
+      if (document.body.contains(iframe)) {
+        document.body.removeChild(iframe);
+      }
+    };
 
     const script = `
       <script>

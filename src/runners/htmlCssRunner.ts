@@ -33,10 +33,3 @@ export async function runHtmlCssTests(
     cleanup,
   };
 }
-
-// The HTML+CSS runner is a coordinator. It splits test cases into three categories based on assertion type:
-
-// 1. Source-level (sourceContains, sourceMatch) -- checked against the combined HTML+CSS source so patterns from either editor are found.
-// 2. DOM-level (exists, textContains, etc.) -- checked against the HTML only via the HTML runner.
-// 3. Style-level (equals, oneOf, contains with a property) -- checked in an iframe via the CSS runner.
-// Results from all three are merged into a single array.

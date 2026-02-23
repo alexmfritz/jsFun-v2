@@ -19,21 +19,86 @@ export function runHtmlTests(htmlCode: string, testCases: TestCase[]): TestResul
   });
 }
 
-// The HTML runner is the simplest runner. 
-// DOMParser parses the student's HTML into a Document object, and each test case is evaluated against it. 
-// No iframe is needed -- DOMParser runs synchronously in the main thread.
+function evaluateHtmlAssertion(doc: Document, htmlSource: string, tc: TestCase): TestResult {
+  switch (tc.assertion) {
+    case 'exists': {
+      const el = tc.query ? doc.querySelector(tc.query) : null;
+      return {
+        pass: el !== null,
+        description: tc.description,
+        got: el !== null ? 'found' : 'not found',
+      };
+    }
 
-// Assertion	What it checks
-// exists	doc.querySelector(query) !== null
-// textContains	element.textContent.includes(value)
-// countAtLeast	doc.querySelectorAll(query).length >= value
-// hasId	element.id === value
-// hasClass	element.classList.contains(value)
-// sourceContains	htmlSource.includes(value) -- checks raw source, not parsed DOM
-// sourceMatch	new RegExp(value, flags).test(htmlSource)
+    case 'textContains': {
+      const el = tc.query ? doc.querySelector(tc.query) : null;
+      if (!el) {
+        return { pass: false, description: tc.description, got: `element "${tc.query}" not found` };
+      }
+      const text = el.textContent ?? '';
+      const value = String(tc.value);
+      return {
+        pass: text.includes(value),
+        description: tc.description,
+        got: text,
+      };
+    }
 
-// The sourceContains and sourceMatch assertions are important: 
-// they check the raw HTML string, not the parsed DOM. 
-// This lets you assert things like "the source code uses a <main> tag" even if the browser's parser would normalize the markup.
+    case 'countAtLeast': {
+      const els = tc.query ? doc.querySelectorAll(tc.query) : [];
+      const expected = Number(tc.value);
+      return {
+        pass: els.length >= expected,
+        description: tc.description,
+        got: els.length,
+      };
+    }
 
+    case 'hasId': {
+      const el = tc.query ? doc.querySelector(tc.query) : null;
+      if (!el) {
+        return { pass: false, description: tc.description, got: `element "${tc.query}" not found` };
+      }
+      return {
+        pass: el.id === String(tc.value),
+        description: tc.description,
+        got: el.id || '(no id)',
+      };
+    }
 
+    case 'hasClass': {
+      const el = tc.query ? doc.querySelector(tc.query) : null;
+      if (!el) {
+        return { pass: false, description: tc.description, got: `element "${tc.query}" not found` };
+      }
+      const value = String(tc.value);
+      return {
+        pass: el.classList.contains(value),
+        description: tc.description,
+        got: el.className || '(no classes)',
+      };
+    }
+
+    case 'sourceContains': {
+      const value = String(tc.value);
+      return {
+        pass: htmlSource.includes(value),
+        description: tc.description,
+        got: htmlSource.includes(value) ? 'found in source' : 'not found in source',
+      };
+    }
+
+    case 'sourceMatch': {
+      const regex = new RegExp(String(tc.value), tc.flags ?? '');
+      const match = regex.test(htmlSource);
+      return {
+        pass: match,
+        description: tc.description,
+        got: match ? 'pattern matched' : 'pattern not matched',
+      };
+    }
+
+    default:
+      return { pass: false, description: tc.description, got: `Unknown assertion: ${tc.assertion}` };
+  }
+}

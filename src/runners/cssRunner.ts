@@ -36,23 +36,89 @@ export function runCssTests(
   });
 }
 
-// The CSS runner requires an iframe because getComputedStyle() only works on elements that are part of a rendered document. The flow:
+function evaluateCssAssertion(doc: Document, cssSource: string, tc: TestCase): TestResult {
+  switch (tc.assertion) {
+    case 'equals': {
+      const el = tc.query ? doc.querySelector(tc.query) : null;
+      if (!el) {
+        return { pass: false, description: tc.description, got: `element "${tc.query}" not found` };
+      }
+      const computed = doc.defaultView!.getComputedStyle(el).getPropertyValue(tc.property ?? '');
+      const expected = String(tc.value);
+      return {
+        pass: computed === expected,
+        description: tc.description,
+        got: computed,
+      };
+    }
 
-// 1. Create a hidden iframe sized at 800x600 (a consistent viewport for layout-dependent assertions).
-// 2. Write the providedHtml + student's CSS as a <style> block into the iframe.
-// 3. Wait one requestAnimationFrame for the browser to compute styles.
-// 4. Run each test case, using getComputedStyle() to read the actual rendered values.
-// 5. Return results and a cleanup function to remove the iframe.
-// 6. The cleanup function is returned (not called immediately) because the UI might want to display a preview of the rendered output briefly before tearing it down. The useTestRunner hook calls cleanup after a 2-second delay.
+    case 'oneOf': {
+      const el = tc.query ? doc.querySelector(tc.query) : null;
+      if (!el) {
+        return { pass: false, description: tc.description, got: `element "${tc.query}" not found` };
+      }
+      const computed = doc.defaultView!.getComputedStyle(el).getPropertyValue(tc.property ?? '');
+      const acceptable = Array.isArray(tc.value) ? tc.value : [String(tc.value)];
+      return {
+        pass: acceptable.includes(computed),
+        description: tc.description,
+        got: computed,
+      };
+    }
 
-// The evaluateCssAssertion function handles CSS-specific assertion types:
+    case 'contains': {
+      const el = tc.query ? doc.querySelector(tc.query) : null;
+      if (!el) {
+        return { pass: false, description: tc.description, got: `element "${tc.query}" not found` };
+      }
+      const computed = doc.defaultView!.getComputedStyle(el).getPropertyValue(tc.property ?? '');
+      const value = String(tc.value);
+      return {
+        pass: computed.includes(value),
+        description: tc.description,
+        got: computed,
+      };
+    }
 
-// Assertion	What it checks
-// equals	getComputedStyle(el).getPropertyValue(property) === value
-// oneOf	Computed value matches any entry in an array of acceptable values
-// contains	Computed value includes the substring
-// exists	Element matching query is found
-// countAtLeast	At least value elements match query
-// sourceContains	Raw CSS source includes the string
-// sourceMatch	Raw CSS source matches the regex pattern
+    case 'exists': {
+      const el = tc.query ? doc.querySelector(tc.query) : null;
+      return {
+        pass: el !== null,
+        description: tc.description,
+        got: el !== null ? 'found' : 'not found',
+      };
+    }
 
+    case 'countAtLeast': {
+      const els = tc.query ? doc.querySelectorAll(tc.query) : [];
+      const expected = Number(tc.value);
+      return {
+        pass: els.length >= expected,
+        description: tc.description,
+        got: els.length,
+      };
+    }
+
+    case 'sourceContains': {
+      const value = String(tc.value);
+      return {
+        pass: cssSource.includes(value),
+        description: tc.description,
+        got: cssSource.includes(value) ? 'found in source' : 'not found in source',
+      };
+    }
+
+    case 'sourceMatch': {
+      const regex = new RegExp(String(tc.value), tc.flags ?? '');
+      const match = regex.test(cssSource);
+      return {
+        pass: match,
+        description: tc.description,
+        got: match ? 'pattern matched' : 'pattern not matched',
+      };
+    }
+
+    default:
+      return { pass: false, description: tc.description, got: `Unknown assertion: ${tc.assertion}` };
+  }
+}
