@@ -102,16 +102,26 @@ CodeMirror 6 was chosen over Monaco (VS Code's editor) because it's lighter, mor
 
 > **610 exercises** organized across 12 topics, 8 curated collections, and 5 difficulty tiers.
 
-| Collection | Exercises | Focus |
-|------------|:---------:|-------|
-| Default Curriculum | 148 | Core JS fundamentals, data structures, functions |
-| CSS Modern Toolkit | 40 | Flexbox, grid, selectors, responsive design |
-| Exercism | 54 | Algorithm challenges adapted for offline use |
-| Interview Classics | 55 | Common whiteboard problems |
-| The Odin Project | 29 | Web development foundations |
-| Rithm Interview Prep | 45 | Technical interview patterns |
-| RPG Questline | 45 | Gamified exercises with a fantasy narrative |
-| Turing Foundations | 35 | Bootcamp-style fundamentals |
+### Collections and Open Source Curriculum
+
+One of the core goals of jsFun is to **bring the best free coding curricula into one place** for students who can't access them on the open web. Platforms like Exercism, The Odin Project, and Rithm School publish incredible learning material under open-source licenses — but they're all browser-based, scattered across different websites, and completely unreachable from an air-gapped network.
+
+jsFun adapts exercises from these sources into a unified format with consistent test runners, progressive hints, and the tier system. Every sourced collection carries attribution back to the original project, and exercises used under MIT or similar open-source licenses are clearly marked.
+
+The vision is that this platform keeps growing — as more high-quality free curricula emerge, they can be imported as new collections. Students who can't browse the internet still deserve access to the same caliber of practice material that's freely available to everyone else.
+
+| Collection | Exercises | Source | License | Focus |
+|------------|:---------:|--------|:-------:|-------|
+| Default Curriculum | 148 | Original | — | Core JS fundamentals, data structures, functions |
+| CSS Modern Toolkit | 40 | Original | — | Flexbox, grid, selectors, responsive design |
+| Exercism | 54 | [Exercism](https://exercism.org) | MIT | Algorithm challenges adapted for offline use |
+| Interview Classics | 55 | Original | — | Common whiteboard problems |
+| The Odin Project | 29 | [The Odin Project](https://theodinproject.com) | MIT | Web development foundations (JS + CSS) |
+| Rithm Interview Prep | 45 | [Rithm School](https://rithmschool.com) | MIT | Technical interview patterns |
+| RPG Questline | 45 | Original | — | Gamified exercises with a fantasy narrative |
+| Turing Foundations | 35 | [Turing School](https://github.com/turingschool-examples) | — | Bootcamp-style fundamentals |
+
+Collections marked **Original** were written specifically for jsFun. Sourced collections have been adapted to work with jsFun's test runner format, tier system, and progressive hint structure — the pedagogical wrapper is new, but the core problems come from these established programs.
 
 ### Difficulty Tiers
 
