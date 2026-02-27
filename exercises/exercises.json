@@ -425,7 +425,96 @@
         403,
         404,
         405,
-        406
+        406,
+        620,
+        621,
+        622,
+        623,
+        624,
+        630,
+        631,
+        632,
+        634,
+        635,
+        637,
+        638,
+        639,
+        643,
+        644,
+        645,
+        646,
+        647,
+        652,
+        653,
+        654,
+        655,
+        658,
+        660,
+        662,
+        663,
+        664,
+        665,
+        671,
+        674,
+        675,
+        676,
+        677,
+        680,
+        681,
+        682,
+        683,
+        684,
+        685,
+        686,
+        687,
+        689,
+        690,
+        693,
+        694,
+        695,
+        696,
+        700,
+        701,
+        702,
+        703,
+        707,
+        708,
+        709,
+        711,
+        712,
+        713,
+        714,
+        715,
+        716,
+        717,
+        718,
+        719,
+        721,
+        722,
+        723,
+        724,
+        725,
+        726,
+        727,
+        728,
+        731,
+        732,
+        733,
+        734,
+        735,
+        736,
+        737,
+        741,
+        742,
+        743,
+        744,
+        746,
+        747,
+        748,
+        751,
+        753,
+        755,
+        757
       ]
     },
     {
@@ -30015,6 +30104,3247 @@
           "label": "MDN: Classes",
           "url": "/docs/mdn/classes.html",
           "description": "JavaScript class syntax"
+        }
+      ]
+    },
+    {
+      "id": 620,
+      "title": "Temperature Converter",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "js-fundamentals",
+        "variables"
+      ],
+      "tags": [
+        "variables",
+        "math",
+        "arithmetic",
+        "beginner"
+      ],
+      "description": "Convert a temperature from Fahrenheit to Celsius.",
+      "instructions": "Write a function called `toCelsius` that takes a temperature in Fahrenheit and returns it converted to Celsius, rounded to one decimal place.\n\nThe formula is: C = (F - 32) × 5/9\n\nExample:\n  toCelsius(32)   →  0\n  toCelsius(212)  →  100\n  toCelsius(98.6) →  37",
+      "starterCode": "function toCelsius(fahrenheit) {\n  // Apply the conversion formula\n  // Round to one decimal place\n\n}",
+      "solution": "function toCelsius(fahrenheit) {\n  return Math.round((fahrenheit - 32) * 5 / 9 * 10) / 10;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return toCelsius;')(); return [ { pass: fn(32) === 0, description: 'toCelsius(32) → 0', got: fn(32) }, { pass: fn(212) === 100, description: 'toCelsius(212) → 100', got: fn(212) }, { pass: fn(98.6) === 37, description: 'toCelsius(98.6) → 37', got: fn(98.6) }, { pass: fn(-40) === -40, description: 'toCelsius(-40) → -40', got: fn(-40) } ]; }",
+      "hints": [
+        "Subtract 32 from the Fahrenheit value first, then multiply by 5/9.",
+        "To round to one decimal, multiply by 10, use Math.round(), then divide by 10.",
+        "Return `Math.round((fahrenheit - 32) * 5 / 9 * 10) / 10`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Math.round()",
+          "url": "/docs/mdn/math-round.html",
+          "description": "Rounding numbers to the nearest integer"
+        },
+        {
+          "label": "MDN: Arithmetic operators",
+          "url": "/docs/mdn/arithmetic.html",
+          "description": "Using +, -, *, / in expressions"
+        }
+      ]
+    },
+    {
+      "id": 621,
+      "title": "Coin Counter",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "js-fundamentals",
+        "variables"
+      ],
+      "tags": [
+        "variables",
+        "math",
+        "arithmetic",
+        "beginner"
+      ],
+      "description": "Calculate the dollar value of a pile of coins.",
+      "instructions": "Write a function called `coinValue` that takes four parameters — the number of quarters, dimes, nickels, and pennies — and returns the total value in dollars as a number.\n\nExample:\n  coinValue(4, 3, 2, 1)  →  1.41\n  coinValue(0, 0, 0, 0)  →  0\n  coinValue(1, 0, 0, 0)  →  0.25",
+      "starterCode": "function coinValue(quarters, dimes, nickels, pennies) {\n  // Calculate total cents, then convert to dollars\n\n}",
+      "solution": "function coinValue(quarters, dimes, nickels, pennies) {\n  const cents = quarters * 25 + dimes * 10 + nickels * 5 + pennies;\n  return cents / 100;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return coinValue;')(); return [ { pass: fn(4, 3, 2, 1) === 1.41, description: 'coinValue(4,3,2,1) → 1.41', got: fn(4, 3, 2, 1) }, { pass: fn(0, 0, 0, 0) === 0, description: 'coinValue(0,0,0,0) → 0', got: fn(0, 0, 0, 0) }, { pass: fn(1, 0, 0, 0) === 0.25, description: 'coinValue(1,0,0,0) → 0.25', got: fn(1, 0, 0, 0) }, { pass: fn(0, 0, 0, 99) === 0.99, description: 'coinValue(0,0,0,99) → 0.99', got: fn(0, 0, 0, 99) } ]; }",
+      "hints": [
+        "Each quarter is 25 cents, dime is 10, nickel is 5, penny is 1.",
+        "Calculate the total in cents first, then divide by 100 to get dollars.",
+        "Return `(quarters * 25 + dimes * 10 + nickels * 5 + pennies) / 100`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Arithmetic operators",
+          "url": "/docs/mdn/arithmetic.html",
+          "description": "Using +, -, *, / in expressions"
+        }
+      ]
+    },
+    {
+      "id": 622,
+      "title": "Circle Calculator",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "variables"
+      ],
+      "tags": [
+        "variables",
+        "math",
+        "objects",
+        "beginner"
+      ],
+      "description": "Calculate the area and circumference of a circle given its radius.",
+      "instructions": "Write a function called `circleStats` that takes a radius and returns an object with two properties: `area` and `circumference`, both rounded to two decimal places.\n\nFormulas:\n  area = π × r²\n  circumference = 2 × π × r\n\nExample:\n  circleStats(5)  →  { area: 78.54, circumference: 31.42 }\n  circleStats(1)  →  { area: 3.14, circumference: 6.28 }",
+      "starterCode": "function circleStats(radius) {\n  // Your code here\n\n}",
+      "solution": "function circleStats(radius) {\n  return {\n    area: Math.round(Math.PI * radius * radius * 100) / 100,\n    circumference: Math.round(2 * Math.PI * radius * 100) / 100\n  };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return circleStats;')(); const r5 = fn(5); const r1 = fn(1); const r0 = fn(0); return [ { pass: r5 && r5.area === 78.54, description: 'circleStats(5).area → 78.54', got: r5 && r5.area }, { pass: r5 && r5.circumference === 31.42, description: 'circleStats(5).circumference → 31.42', got: r5 && r5.circumference }, { pass: r1 && r1.area === 3.14, description: 'circleStats(1).area → 3.14', got: r1 && r1.area }, { pass: r0 && r0.area === 0 && r0.circumference === 0, description: 'circleStats(0) → { area: 0, circumference: 0 }', got: JSON.stringify(r0) } ]; }",
+      "hints": [
+        "JavaScript provides Math.PI for the value of π.",
+        "To round to two decimal places, multiply by 100, round, then divide by 100.",
+        "Return an object literal with `area` and `circumference` keys."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Math.PI",
+          "url": "/docs/mdn/math-pi.html",
+          "description": "The built-in constant for π"
+        },
+        {
+          "label": "MDN: Object literals",
+          "url": "/docs/mdn/object-literals.html",
+          "description": "Creating objects with curly braces"
+        }
+      ]
+    },
+    {
+      "id": 623,
+      "title": "Remainder Roundup",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "js-fundamentals",
+        "operators"
+      ],
+      "tags": [
+        "operators",
+        "modulo",
+        "math",
+        "beginner"
+      ],
+      "description": "Use the modulo operator to check divisibility.",
+      "instructions": "Write a function called `isDivisibleBy` that takes two numbers and returns `true` if the first number is evenly divisible by the second, and `false` otherwise.\n\nExample:\n  isDivisibleBy(10, 5)  →  true\n  isDivisibleBy(10, 3)  →  false\n  isDivisibleBy(0, 7)   →  true",
+      "starterCode": "function isDivisibleBy(num, divisor) {\n  // Use the modulo operator (%)\n\n}",
+      "solution": "function isDivisibleBy(num, divisor) {\n  return num % divisor === 0;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return isDivisibleBy;')(); return [ { pass: fn(10, 5) === true, description: 'isDivisibleBy(10, 5) → true', got: fn(10, 5) }, { pass: fn(10, 3) === false, description: 'isDivisibleBy(10, 3) → false', got: fn(10, 3) }, { pass: fn(0, 7) === true, description: 'isDivisibleBy(0, 7) → true', got: fn(0, 7) }, { pass: fn(100, 10) === true, description: 'isDivisibleBy(100, 10) → true', got: fn(100, 10) } ]; }",
+      "hints": [
+        "The modulo operator `%` gives you the remainder after division.",
+        "If the remainder is 0, the number is evenly divisible.",
+        "Return `num % divisor === 0`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Remainder (%)",
+          "url": "/docs/mdn/remainder.html",
+          "description": "The modulo operator returns the remainder of division"
+        }
+      ]
+    },
+    {
+      "id": 624,
+      "title": "Type Detective",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "operators"
+      ],
+      "tags": [
+        "operators",
+        "typeof",
+        "types",
+        "beginner"
+      ],
+      "description": "Identify the type of a value using typeof.",
+      "instructions": "Write a function called `whatType` that takes any value and returns a string describing its type. Return one of: `\"number\"`, `\"string\"`, `\"boolean\"`, `\"undefined\"`, `\"object\"`, or `\"function\"`.\n\nSpecial case: if the value is `null`, return `\"null\"` (not `\"object\"`).\n\nExample:\n  whatType(42)        →  \"number\"\n  whatType(\"hello\")   →  \"string\"\n  whatType(null)      →  \"null\"\n  whatType([1, 2])    →  \"object\"",
+      "starterCode": "function whatType(value) {\n  // Your code here\n\n}",
+      "solution": "function whatType(value) {\n  if (value === null) return \"null\";\n  return typeof value;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return whatType;')(); return [ { pass: fn(42) === 'number', description: 'whatType(42) → \"number\"', got: fn(42) }, { pass: fn('hello') === 'string', description: 'whatType(\"hello\") → \"string\"', got: fn('hello') }, { pass: fn(null) === 'null', description: 'whatType(null) → \"null\"', got: fn(null) }, { pass: fn(true) === 'boolean', description: 'whatType(true) → \"boolean\"', got: fn(true) }, { pass: fn(undefined) === 'undefined', description: 'whatType(undefined) → \"undefined\"', got: fn(undefined) }, { pass: fn([1,2]) === 'object', description: 'whatType([1,2]) → \"object\"', got: fn([1,2]) } ]; }",
+      "hints": [
+        "The `typeof` operator returns a string describing the type of a value.",
+        "There's a famous quirk: `typeof null` returns `\"object\"`. You need to handle this case separately.",
+        "Check for `null` first with `value === null`, then use `typeof` for everything else."
+      ],
+      "resources": [
+        {
+          "label": "MDN: typeof",
+          "url": "/docs/mdn/typeof.html",
+          "description": "The typeof operator and its quirks"
+        }
+      ]
+    },
+    {
+      "id": 630,
+      "title": "Season Finder",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "conditionals",
+        "switch",
+        "beginner"
+      ],
+      "description": "Determine the season based on a month number.",
+      "instructions": "Write a function called `getSeason` that takes a month number (1–12) and returns the season as a string.\n\n  Months 12, 1, 2  → \"Winter\"\n  Months 3, 4, 5   → \"Spring\"\n  Months 6, 7, 8   → \"Summer\"\n  Months 9, 10, 11 → \"Fall\"\n\nExample:\n  getSeason(1)   →  \"Winter\"\n  getSeason(7)   →  \"Summer\"\n  getSeason(10)  →  \"Fall\"",
+      "starterCode": "function getSeason(month) {\n  // Your code here\n\n}",
+      "solution": "function getSeason(month) {\n  if (month === 12 || month <= 2) return \"Winter\";\n  if (month <= 5) return \"Spring\";\n  if (month <= 8) return \"Summer\";\n  return \"Fall\";\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return getSeason;')(); return [ { pass: fn(1) === 'Winter', description: 'getSeason(1) → \"Winter\"', got: fn(1) }, { pass: fn(3) === 'Spring', description: 'getSeason(3) → \"Spring\"', got: fn(3) }, { pass: fn(7) === 'Summer', description: 'getSeason(7) → \"Summer\"', got: fn(7) }, { pass: fn(10) === 'Fall', description: 'getSeason(10) → \"Fall\"', got: fn(10) }, { pass: fn(12) === 'Winter', description: 'getSeason(12) → \"Winter\"', got: fn(12) } ]; }",
+      "hints": [
+        "December (12) wraps around to be in Winter along with January and February.",
+        "Check for month 12 separately, or use `month === 12 || month <= 2` for Winter.",
+        "After handling Winter, the remaining months fall in sequential groups of three."
+      ],
+      "resources": [
+        {
+          "label": "MDN: if...else",
+          "url": "/docs/mdn/if-else.html",
+          "description": "Conditional branching"
+        },
+        {
+          "label": "MDN: Logical OR (||)",
+          "url": "/docs/mdn/logical-or.html",
+          "description": "Combining multiple conditions"
+        }
+      ]
+    },
+    {
+      "id": 631,
+      "title": "Ticket Price",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "conditionals",
+        "logic",
+        "beginner"
+      ],
+      "description": "Calculate a movie ticket price based on age.",
+      "instructions": "Write a function called `ticketPrice` that takes an age and returns the ticket price:\n  - Under 3: free (0)\n  - 3 to 12: $8\n  - 13 to 64: $12\n  - 65 and over: $6\n\nExample:\n  ticketPrice(2)   →  0\n  ticketPrice(10)  →  8\n  ticketPrice(30)  →  12\n  ticketPrice(70)  →  6",
+      "starterCode": "function ticketPrice(age) {\n  // Your code here\n\n}",
+      "solution": "function ticketPrice(age) {\n  if (age < 3) return 0;\n  if (age <= 12) return 8;\n  if (age <= 64) return 12;\n  return 6;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return ticketPrice;')(); return [ { pass: fn(2) === 0, description: 'ticketPrice(2) → 0', got: fn(2) }, { pass: fn(10) === 8, description: 'ticketPrice(10) → 8', got: fn(10) }, { pass: fn(30) === 12, description: 'ticketPrice(30) → 12', got: fn(30) }, { pass: fn(70) === 6, description: 'ticketPrice(70) → 6', got: fn(70) }, { pass: fn(3) === 8, description: 'ticketPrice(3) → 8 (boundary)', got: fn(3) }, { pass: fn(65) === 6, description: 'ticketPrice(65) → 6 (boundary)', got: fn(65) } ]; }",
+      "hints": [
+        "Check the age ranges from youngest to oldest.",
+        "Use `<` for the first boundary (under 3) and `<=` for the rest.",
+        "Each `if` with an early `return` eliminates the need for `else`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: if...else",
+          "url": "/docs/mdn/if-else.html",
+          "description": "Conditional branching"
+        }
+      ]
+    },
+    {
+      "id": 632,
+      "title": "Countdown",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "loops"
+      ],
+      "tags": [
+        "loops",
+        "for-loop",
+        "arrays",
+        "beginner"
+      ],
+      "description": "Generate a countdown array from a given number to 1.",
+      "instructions": "Write a function called `countdown` that takes a positive integer `n` and returns an array counting down from `n` to 1.\n\nExample:\n  countdown(5)  →  [5, 4, 3, 2, 1]\n  countdown(3)  →  [3, 2, 1]\n  countdown(1)  →  [1]",
+      "starterCode": "function countdown(n) {\n  // Your code here\n\n}",
+      "solution": "function countdown(n) {\n  const result = [];\n  for (let i = n; i >= 1; i--) {\n    result.push(i);\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return countdown;')(); return [ { pass: JSON.stringify(fn(5)) === '[5,4,3,2,1]', description: 'countdown(5) → [5,4,3,2,1]', got: JSON.stringify(fn(5)) }, { pass: JSON.stringify(fn(3)) === '[3,2,1]', description: 'countdown(3) → [3,2,1]', got: JSON.stringify(fn(3)) }, { pass: JSON.stringify(fn(1)) === '[1]', description: 'countdown(1) → [1]', got: JSON.stringify(fn(1)) } ]; }",
+      "hints": [
+        "Start a for loop at `n` and decrement until you reach 1.",
+        "Push each value into a results array as you go.",
+        "The loop condition should be `i >= 1`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: for loop",
+          "url": "/docs/mdn/for.html",
+          "description": "The classic counting loop"
+        },
+        {
+          "label": "MDN: Array.push()",
+          "url": "/docs/mdn/array-push.html",
+          "description": "Adding elements to the end of an array"
+        }
+      ]
+    },
+    {
+      "id": 634,
+      "title": "Digit Counter",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "js-fundamentals",
+        "loops"
+      ],
+      "tags": [
+        "loops",
+        "while-loop",
+        "math",
+        "intermediate"
+      ],
+      "description": "Count the number of digits in an integer.",
+      "instructions": "Write a function called `countDigits` that takes a non-negative integer and returns the number of digits it has. Do NOT convert to a string — use a loop and math.\n\nExample:\n  countDigits(0)      →  1\n  countDigits(42)     →  2\n  countDigits(12345)  →  5",
+      "starterCode": "function countDigits(num) {\n  // Use a loop — don't convert to string!\n\n}",
+      "solution": "function countDigits(num) {\n  if (num === 0) return 1;\n  let count = 0;\n  while (num > 0) {\n    num = Math.floor(num / 10);\n    count++;\n  }\n  return count;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return countDigits;')(); return [ { pass: fn(0) === 1, description: 'countDigits(0) → 1', got: fn(0) }, { pass: fn(42) === 2, description: 'countDigits(42) → 2', got: fn(42) }, { pass: fn(12345) === 5, description: 'countDigits(12345) → 5', got: fn(12345) }, { pass: fn(1000000) === 7, description: 'countDigits(1000000) → 7', got: fn(1000000) } ]; }",
+      "hints": [
+        "Repeatedly dividing by 10 and rounding down 'removes' the last digit.",
+        "Count how many times you can divide before reaching 0.",
+        "Handle the special case of 0 separately (it has 1 digit)."
+      ],
+      "resources": [
+        {
+          "label": "MDN: while loop",
+          "url": "/docs/mdn/while.html",
+          "description": "Looping while a condition is true"
+        },
+        {
+          "label": "MDN: Math.floor()",
+          "url": "/docs/mdn/math-floor.html",
+          "description": "Rounding down to the nearest integer"
+        }
+      ]
+    },
+    {
+      "id": 635,
+      "title": "Multiply Table",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "loops"
+      ],
+      "tags": [
+        "loops",
+        "for-loop",
+        "arrays",
+        "beginner"
+      ],
+      "description": "Generate the multiplication table for a number.",
+      "instructions": "Write a function called `multiplyTable` that takes a number `n` and returns an array of strings showing its multiplication table from 1 to 10.\n\nExample:\n  multiplyTable(3)  →  [\"3 x 1 = 3\", \"3 x 2 = 6\", ..., \"3 x 10 = 30\"]",
+      "starterCode": "function multiplyTable(n) {\n  // Your code here\n\n}",
+      "solution": "function multiplyTable(n) {\n  const result = [];\n  for (let i = 1; i <= 10; i++) {\n    result.push(n + \" x \" + i + \" = \" + (n * i));\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return multiplyTable;')(); const r3 = fn(3); const r5 = fn(5); return [ { pass: r3 && r3.length === 10, description: 'multiplyTable(3) returns 10 items', got: r3 && r3.length }, { pass: r3 && r3[0] === '3 x 1 = 3', description: 'First: \"3 x 1 = 3\"', got: r3 && r3[0] }, { pass: r3 && r3[9] === '3 x 10 = 30', description: 'Last: \"3 x 10 = 30\"', got: r3 && r3[9] }, { pass: r5 && r5[4] === '5 x 5 = 25', description: 'multiplyTable(5)[4] → \"5 x 5 = 25\"', got: r5 && r5[4] } ]; }",
+      "hints": [
+        "Loop from 1 to 10 and build a string for each multiplication.",
+        "Use string concatenation to build each line: `n + \" x \" + i + \" = \" + (n * i)`.",
+        "Push each string into a results array."
+      ],
+      "resources": [
+        {
+          "label": "MDN: for loop",
+          "url": "/docs/mdn/for.html",
+          "description": "The classic counting loop"
+        }
+      ]
+    },
+    {
+      "id": 637,
+      "title": "Prime Checker",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "js-fundamentals",
+        "loops"
+      ],
+      "tags": [
+        "loops",
+        "math",
+        "conditionals",
+        "intermediate"
+      ],
+      "description": "Determine whether a number is prime.",
+      "instructions": "Write a function called `isPrime` that takes a number and returns `true` if it is a prime number, `false` otherwise. A prime number is greater than 1 and only divisible by 1 and itself.\n\nExample:\n  isPrime(7)   →  true\n  isPrime(4)   →  false\n  isPrime(1)   →  false\n  isPrime(13)  →  true",
+      "starterCode": "function isPrime(num) {\n  // Your code here\n\n}",
+      "solution": "function isPrime(num) {\n  if (num < 2) return false;\n  for (let i = 2; i <= Math.sqrt(num); i++) {\n    if (num % i === 0) return false;\n  }\n  return true;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return isPrime;')(); return [ { pass: fn(7) === true, description: 'isPrime(7) → true', got: fn(7) }, { pass: fn(4) === false, description: 'isPrime(4) → false', got: fn(4) }, { pass: fn(1) === false, description: 'isPrime(1) → false', got: fn(1) }, { pass: fn(13) === true, description: 'isPrime(13) → true', got: fn(13) }, { pass: fn(0) === false, description: 'isPrime(0) → false', got: fn(0) }, { pass: fn(97) === true, description: 'isPrime(97) → true', got: fn(97) } ]; }",
+      "hints": [
+        "Numbers less than 2 are not prime.",
+        "You only need to check divisors up to the square root of the number.",
+        "If any number from 2 to √num divides evenly, it's not prime."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Math.sqrt()",
+          "url": "/docs/mdn/math-sqrt.html",
+          "description": "Calculating the square root of a number"
+        }
+      ]
+    },
+    {
+      "id": 638,
+      "title": "Sum of Digits",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "js-fundamentals",
+        "loops"
+      ],
+      "tags": [
+        "loops",
+        "while-loop",
+        "math",
+        "intermediate"
+      ],
+      "description": "Add up all the individual digits of a number.",
+      "instructions": "Write a function called `sumOfDigits` that takes a non-negative integer and returns the sum of its digits. Use math (not string conversion).\n\nExample:\n  sumOfDigits(123)   →  6\n  sumOfDigits(9999)  →  36\n  sumOfDigits(0)     →  0",
+      "starterCode": "function sumOfDigits(num) {\n  // Use math — don't convert to string!\n\n}",
+      "solution": "function sumOfDigits(num) {\n  let sum = 0;\n  while (num > 0) {\n    sum += num % 10;\n    num = Math.floor(num / 10);\n  }\n  return sum;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return sumOfDigits;')(); return [ { pass: fn(123) === 6, description: 'sumOfDigits(123) → 6', got: fn(123) }, { pass: fn(9999) === 36, description: 'sumOfDigits(9999) → 36', got: fn(9999) }, { pass: fn(0) === 0, description: 'sumOfDigits(0) → 0', got: fn(0) }, { pass: fn(100) === 1, description: 'sumOfDigits(100) → 1', got: fn(100) } ]; }",
+      "hints": [
+        "`num % 10` gives you the last digit. `Math.floor(num / 10)` removes it.",
+        "Keep extracting and summing the last digit until the number reaches 0.",
+        "The accumulator pattern: `sum += num % 10` inside a while loop."
+      ],
+      "resources": [
+        {
+          "label": "MDN: while loop",
+          "url": "/docs/mdn/while.html",
+          "description": "Looping while a condition is true"
+        }
+      ]
+    },
+    {
+      "id": 639,
+      "title": "Vowel Counter",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "loops",
+        "includes",
+        "beginner"
+      ],
+      "description": "Count the number of vowels in a string.",
+      "instructions": "Write a function called `countVowels` that takes a string and returns the number of vowels (a, e, i, o, u) it contains. Case-insensitive.\n\nExample:\n  countVowels(\"hello\")      →  2\n  countVowels(\"JavaScript\") →  3\n  countVowels(\"rhythm\")     →  0",
+      "starterCode": "function countVowels(str) {\n  // Your code here\n\n}",
+      "solution": "function countVowels(str) {\n  let count = 0;\n  for (const char of str.toLowerCase()) {\n    if (\"aeiou\".includes(char)) count++;\n  }\n  return count;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return countVowels;')(); return [ { pass: fn('hello') === 2, description: 'countVowels(\"hello\") → 2', got: fn('hello') }, { pass: fn('JavaScript') === 3, description: 'countVowels(\"JavaScript\") → 3', got: fn('JavaScript') }, { pass: fn('rhythm') === 0, description: 'countVowels(\"rhythm\") → 0', got: fn('rhythm') }, { pass: fn('AEIOU') === 5, description: 'countVowels(\"AEIOU\") → 5', got: fn('AEIOU') }, { pass: fn('') === 0, description: 'countVowels(\"\") → 0', got: fn('') } ]; }",
+      "hints": [
+        "Convert the string to lowercase first so you only need to check lowercase vowels.",
+        "Loop through each character and check if it's in the set \"aeiou\".",
+        "`\"aeiou\".includes(char)` is a clean way to check if a character is a vowel."
+      ],
+      "resources": [
+        {
+          "label": "MDN: String.includes()",
+          "url": "/docs/mdn/string-includes.html",
+          "description": "Check if a string contains a substring"
+        }
+      ]
+    },
+    {
+      "id": 643,
+      "title": "Word Frequency",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "objects",
+        "reduce",
+        "intermediate"
+      ],
+      "description": "Count how many times each word appears in a string.",
+      "instructions": "Write a function called `wordFrequency` that takes a string of words (separated by spaces) and returns an object where each key is a lowercase word and each value is the count of how many times it appears.\n\nExample:\n  wordFrequency(\"the cat sat on the mat\")\n  → { the: 2, cat: 1, sat: 1, on: 1, mat: 1 }",
+      "starterCode": "function wordFrequency(str) {\n  // Your code here\n\n}",
+      "solution": "function wordFrequency(str) {\n  if (!str) return {};\n  const counts = {};\n  for (const word of str.toLowerCase().split(' ')) {\n    counts[word] = (counts[word] || 0) + 1;\n  }\n  return counts;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return wordFrequency;')(); const r1 = fn('the cat sat on the mat'); const r2 = fn('hello hello hello'); return [ { pass: r1 && r1.the === 2, description: '\"the\" appears 2 times', got: r1 && r1.the }, { pass: r1 && r1.cat === 1, description: '\"cat\" appears 1 time', got: r1 && r1.cat }, { pass: r2 && r2.hello === 3, description: '\"hello\" appears 3 times', got: r2 && r2.hello }, { pass: JSON.stringify(fn('')) === '{}', description: 'empty string → {}', got: JSON.stringify(fn('')) } ]; }",
+      "hints": [
+        "Split the string into words and lowercase them.",
+        "Use an object as a frequency counter: `counts[word] = (counts[word] || 0) + 1`.",
+        "The `||` pattern handles the case when a word is seen for the first time."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Object basics",
+          "url": "/docs/mdn/objects.html",
+          "description": "Using objects as key-value stores"
+        }
+      ]
+    },
+    {
+      "id": 644,
+      "title": "Remove Duplicates",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "set",
+        "unique",
+        "beginner"
+      ],
+      "description": "Remove duplicate values from an array while preserving order.",
+      "instructions": "Write a function called `removeDuplicates` that takes an array and returns a new array with duplicate values removed, keeping the first occurrence of each value.\n\nExample:\n  removeDuplicates([1, 2, 2, 3, 1, 4])  →  [1, 2, 3, 4]\n  removeDuplicates([\"a\", \"b\", \"a\"])       →  [\"a\", \"b\"]",
+      "starterCode": "function removeDuplicates(arr) {\n  // Your code here\n\n}",
+      "solution": "function removeDuplicates(arr) {\n  return [...new Set(arr)];\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return removeDuplicates;')(); return [ { pass: JSON.stringify(fn([1,2,2,3,1,4])) === '[1,2,3,4]', description: 'removeDuplicates([1,2,2,3,1,4]) → [1,2,3,4]', got: JSON.stringify(fn([1,2,2,3,1,4])) }, { pass: JSON.stringify(fn(['a','b','a'])) === '[\"a\",\"b\"]', description: 'removeDuplicates([\"a\",\"b\",\"a\"]) → [\"a\",\"b\"]', got: JSON.stringify(fn(['a','b','a'])) }, { pass: JSON.stringify(fn([])) === '[]', description: 'removeDuplicates([]) → []', got: JSON.stringify(fn([])) } ]; }",
+      "hints": [
+        "A `Set` automatically removes duplicates.",
+        "Convert the array to a Set, then spread it back into an array.",
+        "`[...new Set(arr)]` is the concise solution."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Set",
+          "url": "/docs/mdn/set.html",
+          "description": "A collection of unique values"
+        }
+      ]
+    },
+    {
+      "id": 645,
+      "title": "Chunk Array",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "loops",
+        "slice",
+        "intermediate"
+      ],
+      "description": "Split an array into groups of a given size.",
+      "instructions": "Write a function called `chunk` that takes an array and a size, and splits the array into sub-arrays of the given size. The last chunk may be smaller if the array doesn't divide evenly.\n\nExample:\n  chunk([1,2,3,4,5], 2)  →  [[1,2], [3,4], [5]]\n  chunk([1,2,3], 3)       →  [[1,2,3]]\n  chunk([1,2,3], 1)       →  [[1], [2], [3]]",
+      "starterCode": "function chunk(arr, size) {\n  // Your code here\n\n}",
+      "solution": "function chunk(arr, size) {\n  const result = [];\n  for (let i = 0; i < arr.length; i += size) {\n    result.push(arr.slice(i, i + size));\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return chunk;')(); return [ { pass: JSON.stringify(fn([1,2,3,4,5], 2)) === '[[1,2],[3,4],[5]]', description: 'chunk([1,2,3,4,5], 2) → [[1,2],[3,4],[5]]', got: JSON.stringify(fn([1,2,3,4,5], 2)) }, { pass: JSON.stringify(fn([1,2,3], 3)) === '[[1,2,3]]', description: 'chunk([1,2,3], 3) → [[1,2,3]]', got: JSON.stringify(fn([1,2,3], 3)) }, { pass: JSON.stringify(fn([1,2,3], 1)) === '[[1],[2],[3]]', description: 'chunk([1,2,3], 1) → [[1],[2],[3]]', got: JSON.stringify(fn([1,2,3], 1)) }, { pass: JSON.stringify(fn([], 2)) === '[]', description: 'chunk([], 2) → []', got: JSON.stringify(fn([], 2)) } ]; }",
+      "hints": [
+        "Use a for loop that increments by `size` each iteration.",
+        "`arr.slice(i, i + size)` extracts a chunk without modifying the original.",
+        "Push each slice into a results array."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.slice()",
+          "url": "/docs/mdn/array-slice.html",
+          "description": "Extracting a section of an array"
+        }
+      ]
+    },
+    {
+      "id": 646,
+      "title": "Flatten One Level",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "concat",
+        "flat",
+        "intermediate"
+      ],
+      "description": "Flatten a nested array by one level.",
+      "instructions": "Write a function called `flattenOnce` that takes an array which may contain nested arrays and flattens it by one level. Do NOT use `.flat()`.\n\nExample:\n  flattenOnce([[1,2], [3,4], [5]])  →  [1, 2, 3, 4, 5]\n  flattenOnce([1, [2, 3], 4])        →  [1, 2, 3, 4]\n  flattenOnce([[1, [2]], 3])          →  [1, [2], 3]",
+      "starterCode": "function flattenOnce(arr) {\n  // Don't use .flat()!\n\n}",
+      "solution": "function flattenOnce(arr) {\n  const result = [];\n  for (const item of arr) {\n    if (Array.isArray(item)) {\n      result.push(...item);\n    } else {\n      result.push(item);\n    }\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return flattenOnce;')(); return [ { pass: JSON.stringify(fn([[1,2],[3,4],[5]])) === '[1,2,3,4,5]', description: 'flattenOnce([[1,2],[3,4],[5]]) → [1,2,3,4,5]', got: JSON.stringify(fn([[1,2],[3,4],[5]])) }, { pass: JSON.stringify(fn([1,[2,3],4])) === '[1,2,3,4]', description: 'flattenOnce([1,[2,3],4]) → [1,2,3,4]', got: JSON.stringify(fn([1,[2,3],4])) }, { pass: JSON.stringify(fn([[1,[2]],3])) === '[1,[2],3]', description: 'flattenOnce([[1,[2]],3]) → [1,[2],3] (one level only)', got: JSON.stringify(fn([[1,[2]],3])) } ]; }",
+      "hints": [
+        "Loop through each item. If it's an array, spread its elements into the result.",
+        "Use `Array.isArray(item)` to check if an element is an array.",
+        "`result.push(...item)` spreads the nested array's elements."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.isArray()",
+          "url": "/docs/mdn/array-isarray.html",
+          "description": "Check if a value is an array"
+        }
+      ]
+    },
+    {
+      "id": 647,
+      "title": "Intersection",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "filter",
+        "includes",
+        "intermediate"
+      ],
+      "description": "Find the common elements between two arrays.",
+      "instructions": "Write a function called `intersection` that takes two arrays and returns a new array containing only the elements that appear in both. No duplicates in the result.\n\nExample:\n  intersection([1,2,3,4], [3,4,5,6])        →  [3, 4]\n  intersection([\"a\",\"b\"], [\"b\",\"c\"])          →  [\"b\"]\n  intersection([1,1,2,2], [2,2,3,3])          →  [2]",
+      "starterCode": "function intersection(arr1, arr2) {\n  // Your code here\n\n}",
+      "solution": "function intersection(arr1, arr2) {\n  const set2 = new Set(arr2);\n  return [...new Set(arr1)].filter(item => set2.has(item));\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return intersection;')(); return [ { pass: JSON.stringify(fn([1,2,3,4],[3,4,5,6])) === '[3,4]', description: 'intersection([1,2,3,4],[3,4,5,6]) → [3,4]', got: JSON.stringify(fn([1,2,3,4],[3,4,5,6])) }, { pass: JSON.stringify(fn(['a','b'],['b','c'])) === '[\"b\"]', description: 'intersection([\"a\",\"b\"],[\"b\",\"c\"]) → [\"b\"]', got: JSON.stringify(fn(['a','b'],['b','c'])) }, { pass: JSON.stringify(fn([1,1,2,2],[2,2,3,3])) === '[2]', description: 'intersection([1,1,2,2],[2,2,3,3]) → [2]', got: JSON.stringify(fn([1,1,2,2],[2,2,3,3])) }, { pass: JSON.stringify(fn([],[1,2])) === '[]', description: 'intersection([],[1,2]) → []', got: JSON.stringify(fn([],[1,2])) } ]; }",
+      "hints": [
+        "Convert one array to a Set for fast lookups.",
+        "Filter the other array to keep only elements found in the Set.",
+        "Deduplicate the first array too — `[...new Set(arr1)].filter(...)`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Set",
+          "url": "/docs/mdn/set.html",
+          "description": "A collection of unique values"
+        }
+      ]
+    },
+    {
+      "id": 652,
+      "title": "Simple Callback",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "functions",
+        "callbacks"
+      ],
+      "tags": [
+        "callbacks",
+        "functions",
+        "higher-order",
+        "beginner"
+      ],
+      "description": "Apply a callback function to each element and return the results.",
+      "instructions": "Write a function called `applyToEach` that takes an array and a callback function, and returns a new array where each element has been transformed by the callback. Do NOT use `.map()`.\n\nExample:\n  applyToEach([1,2,3], x => x * 2)     →  [2, 4, 6]\n  applyToEach(['a','b'], s => s + '!')  →  ['a!', 'b!']",
+      "starterCode": "function applyToEach(arr, callback) {\n  // Don't use .map()!\n\n}",
+      "solution": "function applyToEach(arr, callback) {\n  const result = [];\n  for (const item of arr) {\n    result.push(callback(item));\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return applyToEach;')(); return [ { pass: JSON.stringify(fn([1,2,3], x => x * 2)) === '[2,4,6]', description: 'applyToEach([1,2,3], x => x*2) → [2,4,6]', got: JSON.stringify(fn([1,2,3], x => x * 2)) }, { pass: JSON.stringify(fn(['a','b'], s => s + '!')) === '[\"a!\",\"b!\"]', description: 'applyToEach([\"a\",\"b\"], s => s+\"!\") → [\"a!\",\"b!\"]', got: JSON.stringify(fn(['a','b'], s => s + '!')) }, { pass: JSON.stringify(fn([], x => x)) === '[]', description: 'applyToEach([], ...) → []', got: JSON.stringify(fn([], x => x)) } ]; }",
+      "hints": [
+        "A callback is just a function passed as an argument to another function.",
+        "Loop through the array and call `callback(item)` for each element.",
+        "This is essentially what `.map()` does under the hood."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Callback functions",
+          "url": "/docs/mdn/callbacks.html",
+          "description": "Passing functions as arguments to other functions"
+        }
+      ]
+    },
+    {
+      "id": 653,
+      "title": "Custom Filter",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "functions",
+        "callbacks"
+      ],
+      "tags": [
+        "callbacks",
+        "functions",
+        "higher-order",
+        "intermediate"
+      ],
+      "description": "Implement your own version of Array.filter using a callback.",
+      "instructions": "Write a function called `myFilter` that takes an array and a predicate function (a function that returns true/false), and returns a new array containing only the elements for which the predicate returns true. Do NOT use `.filter()`.\n\nExample:\n  myFilter([1,2,3,4,5], n => n > 3)       →  [4, 5]\n  myFilter(['cat','dog','cow'], s => s.startsWith('c'))  →  ['cat', 'cow']",
+      "starterCode": "function myFilter(arr, predicate) {\n  // Don't use .filter()!\n\n}",
+      "solution": "function myFilter(arr, predicate) {\n  const result = [];\n  for (const item of arr) {\n    if (predicate(item)) result.push(item);\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return myFilter;')(); return [ { pass: JSON.stringify(fn([1,2,3,4,5], n => n > 3)) === '[4,5]', description: 'myFilter([1,2,3,4,5], n => n>3) → [4,5]', got: JSON.stringify(fn([1,2,3,4,5], n => n > 3)) }, { pass: JSON.stringify(fn(['cat','dog','cow'], s => s.startsWith('c'))) === '[\"cat\",\"cow\"]', description: 'myFilter with startsWith(\"c\") → [\"cat\",\"cow\"]', got: JSON.stringify(fn(['cat','dog','cow'], s => s.startsWith('c'))) }, { pass: JSON.stringify(fn([1,2,3], () => false)) === '[]', description: 'Always-false predicate → []', got: JSON.stringify(fn([1,2,3], () => false)) } ]; }",
+      "hints": [
+        "A predicate is a function that returns true or false.",
+        "Loop through the array and only push items where `predicate(item)` is true.",
+        "This is exactly how `.filter()` works internally."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.filter()",
+          "url": "/docs/mdn/array-filter.html",
+          "description": "How the built-in filter method works"
+        }
+      ]
+    },
+    {
+      "id": 654,
+      "title": "Function Pipeline",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "functions",
+        "callbacks"
+      ],
+      "tags": [
+        "callbacks",
+        "reduce",
+        "composition",
+        "advanced"
+      ],
+      "description": "Pipe a value through a series of functions, left to right.",
+      "instructions": "Write a function called `pipe` that takes a value and an array of functions, and applies each function to the result of the previous one, left to right.\n\nExample:\n  pipe(5, [x => x + 1, x => x * 2])       →  12\n  pipe('hello', [s => s.toUpperCase(), s => s + '!'])  →  \"HELLO!\"",
+      "starterCode": "function pipe(value, fns) {\n\n}",
+      "solution": "function pipe(value, fns) {\n  return fns.reduce((acc, fn) => fn(acc), value);\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return pipe;')(); return [ { pass: fn(5, [x => x + 1, x => x * 2]) === 12, description: 'pipe(5, [+1, *2]) → 12', got: fn(5, [x => x + 1, x => x * 2]) }, { pass: fn('hello', [s => s.toUpperCase(), s => s + '!']) === 'HELLO!', description: 'pipe(\"hello\", [toUpper, +!]) → \"HELLO!\"', got: fn('hello', [s => s.toUpperCase(), s => s + '!']) }, { pass: fn(10, []) === 10, description: 'pipe(10, []) → 10 (no functions)', got: fn(10, []) } ]; }",
+      "hints": [
+        "Each function takes the output of the previous function as input.",
+        "`reduce` is perfect here — the accumulator carries the value through each function.",
+        "`fns.reduce((acc, fn) => fn(acc), value)` is the one-liner solution."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.reduce()",
+          "url": "/docs/mdn/array-reduce.html",
+          "description": "Reducing an array to a single value"
+        }
+      ]
+    },
+    {
+      "id": 655,
+      "title": "Recursive Sum",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "algorithms",
+        "recursion"
+      ],
+      "tags": [
+        "recursion",
+        "math",
+        "beginner"
+      ],
+      "description": "Sum all numbers from 1 to n using recursion.",
+      "instructions": "Write a function called `recursiveSum` that takes a positive integer `n` and returns the sum of all integers from 1 to `n`. Use recursion — no loops.\n\nExample:\n  recursiveSum(5)   →  15  (1+2+3+4+5)\n  recursiveSum(1)   →  1\n  recursiveSum(10)  →  55",
+      "starterCode": "function recursiveSum(n) {\n  // Use recursion — no loops!\n\n}",
+      "solution": "function recursiveSum(n) {\n  if (n <= 1) return n;\n  return n + recursiveSum(n - 1);\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return recursiveSum;')(); return [ { pass: fn(5) === 15, description: 'recursiveSum(5) → 15', got: fn(5) }, { pass: fn(1) === 1, description: 'recursiveSum(1) → 1', got: fn(1) }, { pass: fn(10) === 55, description: 'recursiveSum(10) → 55', got: fn(10) }, { pass: fn(0) === 0, description: 'recursiveSum(0) → 0', got: fn(0) } ]; }",
+      "hints": [
+        "Every recursive function needs a base case — what's the simplest input?",
+        "The base case is n <= 1. Otherwise, n + the sum of everything below it.",
+        "`return n + recursiveSum(n - 1)`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Recursion",
+          "url": "/docs/mdn/recursion.html",
+          "description": "Functions that call themselves"
+        }
+      ]
+    },
+    {
+      "id": 658,
+      "title": "Recursive Reverse",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "algorithms",
+        "recursion"
+      ],
+      "tags": [
+        "recursion",
+        "strings",
+        "intermediate"
+      ],
+      "description": "Reverse a string using recursion.",
+      "instructions": "Write a function called `reverseStr` that takes a string and returns it reversed, using recursion. No loops or `.reverse()`.\n\nExample:\n  reverseStr(\"hello\")  →  \"olleh\"\n  reverseStr(\"a\")      →  \"a\"\n  reverseStr(\"\")        →  \"\"",
+      "starterCode": "function reverseStr(str) {\n  // Use recursion — no loops!\n\n}",
+      "solution": "function reverseStr(str) {\n  if (str.length <= 1) return str;\n  return reverseStr(str.slice(1)) + str[0];\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return reverseStr;')(); return [ { pass: fn('hello') === 'olleh', description: 'reverseStr(\"hello\") → \"olleh\"', got: fn('hello') }, { pass: fn('a') === 'a', description: 'reverseStr(\"a\") → \"a\"', got: fn('a') }, { pass: fn('') === '', description: 'reverseStr(\"\") → \"\"', got: fn('') }, { pass: fn('abcde') === 'edcba', description: 'reverseStr(\"abcde\") → \"edcba\"', got: fn('abcde') } ]; }",
+      "hints": [
+        "Base case: an empty string or single character is already reversed.",
+        "Take the first character and put it at the end of the reversed rest.",
+        "`reverseStr(str.slice(1)) + str[0]`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: String.slice()",
+          "url": "/docs/mdn/string-slice.html",
+          "description": "Extracting parts of a string"
+        }
+      ]
+    },
+    {
+      "id": 660,
+      "title": "Range Builder",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "loops"
+      ],
+      "tags": [
+        "loops",
+        "arrays",
+        "utility",
+        "beginner"
+      ],
+      "description": "Generate an array of numbers within a range.",
+      "instructions": "Write a function called `range` that takes a start and end number and returns an array of all integers from start to end (inclusive).\n\nExample:\n  range(1, 5)   →  [1, 2, 3, 4, 5]\n  range(3, 3)   →  [3]\n  range(-2, 2)  →  [-2, -1, 0, 1, 2]",
+      "starterCode": "function range(start, end) {\n  // Your code here\n\n}",
+      "solution": "function range(start, end) {\n  const result = [];\n  for (let i = start; i <= end; i++) {\n    result.push(i);\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return range;')(); return [ { pass: JSON.stringify(fn(1, 5)) === '[1,2,3,4,5]', description: 'range(1, 5) → [1,2,3,4,5]', got: JSON.stringify(fn(1, 5)) }, { pass: JSON.stringify(fn(3, 3)) === '[3]', description: 'range(3, 3) → [3]', got: JSON.stringify(fn(3, 3)) }, { pass: JSON.stringify(fn(-2, 2)) === '[-2,-1,0,1,2]', description: 'range(-2, 2) → [-2,-1,0,1,2]', got: JSON.stringify(fn(-2, 2)) } ]; }",
+      "hints": [
+        "Start a for loop at `start` and increment up to `end`.",
+        "Push each value into a results array.",
+        "This is the same as Python's `range()` but inclusive on both ends."
+      ],
+      "resources": [
+        {
+          "label": "MDN: for loop",
+          "url": "/docs/mdn/for.html",
+          "description": "The classic counting loop"
+        }
+      ]
+    },
+    {
+      "id": 662,
+      "title": "Zip Arrays",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "loops",
+        "pairs",
+        "intermediate"
+      ],
+      "description": "Combine two arrays into an array of pairs.",
+      "instructions": "Write a function called `zip` that takes two arrays and returns an array of pairs (2-element arrays), combining elements at the same index. Stop at the shorter array's length.\n\nExample:\n  zip([1,2,3], ['a','b','c'])  →  [[1,'a'], [2,'b'], [3,'c']]\n  zip([1,2], ['a','b','c'])    →  [[1,'a'], [2,'b']]\n  zip([], [1])                  →  []",
+      "starterCode": "function zip(arr1, arr2) {\n  // Your code here\n\n}",
+      "solution": "function zip(arr1, arr2) {\n  const len = Math.min(arr1.length, arr2.length);\n  const result = [];\n  for (let i = 0; i < len; i++) {\n    result.push([arr1[i], arr2[i]]);\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return zip;')(); return [ { pass: JSON.stringify(fn([1,2,3],['a','b','c'])) === '[[1,\"a\"],[2,\"b\"],[3,\"c\"]]', description: 'zip([1,2,3],[\"a\",\"b\",\"c\"]) → pairs', got: JSON.stringify(fn([1,2,3],['a','b','c'])) }, { pass: JSON.stringify(fn([1,2],['a','b','c'])) === '[[1,\"a\"],[2,\"b\"]]', description: 'zip([1,2],[\"a\",\"b\",\"c\"]) → stops at shorter', got: JSON.stringify(fn([1,2],['a','b','c'])) }, { pass: JSON.stringify(fn([],['a'])) === '[]', description: 'zip([],[\"a\"]) → []', got: JSON.stringify(fn([],['a'])) } ]; }",
+      "hints": [
+        "Use `Math.min` to determine the length of the shorter array.",
+        "Loop up to that length and pair elements at matching indices.",
+        "Push `[arr1[i], arr2[i]]` into the result for each index."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Math.min()",
+          "url": "/docs/mdn/math-min.html",
+          "description": "Finding the smallest value"
+        }
+      ]
+    },
+    {
+      "id": 663,
+      "title": "Most Frequent",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "arrays",
+        "objects",
+        "counting",
+        "intermediate"
+      ],
+      "description": "Find the most frequently occurring element in an array.",
+      "instructions": "Write a function called `mostFrequent` that takes an array and returns the element that appears most often. If there's a tie, return the one that appears first.\n\nExample:\n  mostFrequent([1, 2, 2, 3, 3, 3])  →  3\n  mostFrequent(['a', 'b', 'a'])       →  'a'\n  mostFrequent([5])                    →  5",
+      "starterCode": "function mostFrequent(arr) {\n  // Your code here\n\n}",
+      "solution": "function mostFrequent(arr) {\n  const counts = {};\n  let maxItem = arr[0];\n  let maxCount = 0;\n  for (const item of arr) {\n    counts[item] = (counts[item] || 0) + 1;\n    if (counts[item] > maxCount) {\n      maxCount = counts[item];\n      maxItem = item;\n    }\n  }\n  return maxItem;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return mostFrequent;')(); return [ { pass: fn([1,2,2,3,3,3]) === 3, description: 'mostFrequent([1,2,2,3,3,3]) → 3', got: fn([1,2,2,3,3,3]) }, { pass: fn(['a','b','a']) === 'a', description: 'mostFrequent([\"a\",\"b\",\"a\"]) → \"a\"', got: fn(['a','b','a']) }, { pass: fn([5]) === 5, description: 'mostFrequent([5]) → 5', got: fn([5]) }, { pass: fn([1,1,2,2,3]) === 1, description: 'mostFrequent([1,1,2,2,3]) → 1 (tie: first wins)', got: fn([1,1,2,2,3]) } ]; }",
+      "hints": [
+        "Use an object to count occurrences of each element.",
+        "Track the current maximum count and its element as you iterate.",
+        "Update the max only when a strictly greater count is found (to preserve first-seen behavior on ties)."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Object basics",
+          "url": "/docs/mdn/objects.html",
+          "description": "Using objects as frequency counters"
+        }
+      ]
+    },
+    {
+      "id": 664,
+      "title": "Between Two Sets",
+      "type": "js",
+      "tier": 4,
+      "category": [
+        "algorithms",
+        "patterns"
+      ],
+      "tags": [
+        "math",
+        "divisibility",
+        "loops",
+        "intermediate"
+      ],
+      "description": "Find numbers that are multiples of one set and factors of another.",
+      "instructions": "Write a function called `betweenSets` that takes two arrays of positive integers. Return all integers that are:\n  1. Evenly divisible by every element of the first array, AND\n  2. A factor of every element of the second array\n\nExample:\n  betweenSets([2, 6], [24, 36])  →  [6, 12]\n  betweenSets([1], [100])         →  [1, 2, 4, 5, 10, 20, 25, 50, 100]",
+      "starterCode": "function betweenSets(setA, setB) {\n\n}",
+      "solution": "function betweenSets(setA, setB) {\n  const maxCandidate = Math.min(...setB);\n  const results = [];\n  for (let i = 1; i <= maxCandidate; i++) {\n    const divisibleByAll = setA.every(a => i % a === 0);\n    const factorOfAll = setB.every(b => b % i === 0);\n    if (divisibleByAll && factorOfAll) results.push(i);\n  }\n  return results;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return betweenSets;')(); return [ { pass: JSON.stringify(fn([2,6],[24,36])) === '[6,12]', description: 'betweenSets([2,6],[24,36]) → [6,12]', got: JSON.stringify(fn([2,6],[24,36])) }, { pass: fn([1],[100]).length === 9, description: 'betweenSets([1],[100]) has 9 results', got: fn([1],[100]).length }, { pass: JSON.stringify(fn([3],[12,18])) === '[3,6]', description: 'betweenSets([3],[12,18]) → [3,6]', got: JSON.stringify(fn([3],[12,18])) } ]; }",
+      "hints": [
+        "The candidate numbers range from 1 to the smallest number in the second array.",
+        "Use `.every()` to check that a candidate meets both conditions.",
+        "A candidate must be divisible by all in setA AND divide evenly into all in setB."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.every()",
+          "url": "/docs/mdn/array-every.html",
+          "description": "Check if all elements pass a test"
+        }
+      ]
+    },
+    {
+      "id": 665,
+      "title": "Alternating Caps",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "loops",
+        "case",
+        "beginner"
+      ],
+      "description": "Alternate between uppercase and lowercase letters.",
+      "instructions": "Write a function called `altCaps` that takes a string and returns it with alternating capitalization, starting with uppercase. Non-letter characters don't count toward the alternation.\n\nExample:\n  altCaps(\"hello\")     →  \"HeLlO\"\n  altCaps(\"javascript\") →  \"JaVaScRiPt\"\n  altCaps(\"hi there\")  →  \"Hi ThErE\"",
+      "starterCode": "function altCaps(str) {\n  // Your code here\n\n}",
+      "solution": "function altCaps(str) {\n  let letterIndex = 0;\n  let result = '';\n  for (const char of str) {\n    if (/[a-z]/i.test(char)) {\n      result += letterIndex % 2 === 0 ? char.toUpperCase() : char.toLowerCase();\n      letterIndex++;\n    } else {\n      result += char;\n    }\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return altCaps;')(); return [ { pass: fn('hello') === 'HeLlO', description: 'altCaps(\"hello\") → \"HeLlO\"', got: fn('hello') }, { pass: fn('javascript') === 'JaVaScRiPt', description: 'altCaps(\"javascript\") → \"JaVaScRiPt\"', got: fn('javascript') }, { pass: fn('hi there') === 'Hi ThErE', description: 'altCaps(\"hi there\") → \"Hi ThErE\"', got: fn('hi there') }, { pass: fn('') === '', description: 'altCaps(\"\") → \"\"', got: fn('') } ]; }",
+      "hints": [
+        "Track a separate counter for letters only (skip spaces and punctuation).",
+        "Even-indexed letters become uppercase, odd-indexed become lowercase.",
+        "Use a regex like `/[a-z]/i` to detect letter characters."
+      ],
+      "resources": [
+        {
+          "label": "MDN: String.toUpperCase()",
+          "url": "/docs/mdn/string-toupper.html",
+          "description": "Converting a string to uppercase"
+        }
+      ]
+    },
+    {
+      "id": 671,
+      "title": "Quadrant Finder",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "conditionals",
+        "math",
+        "coordinates",
+        "beginner"
+      ],
+      "description": "Determine which quadrant a coordinate point falls in.",
+      "instructions": "Write a function called `getQuadrant` that takes two numbers `x` and `y` representing a point on a coordinate plane, and returns which quadrant the point is in (1–4). If the point is on an axis (x or y is 0), return `0`.\n\nQuadrant layout:\n- Quadrant 1: x > 0, y > 0 (top-right)\n- Quadrant 2: x < 0, y > 0 (top-left)\n- Quadrant 3: x < 0, y < 0 (bottom-left)\n- Quadrant 4: x > 0, y < 0 (bottom-right)\n\nExample:\n  getQuadrant(3, 5)    →  1\n  getQuadrant(-2, 4)   →  2\n  getQuadrant(0, 7)    →  0",
+      "starterCode": "function getQuadrant(x, y) {\n  // Your code here\n\n}",
+      "solution": "function getQuadrant(x, y) {\n  if (x === 0 || y === 0) return 0;\n  if (x > 0 && y > 0) return 1;\n  if (x < 0 && y > 0) return 2;\n  if (x < 0 && y < 0) return 3;\n  return 4;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return getQuadrant;')(); return [ { pass: fn(3, 5) === 1, description: 'getQuadrant(3, 5) → 1', got: fn(3, 5) }, { pass: fn(-2, 4) === 2, description: 'getQuadrant(-2, 4) → 2', got: fn(-2, 4) }, { pass: fn(-3, -7) === 3, description: 'getQuadrant(-3, -7) → 3', got: fn(-3, -7) }, { pass: fn(5, -1) === 4, description: 'getQuadrant(5, -1) → 4', got: fn(5, -1) }, { pass: fn(0, 7) === 0, description: 'getQuadrant(0, 7) → 0 (on y-axis)', got: fn(0, 7) }, { pass: fn(4, 0) === 0, description: 'getQuadrant(4, 0) → 0 (on x-axis)', got: fn(4, 0) }, { pass: fn(0, 0) === 0, description: 'getQuadrant(0, 0) → 0 (origin)', got: fn(0, 0) } ]; }",
+      "hints": [
+        "Check for the axis case first — if either x or y is 0, return 0.",
+        "Use `&&` to combine two conditions for each quadrant.",
+        "Think about which signs (positive/negative) x and y have in each quadrant."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Logical AND (&&)",
+          "url": "/docs/mdn/logical-and.html",
+          "description": "Combining boolean conditions"
+        },
+        {
+          "label": "MDN: if...else",
+          "url": "/docs/mdn/if-else.html",
+          "description": "Conditional branching in JavaScript"
+        }
+      ]
+    },
+    {
+      "id": 674,
+      "title": "Age Group Classifier",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "conditionals",
+        "if-else",
+        "ranges",
+        "beginner"
+      ],
+      "description": "Classify a person into an age group based on their age.",
+      "instructions": "Write a function called `ageGroup` that takes an age (number) and returns the life stage:\n\n- 0–2 → `\"baby\"`\n- 3–12 → `\"child\"`\n- 13–17 → `\"teenager\"`\n- 18–64 → `\"adult\"`\n- 65 and above → `\"senior\"`\n\nExample:\n  ageGroup(1)   →  \"baby\"\n  ageGroup(10)  →  \"child\"\n  ageGroup(25)  →  \"adult\"",
+      "starterCode": "function ageGroup(age) {\n  // Your code here\n\n}",
+      "solution": "function ageGroup(age) {\n  if (age <= 2) return \"baby\";\n  if (age <= 12) return \"child\";\n  if (age <= 17) return \"teenager\";\n  if (age <= 64) return \"adult\";\n  return \"senior\";\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return ageGroup;')(); return [ { pass: fn(1) === 'baby', description: 'ageGroup(1) → \"baby\"', got: fn(1) }, { pass: fn(0) === 'baby', description: 'ageGroup(0) → \"baby\"', got: fn(0) }, { pass: fn(10) === 'child', description: 'ageGroup(10) → \"child\"', got: fn(10) }, { pass: fn(15) === 'teenager', description: 'ageGroup(15) → \"teenager\"', got: fn(15) }, { pass: fn(25) === 'adult', description: 'ageGroup(25) → \"adult\"', got: fn(25) }, { pass: fn(65) === 'senior', description: 'ageGroup(65) → \"senior\"', got: fn(65) }, { pass: fn(2) === 'baby', description: 'ageGroup(2) → \"baby\" (boundary)', got: fn(2) }, { pass: fn(13) === 'teenager', description: 'ageGroup(13) → \"teenager\" (boundary)', got: fn(13) } ]; }",
+      "hints": [
+        "Use a chain of if/else statements, checking from youngest to oldest.",
+        "With early returns, you don't need `else` — each `if` can just return.",
+        "Boundary values: 2 is still a baby, 13 is a teenager, 65 is a senior."
+      ],
+      "resources": [
+        {
+          "label": "MDN: if...else",
+          "url": "/docs/mdn/if-else.html",
+          "description": "Conditional branching in JavaScript"
+        },
+        {
+          "label": "MDN: Comparison operators",
+          "url": "/docs/mdn/comparison.html",
+          "description": "Greater than, less than, and equality operators"
+        }
+      ]
+    },
+    {
+      "id": 675,
+      "title": "Digit Extractor",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "operators"
+      ],
+      "tags": [
+        "operators",
+        "math",
+        "modulo",
+        "division",
+        "beginner"
+      ],
+      "description": "Extract specific digits from a number using math operators.",
+      "instructions": "Write a function called `getDigit` that takes a positive integer `num` and a `position` (0-indexed from the right), and returns the digit at that position.\n\nPosition 0 = ones place, 1 = tens place, 2 = hundreds place, etc.\n\nIf the position is larger than the number of digits, return `0`.\n\nExample:\n  getDigit(7853, 0)  →  3  (ones)\n  getDigit(7853, 2)  →  8  (hundreds)\n  getDigit(7853, 5)  →  0  (out of range)",
+      "starterCode": "function getDigit(num, position) {\n  // Your code here\n\n}",
+      "solution": "function getDigit(num, position) {\n  return Math.floor(num / Math.pow(10, position)) % 10;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return getDigit;')(); return [ { pass: fn(7853, 0) === 3, description: 'getDigit(7853, 0) → 3 (ones)', got: fn(7853, 0) }, { pass: fn(7853, 1) === 5, description: 'getDigit(7853, 1) → 5 (tens)', got: fn(7853, 1) }, { pass: fn(7853, 2) === 8, description: 'getDigit(7853, 2) → 8 (hundreds)', got: fn(7853, 2) }, { pass: fn(7853, 3) === 7, description: 'getDigit(7853, 3) → 7 (thousands)', got: fn(7853, 3) }, { pass: fn(7853, 5) === 0, description: 'getDigit(7853, 5) → 0 (out of range)', got: fn(7853, 5) }, { pass: fn(100, 2) === 1, description: 'getDigit(100, 2) → 1', got: fn(100, 2) }, { pass: fn(5, 0) === 5, description: 'getDigit(5, 0) → 5', got: fn(5, 0) } ]; }",
+      "hints": [
+        "Dividing by 10^position shifts the digit you want into the ones place.",
+        "`Math.floor()` removes the decimal part, and `% 10` isolates the last digit.",
+        "`Math.pow(10, position)` gives you 10 raised to the given power."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Math.floor()",
+          "url": "/docs/mdn/math-floor.html",
+          "description": "Rounds a number down to the nearest integer"
+        },
+        {
+          "label": "MDN: Math.pow()",
+          "url": "/docs/mdn/math-pow.html",
+          "description": "Raises a number to a power"
+        }
+      ]
+    },
+    {
+      "id": 676,
+      "title": "Time Breakdown",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "operators"
+      ],
+      "tags": [
+        "operators",
+        "math",
+        "modulo",
+        "objects",
+        "beginner"
+      ],
+      "description": "Convert a total number of seconds into hours, minutes, and seconds.",
+      "instructions": "Write a function called `breakdownTime` that takes a total number of seconds and returns an object with `hours`, `minutes`, and `seconds`.\n\nExample:\n  breakdownTime(3661)  →  { hours: 1, minutes: 1, seconds: 1 }\n  breakdownTime(90)    →  { hours: 0, minutes: 1, seconds: 30 }\n  breakdownTime(7200)  →  { hours: 2, minutes: 0, seconds: 0 }",
+      "starterCode": "function breakdownTime(totalSeconds) {\n  // Your code here\n\n}",
+      "solution": "function breakdownTime(totalSeconds) {\n  const hours = Math.floor(totalSeconds / 3600);\n  const minutes = Math.floor((totalSeconds % 3600) / 60);\n  const seconds = totalSeconds % 60;\n  return { hours, minutes, seconds };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return breakdownTime;')(); const r1 = fn(3661); const r2 = fn(90); const r3 = fn(7200); const r4 = fn(0); const r5 = fn(59); return [ { pass: r1.hours === 1 && r1.minutes === 1 && r1.seconds === 1, description: 'breakdownTime(3661) → {hours:1, minutes:1, seconds:1}', got: JSON.stringify(r1) }, { pass: r2.hours === 0 && r2.minutes === 1 && r2.seconds === 30, description: 'breakdownTime(90) → {hours:0, minutes:1, seconds:30}', got: JSON.stringify(r2) }, { pass: r3.hours === 2 && r3.minutes === 0 && r3.seconds === 0, description: 'breakdownTime(7200) → {hours:2, minutes:0, seconds:0}', got: JSON.stringify(r3) }, { pass: r4.hours === 0 && r4.minutes === 0 && r4.seconds === 0, description: 'breakdownTime(0) → {hours:0, minutes:0, seconds:0}', got: JSON.stringify(r4) }, { pass: r5.hours === 0 && r5.minutes === 0 && r5.seconds === 59, description: 'breakdownTime(59) → {hours:0, minutes:0, seconds:59}', got: JSON.stringify(r5) } ]; }",
+      "hints": [
+        "There are 3600 seconds in an hour and 60 seconds in a minute.",
+        "Use `Math.floor()` for integer division and `%` for the remainder.",
+        "After extracting hours, use the remainder to find minutes, then seconds."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Remainder (%)",
+          "url": "/docs/mdn/remainder.html",
+          "description": "The modulo operator for extracting remainders"
+        },
+        {
+          "label": "MDN: Math.floor()",
+          "url": "/docs/mdn/math-floor.html",
+          "description": "Rounds a number down to the nearest integer"
+        }
+      ]
+    },
+    {
+      "id": 677,
+      "title": "Coin Changer",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "operators"
+      ],
+      "tags": [
+        "operators",
+        "math",
+        "modulo",
+        "greedy",
+        "beginner"
+      ],
+      "description": "Make change using the fewest coins possible.",
+      "instructions": "Write a function called `makeChange` that takes an amount in cents and returns an object showing the fewest coins needed.\n\nCoin values: quarter (25¢), dime (10¢), nickel (5¢), penny (1¢)\n\nExample:\n  makeChange(87)  →  { quarters: 3, dimes: 1, nickels: 0, pennies: 2 }\n  makeChange(41)  →  { quarters: 1, dimes: 1, nickels: 1, pennies: 1 }",
+      "starterCode": "function makeChange(cents) {\n  // Your code here\n\n}",
+      "solution": "function makeChange(cents) {\n  const quarters = Math.floor(cents / 25);\n  cents %= 25;\n  const dimes = Math.floor(cents / 10);\n  cents %= 10;\n  const nickels = Math.floor(cents / 5);\n  const pennies = cents % 5;\n  return { quarters, dimes, nickels, pennies };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return makeChange;')(); const r1 = fn(87); const r2 = fn(41); const r3 = fn(100); const r4 = fn(1); return [ { pass: r1.quarters === 3 && r1.dimes === 1 && r1.nickels === 0 && r1.pennies === 2, description: 'makeChange(87) → {quarters:3, dimes:1, nickels:0, pennies:2}', got: JSON.stringify(r1) }, { pass: r2.quarters === 1 && r2.dimes === 1 && r2.nickels === 1 && r2.pennies === 1, description: 'makeChange(41) → {quarters:1, dimes:1, nickels:1, pennies:1}', got: JSON.stringify(r2) }, { pass: r3.quarters === 4 && r3.dimes === 0 && r3.nickels === 0 && r3.pennies === 0, description: 'makeChange(100) → {quarters:4, dimes:0, nickels:0, pennies:0}', got: JSON.stringify(r3) }, { pass: r4.quarters === 0 && r4.dimes === 0 && r4.nickels === 0 && r4.pennies === 1, description: 'makeChange(1) → {quarters:0, dimes:0, nickels:0, pennies:1}', got: JSON.stringify(r4) } ]; }",
+      "hints": [
+        "Start with the largest coin (quarter) and work your way down.",
+        "Use `Math.floor(cents / coinValue)` to get the count of each coin.",
+        "After counting each coin, update the remaining cents with `%`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Math.floor()",
+          "url": "/docs/mdn/math-floor.html",
+          "description": "Rounds down to the nearest integer"
+        },
+        {
+          "label": "MDN: Arithmetic operators",
+          "url": "/docs/mdn/arithmetic.html",
+          "description": "All math operators including modulo (%)"
+        }
+      ]
+    },
+    {
+      "id": 680,
+      "title": "Number Grid",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "js-fundamentals",
+        "loops"
+      ],
+      "tags": [
+        "loops",
+        "nested-loops",
+        "strings",
+        "intermediate"
+      ],
+      "description": "Generate a formatted grid of numbers using nested loops.",
+      "instructions": "Write a function called `numberGrid` that takes a number `n` and returns a string representing an n×n grid where each cell contains its row number (1-based).\n\nEach number should be separated by a space, and each row on a new line. No trailing spaces.\n\nExample:\n  numberGrid(3) →\n  \"1 1 1\\n2 2 2\\n3 3 3\"\n\n  numberGrid(4) →\n  \"1 1 1 1\\n2 2 2 2\\n3 3 3 3\\n4 4 4 4\"",
+      "starterCode": "function numberGrid(n) {\n  // Build the grid string\n\n}",
+      "solution": "function numberGrid(n) {\n  const rows = [];\n  for (let i = 1; i <= n; i++) {\n    rows.push(Array(n).fill(i).join(' '));\n  }\n  return rows.join('\\n');\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return numberGrid;')(); return [ { pass: fn(3) === '1 1 1\\n2 2 2\\n3 3 3', description: 'numberGrid(3) produces a 3x3 grid', got: fn(3) }, { pass: fn(1) === '1', description: 'numberGrid(1) → \"1\"', got: fn(1) }, { pass: fn(4) === '1 1 1 1\\n2 2 2 2\\n3 3 3 3\\n4 4 4 4', description: 'numberGrid(4) produces a 4x4 grid', got: fn(4) }, { pass: fn(2) === '1 1\\n2 2', description: 'numberGrid(2) produces a 2x2 grid', got: fn(2) } ]; }",
+      "hints": [
+        "Use an outer loop for rows and an inner loop (or Array.fill) for columns.",
+        "Join cells in a row with spaces and rows with newline characters.",
+        "The row number (1-based) is repeated `n` times in each row."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.fill()",
+          "url": "/docs/mdn/array-fill.html",
+          "description": "Fills an array with a static value"
+        },
+        {
+          "label": "MDN: Array.join()",
+          "url": "/docs/mdn/array-join.html",
+          "description": "Joins array elements into a string"
+        }
+      ]
+    },
+    {
+      "id": 681,
+      "title": "Receipt Formatter",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "es6-plus",
+        "template-literals"
+      ],
+      "tags": [
+        "template-literals",
+        "string-formatting",
+        "es6",
+        "beginner"
+      ],
+      "description": "Format a simple receipt string using template literals.",
+      "instructions": "Write a function called `formatReceipt` that takes an array of item objects (each with `name` and `price`) and returns a formatted receipt string.\n\nEach item should be on its own line as: `\"  item_name: $price\"`\nThe last line should show the total.\n\nExample:\n  formatReceipt([{name: 'Apple', price: 1.50}, {name: 'Bread', price: 3.00}])\n  →  \"  Apple: $1.50\\n  Bread: $3.00\\n  Total: $4.50\"",
+      "starterCode": "function formatReceipt(items) {\n  // Your code here\n\n}",
+      "solution": "function formatReceipt(items) {\n  const lines = items.map(item => `  ${item.name}: $${item.price.toFixed(2)}`);\n  const total = items.reduce((sum, item) => sum + item.price, 0);\n  lines.push(`  Total: $${total.toFixed(2)}`);\n  return lines.join('\\n');\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return formatReceipt;')(); const r1 = fn([{name: 'Apple', price: 1.50}, {name: 'Bread', price: 3.00}]); const r2 = fn([{name: 'Milk', price: 2.99}]); const r3 = fn([{name: 'A', price: 1}, {name: 'B', price: 2}, {name: 'C', price: 3}]); return [ { pass: r1 === '  Apple: $1.50\\n  Bread: $3.00\\n  Total: $4.50', description: 'Formats a 2-item receipt correctly', got: r1 }, { pass: r2 === '  Milk: $2.99\\n  Total: $2.99', description: 'Formats a single-item receipt', got: r2 }, { pass: r3.includes('Total: $6.00'), description: 'Calculates correct total for 3 items', got: r3 } ]; }",
+      "hints": [
+        "Use `.map()` to create a formatted string for each item.",
+        "Template literals use backticks and `${}` for embedding expressions.",
+        "Use `.toFixed(2)` to ensure prices always show 2 decimal places."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Template literals",
+          "url": "/docs/mdn/template-literals.html",
+          "description": "String interpolation with backticks"
+        },
+        {
+          "label": "MDN: Number.toFixed()",
+          "url": "/docs/mdn/number-tofixed.html",
+          "description": "Formatting numbers with fixed decimal places"
+        }
+      ]
+    },
+    {
+      "id": 682,
+      "title": "HTML Tag Builder",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "es6-plus",
+        "template-literals"
+      ],
+      "tags": [
+        "template-literals",
+        "html",
+        "strings",
+        "beginner"
+      ],
+      "description": "Generate HTML strings using template literals.",
+      "instructions": "Write a function called `buildTag` that takes a tag name, content, and an optional className, and returns an HTML string.\n\n- If `className` is provided: `<tag class=\"className\">content</tag>`\n- If no `className`: `<tag>content</tag>`\n\nExample:\n  buildTag('p', 'Hello')           →  '<p>Hello</p>'\n  buildTag('div', 'Hi', 'card')    →  '<div class=\"card\">Hi</div>'\n  buildTag('h1', 'Title', 'big')   →  '<h1 class=\"big\">Title</h1>'",
+      "starterCode": "function buildTag(tag, content, className) {\n  // Your code here\n\n}",
+      "solution": "function buildTag(tag, content, className) {\n  const classAttr = className ? ` class=\"${className}\"` : '';\n  return `<${tag}${classAttr}>${content}</${tag}>`;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return buildTag;')(); return [ { pass: fn('p', 'Hello') === '<p>Hello</p>', description: 'buildTag(\"p\", \"Hello\") → <p>Hello</p>', got: fn('p', 'Hello') }, { pass: fn('div', 'Hi', 'card') === '<div class=\"card\">Hi</div>', description: 'buildTag(\"div\", \"Hi\", \"card\") adds class', got: fn('div', 'Hi', 'card') }, { pass: fn('h1', 'Title', 'big') === '<h1 class=\"big\">Title</h1>', description: 'buildTag(\"h1\", \"Title\", \"big\") → correct', got: fn('h1', 'Title', 'big') }, { pass: fn('span', 'text') === '<span>text</span>', description: 'buildTag(\"span\", \"text\") → no class attr', got: fn('span', 'text') } ]; }",
+      "hints": [
+        "Use a conditional (ternary or if) to build the class attribute string.",
+        "Template literals make it easy to embed variables inside the HTML string.",
+        "When className is undefined, the class attribute should not appear at all."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Template literals",
+          "url": "/docs/mdn/template-literals.html",
+          "description": "String interpolation with backticks"
+        },
+        {
+          "label": "MDN: Conditional (ternary) operator",
+          "url": "/docs/mdn/ternary.html",
+          "description": "Inline conditional expressions"
+        }
+      ]
+    },
+    {
+      "id": 683,
+      "title": "Greeting Builder",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "es6-plus",
+        "template-literals"
+      ],
+      "tags": [
+        "template-literals",
+        "conditionals",
+        "strings",
+        "beginner"
+      ],
+      "description": "Build personalized greeting messages using template literals.",
+      "instructions": "Write a function called `timeGreeting` that takes a `name` and an `hour` (0–23) and returns a greeting string.\n\n- Hours 5–11: `\"Good morning, {name}!\"`\n- Hours 12–17: `\"Good afternoon, {name}!\"`\n- Hours 18–21: `\"Good evening, {name}!\"`\n- Hours 22–4: `\"Good night, {name}!\"`\n\nExample:\n  timeGreeting('Alice', 9)   →  \"Good morning, Alice!\"\n  timeGreeting('Bob', 14)    →  \"Good afternoon, Bob!\"\n  timeGreeting('Eve', 23)    →  \"Good night, Eve!\"",
+      "starterCode": "function timeGreeting(name, hour) {\n  // Your code here\n\n}",
+      "solution": "function timeGreeting(name, hour) {\n  let period;\n  if (hour >= 5 && hour <= 11) period = 'morning';\n  else if (hour >= 12 && hour <= 17) period = 'afternoon';\n  else if (hour >= 18 && hour <= 21) period = 'evening';\n  else period = 'night';\n  return `Good ${period}, ${name}!`;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return timeGreeting;')(); return [ { pass: fn('Alice', 9) === 'Good morning, Alice!', description: 'timeGreeting(\"Alice\", 9) → morning', got: fn('Alice', 9) }, { pass: fn('Bob', 14) === 'Good afternoon, Bob!', description: 'timeGreeting(\"Bob\", 14) → afternoon', got: fn('Bob', 14) }, { pass: fn('Eve', 20) === 'Good evening, Eve!', description: 'timeGreeting(\"Eve\", 20) → evening', got: fn('Eve', 20) }, { pass: fn('Zara', 23) === 'Good night, Zara!', description: 'timeGreeting(\"Zara\", 23) → night', got: fn('Zara', 23) }, { pass: fn('Max', 3) === 'Good night, Max!', description: 'timeGreeting(\"Max\", 3) → night (early morning)', got: fn('Max', 3) }, { pass: fn('Jo', 12) === 'Good afternoon, Jo!', description: 'timeGreeting(\"Jo\", 12) → afternoon (boundary)', got: fn('Jo', 12) } ]; }",
+      "hints": [
+        "First determine the time period with if/else, then embed it in a template literal.",
+        "Template literals: `Good ${period}, ${name}!`",
+        "Night covers both late evening (22-23) and early morning (0-4)."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Template literals",
+          "url": "/docs/mdn/template-literals.html",
+          "description": "String interpolation with backticks"
+        },
+        {
+          "label": "MDN: Conditional (ternary) operator",
+          "url": "/docs/mdn/ternary.html",
+          "description": "A shorthand for if/else"
+        }
+      ]
+    },
+    {
+      "id": 684,
+      "title": "Table Row Generator",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "es6-plus",
+        "template-literals"
+      ],
+      "tags": [
+        "template-literals",
+        "html",
+        "arrays",
+        "beginner"
+      ],
+      "description": "Generate HTML table rows from arrays of data.",
+      "instructions": "Write a function called `buildTableRow` that takes an array of cell values and returns an HTML table row string.\n\nEach value should be wrapped in `<td>` tags, and the whole row in `<tr>` tags.\n\nExample:\n  buildTableRow(['Alice', 25, 'NY'])\n  →  '<tr><td>Alice</td><td>25</td><td>NY</td></tr>'\n\n  buildTableRow([1, 2, 3])\n  →  '<tr><td>1</td><td>2</td><td>3</td></tr>'",
+      "starterCode": "function buildTableRow(cells) {\n  // Your code here\n\n}",
+      "solution": "function buildTableRow(cells) {\n  const tds = cells.map(cell => `<td>${cell}</td>`).join('');\n  return `<tr>${tds}</tr>`;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return buildTableRow;')(); return [ { pass: fn(['Alice', 25, 'NY']) === '<tr><td>Alice</td><td>25</td><td>NY</td></tr>', description: 'buildTableRow([\"Alice\", 25, \"NY\"]) formats correctly', got: fn(['Alice', 25, 'NY']) }, { pass: fn([1, 2, 3]) === '<tr><td>1</td><td>2</td><td>3</td></tr>', description: 'buildTableRow([1, 2, 3]) works with numbers', got: fn([1, 2, 3]) }, { pass: fn(['solo']) === '<tr><td>solo</td></tr>', description: 'buildTableRow([\"solo\"]) works with single cell', got: fn(['solo']) } ]; }",
+      "hints": [
+        "Use `.map()` to wrap each cell value in `<td>` tags.",
+        "Use `.join('')` to combine the cells with no separator.",
+        "Wrap everything in `<tr>` tags using a template literal."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.map()",
+          "url": "/docs/mdn/array-map.html",
+          "description": "Transform each element of an array"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "/docs/mdn/template-literals.html",
+          "description": "String interpolation with backticks"
+        }
+      ]
+    },
+    {
+      "id": 685,
+      "title": "Swap with Destructuring",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "es6-plus",
+        "destructuring"
+      ],
+      "tags": [
+        "destructuring",
+        "es6",
+        "variables",
+        "beginner"
+      ],
+      "description": "Use array destructuring to swap two values.",
+      "instructions": "Complete the function `swap` that takes an array of two elements and returns a new array with the elements swapped.\n\nUse array destructuring assignment to perform the swap.\n\nExample:\n  swap([1, 2])         →  [2, 1]\n  swap(['a', 'b'])     →  ['b', 'a']\n  swap([true, false])  →  [false, true]",
+      "starterCode": "function swap(arr) {\n  let [a, b] = arr;\n  // Swap a and b using destructuring\n  ___;\n  return [a, b];\n}",
+      "solution": "function swap(arr) {\n  let [a, b] = arr;\n  [a, b] = [b, a];\n  return [a, b];\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return swap;')(); const r1 = fn([1, 2]); const r2 = fn(['a', 'b']); const r3 = fn([true, false]); return [ { pass: r1[0] === 2 && r1[1] === 1, description: 'swap([1, 2]) → [2, 1]', got: JSON.stringify(r1) }, { pass: r2[0] === 'b' && r2[1] === 'a', description: 'swap([\"a\", \"b\"]) → [\"b\", \"a\"]', got: JSON.stringify(r2) }, { pass: r3[0] === false && r3[1] === true, description: 'swap([true, false]) → [false, true]', got: JSON.stringify(r3) } ]; }",
+      "hints": [
+        "Array destructuring can swap in one line: `[a, b] = [b, a]`",
+        "The right side creates a new temporary array before assigning.",
+        "No need for a temporary variable when using destructuring swap!"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Destructuring assignment",
+          "url": "/docs/mdn/destructuring.html",
+          "description": "Unpacking values from arrays and objects"
+        },
+        {
+          "label": "MDN: Array destructuring",
+          "url": "/docs/mdn/array-destructuring.html",
+          "description": "Swapping values and unpacking arrays"
+        }
+      ]
+    },
+    {
+      "id": 686,
+      "title": "Config Extractor",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "es6-plus",
+        "destructuring"
+      ],
+      "tags": [
+        "destructuring",
+        "objects",
+        "nested",
+        "es6",
+        "intermediate"
+      ],
+      "description": "Extract deeply nested values using object destructuring.",
+      "instructions": "Write a function called `getDbConfig` that takes a config object and uses nested destructuring to extract and return the database host, port, and name.\n\nThe config structure:\n```\n{\n  app: { name: '...', version: '...' },\n  database: { host: '...', port: ..., name: '...' }\n}\n```\n\nReturn an object: `{ host, port, name }`\n\nExample:\n  getDbConfig({ app: { name: 'MyApp', version: '1.0' }, database: { host: 'localhost', port: 5432, name: 'mydb' } })\n  →  { host: 'localhost', port: 5432, name: 'mydb' }",
+      "starterCode": "function getDbConfig(config) {\n  // Use destructuring to extract database properties\n\n}",
+      "solution": "function getDbConfig(config) {\n  const { database: { host, port, name } } = config;\n  return { host, port, name };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return getDbConfig;')(); const r1 = fn({ app: { name: 'MyApp', version: '1.0' }, database: { host: 'localhost', port: 5432, name: 'mydb' } }); const r2 = fn({ app: { name: 'Test' }, database: { host: '192.168.1.1', port: 3306, name: 'testdb' } }); return [ { pass: r1.host === 'localhost' && r1.port === 5432 && r1.name === 'mydb', description: 'Extracts localhost:5432/mydb correctly', got: JSON.stringify(r1) }, { pass: r2.host === '192.168.1.1' && r2.port === 3306 && r2.name === 'testdb', description: 'Extracts 192.168.1.1:3306/testdb correctly', got: JSON.stringify(r2) }, { pass: Object.keys(r1).length === 3, description: 'Returns object with exactly 3 keys', got: Object.keys(r1).length } ]; }",
+      "hints": [
+        "Nested destructuring: `const { database: { host, port, name } } = config;`",
+        "The colon in destructuring means 'go deeper', not 'rename'.",
+        "Use shorthand property names when returning: `{ host, port, name }`"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Destructuring assignment",
+          "url": "/docs/mdn/destructuring.html",
+          "description": "Unpacking values from arrays and objects"
+        },
+        {
+          "label": "MDN: Default values",
+          "url": "/docs/mdn/default-parameters.html",
+          "description": "Setting default values for function parameters"
+        }
+      ]
+    },
+    {
+      "id": 687,
+      "title": "Rest Collector",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "es6-plus",
+        "destructuring"
+      ],
+      "tags": [
+        "destructuring",
+        "rest",
+        "es6",
+        "intermediate"
+      ],
+      "description": "Use the rest pattern to collect remaining elements.",
+      "instructions": "Write a function called `headAndTail` that takes an array and returns an object with `head` (the first element) and `tail` (an array of remaining elements).\n\nUse array destructuring with the rest operator.\n\nExample:\n  headAndTail([1, 2, 3, 4])    →  { head: 1, tail: [2, 3, 4] }\n  headAndTail(['a'])            →  { head: 'a', tail: [] }\n  headAndTail([10, 20])         →  { head: 10, tail: [20] }",
+      "starterCode": "function headAndTail(arr) {\n  // Use destructuring with rest\n\n}",
+      "solution": "function headAndTail(arr) {\n  const [head, ...tail] = arr;\n  return { head, tail };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return headAndTail;')(); const r1 = fn([1, 2, 3, 4]); const r2 = fn(['a']); const r3 = fn([10, 20]); return [ { pass: r1.head === 1 && JSON.stringify(r1.tail) === '[2,3,4]', description: 'headAndTail([1,2,3,4]) → {head:1, tail:[2,3,4]}', got: JSON.stringify(r1) }, { pass: r2.head === 'a' && r2.tail.length === 0, description: 'headAndTail([\"a\"]) → {head:\"a\", tail:[]}', got: JSON.stringify(r2) }, { pass: r3.head === 10 && r3.tail[0] === 20, description: 'headAndTail([10, 20]) → {head:10, tail:[20]}', got: JSON.stringify(r3) } ]; }",
+      "hints": [
+        "The rest syntax `...tail` collects all remaining elements into an array.",
+        "Destructure like: `const [head, ...tail] = arr;`",
+        "If there's only one element, `tail` will be an empty array `[]`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Rest parameters",
+          "url": "/docs/mdn/rest-parameters.html",
+          "description": "Collecting remaining elements with ..."
+        },
+        {
+          "label": "MDN: Destructuring assignment",
+          "url": "/docs/mdn/destructuring.html",
+          "description": "Unpacking values from arrays and objects"
+        }
+      ]
+    },
+    {
+      "id": 689,
+      "title": "Event Dispatcher",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "functions",
+        "callbacks"
+      ],
+      "tags": [
+        "callbacks",
+        "events",
+        "objects",
+        "intermediate"
+      ],
+      "description": "Build a simple event system using callbacks.",
+      "instructions": "Write a function called `createDispatcher` that returns an object with two methods:\n\n- `on(callback)` — registers a callback\n- `emit(data)` — calls all registered callbacks with the given data\n\nExample:\n  const d = createDispatcher();\n  const results = [];\n  d.on(val => results.push(val));\n  d.on(val => results.push(val * 10));\n  d.emit(5);\n  // results is [5, 50]",
+      "starterCode": "function createDispatcher() {\n  // Your code here\n\n}",
+      "solution": "function createDispatcher() {\n  const listeners = [];\n  return {\n    on(callback) {\n      listeners.push(callback);\n    },\n    emit(data) {\n      listeners.forEach(cb => cb(data));\n    }\n  };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return createDispatcher;')(); const d1 = fn(); const r1 = []; d1.on(v => r1.push(v)); d1.on(v => r1.push(v * 10)); d1.emit(5); const d2 = fn(); const r2 = []; d2.on(v => r2.push(v.toUpperCase())); d2.emit('hi'); d2.emit('bye'); return [ { pass: JSON.stringify(r1) === '[5,50]', description: 'Two listeners receive emit(5)', got: JSON.stringify(r1) }, { pass: JSON.stringify(r2) === '[\"HI\",\"BYE\"]', description: 'String listener called on multiple emits', got: JSON.stringify(r2) }, { pass: typeof d1.on === 'function' && typeof d1.emit === 'function', description: 'Returns object with on and emit methods', got: `on: ${typeof d1.on}, emit: ${typeof d1.emit}` } ]; }",
+      "hints": [
+        "Use a closure to store an array of registered callbacks.",
+        "`on()` should push the callback into the array.",
+        "`emit()` should loop through the array and call each callback with the data."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Closures",
+          "url": "/docs/mdn/closures.html",
+          "description": "Functions that remember their scope"
+        },
+        {
+          "label": "MDN: Array.forEach()",
+          "url": "/docs/mdn/array-foreach.html",
+          "description": "Running a function on each array element"
+        }
+      ]
+    },
+    {
+      "id": 690,
+      "title": "Compose Functions",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "functions",
+        "higher-order"
+      ],
+      "tags": [
+        "higher-order",
+        "compose",
+        "functional",
+        "advanced"
+      ],
+      "description": "Create a function that composes multiple functions together.",
+      "instructions": "Write a function called `composeAll` that takes any number of functions and returns a new function that applies them from right to left.\n\nThe rightmost function receives the input, and each subsequent function receives the result of the previous one.\n\nExample:\n  const double = x => x * 2;\n  const addOne = x => x + 1;\n  const square = x => x * x;\n\n  const transform = composeAll(addOne, double);\n  transform(3)  →  7  (double(3)=6, addOne(6)=7)\n\n  const calc = composeAll(double, addOne, square);\n  calc(3)  →  20  (square(3)=9, addOne(9)=10, double(10)=20)",
+      "starterCode": "function composeAll(...fns) {\n  // Return a new function that applies fns right-to-left\n\n}",
+      "solution": "function composeAll(...fns) {\n  return function(x) {\n    return fns.reduceRight((acc, fn) => fn(acc), x);\n  };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return composeAll;')(); const double = x => x * 2; const addOne = x => x + 1; const square = x => x * x; const t1 = fn(addOne, double); const t2 = fn(double, addOne, square); const t3 = fn(x => x.toUpperCase(), x => x + '!'); return [ { pass: t1(3) === 7, description: 'composeAll(addOne, double)(3) → 7', got: t1(3) }, { pass: t2(3) === 20, description: 'composeAll(double, addOne, square)(3) → 20', got: t2(3) }, { pass: t3('hi') === 'HI!', description: 'composeAll(upper, addBang)(\"hi\") → \"HI!\"', got: t3('hi') }, { pass: fn(addOne)(5) === 6, description: 'Single function composeAll works', got: fn(addOne)(5) } ]; }",
+      "hints": [
+        "Use the rest operator `...fns` to collect all function arguments.",
+        "`reduceRight` processes an array from right to left — perfect for composition.",
+        "The accumulator starts as the input value and gets transformed by each function."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.reduceRight()",
+          "url": "/docs/mdn/array-reduceright.html",
+          "description": "Reduces an array from right to left"
+        },
+        {
+          "label": "MDN: Rest parameters",
+          "url": "/docs/mdn/rest-parameters.html",
+          "description": "Collecting remaining arguments with ..."
+        }
+      ]
+    },
+    {
+      "id": 693,
+      "title": "Inventory Tracker",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "methods",
+        "state",
+        "intermediate"
+      ],
+      "description": "Build an inventory management system using objects.",
+      "instructions": "Write a function called `createInventory` that returns an object with these methods:\n\n- `add(item, quantity)` — adds quantity to the item (creates it if new)\n- `remove(item, quantity)` — removes quantity (don't go below 0)\n- `getStock(item)` — returns the quantity (0 if item doesn't exist)\n- `getItems()` — returns an array of all item names\n\nExample:\n  const inv = createInventory();\n  inv.add('apples', 10);\n  inv.add('apples', 5);\n  inv.getStock('apples')   →  15\n  inv.remove('apples', 3);\n  inv.getStock('apples')   →  12\n  inv.getItems()           →  ['apples']",
+      "starterCode": "function createInventory() {\n  // Your code here\n\n}",
+      "solution": "function createInventory() {\n  const stock = {};\n  return {\n    add(item, quantity) {\n      stock[item] = (stock[item] || 0) + quantity;\n    },\n    remove(item, quantity) {\n      if (stock[item]) {\n        stock[item] = Math.max(0, stock[item] - quantity);\n      }\n    },\n    getStock(item) {\n      return stock[item] || 0;\n    },\n    getItems() {\n      return Object.keys(stock);\n    }\n  };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return createInventory;')(); const inv = fn(); inv.add('apples', 10); inv.add('apples', 5); inv.add('bread', 3); const s1 = inv.getStock('apples'); inv.remove('apples', 3); const s2 = inv.getStock('apples'); inv.remove('bread', 10); const s3 = inv.getStock('bread'); const s4 = inv.getStock('milk'); return [ { pass: s1 === 15, description: 'add(\"apples\", 10) then add(\"apples\", 5) → stock is 15', got: s1 }, { pass: s2 === 12, description: 'remove(\"apples\", 3) → stock drops to 12', got: s2 }, { pass: s3 === 0, description: 'Removing more than stock gives 0, not negative', got: s3 }, { pass: s4 === 0, description: 'getStock of non-existent item returns 0', got: s4 }, { pass: inv.getItems().includes('apples') && inv.getItems().includes('bread'), description: 'getItems() returns all item names', got: JSON.stringify(inv.getItems()) } ]; }",
+      "hints": [
+        "Use a closure to store the inventory object privately.",
+        "`stock[item] = (stock[item] || 0) + quantity` handles both new and existing items.",
+        "Use `Math.max(0, ...)` to prevent negative quantities."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Object.keys()",
+          "url": "/docs/mdn/object-keys.html",
+          "description": "Getting all keys of an object"
+        },
+        {
+          "label": "MDN: Closures",
+          "url": "/docs/mdn/closures.html",
+          "description": "Functions that remember their scope"
+        }
+      ]
+    },
+    {
+      "id": 694,
+      "title": "Student Gradebook",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "arrays",
+        "math",
+        "intermediate"
+      ],
+      "description": "Manage student grades and calculate averages.",
+      "instructions": "Write a function called `createGradebook` that returns an object with these methods:\n\n- `addGrade(student, grade)` — records a grade for the student\n- `getAverage(student)` — returns the average of all grades for that student (rounded to 1 decimal), or `null` if student has no grades\n- `getTopStudent()` — returns the name of the student with the highest average\n\nExample:\n  const gb = createGradebook();\n  gb.addGrade('Alice', 90);\n  gb.addGrade('Alice', 80);\n  gb.addGrade('Bob', 95);\n  gb.getAverage('Alice')   →  85.0\n  gb.getTopStudent()       →  'Bob'",
+      "starterCode": "function createGradebook() {\n  // Your code here\n\n}",
+      "solution": "function createGradebook() {\n  const grades = {};\n  return {\n    addGrade(student, grade) {\n      if (!grades[student]) grades[student] = [];\n      grades[student].push(grade);\n    },\n    getAverage(student) {\n      if (!grades[student] || grades[student].length === 0) return null;\n      const sum = grades[student].reduce((a, b) => a + b, 0);\n      return Math.round((sum / grades[student].length) * 10) / 10;\n    },\n    getTopStudent() {\n      let top = null;\n      let best = -1;\n      for (const student of Object.keys(grades)) {\n        const avg = this.getAverage(student);\n        if (avg > best) {\n          best = avg;\n          top = student;\n        }\n      }\n      return top;\n    }\n  };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return createGradebook;')(); const gb = fn(); gb.addGrade('Alice', 90); gb.addGrade('Alice', 80); gb.addGrade('Bob', 95); gb.addGrade('Bob', 85); gb.addGrade('Carol', 100); return [ { pass: gb.getAverage('Alice') === 85, description: 'Alice avg: (90+80)/2 = 85', got: gb.getAverage('Alice') }, { pass: gb.getAverage('Bob') === 90, description: 'Bob avg: (95+85)/2 = 90', got: gb.getAverage('Bob') }, { pass: gb.getTopStudent() === 'Carol', description: 'Top student is Carol (avg 100)', got: gb.getTopStudent() }, { pass: gb.getAverage('Unknown') === null, description: 'Unknown student returns null', got: gb.getAverage('Unknown') } ]; }",
+      "hints": [
+        "Store grades as an object where keys are student names and values are arrays of grades.",
+        "Calculate average: sum all grades with `.reduce()`, then divide by array length.",
+        "For `getTopStudent`, loop through all students and track the highest average."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.reduce()",
+          "url": "/docs/mdn/array-reduce.html",
+          "description": "Reducing an array to a single value"
+        },
+        {
+          "label": "MDN: Object.keys()",
+          "url": "/docs/mdn/object-keys.html",
+          "description": "Getting all keys of an object"
+        }
+      ]
+    },
+    {
+      "id": 695,
+      "title": "Phonebook",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "crud",
+        "methods",
+        "beginner"
+      ],
+      "description": "Build a phonebook using an object to store contacts.",
+      "instructions": "Write a function called `createPhonebook` that returns an object with these methods:\n\n- `add(name, number)` — adds or updates a contact\n- `lookup(name)` — returns the number, or `\"Contact not found\"` if missing\n- `remove(name)` — deletes a contact\n- `listAll()` — returns an array of strings like `\"Name: Number\"`\n\nExample:\n  const pb = createPhonebook();\n  pb.add('Alice', '555-1234');\n  pb.lookup('Alice')    →  '555-1234'\n  pb.lookup('Bob')      →  'Contact not found'\n  pb.listAll()          →  ['Alice: 555-1234']",
+      "starterCode": "function createPhonebook() {\n  // Your code here\n\n}",
+      "solution": "function createPhonebook() {\n  const contacts = {};\n  return {\n    add(name, number) {\n      contacts[name] = number;\n    },\n    lookup(name) {\n      return contacts[name] || 'Contact not found';\n    },\n    remove(name) {\n      delete contacts[name];\n    },\n    listAll() {\n      return Object.entries(contacts).map(([name, num]) => `${name}: ${num}`);\n    }\n  };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return createPhonebook;')(); const pb = fn(); pb.add('Alice', '555-1234'); pb.add('Bob', '555-5678'); const r1 = pb.lookup('Alice'); const r2 = pb.lookup('Charlie'); pb.remove('Bob'); const r3 = pb.lookup('Bob'); const r4 = pb.listAll(); return [ { pass: r1 === '555-1234', description: 'lookup(\"Alice\") → \"555-1234\"', got: r1 }, { pass: r2 === 'Contact not found', description: 'lookup(\"Charlie\") → \"Contact not found\"', got: r2 }, { pass: r3 === 'Contact not found', description: 'After remove, lookup returns not found', got: r3 }, { pass: r4.length === 1 && r4[0] === 'Alice: 555-1234', description: 'listAll() returns remaining contacts', got: JSON.stringify(r4) } ]; }",
+      "hints": [
+        "Use a plain object to store contacts as key-value pairs.",
+        "The `delete` operator removes a property from an object.",
+        "`Object.entries()` returns [key, value] pairs for easy formatting."
+      ],
+      "resources": [
+        {
+          "label": "MDN: delete operator",
+          "url": "/docs/mdn/delete.html",
+          "description": "Removing properties from objects"
+        },
+        {
+          "label": "MDN: Object.entries()",
+          "url": "/docs/mdn/object-entries.html",
+          "description": "Getting key-value pairs from an object"
+        }
+      ]
+    },
+    {
+      "id": 696,
+      "title": "Number Formatter",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "formatting",
+        "loops",
+        "intermediate"
+      ],
+      "description": "Format a number with comma separators for thousands.",
+      "instructions": "Write a function called `addCommas` that takes a non-negative integer and returns a string with commas inserted every three digits from the right.\n\nExample:\n  addCommas(1234567)  →  \"1,234,567\"\n  addCommas(1000)     →  \"1,000\"\n  addCommas(42)       →  \"42\"\n  addCommas(0)        →  \"0\"",
+      "starterCode": "function addCommas(num) {\n  // Your code here\n\n}",
+      "solution": "function addCommas(num) {\n  const str = String(num);\n  const result = [];\n  for (let i = str.length - 1, count = 0; i >= 0; i--, count++) {\n    if (count > 0 && count % 3 === 0) result.unshift(',');\n    result.unshift(str[i]);\n  }\n  return result.join('');\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return addCommas;')(); return [ { pass: fn(1234567) === '1,234,567', description: 'addCommas(1234567) → \"1,234,567\"', got: fn(1234567) }, { pass: fn(1000) === '1,000', description: 'addCommas(1000) → \"1,000\"', got: fn(1000) }, { pass: fn(42) === '42', description: 'addCommas(42) → \"42\"', got: fn(42) }, { pass: fn(0) === '0', description: 'addCommas(0) → \"0\"', got: fn(0) }, { pass: fn(1000000) === '1,000,000', description: 'addCommas(1000000) → \"1,000,000\"', got: fn(1000000) }, { pass: fn(999) === '999', description: 'addCommas(999) → \"999\"', got: fn(999) } ]; }",
+      "hints": [
+        "Convert the number to a string first, then work from right to left.",
+        "Insert a comma every 3 digits from the right.",
+        "You can build the result backwards using `.unshift()` or reverse at the end."
+      ],
+      "resources": [
+        {
+          "label": "MDN: String()",
+          "url": "/docs/mdn/string.html",
+          "description": "Converting values to strings"
+        },
+        {
+          "label": "MDN: Array.unshift()",
+          "url": "/docs/mdn/array-unshift.html",
+          "description": "Adding elements to the beginning of an array"
+        }
+      ]
+    },
+    {
+      "id": 700,
+      "title": "Find Peak Element",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "algorithms",
+        "searching"
+      ],
+      "tags": [
+        "searching",
+        "arrays",
+        "binary-search",
+        "intermediate"
+      ],
+      "description": "Find an element that is greater than its neighbors.",
+      "instructions": "Write a function called `findPeak` that takes an array of numbers and returns the index of any peak element.\n\nA peak element is one that is strictly greater than its neighbors. The first and last elements only need to be greater than their single neighbor.\n\nYou may assume the array has at least one element and that no two adjacent elements are equal.\n\nExample:\n  findPeak([1, 3, 2])        →  1  (3 > 1 and 3 > 2)\n  findPeak([1, 2, 3, 1])     →  2  (3 is the peak)\n  findPeak([5, 1, 2])        →  0  (5 > 1, and it's the first element)",
+      "starterCode": "function findPeak(arr) {\n  // Find any peak element and return its index\n\n}",
+      "solution": "function findPeak(arr) {\n  for (let i = 0; i < arr.length; i++) {\n    const left = i === 0 || arr[i] > arr[i - 1];\n    const right = i === arr.length - 1 || arr[i] > arr[i + 1];\n    if (left && right) return i;\n  }\n  return -1;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return findPeak;')(); const r1 = fn([1, 3, 2]); const r2 = fn([1, 2, 3, 1]); const r3 = fn([5, 1, 2]); const r4 = fn([1, 2, 3]); const a4 = [1, 2, 3]; const r5 = fn([7]); return [ { pass: r1 === 1, description: 'findPeak([1,3,2]) → 1', got: r1 }, { pass: r2 === 2, description: 'findPeak([1,2,3,1]) → 2', got: r2 }, { pass: r3 === 0 || r3 === 2, description: 'findPeak([5,1,2]) returns a valid peak', got: r3 }, { pass: r4 === 2, description: 'findPeak([1,2,3]) → 2 (last element)', got: r4 }, { pass: r5 === 0, description: 'findPeak([7]) → 0 (single element)', got: r5 } ]; }",
+      "hints": [
+        "A peak element is greater than both its left and right neighbors.",
+        "Edge elements only have one neighbor to check.",
+        "You can use a simple loop — check if each element is a peak."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Comparison operators",
+          "url": "/docs/mdn/comparison.html",
+          "description": "Greater than, less than operators"
+        },
+        {
+          "label": "MDN: Array iteration methods",
+          "url": "/docs/mdn/array-iteration.html",
+          "description": "Overview of map, filter, reduce, and more"
+        }
+      ]
+    },
+    {
+      "id": 701,
+      "title": "Private Counter",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "functions",
+        "scope"
+      ],
+      "tags": [
+        "closures",
+        "scope",
+        "encapsulation",
+        "intermediate"
+      ],
+      "description": "Use closures to create a counter with private state.",
+      "instructions": "Write a function called `createCounter` that takes an optional starting value (default 0) and returns an object with three methods:\n\n- `increment()` — increases the count by 1 and returns the new value\n- `decrement()` — decreases the count by 1 and returns the new value\n- `getValue()` — returns the current count\n\nThe count should not be directly accessible from outside.\n\nExample:\n  const counter = createCounter(10);\n  counter.increment()   →  11\n  counter.increment()   →  12\n  counter.decrement()   →  11\n  counter.getValue()    →  11",
+      "starterCode": "function createCounter(start) {\n  // Your code here\n\n}",
+      "solution": "function createCounter(start = 0) {\n  let count = start;\n  return {\n    increment() { return ++count; },\n    decrement() { return --count; },\n    getValue() { return count; }\n  };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return createCounter;')(); const c1 = fn(10); const r1 = c1.increment(); const r2 = c1.increment(); const r3 = c1.decrement(); const c2 = fn(); return [ { pass: r1 === 11, description: 'increment() from 10 → 11', got: r1 }, { pass: r2 === 12, description: 'increment() again → 12', got: r2 }, { pass: r3 === 11, description: 'decrement() → 11', got: r3 }, { pass: c1.getValue() === 11, description: 'getValue() returns current count', got: c1.getValue() }, { pass: c2.getValue() === 0, description: 'Default start is 0', got: c2.getValue() }, { pass: c2.count === undefined, description: 'count is not directly accessible', got: c2.count } ]; }",
+      "hints": [
+        "Use a closure: define `count` inside the function and return methods that access it.",
+        "The returned object's methods \"close over\" the `count` variable.",
+        "Use a default parameter `start = 0` for the optional starting value."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Closures",
+          "url": "/docs/mdn/closures.html",
+          "description": "Functions that remember their scope"
+        },
+        {
+          "label": "MDN: Default parameters",
+          "url": "/docs/mdn/default-parameters.html",
+          "description": "Setting default values for function parameters"
+        }
+      ]
+    },
+    {
+      "id": 702,
+      "title": "All Unique Characters",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "algorithms",
+        "patterns"
+      ],
+      "tags": [
+        "strings",
+        "sets",
+        "algorithms",
+        "intermediate"
+      ],
+      "description": "Check if all characters in a string are unique.",
+      "instructions": "Write a function called `isUnique` that takes a string and returns `true` if all characters are unique (no repeats), `false` otherwise.\n\nThe check should be case-sensitive ('A' and 'a' are different).\n\nExample:\n  isUnique('abcdef')    →  true\n  isUnique('hello')     →  false  (l repeats)\n  isUnique('AaBb')      →  true   (case-sensitive)",
+      "starterCode": "function isUnique(str) {\n  // Your code here\n\n}",
+      "solution": "function isUnique(str) {\n  return new Set(str).size === str.length;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return isUnique;')(); return [ { pass: fn('abcdef') === true, description: 'isUnique(\"abcdef\") → true', got: fn('abcdef') }, { pass: fn('hello') === false, description: 'isUnique(\"hello\") → false', got: fn('hello') }, { pass: fn('AaBb') === true, description: 'isUnique(\"AaBb\") → true (case-sensitive)', got: fn('AaBb') }, { pass: fn('') === true, description: 'isUnique(\"\") → true (empty string)', got: fn('') }, { pass: fn('a') === true, description: 'isUnique(\"a\") → true', got: fn('a') }, { pass: fn('aA') === true, description: 'isUnique(\"aA\") → true', got: fn('aA') } ]; }",
+      "hints": [
+        "A Set automatically removes duplicates. Compare its size to the string length.",
+        "Alternative: use an object to track which characters you've seen.",
+        "Remember that 'A' and 'a' are different characters."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Set",
+          "url": "/docs/mdn/set.html",
+          "description": "A collection of unique values"
+        },
+        {
+          "label": "MDN: Set",
+          "url": "/docs/mdn/set.html",
+          "description": "A collection of unique values"
+        }
+      ]
+    },
+    {
+      "id": 703,
+      "title": "Median of Three",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "conditionals",
+        "math",
+        "comparison",
+        "beginner"
+      ],
+      "description": "Find the median (middle value) of three numbers.",
+      "instructions": "Write a function called `medianOfThree` that takes three numbers and returns the one that falls in the middle when sorted.\n\nDo NOT use arrays or sorting methods — solve it with comparisons only.\n\nExample:\n  medianOfThree(3, 1, 2)   →  2\n  medianOfThree(7, 7, 5)   →  7\n  medianOfThree(10, 4, 6)  →  6",
+      "starterCode": "function medianOfThree(a, b, c) {\n  // Your code here\n\n}",
+      "solution": "function medianOfThree(a, b, c) {\n  if ((a >= b && a <= c) || (a <= b && a >= c)) return a;\n  if ((b >= a && b <= c) || (b <= a && b >= c)) return b;\n  return c;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return medianOfThree;')(); return [ { pass: fn(3, 1, 2) === 2, description: 'medianOfThree(3, 1, 2) → 2', got: fn(3, 1, 2) }, { pass: fn(7, 7, 5) === 7, description: 'medianOfThree(7, 7, 5) → 7', got: fn(7, 7, 5) }, { pass: fn(10, 4, 6) === 6, description: 'medianOfThree(10, 4, 6) → 6', got: fn(10, 4, 6) }, { pass: fn(1, 2, 3) === 2, description: 'medianOfThree(1, 2, 3) → 2', got: fn(1, 2, 3) }, { pass: fn(5, 5, 5) === 5, description: 'medianOfThree(5, 5, 5) → 5', got: fn(5, 5, 5) }, { pass: fn(-1, 0, 1) === 0, description: 'medianOfThree(-1, 0, 1) → 0', got: fn(-1, 0, 1) }, { pass: fn(100, 1, 50) === 50, description: 'medianOfThree(100, 1, 50) → 50', got: fn(100, 1, 50) } ]; }",
+      "hints": [
+        "The median is the value that is between the other two.",
+        "Check if `a` is between `b` and `c`, then if `b` is between `a` and `c`.",
+        "Use compound conditions: `(a >= b && a <= c) || (a <= b && a >= c)` means a is between b and c."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Logical AND (&&)",
+          "url": "/docs/mdn/logical-and.html",
+          "description": "Combining boolean conditions"
+        },
+        {
+          "label": "MDN: Logical OR (||)",
+          "url": "/docs/mdn/logical-or.html",
+          "description": "Alternative conditions"
+        }
+      ]
+    },
+    {
+      "id": 707,
+      "title": "Search Insert Position",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "algorithms",
+        "searching"
+      ],
+      "tags": [
+        "searching",
+        "binary-search",
+        "arrays",
+        "intermediate"
+      ],
+      "description": "Find where a target should be inserted in a sorted array.",
+      "instructions": "Write a function called `searchInsert` that takes a sorted array of numbers and a target value. Return the index where the target is found, or the index where it would be inserted to keep the array sorted.\n\nExample:\n  searchInsert([1, 3, 5, 6], 5)  →  2  (found at index 2)\n  searchInsert([1, 3, 5, 6], 2)  →  1  (insert before 3)\n  searchInsert([1, 3, 5, 6], 7)  →  4  (insert at end)\n  searchInsert([1, 3, 5, 6], 0)  →  0  (insert at start)",
+      "starterCode": "function searchInsert(arr, target) {\n  // Your code here\n\n}",
+      "solution": "function searchInsert(arr, target) {\n  let lo = 0, hi = arr.length;\n  while (lo < hi) {\n    const mid = Math.floor((lo + hi) / 2);\n    if (arr[mid] < target) lo = mid + 1;\n    else hi = mid;\n  }\n  return lo;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return searchInsert;')(); return [ { pass: fn([1,3,5,6], 5) === 2, description: 'searchInsert([1,3,5,6], 5) → 2 (found)', got: fn([1,3,5,6], 5) }, { pass: fn([1,3,5,6], 2) === 1, description: 'searchInsert([1,3,5,6], 2) → 1 (insert)', got: fn([1,3,5,6], 2) }, { pass: fn([1,3,5,6], 7) === 4, description: 'searchInsert([1,3,5,6], 7) → 4 (end)', got: fn([1,3,5,6], 7) }, { pass: fn([1,3,5,6], 0) === 0, description: 'searchInsert([1,3,5,6], 0) → 0 (start)', got: fn([1,3,5,6], 0) }, { pass: fn([], 5) === 0, description: 'searchInsert([], 5) → 0 (empty)', got: fn([], 5) }, { pass: fn([1], 1) === 0, description: 'searchInsert([1], 1) → 0', got: fn([1], 1) } ]; }",
+      "hints": [
+        "This is a modified binary search problem.",
+        "Use two pointers (lo, hi) and narrow the search range by comparing the midpoint to the target.",
+        "When the loop ends, `lo` is the correct insertion position."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Math.floor()",
+          "url": "/docs/mdn/math-floor.html",
+          "description": "Rounds down to nearest integer"
+        },
+        {
+          "label": "MDN: while statement",
+          "url": "/docs/mdn/while.html",
+          "description": "Looping while a condition is true"
+        }
+      ]
+    },
+    {
+      "id": 708,
+      "title": "Count in Range",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "algorithms",
+        "searching"
+      ],
+      "tags": [
+        "searching",
+        "arrays",
+        "loops",
+        "beginner"
+      ],
+      "description": "Count how many array elements fall within a given range.",
+      "instructions": "Write a function called `countInRange` that takes an array of numbers, a `low` value, and a `high` value. Return the count of elements that are between `low` and `high` (inclusive).\n\nExample:\n  countInRange([1, 5, 3, 8, 2, 7], 3, 7)  →  3  (3, 5, 7)\n  countInRange([10, 20, 30], 15, 25)       →  1  (20)\n  countInRange([1, 2, 3], 5, 10)           →  0",
+      "starterCode": "function countInRange(arr, low, high) {\n  // Your code here\n\n}",
+      "solution": "function countInRange(arr, low, high) {\n  let count = 0;\n  for (const num of arr) {\n    if (num >= low && num <= high) count++;\n  }\n  return count;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return countInRange;')(); return [ { pass: fn([1,5,3,8,2,7], 3, 7) === 3, description: 'countInRange([1,5,3,8,2,7], 3, 7) → 3', got: fn([1,5,3,8,2,7], 3, 7) }, { pass: fn([10,20,30], 15, 25) === 1, description: 'countInRange([10,20,30], 15, 25) → 1', got: fn([10,20,30], 15, 25) }, { pass: fn([1,2,3], 5, 10) === 0, description: 'countInRange([1,2,3], 5, 10) → 0', got: fn([1,2,3], 5, 10) }, { pass: fn([5,5,5], 5, 5) === 3, description: 'countInRange([5,5,5], 5, 5) → 3 (exact match)', got: fn([5,5,5], 5, 5) }, { pass: fn([], 1, 10) === 0, description: 'countInRange([], 1, 10) → 0', got: fn([], 1, 10) }, { pass: fn([1,2,3,4,5], 1, 5) === 5, description: 'countInRange([1..5], 1, 5) → 5 (all)', got: fn([1,2,3,4,5], 1, 5) } ]; }",
+      "hints": [
+        "Loop through the array and check if each element is >= low AND <= high.",
+        "Keep a counter and increment it when a value is in range.",
+        "The range is inclusive — values equal to low or high should be counted."
+      ],
+      "resources": [
+        {
+          "label": "MDN: for...of",
+          "url": "/docs/mdn/for-of.html",
+          "description": "Iterating over array values"
+        },
+        {
+          "label": "MDN: Array.filter()",
+          "url": "/docs/mdn/array-filter.html",
+          "description": "Creating a subset of an array based on a condition"
+        }
+      ]
+    },
+    {
+      "id": 709,
+      "title": "Rectangle Math",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "variables"
+      ],
+      "tags": [
+        "variables",
+        "math",
+        "objects",
+        "beginner"
+      ],
+      "description": "Store rectangle dimensions in variables and compute properties.",
+      "instructions": "Write a function called `rectangleInfo` that takes `width` and `height` and returns an object with:\n\n- `area` — width × height\n- `perimeter` — 2 × (width + height)\n- `diagonal` — the length of the diagonal (use the Pythagorean theorem), rounded to 2 decimal places\n- `isSquare` — `true` if width equals height\n\nExample:\n  rectangleInfo(3, 4)  →  { area: 12, perimeter: 14, diagonal: 5.00, isSquare: false }\n  rectangleInfo(5, 5)  →  { area: 25, perimeter: 20, diagonal: 7.07, isSquare: true }",
+      "starterCode": "function rectangleInfo(width, height) {\n  // Your code here\n\n}",
+      "solution": "function rectangleInfo(width, height) {\n  const area = width * height;\n  const perimeter = 2 * (width + height);\n  const diagonal = Math.round(Math.sqrt(width * width + height * height) * 100) / 100;\n  const isSquare = width === height;\n  return { area, perimeter, diagonal, isSquare };\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return rectangleInfo;')(); const r1 = fn(3, 4); const r2 = fn(5, 5); const r3 = fn(10, 1); return [ { pass: r1.area === 12, description: 'rectangleInfo(3,4).area → 12', got: r1.area }, { pass: r1.perimeter === 14, description: 'rectangleInfo(3,4).perimeter → 14', got: r1.perimeter }, { pass: r1.diagonal === 5, description: 'rectangleInfo(3,4).diagonal → 5', got: r1.diagonal }, { pass: r1.isSquare === false, description: 'rectangleInfo(3,4).isSquare → false', got: r1.isSquare }, { pass: r2.area === 25 && r2.isSquare === true, description: 'rectangleInfo(5,5) is a square with area 25', got: JSON.stringify(r2) }, { pass: r2.diagonal === 7.07, description: 'rectangleInfo(5,5).diagonal → 7.07', got: r2.diagonal }, { pass: r3.perimeter === 22, description: 'rectangleInfo(10,1).perimeter → 22', got: r3.perimeter } ]; }",
+      "hints": [
+        "Area = width * height, Perimeter = 2 * (width + height).",
+        "Diagonal uses Pythagorean theorem: `Math.sqrt(width**2 + height**2)`.",
+        "To round to 2 decimals: `Math.round(value * 100) / 100`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Math.sqrt()",
+          "url": "/docs/mdn/math-sqrt.html",
+          "description": "Calculating square roots"
+        },
+        {
+          "label": "MDN: Object initializer",
+          "url": "/docs/mdn/object-initializer.html",
+          "description": "Creating objects with shorthand properties"
+        }
+      ]
+    },
+    {
+      "id": 711,
+      "title": "Error Message Builder",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "es6-plus",
+        "template-literals"
+      ],
+      "tags": [
+        "template-literals",
+        "strings",
+        "formatting",
+        "beginner"
+      ],
+      "description": "Build structured error messages using template literals.",
+      "instructions": "Write a function called `formatError` that takes an error `code` (number), a `message` (string), and a `timestamp` (string), and returns a formatted error string.\n\nFormat: `\"[{timestamp}] Error {code}: {message}\"`\n\nExample:\n  formatError(404, 'Not Found', '2024-01-15')\n  →  '[2024-01-15] Error 404: Not Found'\n\n  formatError(500, 'Server Error', '2024-03-20')\n  →  '[2024-03-20] Error 500: Server Error'",
+      "starterCode": "function formatError(code, message, timestamp) {\n  // Your code here\n\n}",
+      "solution": "function formatError(code, message, timestamp) {\n  return `[${timestamp}] Error ${code}: ${message}`;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return formatError;')(); return [ { pass: fn(404, 'Not Found', '2024-01-15') === '[2024-01-15] Error 404: Not Found', description: 'formatError(404, \"Not Found\", \"2024-01-15\")', got: fn(404, 'Not Found', '2024-01-15') }, { pass: fn(500, 'Server Error', '2024-03-20') === '[2024-03-20] Error 500: Server Error', description: 'formatError(500, \"Server Error\", \"2024-03-20\")', got: fn(500, 'Server Error', '2024-03-20') }, { pass: fn(403, 'Forbidden', '2024-06-01') === '[2024-06-01] Error 403: Forbidden', description: 'formatError(403, \"Forbidden\", \"2024-06-01\")', got: fn(403, 'Forbidden', '2024-06-01') }, { pass: fn(200, 'OK', '2024-12-25') === '[2024-12-25] Error 200: OK', description: 'Works with any code/message combo', got: fn(200, 'OK', '2024-12-25') } ]; }",
+      "hints": [
+        "Template literals use backticks and `${}` to embed expressions.",
+        "The format is: `[${timestamp}] Error ${code}: ${message}`",
+        "Make sure to include the brackets, spaces, and colon exactly as shown."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Template literals",
+          "url": "/docs/mdn/template-literals.html",
+          "description": "String interpolation with backticks"
+        },
+        {
+          "label": "MDN: Conditional (ternary) operator",
+          "url": "/docs/mdn/ternary.html",
+          "description": "A shorthand for if/else"
+        }
+      ]
+    },
+    {
+      "id": 712,
+      "title": "Insertion Sort",
+      "type": "js",
+      "tier": 3,
+      "category": [
+        "algorithms",
+        "sorting"
+      ],
+      "tags": [
+        "sorting",
+        "algorithms",
+        "loops",
+        "intermediate"
+      ],
+      "description": "Implement the insertion sort algorithm.",
+      "instructions": "Write a function called `insertionSort` that takes an array of numbers and returns a new sorted array using the insertion sort algorithm.\n\nInsertion sort works by building a sorted portion one element at a time. For each element, shift it left until it’s in the correct position relative to the already-sorted elements.\n\nDo NOT use built-in `.sort()`. Do not modify the original array.\n\nExample:\n  insertionSort([5, 3, 1, 4, 2])  →  [1, 2, 3, 4, 5]\n  insertionSort([1])               →  [1]",
+      "starterCode": "function insertionSort(arr) {\n  // Create a copy and sort it using insertion sort\n\n}",
+      "solution": "function insertionSort(arr) {\n  const sorted = [...arr];\n  for (let i = 1; i < sorted.length; i++) {\n    const key = sorted[i];\n    let j = i - 1;\n    while (j >= 0 && sorted[j] > key) {\n      sorted[j + 1] = sorted[j];\n      j--;\n    }\n    sorted[j + 1] = key;\n  }\n  return sorted;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return insertionSort;')(); const r1 = fn([5,3,1,4,2]); const r2 = fn([1]); const r3 = fn([3,1,4,1,5,9,2,6]); const orig = [5,3,1]; fn(orig); return [ { pass: JSON.stringify(r1) === '[1,2,3,4,5]', description: 'insertionSort([5,3,1,4,2]) → [1,2,3,4,5]', got: JSON.stringify(r1) }, { pass: JSON.stringify(r2) === '[1]', description: 'insertionSort([1]) → [1]', got: JSON.stringify(r2) }, { pass: JSON.stringify(r3) === '[1,1,2,3,4,5,6,9]', description: 'Sorts array with duplicates', got: JSON.stringify(r3) }, { pass: JSON.stringify(fn([])) === '[]', description: 'Empty array returns []', got: JSON.stringify(fn([])) }, { pass: JSON.stringify(orig) === '[5,3,1]', description: 'Does not modify original array', got: JSON.stringify(orig) } ]; }",
+      "hints": [
+        "Start from the second element. For each element, compare it to the ones before it.",
+        "Shift larger elements to the right to make room for the current element.",
+        "Use a `while` loop to shift elements: `while (j >= 0 && sorted[j] > key)`."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Spread syntax",
+          "url": "/docs/mdn/spread-syntax.html",
+          "description": "Copying an array with [...]"
+        },
+        {
+          "label": "MDN: Array.splice()",
+          "url": "/docs/mdn/array-splice.html",
+          "description": "Inserting and removing array elements"
+        }
+      ]
+    },
+    {
+      "id": 713,
+      "title": "GCD Calculator",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "js-fundamentals",
+        "loops"
+      ],
+      "tags": [
+        "loops",
+        "math",
+        "while",
+        "intermediate"
+      ],
+      "description": "Find the greatest common divisor of two numbers using the Euclidean algorithm.",
+      "instructions": "Write a function called `gcd` that takes two positive integers and returns their greatest common divisor (GCD).\n\nUse the Euclidean algorithm:\n- While `b` is not 0, replace `(a, b)` with `(b, a % b)`\n- When `b` is 0, `a` is the GCD\n\nExample:\n  gcd(12, 8)   →  4\n  gcd(54, 24)  →  6\n  gcd(7, 13)   →  1  (coprime)",
+      "starterCode": "function gcd(a, b) {\n  // Your code here\n\n}",
+      "solution": "function gcd(a, b) {\n  while (b !== 0) {\n    const temp = b;\n    b = a % b;\n    a = temp;\n  }\n  return a;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return gcd;')(); return [ { pass: fn(12, 8) === 4, description: 'gcd(12, 8) → 4', got: fn(12, 8) }, { pass: fn(54, 24) === 6, description: 'gcd(54, 24) → 6', got: fn(54, 24) }, { pass: fn(7, 13) === 1, description: 'gcd(7, 13) → 1 (coprime)', got: fn(7, 13) }, { pass: fn(100, 100) === 100, description: 'gcd(100, 100) → 100', got: fn(100, 100) }, { pass: fn(17, 1) === 1, description: 'gcd(17, 1) → 1', got: fn(17, 1) }, { pass: fn(48, 18) === 6, description: 'gcd(48, 18) → 6', got: fn(48, 18) } ]; }",
+      "hints": [
+        "The Euclidean algorithm repeatedly divides and takes the remainder.",
+        "In each step: save `b`, set `b = a % b`, set `a` to the saved value.",
+        "The loop ends when `b` becomes 0 — at that point `a` is the answer."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Remainder (%)",
+          "url": "/docs/mdn/remainder.html",
+          "description": "The modulo operator"
+        },
+        {
+          "label": "MDN: while statement",
+          "url": "/docs/mdn/while.html",
+          "description": "Looping while a condition is true"
+        }
+      ]
+    },
+    {
+      "id": 714,
+      "title": "DNA Complement",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "strings",
+        "mapping",
+        "science",
+        "beginner"
+      ],
+      "description": "Return the complementary DNA strand by swapping base pairs.",
+      "instructions": "Write a function called `dnaComplement` that takes a DNA strand string and returns its complement.\n\nBase pair rules:\n- `A` ↔ `T`\n- `C` ↔ `G`\n\nThe input will only contain characters A, T, C, and G.\n\nExample:\n  dnaComplement('ATTGC')   →  'TAACG'\n  dnaComplement('GATTACA')  →  'CTAATGT'\n  dnaComplement('AAAA')     →  'TTTT'",
+      "starterCode": "function dnaComplement(strand) {\n  // Your code here\n\n}",
+      "solution": "function dnaComplement(strand) {\n  const pairs = { A: 'T', T: 'A', C: 'G', G: 'C' };\n  return strand.split('').map(base => pairs[base]).join('');\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return dnaComplement;')(); return [ { pass: fn('ATTGC') === 'TAACG', description: 'dnaComplement(\"ATTGC\") → \"TAACG\"', got: fn('ATTGC') }, { pass: fn('GATTACA') === 'CTAATGT', description: 'dnaComplement(\"GATTACA\") → \"CTAATGT\"', got: fn('GATTACA') }, { pass: fn('AAAA') === 'TTTT', description: 'dnaComplement(\"AAAA\") → \"TTTT\"', got: fn('AAAA') }, { pass: fn('CCGG') === 'GGCC', description: 'dnaComplement(\"CCGG\") → \"GGCC\"', got: fn('CCGG') }, { pass: fn('') === '', description: 'dnaComplement(\"\") → \"\"', got: fn('') } ]; }",
+      "hints": [
+        "Create a lookup object mapping each base to its complement.",
+        "Split the string, map each character through the lookup, and join back.",
+        "A pairs with T, and C pairs with G (and vice versa)."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.map()",
+          "url": "/docs/mdn/array-map.html",
+          "description": "Transforming each element of an array"
+        },
+        {
+          "label": "MDN: String.split()",
+          "url": "/docs/mdn/string-split.html",
+          "description": "Breaking a string into an array"
+        }
+      ]
+    },
+    {
+      "id": 715,
+      "title": "Object Intersection",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "objects",
+        "comparison",
+        "keys",
+        "intermediate"
+      ],
+      "description": "Find the common key-value pairs between two objects.",
+      "instructions": "Write a function called `objectIntersect` that takes two objects and returns a new object containing only the key-value pairs that exist in BOTH objects (same key AND same value).\n\nExample:\n  objectIntersect({a: 1, b: 2, c: 3}, {b: 2, c: 5, d: 4})\n  →  {b: 2}\n\n  objectIntersect({x: 10, y: 20}, {x: 10, y: 20})\n  →  {x: 10, y: 20}\n\n  objectIntersect({a: 1}, {b: 2})\n  →  {}",
+      "starterCode": "function objectIntersect(obj1, obj2) {\n  // Your code here\n\n}",
+      "solution": "function objectIntersect(obj1, obj2) {\n  const result = {};\n  for (const key of Object.keys(obj1)) {\n    if (obj2[key] === obj1[key]) {\n      result[key] = obj1[key];\n    }\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return objectIntersect;')(); const r1 = fn({a:1, b:2, c:3}, {b:2, c:5, d:4}); const r2 = fn({x:10, y:20}, {x:10, y:20}); const r3 = fn({a:1}, {b:2}); const r4 = fn({}, {a:1}); return [ { pass: JSON.stringify(r1) === '{\"b\":2}', description: 'Finds common pair {b:2}', got: JSON.stringify(r1) }, { pass: r2.x === 10 && r2.y === 20 && Object.keys(r2).length === 2, description: 'All pairs common → {x:10, y:20}', got: JSON.stringify(r2) }, { pass: Object.keys(r3).length === 0, description: 'No common pairs → {}', got: JSON.stringify(r3) }, { pass: Object.keys(r4).length === 0, description: 'Empty object intersect → {}', got: JSON.stringify(r4) } ]; }",
+      "hints": [
+        "Loop through the keys of one object and check if the other object has the same key with the same value.",
+        "Use `Object.keys(obj1)` to get the keys, then check `obj2[key] === obj1[key]`.",
+        "Build a new result object with only the matching pairs."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Object.keys()",
+          "url": "/docs/mdn/object-keys.html",
+          "description": "Getting all keys of an object"
+        },
+        {
+          "label": "MDN: for...in statement",
+          "url": "/docs/mdn/for-in.html",
+          "description": "Iterating over object properties"
+        }
+      ]
+    },
+    {
+      "id": 716,
+      "title": "First Variables",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "js-fundamentals",
+        "variables"
+      ],
+      "tags": [
+        "let",
+        "const",
+        "types",
+        "declaration"
+      ],
+      "description": "Declare variables of different types: string, number, and boolean.",
+      "instructions": "Declare three variables:\n\n- `petName` — a string set to `\"Buddy\"`\n- `petAge` — a number set to `3`\n- `isVaccinated` — a boolean set to `true`\n\nUse `const` for all three since the values won't change.",
+      "starterCode": "// Declare a string variable called petName\n\n\n// Declare a number variable called petAge\n\n\n// Declare a boolean variable called isVaccinated\n",
+      "solution": "const petName = \"Buddy\";\nconst petAge = 3;\nconst isVaccinated = true;",
+      "testRunner": "(code) => { const v = new Function(code + '; return { petName, petAge, isVaccinated };')(); return [ { pass: v.petName === \"Buddy\", description: 'petName should be \"Buddy\"', got: v.petName }, { pass: v.petAge === 3, description: 'petAge should be 3', got: v.petAge }, { pass: v.isVaccinated === true, description: 'isVaccinated should be true', got: v.isVaccinated }, { pass: typeof v.petName === \"string\", description: 'petName should be a string', got: typeof v.petName }, { pass: typeof v.petAge === \"number\", description: 'petAge should be a number', got: typeof v.petAge }, { pass: typeof v.isVaccinated === \"boolean\", description: 'isVaccinated should be a boolean', got: typeof v.isVaccinated } ]; }",
+      "hints": [
+        "Use const to declare a variable: const myVar = value;",
+        "Strings use quotes: \"Buddy\". Numbers are plain: 3. Booleans are true or false.",
+        "const petName = \"Buddy\"; const petAge = 3; const isVaccinated = true;"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Variables",
+          "url": "/docs/mdn/variables.html",
+          "description": "Declaring and using variables in JavaScript"
+        },
+        {
+          "label": "MDN: Data types",
+          "url": "/docs/mdn/data-types.html",
+          "description": "Strings, numbers, booleans, and more"
+        }
+      ]
+    },
+    {
+      "id": 717,
+      "title": "String Building",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "js-fundamentals",
+        "variables"
+      ],
+      "tags": [
+        "string",
+        "concatenation",
+        "variables"
+      ],
+      "description": "Join two strings together using the + operator to build a full name.",
+      "instructions": "Two variables are already declared: `first` and `last`.\n\nCreate a new variable called `fullName` that combines them with a space in between.\n\nExample: if first is `\"Jane\"` and last is `\"Smith\"`, then fullName should be `\"Jane Smith\"`.",
+      "starterCode": "const first = \"Jane\";\nconst last = \"Smith\";\n\n// Create fullName by joining first and last with a space\nconst fullName = ___;",
+      "solution": "const first = \"Jane\";\nconst last = \"Smith\";\n\nconst fullName = first + \" \" + last;",
+      "testRunner": "(code) => { const v = new Function(code + '; return { first, last, fullName };')(); return [ { pass: v.fullName === \"Jane Smith\", description: 'fullName should be \"Jane Smith\"', got: v.fullName }, { pass: typeof v.fullName === \"string\", description: 'fullName should be a string', got: typeof v.fullName }, { pass: v.fullName.includes(\" \"), description: 'fullName should contain a space between the names', got: v.fullName } ]; }",
+      "hints": [
+        "Use the + operator to join strings: \"hello\" + \" \" + \"world\"",
+        "Don't forget the space between the names: first + \" \" + last",
+        "const fullName = first + \" \" + last;"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Strings",
+          "url": "/docs/mdn/strings.html",
+          "description": "Working with text strings in JavaScript"
+        },
+        {
+          "label": "MDN: String concatenation",
+          "url": "/docs/mdn/string-concat.html",
+          "description": "Combining strings with + or template literals"
+        }
+      ]
+    },
+    {
+      "id": 718,
+      "title": "Shopping Math",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "js-fundamentals",
+        "operators"
+      ],
+      "tags": [
+        "arithmetic",
+        "multiplication",
+        "operators"
+      ],
+      "description": "Use arithmetic operators to calculate a shopping total with tax.",
+      "instructions": "Given a `price` of `19.99` and a `quantity` of `4`:\n\n1. Calculate `subtotal` — the price times the quantity\n2. Calculate `taxAmount` — 8% of the subtotal (multiply by 0.08)\n3. Calculate `total` — the subtotal plus the tax amount\n\nRound `total` to 2 decimal places using: `Math.round(value * 100) / 100`",
+      "starterCode": "const price = 19.99;\nconst quantity = 4;\n\n// Calculate the subtotal\nconst subtotal = ___;\n\n// Calculate 8% tax\nconst taxAmount = ___;\n\n// Calculate the total (rounded to 2 decimals)\nconst total = ___;",
+      "solution": "const price = 19.99;\nconst quantity = 4;\n\nconst subtotal = price * quantity;\nconst taxAmount = subtotal * 0.08;\nconst total = Math.round((subtotal + taxAmount) * 100) / 100;",
+      "testRunner": "(code) => { const v = new Function(code + '; return { subtotal, taxAmount, total };')(); return [ { pass: v.subtotal === 79.96, description: 'subtotal should be 79.96', got: v.subtotal }, { pass: Math.abs(v.taxAmount - 6.3968) < 0.001, description: 'taxAmount should be ~6.3968', got: v.taxAmount }, { pass: v.total === 86.36, description: 'total should be 86.36 (rounded)', got: v.total } ]; }",
+      "hints": [
+        "Multiply price * quantity to get the subtotal",
+        "Tax is subtotal * 0.08. Total is subtotal + taxAmount.",
+        "Round with: Math.round((subtotal + taxAmount) * 100) / 100"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Math",
+          "url": "/docs/mdn/math.html",
+          "description": "Arithmetic and number operations"
+        },
+        {
+          "label": "MDN: Arithmetic operators",
+          "url": "/docs/mdn/arithmetic.html",
+          "description": "All math operators including modulo (%)"
+        }
+      ]
+    },
+    {
+      "id": 719,
+      "title": "Strict vs Loose",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "js-fundamentals",
+        "operators"
+      ],
+      "tags": [
+        "equality",
+        "comparison",
+        "strict",
+        "loose"
+      ],
+      "description": "Understand the difference between === (strict) and == (loose) equality.",
+      "instructions": "Evaluate each comparison and store the result in the given variable:\n\n- `a` — Is `5 === \"5\"`? (strict equality, checks type too)\n- `b` — Is `5 == \"5\"`? (loose equality, converts types)\n- `c` — Is `null === undefined`?\n- `d` — Is `null == undefined`?\n- `e` — Is `0 === false`?\n- `f` — Is `0 == false`?\n\nThink carefully about which pairs JavaScript considers equal!",
+      "starterCode": "const a = (5 === \"5\");     // strict: number vs string\nconst b = (5 == \"5\");      // loose: number vs string\nconst c = (null === undefined);\nconst d = (null == undefined);\nconst e = (0 === false);\nconst f = (0 == false);",
+      "solution": "const a = (5 === \"5\");\nconst b = (5 == \"5\");\nconst c = (null === undefined);\nconst d = (null == undefined);\nconst e = (0 === false);\nconst f = (0 == false);",
+      "testRunner": "(code) => { const v = new Function(code + '; return { a, b, c, d, e, f };')(); return [ { pass: v.a === false, description: '5 === \"5\" should be false', got: v.a }, { pass: v.b === true, description: '5 == \"5\" should be true', got: v.b }, { pass: v.c === false, description: 'null === undefined should be false', got: v.c }, { pass: v.d === true, description: 'null == undefined should be true', got: v.d }, { pass: v.e === false, description: '0 === false should be false', got: v.e }, { pass: v.f === true, description: '0 == false should be true', got: v.f } ]; }",
+      "hints": [
+        "=== checks both value AND type. == converts types before comparing.",
+        "5 and \"5\" have different types (number vs string), so === is false but == is true.",
+        "null and undefined are == but not ===. 0 and false are == but not ===."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Equality comparisons",
+          "url": "/docs/mdn/equality.html",
+          "description": "Understanding === vs == and type coercion"
+        },
+        {
+          "label": "MDN: Comparison operators",
+          "url": "/docs/mdn/comparison.html",
+          "description": "Greater than, less than, and equality operators"
+        }
+      ]
+    },
+    {
+      "id": 721,
+      "title": "Hello Template",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "es6-plus",
+        "template-literals"
+      ],
+      "tags": [
+        "template-literal",
+        "interpolation",
+        "string"
+      ],
+      "description": "Use template literal syntax to embed variables inside a string.",
+      "instructions": "Given `name` and `age`, create a `greeting` string using a template literal (backticks).\n\nThe result should be:\n`\"Hello, my name is Alice and I am 25 years old.\"`\n\nTemplate literals use backticks (\\`) and `${expression}` to embed values:\n```\nconst msg = `My name is ${name}`;\n```",
+      "starterCode": "const name = \"Alice\";\nconst age = 25;\n\n// Create greeting using a template literal with backticks\nconst greeting = ___;",
+      "solution": "const name = \"Alice\";\nconst age = 25;\n\nconst greeting = `Hello, my name is ${name} and I am ${age} years old.`;",
+      "testRunner": "(code) => { const v = new Function(code + '; return { greeting };')(); return [ { pass: v.greeting === \"Hello, my name is Alice and I am 25 years old.\", description: 'greeting should match the expected string', got: v.greeting }, { pass: v.greeting.includes(\"Alice\"), description: 'greeting should contain the name', got: v.greeting }, { pass: v.greeting.includes(\"25\"), description: 'greeting should contain the age', got: v.greeting } ]; }",
+      "hints": [
+        "Use backticks (`) instead of quotes, and ${variableName} to insert values.",
+        "The template should look like: `Hello, my name is ${name} and I am ${age} years old.`",
+        "const greeting = `Hello, my name is ${name} and I am ${age} years old.`;"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Template literals",
+          "url": "/docs/mdn/template-literals.html",
+          "description": "String interpolation with backticks"
+        },
+        {
+          "label": "MDN: String concatenation",
+          "url": "/docs/mdn/string-concat.html",
+          "description": "Combining strings with + or template literals"
+        }
+      ]
+    },
+    {
+      "id": 722,
+      "title": "Math in Templates",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "es6-plus",
+        "template-literals"
+      ],
+      "tags": [
+        "template-literal",
+        "expression",
+        "math"
+      ],
+      "description": "Embed math expressions directly inside template literals.",
+      "instructions": "Template literals can contain any expression inside `${}`, including math!\n\nGiven `a = 8` and `b = 3`, create:\n\n- `sum` — a string like `\"8 + 3 = 11\"`\n- `product` — a string like `\"8 x 3 = 24\"`\n\nUse `${a + b}` inside a template literal to calculate directly.",
+      "starterCode": "const a = 8;\nconst b = 3;\n\n// Create sum using a template literal with ${a + b}\nconst sum = ___;\n\n// Create product using a template literal with ${a * b}\nconst product = ___;",
+      "solution": "const a = 8;\nconst b = 3;\n\nconst sum = `${a} + ${b} = ${a + b}`;\nconst product = `${a} x ${b} = ${a * b}`;",
+      "testRunner": "(code) => { const v = new Function(code + '; return { sum, product };')(); return [ { pass: v.sum === \"8 + 3 = 11\", description: 'sum should be \"8 + 3 = 11\"', got: v.sum }, { pass: v.product === \"8 x 3 = 24\", description: 'product should be \"8 x 3 = 24\"', got: v.product } ]; }",
+      "hints": [
+        "You can put math inside ${}: `${a + b}` calculates and inserts the result.",
+        "sum should be: `${a} + ${b} = ${a + b}`",
+        "product should be: `${a} x ${b} = ${a * b}`"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Template literals",
+          "url": "/docs/mdn/template-literals.html",
+          "description": "String interpolation with backticks"
+        },
+        {
+          "label": "MDN: Expressions and operators",
+          "url": "/docs/mdn/expressions.html",
+          "description": "How JavaScript evaluates expressions"
+        }
+      ]
+    },
+    {
+      "id": 723,
+      "title": "String Cleanup",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "string-methods",
+        "trim",
+        "toUpperCase",
+        "toLowerCase"
+      ],
+      "description": "Use string methods to clean up and transform a messy string.",
+      "instructions": "Given a messy string: `\"  hELLo wORLd  \"`\n\nCreate three cleaned-up versions:\n\n- `trimmed` — remove the extra spaces from both ends using `.trim()`\n- `shouted` — convert the trimmed version to ALL UPPERCASE using `.toUpperCase()`\n- `whispered` — convert the trimmed version to all lowercase using `.toLowerCase()`",
+      "starterCode": "const messy = \"  hELLo wORLd  \";\n\n// Remove spaces from both ends\nconst trimmed = ___;\n\n// Convert trimmed to uppercase\nconst shouted = ___;\n\n// Convert trimmed to lowercase\nconst whispered = ___;",
+      "solution": "const messy = \"  hELLo wORLd  \";\n\nconst trimmed = messy.trim();\nconst shouted = trimmed.toUpperCase();\nconst whispered = trimmed.toLowerCase();",
+      "testRunner": "(code) => { const v = new Function(code + '; return { trimmed, shouted, whispered };')(); return [ { pass: v.trimmed === \"hELLo wORLd\", description: 'trimmed should be \"hELLo wORLd\" (no extra spaces)', got: v.trimmed }, { pass: v.shouted === \"HELLO WORLD\", description: 'shouted should be \"HELLO WORLD\"', got: v.shouted }, { pass: v.whispered === \"hello world\", description: 'whispered should be \"hello world\"', got: v.whispered } ]; }",
+      "hints": [
+        ".trim() removes whitespace from both ends of a string.",
+        ".toUpperCase() makes every character uppercase. .toLowerCase() makes every character lowercase.",
+        "const trimmed = messy.trim(); const shouted = trimmed.toUpperCase();"
+      ],
+      "resources": [
+        {
+          "label": "MDN: String.trim()",
+          "url": "/docs/mdn/string-trim.html",
+          "description": "Removing whitespace from both ends"
+        },
+        {
+          "label": "MDN: String methods",
+          "url": "/docs/mdn/string-methods.html",
+          "description": "Common methods for working with strings"
+        }
+      ]
+    },
+    {
+      "id": 724,
+      "title": "Substring Extract",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "slice",
+        "indexOf",
+        "substring"
+      ],
+      "description": "Extract parts of a string using slice and indexOf.",
+      "instructions": "Given an email address: `\"user@example.com\"`\n\nExtract two parts:\n\n- `username` — the part before the `@` symbol (`\"user\"`)\n- `domain` — the part after the `@` symbol (`\"example.com\"`)\n\nHint: Use `.indexOf(\"@\")` to find the position of `@`, then `.slice()` to extract each part.\n\n```\nstr.slice(0, position)    // from start to position\nstr.slice(position + 1)   // from after position to end\n```",
+      "starterCode": "const email = \"user@example.com\";\n\n// Find where the @ symbol is\nconst atIndex = email.indexOf(\"@\");\n\n// Extract the username (everything before @)\nconst username = ___;\n\n// Extract the domain (everything after @)\nconst domain = ___;",
+      "solution": "const email = \"user@example.com\";\n\nconst atIndex = email.indexOf(\"@\");\nconst username = email.slice(0, atIndex);\nconst domain = email.slice(atIndex + 1);",
+      "testRunner": "(code) => { const v = new Function(code + '; return { username, domain };')(); return [ { pass: v.username === \"user\", description: 'username should be \"user\"', got: v.username }, { pass: v.domain === \"example.com\", description: 'domain should be \"example.com\"', got: v.domain } ]; }",
+      "hints": [
+        ".indexOf(\"@\") returns the position of @. For \"user@example.com\" it returns 4.",
+        ".slice(0, 4) gives \"user\". .slice(5) gives \"example.com\".",
+        "username = email.slice(0, atIndex); domain = email.slice(atIndex + 1);"
+      ],
+      "resources": [
+        {
+          "label": "MDN: String.slice()",
+          "url": "/docs/mdn/string-slice.html",
+          "description": "Extracting part of a string"
+        },
+        {
+          "label": "MDN: String.indexOf()",
+          "url": "/docs/mdn/string-indexof.html",
+          "description": "Finding the position of a substring"
+        }
+      ]
+    },
+    {
+      "id": 725,
+      "title": "Build an Object",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "object-literal",
+        "properties",
+        "creation"
+      ],
+      "description": "Create an object with multiple properties of different types.",
+      "instructions": "Create an object called `book` with these properties:\n\n- `title` — `\"The Great Gatsby\"` (string)\n- `author` — `\"F. Scott Fitzgerald\"` (string)\n- `year` — `1925` (number)\n- `isRead` — `true` (boolean)\n\nUse an object literal with curly braces: `{ key: value, ... }`",
+      "starterCode": "// Create a book object with title, author, year, and isRead\nconst book = {\n  ___\n};",
+      "solution": "const book = {\n  title: \"The Great Gatsby\",\n  author: \"F. Scott Fitzgerald\",\n  year: 1925,\n  isRead: true\n};",
+      "testRunner": "(code) => { const v = new Function(code + '; return book;')(); return [ { pass: v.title === \"The Great Gatsby\", description: 'book.title should be \"The Great Gatsby\"', got: v.title }, { pass: v.author === \"F. Scott Fitzgerald\", description: 'book.author should be \"F. Scott Fitzgerald\"', got: v.author }, { pass: v.year === 1925, description: 'book.year should be 1925', got: v.year }, { pass: v.isRead === true, description: 'book.isRead should be true', got: v.isRead } ]; }",
+      "hints": [
+        "Object literals use key: value pairs: { name: \"Alex\", age: 30 }",
+        "Separate each property with a comma. Strings need quotes, numbers and booleans don't.",
+        "const book = { title: \"The Great Gatsby\", author: \"F. Scott Fitzgerald\", year: 1925, isRead: true };"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Working with objects",
+          "url": "/docs/mdn/objects.html",
+          "description": "Creating and accessing object properties"
+        },
+        {
+          "label": "MDN: Object initializer",
+          "url": "/docs/mdn/object-initializer.html",
+          "description": "Creating objects with shorthand properties"
+        }
+      ]
+    },
+    {
+      "id": 726,
+      "title": "Read from Object",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "property-access",
+        "dot-notation",
+        "bracket-notation"
+      ],
+      "description": "Access object properties using dot notation and bracket notation.",
+      "instructions": "Given a `student` object, read its properties two different ways:\n\n- `studentName` — use **dot notation**: `student.name`\n- `studentGrade` — use **bracket notation**: `student[\"grade\"]`\n- `studentSubject` — use bracket notation with a **variable**: `student[key]`\n\nBracket notation is useful when the property name is stored in a variable.",
+      "starterCode": "const student = {\n  name: \"Maria\",\n  grade: \"A\",\n  subject: \"Math\"\n};\nconst key = \"subject\";\n\n// Read name using dot notation\nconst studentName = ___;\n\n// Read grade using bracket notation with a string\nconst studentGrade = ___;\n\n// Read subject using bracket notation with the variable 'key'\nconst studentSubject = ___;",
+      "solution": "const student = {\n  name: \"Maria\",\n  grade: \"A\",\n  subject: \"Math\"\n};\nconst key = \"subject\";\n\nconst studentName = student.name;\nconst studentGrade = student[\"grade\"];\nconst studentSubject = student[key];",
+      "testRunner": "(code) => { const v = new Function(code + '; return { studentName, studentGrade, studentSubject };')(); return [ { pass: v.studentName === \"Maria\", description: 'studentName should be \"Maria\" (dot notation)', got: v.studentName }, { pass: v.studentGrade === \"A\", description: 'studentGrade should be \"A\" (bracket notation)', got: v.studentGrade }, { pass: v.studentSubject === \"Math\", description: 'studentSubject should be \"Math\" (variable bracket notation)', got: v.studentSubject } ]; }",
+      "hints": [
+        "Dot notation: object.property — like student.name",
+        "Bracket notation: object[\"property\"] — like student[\"grade\"]",
+        "Variable bracket: object[variable] — like student[key] where key = \"subject\""
+      ],
+      "resources": [
+        {
+          "label": "MDN: Property accessors",
+          "url": "/docs/mdn/property-access.html",
+          "description": "Dot notation and bracket notation"
+        },
+        {
+          "label": "MDN: Working with objects",
+          "url": "/docs/mdn/objects.html",
+          "description": "Creating and accessing object properties"
+        }
+      ]
+    },
+    {
+      "id": 727,
+      "title": "Array Basics",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "array",
+        "index",
+        "access",
+        "creation"
+      ],
+      "description": "Create an array and access elements by their index.",
+      "instructions": "Create an array called `colors` with these values: `\"red\"`, `\"green\"`, `\"blue\"`, `\"yellow\"`\n\nThen read from it:\n\n- `first` — the first element (index 0)\n- `last` — the last element (index 3)\n- `count` — the total number of elements using `.length`\n\nRemember: array indexes start at 0!",
+      "starterCode": "// Create an array with 4 colors\nconst colors = [___];\n\n// Access the first element (index 0)\nconst first = ___;\n\n// Access the last element (index 3)\nconst last = ___;\n\n// Get the total count using .length\nconst count = ___;",
+      "solution": "const colors = [\"red\", \"green\", \"blue\", \"yellow\"];\n\nconst first = colors[0];\nconst last = colors[3];\nconst count = colors.length;",
+      "testRunner": "(code) => { const v = new Function(code + '; return { colors, first, last, count };')(); return [ { pass: Array.isArray(v.colors) && v.colors.length === 4, description: 'colors should be an array with 4 items', got: JSON.stringify(v.colors) }, { pass: v.first === \"red\", description: 'first should be \"red\" (index 0)', got: v.first }, { pass: v.last === \"yellow\", description: 'last should be \"yellow\" (index 3)', got: v.last }, { pass: v.count === 4, description: 'count should be 4', got: v.count } ]; }",
+      "hints": [
+        "Arrays are created with square brackets: [\"red\", \"green\", \"blue\", \"yellow\"]",
+        "Access elements by index: colors[0] is the first, colors[3] is the fourth.",
+        "colors.length gives the total number of elements."
+      ],
+      "resources": [
+        {
+          "label": "MDN: Arrays",
+          "url": "/docs/mdn/arrays.html",
+          "description": "Creating and working with arrays"
+        },
+        {
+          "label": "MDN: Indexed collections",
+          "url": "/docs/mdn/indexed-collections.html",
+          "description": "Working with arrays and typed arrays"
+        }
+      ]
+    },
+    {
+      "id": 728,
+      "title": "Array Modify",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "push",
+        "pop",
+        "array-methods"
+      ],
+      "description": "Add and remove elements from an array using push and pop.",
+      "instructions": "Start with: `let fruits = [\"apple\", \"banana\"]`\n\n1. Use `.push()` to add `\"cherry\"` to the **end** of the array\n2. Use `.push()` to add `\"date\"` to the end\n3. Use `.pop()` to remove the **last** element and store it in `removed`\n\nAfter all operations, fruits should be `[\"apple\", \"banana\", \"cherry\"]` and removed should be `\"date\"`.",
+      "starterCode": "let fruits = [\"apple\", \"banana\"];\n\n// Add \"cherry\" to the end\n___;\n\n// Add \"date\" to the end\n___;\n\n// Remove the last element and save it\nconst removed = ___;",
+      "solution": "let fruits = [\"apple\", \"banana\"];\n\nfruits.push(\"cherry\");\nfruits.push(\"date\");\nconst removed = fruits.pop();",
+      "testRunner": "(code) => { const v = new Function(code + '; return { fruits, removed };')(); return [ { pass: JSON.stringify(v.fruits) === '[\"apple\",\"banana\",\"cherry\"]', description: 'fruits should be [\"apple\", \"banana\", \"cherry\"]', got: JSON.stringify(v.fruits) }, { pass: v.removed === \"date\", description: 'removed should be \"date\"', got: v.removed }, { pass: v.fruits.length === 3, description: 'fruits should have 3 elements', got: v.fruits.length } ]; }",
+      "hints": [
+        ".push(item) adds an item to the end of an array.",
+        ".pop() removes and returns the last item from an array.",
+        "fruits.push(\"cherry\"); fruits.push(\"date\"); const removed = fruits.pop();"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.push()",
+          "url": "/docs/mdn/array-push.html",
+          "description": "Adding elements to the end of an array"
+        },
+        {
+          "label": "MDN: Array.pop()",
+          "url": "/docs/mdn/array-pop.html",
+          "description": "Removing the last element from an array"
+        }
+      ]
+    },
+    {
+      "id": 731,
+      "title": "Age Check",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "ternary",
+        "comparison",
+        "conditional"
+      ],
+      "description": "Use the ternary operator to return different values based on a condition.",
+      "instructions": "Write a function called `canVote` that takes an `age` (number) and returns:\n\n- `\"yes\"` if age is 18 or older\n- `\"no\"` if age is under 18\n\nUse the **ternary operator**: `condition ? valueIfTrue : valueIfFalse`\n\nExample:\n  canVote(21)  →  \"yes\"\n  canVote(16)  →  \"no\"\n  canVote(18)  →  \"yes\"",
+      "starterCode": "function canVote(age) {\n  return ___;\n}",
+      "solution": "function canVote(age) {\n  return age >= 18 ? \"yes\" : \"no\";\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return canVote;')(); return [ { pass: fn(21) === \"yes\", description: 'canVote(21) → \"yes\"', got: fn(21) }, { pass: fn(16) === \"no\", description: 'canVote(16) → \"no\"', got: fn(16) }, { pass: fn(18) === \"yes\", description: 'canVote(18) → \"yes\"', got: fn(18) }, { pass: fn(0) === \"no\", description: 'canVote(0) → \"no\"', got: fn(0) } ]; }",
+      "hints": [
+        "The ternary operator is: condition ? valueIfTrue : valueIfFalse",
+        "The condition is: age >= 18",
+        "return age >= 18 ? \"yes\" : \"no\";"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Conditional (ternary) operator",
+          "url": "/docs/mdn/ternary.html",
+          "description": "A shorthand for if/else"
+        },
+        {
+          "label": "MDN: Comparison operators",
+          "url": "/docs/mdn/comparison.html",
+          "description": "Greater than, less than, and equality operators"
+        }
+      ]
+    },
+    {
+      "id": 732,
+      "title": "Bigger of Two",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "js-fundamentals",
+        "conditionals"
+      ],
+      "tags": [
+        "comparison",
+        "conditional",
+        "math"
+      ],
+      "description": "Return the larger of two numbers using a comparison.",
+      "instructions": "Write a function called `bigger` that takes two numbers `a` and `b`, and returns the larger one.\n\nIf they are equal, return either one.\n\nExample:\n  bigger(5, 3)   →  5\n  bigger(2, 8)   →  8\n  bigger(4, 4)   →  4\n  bigger(-1, -5) →  -1",
+      "starterCode": "function bigger(a, b) {\n  // Return the larger of a and b\n\n}",
+      "solution": "function bigger(a, b) {\n  return a > b ? a : b;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return bigger;')(); return [ { pass: fn(5, 3) === 5, description: 'bigger(5, 3) → 5', got: fn(5, 3) }, { pass: fn(2, 8) === 8, description: 'bigger(2, 8) → 8', got: fn(2, 8) }, { pass: fn(4, 4) === 4, description: 'bigger(4, 4) → 4', got: fn(4, 4) }, { pass: fn(-1, -5) === -1, description: 'bigger(-1, -5) → -1', got: fn(-1, -5) } ]; }",
+      "hints": [
+        "Compare a and b with > or use a ternary: a > b ? a : b",
+        "You could also use Math.max(a, b)",
+        "return a > b ? a : b;"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Conditional (ternary) operator",
+          "url": "/docs/mdn/ternary.html",
+          "description": "A shorthand for if/else"
+        },
+        {
+          "label": "MDN: Math.max()",
+          "url": "/docs/mdn/math-max.html",
+          "description": "Returns the largest of given numbers"
+        }
+      ]
+    },
+    {
+      "id": 733,
+      "title": "First Letter Upper",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "charAt",
+        "toUpperCase",
+        "slice"
+      ],
+      "description": "Extract the first character of a string and return it uppercase.",
+      "instructions": "Write a function called `firstUpper` that takes a string and returns its first character in uppercase.\n\nExample:\n  firstUpper(\"hello\")  →  \"H\"\n  firstUpper(\"world\")  →  \"W\"\n  firstUpper(\"javaScript\")  →  \"J\"",
+      "starterCode": "function firstUpper(str) {\n  // Get the first character and make it uppercase\n\n}",
+      "solution": "function firstUpper(str) {\n  return str[0].toUpperCase();\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return firstUpper;')(); return [ { pass: fn(\"hello\") === \"H\", description: 'firstUpper(\"hello\") → \"H\"', got: fn(\"hello\") }, { pass: fn(\"world\") === \"W\", description: 'firstUpper(\"world\") → \"W\"', got: fn(\"world\") }, { pass: fn(\"javaScript\") === \"J\", description: 'firstUpper(\"javaScript\") → \"J\"', got: fn(\"javaScript\") }, { pass: fn(\"a\") === \"A\", description: 'firstUpper(\"a\") → \"A\"', got: fn(\"a\") } ]; }",
+      "hints": [
+        "Access the first character with str[0] or str.charAt(0).",
+        "Then call .toUpperCase() on that character.",
+        "return str[0].toUpperCase();"
+      ],
+      "resources": [
+        {
+          "label": "MDN: String.toUpperCase()",
+          "url": "/docs/mdn/string-touppercase.html",
+          "description": "Converting characters to uppercase"
+        },
+        {
+          "label": "MDN: String methods",
+          "url": "/docs/mdn/string-methods.html",
+          "description": "Common methods for working with strings"
+        }
+      ]
+    },
+    {
+      "id": 734,
+      "title": "Last Element",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "array",
+        "index",
+        "length"
+      ],
+      "description": "Return the last element of any array using its length.",
+      "instructions": "Write a function called `lastElement` that takes an array and returns the last item.\n\nUse `arr.length - 1` to find the index of the last element.\n\nExample:\n  lastElement([1, 2, 3])       →  3\n  lastElement([\"a\", \"b\"])      →  \"b\"\n  lastElement([true])          →  true",
+      "starterCode": "function lastElement(arr) {\n  // Return the last element using arr.length\n\n}",
+      "solution": "function lastElement(arr) {\n  return arr[arr.length - 1];\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return lastElement;')(); return [ { pass: fn([1, 2, 3]) === 3, description: 'lastElement([1, 2, 3]) → 3', got: fn([1, 2, 3]) }, { pass: fn([\"a\", \"b\"]) === \"b\", description: 'lastElement([\"a\", \"b\"]) → \"b\"', got: fn([\"a\", \"b\"]) }, { pass: fn([true]) === true, description: 'lastElement([true]) → true', got: fn([true]) }, { pass: fn([10, 20, 30, 40]) === 40, description: 'lastElement([10, 20, 30, 40]) → 40', got: fn([10, 20, 30, 40]) } ]; }",
+      "hints": [
+        "The last index of an array is always arr.length - 1.",
+        "For [1, 2, 3]: length is 3, so the last index is 2.",
+        "return arr[arr.length - 1];"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.length",
+          "url": "/docs/mdn/array-length.html",
+          "description": "Getting the number of elements in an array"
+        },
+        {
+          "label": "MDN: Arrays",
+          "url": "/docs/mdn/arrays.html",
+          "description": "Creating and working with arrays"
+        }
+      ]
+    },
+    {
+      "id": 735,
+      "title": "Format Price",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "es6-plus",
+        "template-literals"
+      ],
+      "tags": [
+        "template-literal",
+        "toFixed",
+        "formatting"
+      ],
+      "description": "Use template literals and toFixed to format a price string.",
+      "instructions": "Write a function called `formatPrice` that takes a number and returns it formatted as a dollar amount.\n\nUse `.toFixed(2)` to ensure exactly 2 decimal places, and a template literal to add the `$` sign.\n\nExample:\n  formatPrice(9.99)   →  \"$9.99\"\n  formatPrice(5)      →  \"$5.00\"\n  formatPrice(12.5)   →  \"$12.50\"",
+      "starterCode": "function formatPrice(amount) {\n  // Return the amount formatted as \"$X.XX\"\n\n}",
+      "solution": "function formatPrice(amount) {\n  return `$${amount.toFixed(2)}`;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return formatPrice;')(); return [ { pass: fn(9.99) === \"$9.99\", description: 'formatPrice(9.99) → \"$9.99\"', got: fn(9.99) }, { pass: fn(5) === \"$5.00\", description: 'formatPrice(5) → \"$5.00\"', got: fn(5) }, { pass: fn(12.5) === \"$12.50\", description: 'formatPrice(12.5) → \"$12.50\"', got: fn(12.5) }, { pass: fn(0) === \"$0.00\", description: 'formatPrice(0) → \"$0.00\"', got: fn(0) } ]; }",
+      "hints": [
+        ".toFixed(2) returns a string with exactly 2 decimal places: (5).toFixed(2) → \"5.00\"",
+        "Use a template literal: `$${amount.toFixed(2)}`",
+        "return `$${amount.toFixed(2)}`;"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Number.toFixed()",
+          "url": "/docs/mdn/number-tofixed.html",
+          "description": "Formatting numbers with fixed decimal places"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "/docs/mdn/template-literals.html",
+          "description": "String interpolation with backticks"
+        }
+      ]
+    },
+    {
+      "id": 736,
+      "title": "Negate It",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "js-fundamentals",
+        "operators"
+      ],
+      "tags": [
+        "not",
+        "boolean",
+        "logical-operator"
+      ],
+      "description": "Use the NOT operator (!) to flip boolean values.",
+      "instructions": "Write a function called `negate` that takes a boolean value and returns the opposite.\n\nUse the `!` (NOT) operator.\n\nExample:\n  negate(true)   →  false\n  negate(false)  →  true",
+      "starterCode": "function negate(value) {\n  // Return the opposite boolean\n\n}",
+      "solution": "function negate(value) {\n  return !value;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return negate;')(); return [ { pass: fn(true) === false, description: 'negate(true) → false', got: fn(true) }, { pass: fn(false) === true, description: 'negate(false) → true', got: fn(false) } ]; }",
+      "hints": [
+        "The ! operator flips a boolean: !true becomes false, !false becomes true.",
+        "Just return the negated value: return !value;",
+        "return !value;"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Logical NOT (!)",
+          "url": "/docs/mdn/logical-not.html",
+          "description": "Negating a boolean value"
+        },
+        {
+          "label": "MDN: Boolean",
+          "url": "/docs/mdn/boolean.html",
+          "description": "True and false values in JavaScript"
+        }
+      ]
+    },
+    {
+      "id": 737,
+      "title": "Counting Loop",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "js-fundamentals",
+        "loops"
+      ],
+      "tags": [
+        "for-loop",
+        "accumulator",
+        "basics"
+      ],
+      "description": "Use a for loop to build a string by counting from 1 to a given number.",
+      "instructions": "Write a function called `countUp` that takes a number `n` and returns a string of numbers from 1 to n, separated by spaces.\n\nUse a `for` loop to build the string.\n\nExample:\n  countUp(5)  →  \"1 2 3 4 5\"\n  countUp(3)  →  \"1 2 3\"\n  countUp(1)  →  \"1\"",
+      "starterCode": "function countUp(n) {\n  let result = \"\";\n  // Use a for loop to add each number to result\n  for (___) {\n    ___;\n  }\n  return result.trim();\n}",
+      "solution": "function countUp(n) {\n  let result = \"\";\n  for (let i = 1; i <= n; i++) {\n    result += i + \" \";\n  }\n  return result.trim();\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return countUp;')(); return [ { pass: fn(5) === \"1 2 3 4 5\", description: 'countUp(5) → \"1 2 3 4 5\"', got: fn(5) }, { pass: fn(3) === \"1 2 3\", description: 'countUp(3) → \"1 2 3\"', got: fn(3) }, { pass: fn(1) === \"1\", description: 'countUp(1) → \"1\"', got: fn(1) }, { pass: fn(8) === \"1 2 3 4 5 6 7 8\", description: 'countUp(8) → \"1 2 3 4 5 6 7 8\"', got: fn(8) } ]; }",
+      "hints": [
+        "A for loop: for (let i = 1; i <= n; i++) { ... }",
+        "Append each number to result: result += i + \" \";",
+        "for (let i = 1; i <= n; i++) { result += i + \" \"; }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "/docs/mdn/loops.html",
+          "description": "Repeating code with for, while, and more"
+        },
+        {
+          "label": "MDN: for statement",
+          "url": "/docs/mdn/for-loop.html",
+          "description": "Iterating through arrays with for"
+        }
+      ]
+    },
+    {
+      "id": 741,
+      "title": "Initials",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "strings"
+      ],
+      "tags": [
+        "split",
+        "map",
+        "string-methods"
+      ],
+      "description": "Extract the initials from a full name string.",
+      "instructions": "Write a function called `initials` that takes a full name and returns the initials with dots.\n\nSplit the name into words, take the first character of each, uppercase it, and join with dots.\n\nExample:\n  initials(\"John Doe\")           →  \"J.D.\"\n  initials(\"Mary Jane Watson\")   →  \"M.J.W.\"\n  initials(\"Cher\")               →  \"C.\"",
+      "starterCode": "function initials(name) {\n\n}",
+      "solution": "function initials(name) {\n  return name.split(\" \").map(w => w[0].toUpperCase()).join(\".\") + \".\";\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return initials;')(); return [ { pass: fn(\"John Doe\") === \"J.D.\", description: 'initials(\"John Doe\") → \"J.D.\"', got: fn(\"John Doe\") }, { pass: fn(\"Mary Jane Watson\") === \"M.J.W.\", description: 'initials(\"Mary Jane Watson\") → \"M.J.W.\"', got: fn(\"Mary Jane Watson\") }, { pass: fn(\"Cher\") === \"C.\", description: 'initials(\"Cher\") → \"C.\"', got: fn(\"Cher\") }, { pass: fn(\"lebron james\") === \"L.J.\", description: 'initials(\"lebron james\") → \"L.J.\"', got: fn(\"lebron james\") } ]; }",
+      "hints": [
+        "Split the name into words with .split(\" \"), then get the first character of each.",
+        "Use .map(word => word[0].toUpperCase()) to get uppercase initials.",
+        "Join with \".\" and add a final \".\": .join(\".\") + \".\""
+      ],
+      "resources": [
+        {
+          "label": "MDN: String.split()",
+          "url": "/docs/mdn/string-split.html",
+          "description": "Breaking a string into an array"
+        },
+        {
+          "label": "MDN: Array.map()",
+          "url": "/docs/mdn/array-map.html",
+          "description": "Transforming every element in an array"
+        }
+      ]
+    },
+    {
+      "id": 742,
+      "title": "Count Properties",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "Object.keys",
+        "length",
+        "objects"
+      ],
+      "description": "Count the number of properties in an object using Object.keys.",
+      "instructions": "Write a function called `countKeys` that takes an object and returns how many properties it has.\n\nUse `Object.keys(obj)` to get an array of all property names, then check its `.length`.\n\nExample:\n  countKeys({ a: 1, b: 2, c: 3 })  →  3\n  countKeys({ name: \"Jo\" })          →  1\n  countKeys({})                      →  0",
+      "starterCode": "function countKeys(obj) {\n\n}",
+      "solution": "function countKeys(obj) {\n  return Object.keys(obj).length;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return countKeys;')(); return [ { pass: fn({ a: 1, b: 2, c: 3 }) === 3, description: 'countKeys({ a: 1, b: 2, c: 3 }) → 3', got: fn({ a: 1, b: 2, c: 3 }) }, { pass: fn({ name: \"Jo\" }) === 1, description: 'countKeys({ name: \"Jo\" }) → 1', got: fn({ name: \"Jo\" }) }, { pass: fn({}) === 0, description: 'countKeys({}) → 0', got: fn({}) }, { pass: fn({ x: 1, y: 2, z: 3, w: 4 }) === 4, description: 'countKeys({ x, y, z, w }) → 4', got: fn({ x: 1, y: 2, z: 3, w: 4 }) } ]; }",
+      "hints": [
+        "Object.keys(obj) returns an array of property names: Object.keys({a:1, b:2}) → [\"a\", \"b\"]",
+        "Then just check the length of that array.",
+        "return Object.keys(obj).length;"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Object.keys()",
+          "url": "/docs/mdn/object-keys.html",
+          "description": "Getting all keys of an object"
+        },
+        {
+          "label": "MDN: Working with objects",
+          "url": "/docs/mdn/objects.html",
+          "description": "Creating and accessing object properties"
+        }
+      ]
+    },
+    {
+      "id": 743,
+      "title": "Without Extremes",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "slice",
+        "array-methods"
+      ],
+      "description": "Return an array with the first and last elements removed.",
+      "instructions": "Write a function called `withoutExtremes` that takes an array and returns a new array without the first and last elements.\n\nUse `.slice()` to extract the middle portion.\n\nExample:\n  withoutExtremes([1, 2, 3, 4, 5])  →  [2, 3, 4]\n  withoutExtremes([\"a\", \"b\", \"c\"])   →  [\"b\"]\n  withoutExtremes([1, 2])            →  []",
+      "starterCode": "function withoutExtremes(arr) {\n\n}",
+      "solution": "function withoutExtremes(arr) {\n  return arr.slice(1, -1);\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return withoutExtremes;')(); return [ { pass: JSON.stringify(fn([1,2,3,4,5])) === \"[2,3,4]\", description: 'withoutExtremes([1,2,3,4,5]) → [2,3,4]', got: JSON.stringify(fn([1,2,3,4,5])) }, { pass: JSON.stringify(fn([\"a\",\"b\",\"c\"])) === '[\"b\"]', description: 'withoutExtremes([\"a\",\"b\",\"c\"]) → [\"b\"]', got: JSON.stringify(fn([\"a\",\"b\",\"c\"])) }, { pass: JSON.stringify(fn([1,2])) === \"[]\", description: 'withoutExtremes([1,2]) → []', got: JSON.stringify(fn([1,2])) }, { pass: JSON.stringify(fn([10,20,30,40])) === \"[20,30]\", description: 'withoutExtremes([10,20,30,40]) → [20,30]', got: JSON.stringify(fn([10,20,30,40])) } ]; }",
+      "hints": [
+        ".slice(start, end) returns a portion of the array without modifying the original.",
+        ".slice(1, -1) starts at index 1 and stops one before the end.",
+        "return arr.slice(1, -1);"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.slice()",
+          "url": "/docs/mdn/array-slice.html",
+          "description": "Extracting a portion of an array"
+        },
+        {
+          "label": "MDN: Arrays",
+          "url": "/docs/mdn/arrays.html",
+          "description": "Creating and working with arrays"
+        }
+      ]
+    },
+    {
+      "id": 744,
+      "title": "Has Property",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "objects"
+      ],
+      "tags": [
+        "hasOwnProperty",
+        "in",
+        "objects"
+      ],
+      "description": "Check if an object contains a specific property.",
+      "instructions": "Write a function called `hasProp` that takes an object and a key (string), and returns `true` if the object has that property, or `false` if it does not.\n\nExample:\n  hasProp({ name: \"Jo\", age: 25 }, \"name\")   →  true\n  hasProp({ name: \"Jo\", age: 25 }, \"email\")  →  false\n  hasProp({}, \"anything\")                    →  false",
+      "starterCode": "function hasProp(obj, key) {\n\n}",
+      "solution": "function hasProp(obj, key) {\n  return key in obj;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return hasProp;')(); return [ { pass: fn({ name: \"Jo\", age: 25 }, \"name\") === true, description: 'hasProp({name, age}, \"name\") → true', got: fn({ name: \"Jo\", age: 25 }, \"name\") }, { pass: fn({ name: \"Jo\", age: 25 }, \"email\") === false, description: 'hasProp({name, age}, \"email\") → false', got: fn({ name: \"Jo\", age: 25 }, \"email\") }, { pass: fn({}, \"anything\") === false, description: 'hasProp({}, \"anything\") → false', got: fn({}, \"anything\") }, { pass: fn({ x: 0 }, \"x\") === true, description: 'hasProp({ x: 0 }, \"x\") → true (even falsy values)', got: fn({ x: 0 }, \"x\") } ]; }",
+      "hints": [
+        "Use the 'in' operator: \"name\" in obj returns true if the property exists.",
+        "You can also use obj.hasOwnProperty(key).",
+        "return key in obj;"
+      ],
+      "resources": [
+        {
+          "label": "MDN: in operator",
+          "url": "/docs/mdn/in-operator.html",
+          "description": "Checking if a property exists in an object"
+        },
+        {
+          "label": "MDN: Working with objects",
+          "url": "/docs/mdn/objects.html",
+          "description": "Creating and accessing object properties"
+        }
+      ]
+    },
+    {
+      "id": 746,
+      "title": "Spread Merge",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "es6-plus",
+        "destructuring"
+      ],
+      "tags": [
+        "spread",
+        "array",
+        "merge"
+      ],
+      "description": "Use the spread operator to combine two arrays into one.",
+      "instructions": "Given two arrays `front` and `back`, create a new array called `combined` that contains all elements from both arrays using the spread operator (`...`).\n\nThe spread operator expands an array into individual elements:\n```\nconst merged = [...arrayA, ...arrayB];\n```\n\nExample: if front is `[1, 2]` and back is `[3, 4]`, then combined should be `[1, 2, 3, 4]`.",
+      "starterCode": "const front = [1, 2, 3];\nconst back = [4, 5, 6];\n\n// Combine both arrays using the spread operator\nconst combined = ___;",
+      "solution": "const front = [1, 2, 3];\nconst back = [4, 5, 6];\n\nconst combined = [...front, ...back];",
+      "testRunner": "(code) => { const v = new Function(code + '; return { combined };')(); return [ { pass: JSON.stringify(v.combined) === '[1,2,3,4,5,6]', description: 'combined should be [1, 2, 3, 4, 5, 6]', got: JSON.stringify(v.combined) }, { pass: v.combined.length === 6, description: 'combined should have 6 elements', got: v.combined.length } ]; }",
+      "hints": [
+        "The spread operator ... expands an array: [...arr] makes a copy of arr.",
+        "To merge: [...front, ...back] puts all elements of front followed by all of back.",
+        "const combined = [...front, ...back];"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Spread syntax",
+          "url": "/docs/mdn/spread-syntax.html",
+          "description": "Expanding arrays and objects with ..."
+        },
+        {
+          "label": "MDN: Destructuring assignment",
+          "url": "/docs/mdn/destructuring.html",
+          "description": "Unpacking values from arrays and objects"
+        }
+      ]
+    },
+    {
+      "id": 747,
+      "title": "Short-Circuit Defaults",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "js-fundamentals",
+        "operators"
+      ],
+      "tags": [
+        "logical-or",
+        "default-values",
+        "short-circuit"
+      ],
+      "description": "Use the || operator to provide default values for falsy variables.",
+      "instructions": "The `||` (OR) operator returns the first truthy value it finds. This is useful for providing defaults:\n\n```\nconst name = \"\" || \"Anonymous\";  // \"Anonymous\" (because \"\" is falsy)\nconst count = 0 || 10;           // 10 (because 0 is falsy)\nconst title = \"Hello\" || \"Default\"; // \"Hello\" (already truthy)\n```\n\nEvaluate each expression and store the result:\n\n- `a` — `null || \"fallback\"`\n- `b` — `\"keep me\" || \"replaced\"`\n- `c` — `0 || 42`\n- `d` — `undefined || \"safe\"`",
+      "starterCode": "const a = null || \"fallback\";\nconst b = \"keep me\" || \"replaced\";\nconst c = 0 || 42;\nconst d = undefined || \"safe\";",
+      "solution": "const a = null || \"fallback\";\nconst b = \"keep me\" || \"replaced\";\nconst c = 0 || 42;\nconst d = undefined || \"safe\";",
+      "testRunner": "(code) => { const v = new Function(code + '; return { a, b, c, d };')(); return [ { pass: v.a === 'fallback', description: 'null || \"fallback\" should be \"fallback\"', got: v.a }, { pass: v.b === 'keep me', description: '\"keep me\" || \"replaced\" should be \"keep me\"', got: v.b }, { pass: v.c === 42, description: '0 || 42 should be 42', got: v.c }, { pass: v.d === 'safe', description: 'undefined || \"safe\" should be \"safe\"', got: v.d } ]; }",
+      "hints": [
+        "|| returns the first truthy value. Falsy values are: false, 0, \"\", null, undefined, NaN.",
+        "null is falsy, so null || \"fallback\" returns \"fallback\". \"keep me\" is truthy, so it's returned immediately.",
+        "const a = \"fallback\"; const b = \"keep me\"; const c = 42; const d = \"safe\";"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Logical OR (||)",
+          "url": "/docs/mdn/logical-or.html",
+          "description": "Alternative conditions and default values"
+        },
+        {
+          "label": "MDN: Nullish coalescing (??)",
+          "url": "/docs/mdn/nullish-coalescing.html",
+          "description": "Providing defaults only for null/undefined"
+        }
+      ]
+    },
+    {
+      "id": 748,
+      "title": "Loop and Filter",
+      "type": "js",
+      "tier": 1,
+      "category": [
+        "js-fundamentals",
+        "loops"
+      ],
+      "tags": [
+        "for-loop",
+        "if",
+        "push",
+        "filter"
+      ],
+      "description": "Use a for loop with an if statement to collect matching items.",
+      "instructions": "Write a function called `positives` that takes an array of numbers and returns a new array containing only the positive numbers (greater than 0).\n\nUse a `for` loop and an `if` statement to check each number, then `.push()` the positive ones into a result array.\n\nExample:\n  positives([3, -1, 4, -5, 0, 2])  →  [3, 4, 2]\n  positives([-1, -2, -3])            →  []\n  positives([1, 2, 3])               →  [1, 2, 3]",
+      "starterCode": "function positives(nums) {\n  const result = [];\n  // Loop through nums and push positive numbers to result\n  for (___) {\n    if (___) {\n      ___;\n    }\n  }\n  return result;\n}",
+      "solution": "function positives(nums) {\n  const result = [];\n  for (let i = 0; i < nums.length; i++) {\n    if (nums[i] > 0) {\n      result.push(nums[i]);\n    }\n  }\n  return result;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return positives;')(); return [ { pass: JSON.stringify(fn([3,-1,4,-5,0,2])) === '[3,4,2]', description: 'positives([3,-1,4,-5,0,2]) → [3,4,2]', got: JSON.stringify(fn([3,-1,4,-5,0,2])) }, { pass: JSON.stringify(fn([-1,-2,-3])) === '[]', description: 'positives([-1,-2,-3]) → []', got: JSON.stringify(fn([-1,-2,-3])) }, { pass: JSON.stringify(fn([1,2,3])) === '[1,2,3]', description: 'positives([1,2,3]) → [1,2,3]', got: JSON.stringify(fn([1,2,3])) }, { pass: JSON.stringify(fn([])) === '[]', description: 'positives([]) → []', got: JSON.stringify(fn([])) } ]; }",
+      "hints": [
+        "Loop with: for (let i = 0; i < nums.length; i++)",
+        "Check if positive: if (nums[i] > 0) { result.push(nums[i]); }",
+        "for (let i = 0; i < nums.length; i++) { if (nums[i] > 0) { result.push(nums[i]); } }"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Loops and iteration",
+          "url": "/docs/mdn/loops.html",
+          "description": "Repeating code with for, while, and more"
+        },
+        {
+          "label": "MDN: Array.push()",
+          "url": "/docs/mdn/array-push.html",
+          "description": "Adding elements to the end of an array"
+        }
+      ]
+    },
+    {
+      "id": 751,
+      "title": "Apply Callback",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "functions",
+        "callbacks"
+      ],
+      "tags": [
+        "callback",
+        "function-argument",
+        "basics"
+      ],
+      "description": "Take a value and a callback function, and return the result of calling the callback with the value.",
+      "instructions": "Write a function called `applyTo` that takes a `value` and a `callback` function. It should call the callback with the value and return the result.\n\nThis is the simplest form of a callback — passing a function as an argument.\n\nExample:\n  applyTo(5, x => x * 2)          →  10\n  applyTo(\"hello\", s => s.length)  →  5\n  applyTo(3, x => x * x)          →  9\n  applyTo(true, x => !x)          →  false",
+      "starterCode": "function applyTo(value, callback) {\n\n}",
+      "solution": "function applyTo(value, callback) {\n  return callback(value);\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return applyTo;')(); return [ { pass: fn(5, x => x * 2) === 10, description: 'applyTo(5, x => x * 2) → 10', got: fn(5, x => x * 2) }, { pass: fn('hello', s => s.length) === 5, description: 'applyTo(\"hello\", s => s.length) → 5', got: fn('hello', s => s.length) }, { pass: fn(3, x => x * x) === 9, description: 'applyTo(3, x => x * x) → 9', got: fn(3, x => x * x) }, { pass: fn(true, x => !x) === false, description: 'applyTo(true, x => !x) → false', got: fn(true, x => !x) } ]; }",
+      "hints": [
+        "A callback is just a function passed as an argument. You call it like any function.",
+        "return callback(value); — call the callback with value as its argument.",
+        "return callback(value);"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Callback function",
+          "url": "/docs/mdn/callbacks.html",
+          "description": "Passing functions as arguments"
+        },
+        {
+          "label": "MDN: Arrow functions",
+          "url": "/docs/mdn/arrow-functions.html",
+          "description": "Compact function syntax for callbacks"
+        }
+      ]
+    },
+    {
+      "id": 753,
+      "title": "Keep Evens",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "functions",
+        "higher-order"
+      ],
+      "tags": [
+        "filter",
+        "callback",
+        "even"
+      ],
+      "description": "Use .filter() with a callback to keep only even numbers.",
+      "instructions": "Write a function called `keepEvens` that takes an array of numbers and returns a new array containing only the even numbers.\n\nUse the `.filter()` method with a callback that checks if a number is even.\n\nExample:\n  keepEvens([1, 2, 3, 4, 5, 6])  →  [2, 4, 6]\n  keepEvens([1, 3, 5])            →  []\n  keepEvens([2, 4, 8])            →  [2, 4, 8]\n  keepEvens([])                   →  []",
+      "starterCode": "function keepEvens(nums) {\n\n}",
+      "solution": "function keepEvens(nums) {\n  return nums.filter(n => n % 2 === 0);\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return keepEvens;')(); return [ { pass: JSON.stringify(fn([1,2,3,4,5,6])) === '[2,4,6]', description: 'keepEvens([1,2,3,4,5,6]) → [2,4,6]', got: JSON.stringify(fn([1,2,3,4,5,6])) }, { pass: JSON.stringify(fn([1,3,5])) === '[]', description: 'keepEvens([1,3,5]) → []', got: JSON.stringify(fn([1,3,5])) }, { pass: JSON.stringify(fn([2,4,8])) === '[2,4,8]', description: 'keepEvens([2,4,8]) → [2,4,8]', got: JSON.stringify(fn([2,4,8])) }, { pass: JSON.stringify(fn([])) === '[]', description: 'keepEvens([]) → []', got: JSON.stringify(fn([])) } ]; }",
+      "hints": [
+        ".filter() keeps only elements where the callback returns true.",
+        "A number is even when n % 2 === 0.",
+        "return nums.filter(n => n % 2 === 0);"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.filter()",
+          "url": "/docs/mdn/array-filter.html",
+          "description": "Creating a subset of an array based on a condition"
+        },
+        {
+          "label": "MDN: Remainder (%)",
+          "url": "/docs/mdn/remainder.html",
+          "description": "The modulo operator for extracting remainders"
+        }
+      ]
+    },
+    {
+      "id": 755,
+      "title": "Wrap in Tag",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "es6-plus",
+        "template-literals"
+      ],
+      "tags": [
+        "template-literal",
+        "html",
+        "formatting"
+      ],
+      "description": "Use template literals to wrap text inside an HTML tag string.",
+      "instructions": "Write a function called `wrapTag` that takes a `text` string and a `tag` string, and returns the text wrapped in that HTML tag.\n\nExample:\n  wrapTag(\"Hello\", \"h1\")    →  \"<h1>Hello</h1>\"\n  wrapTag(\"Click me\", \"button\")  →  \"<button>Click me</button>\"\n  wrapTag(\"Paragraph\", \"p\")  →  \"<p>Paragraph</p>\"",
+      "starterCode": "function wrapTag(text, tag) {\n\n}",
+      "solution": "function wrapTag(text, tag) {\n  return `<${tag}>${text}</${tag}>`;\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return wrapTag;')(); return [ { pass: fn('Hello', 'h1') === '<h1>Hello</h1>', description: 'wrapTag(\"Hello\", \"h1\") → \"<h1>Hello</h1>\"', got: fn('Hello', 'h1') }, { pass: fn('Click me', 'button') === '<button>Click me</button>', description: 'wrapTag(\"Click me\", \"button\") → \"<button>Click me</button>\"', got: fn('Click me', 'button') }, { pass: fn('Paragraph', 'p') === '<p>Paragraph</p>', description: 'wrapTag(\"Paragraph\", \"p\") → \"<p>Paragraph</p>\"', got: fn('Paragraph', 'p') }, { pass: fn('Item', 'li') === '<li>Item</li>', description: 'wrapTag(\"Item\", \"li\") → \"<li>Item</li>\"', got: fn('Item', 'li') } ]; }",
+      "hints": [
+        "Use a template literal with the tag variable: `<${tag}>...`",
+        "The closing tag needs a /: `</${tag}>`",
+        "return `<${tag}>${text}</${tag}>`;"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Template literals",
+          "url": "/docs/mdn/template-literals.html",
+          "description": "String interpolation with backticks"
+        },
+        {
+          "label": "MDN: Template literals",
+          "url": "/docs/mdn/template-literals.html",
+          "description": "String interpolation with backticks"
+        }
+      ]
+    },
+    {
+      "id": 757,
+      "title": "Every Other",
+      "type": "js",
+      "tier": 2,
+      "category": [
+        "data-structures",
+        "arrays"
+      ],
+      "tags": [
+        "loop",
+        "filter",
+        "index"
+      ],
+      "description": "Return every other element from an array (even indexes).",
+      "instructions": "Write a function called `everyOther` that takes an array and returns a new array containing only the elements at even indexes (0, 2, 4, ...).\n\nExample:\n  everyOther([\"a\", \"b\", \"c\", \"d\", \"e\"])  →  [\"a\", \"c\", \"e\"]\n  everyOther([1, 2, 3, 4])                  →  [1, 3]\n  everyOther([10])                          →  [10]\n  everyOther([])                            →  []",
+      "starterCode": "function everyOther(arr) {\n\n}",
+      "solution": "function everyOther(arr) {\n  return arr.filter((_, i) => i % 2 === 0);\n}",
+      "testRunner": "(code) => { const fn = new Function(code + '; return everyOther;')(); return [ { pass: JSON.stringify(fn(['a','b','c','d','e'])) === '[\"a\",\"c\",\"e\"]', description: 'everyOther([\"a\",\"b\",\"c\",\"d\",\"e\"]) → [\"a\",\"c\",\"e\"]', got: JSON.stringify(fn(['a','b','c','d','e'])) }, { pass: JSON.stringify(fn([1,2,3,4])) === '[1,3]', description: 'everyOther([1,2,3,4]) → [1,3]', got: JSON.stringify(fn([1,2,3,4])) }, { pass: JSON.stringify(fn([10])) === '[10]', description: 'everyOther([10]) → [10]', got: JSON.stringify(fn([10])) }, { pass: JSON.stringify(fn([])) === '[]', description: 'everyOther([]) → []', got: JSON.stringify(fn([])) } ]; }",
+      "hints": [
+        "Even indexes are 0, 2, 4... You can check with i % 2 === 0.",
+        "Use .filter() with the index parameter: arr.filter((element, index) => ...)",
+        "return arr.filter((_, i) => i % 2 === 0);"
+      ],
+      "resources": [
+        {
+          "label": "MDN: Array.filter()",
+          "url": "/docs/mdn/array-filter.html",
+          "description": "Creating a subset of an array based on a condition"
+        },
+        {
+          "label": "MDN: Array.filter()",
+          "url": "/docs/mdn/array-filter.html",
+          "description": "Creating a subset of an array based on a condition"
         }
       ]
     }
